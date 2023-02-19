@@ -39,7 +39,7 @@ class PetsDiseasesList(generics.ListCreateAPIView):
     serializer_class = PetDiseaseSerializer
 
 
-class PetDiseaseDetail(generics.ListCreateAPIView):
+class PetDiseaseDetail(generics.RetrieveUpdateDestroyAPIView):
     name = 'petsdiseases-detail'
     queryset = PetsDiseases.objects.all()
     serializer_class = PetDiseaseSerializer
@@ -51,7 +51,7 @@ class IsolationsList(generics.ListCreateAPIView):
     serializer_class = IsolationsSerializer
 
 
-class IsolationsDetail(generics.ListCreateAPIView):
+class IsolationsDetail(generics.RetrieveUpdateDestroyAPIView):
     name = 'isolations-detail'
     queryset = Isolations.objects.all()
     serializer_class = IsolationsSerializer
@@ -63,7 +63,7 @@ class ResourcesList(generics.ListCreateAPIView):
     serializer_class = ResourcesSerializer
 
 
-class ResourcesDetail(generics.ListCreateAPIView):
+class ResourcesDetail(generics.RetrieveUpdateDestroyAPIView):
     name = 'resources-detail'
     queryset = Resources.objects.all()
     serializer_class = ResourcesSerializer
@@ -75,7 +75,7 @@ class ResourcesTypesList(generics.ListCreateAPIView):
     serializer_class = ResourcesTypeSerializer
 
 
-class ResourceTypeDetail(generics.ListCreateAPIView):
+class ResourceTypeDetail(generics.RetrieveUpdateDestroyAPIView):
     name = 'resourcestypes-detail'
     queryset = ResourcesTypes.objects.all()
     serializer_class = ResourcesTypeSerializer
@@ -86,7 +86,7 @@ class AdoptingList(generics.ListCreateAPIView):
     serializer_class = AdoptingSerializer
 
 
-class AdoptingDetail(generics.ListCreateAPIView):
+class AdoptingDetail(generics.RetrieveUpdateDestroyAPIView):
     name = 'adopting-detail'
     queryset = Adopting.objects.all()
     serializer_class = AdoptingSerializer
@@ -98,7 +98,7 @@ class WorkersList(generics.ListCreateAPIView):
     serializer_class = WorkersSerializer
 
 
-class WorkerDetail(generics.ListCreateAPIView):
+class WorkerDetail(generics.RetrieveUpdateDestroyAPIView):
     name = 'workers-detail'
     queryset = Workers.objects.all()
     serializer_class = WorkersSerializer
@@ -110,7 +110,7 @@ class AdoptionsList(generics.ListCreateAPIView):
     serializer_class = AdoptionsSerializer
 
 
-class AdoptionDetail(generics.ListCreateAPIView):
+class AdoptionDetail(generics.RetrieveUpdateDestroyAPIView):
     name = 'adoptions-detail'
     queryset = Adoptions.objects.all()
     serializer_class = AdoptionsSerializer
@@ -122,7 +122,7 @@ class VacationsList(generics.ListCreateAPIView):
     serializer_class = VacationsSerializer
 
 
-class VacationDetail(generics.ListCreateAPIView):
+class VacationDetail(generics.RetrieveUpdateDestroyAPIView):
     name = 'vacations-detail'
     queryset = Vacations.objects.all()
     serializer_class = VacationsSerializer
@@ -134,7 +134,7 @@ class WorkersRequestsList(generics.ListCreateAPIView):
     serializer_class = WorkerRequestsSerializer
 
 
-class WorkerRequestDetail(generics.ListCreateAPIView):
+class WorkerRequestDetail(generics.RetrieveUpdateDestroyAPIView):
     name = 'workerrequests-detail'
     queryset = WorkerRequests.objects.all()
     serializer_class = WorkerRequestsSerializer
@@ -146,7 +146,7 @@ class VolunteersList(generics.ListCreateAPIView):
     serializer_class = VolunteersSerializer
 
 
-class VolunteerDetail(generics.ListCreateAPIView):
+class VolunteerDetail(generics.RetrieveUpdateDestroyAPIView):
     name = 'volunteers-detail'
     queryset = Volunteers.objects.all()
     serializer_class = VolunteersSerializer
@@ -158,7 +158,7 @@ class VolunteerMeetingsList(generics.ListCreateAPIView):
     serializer_class = VolunteerMeetingsSerializer
 
 
-class VolunteerMeetingDetail(generics.ListCreateAPIView):
+class VolunteerMeetingDetail(generics.RetrieveUpdateDestroyAPIView):
     name = 'volunteermeetings-detail'
     queryset = VolunteerMeetings.objects.all()
     serializer_class = VolunteerMeetingsSerializer
