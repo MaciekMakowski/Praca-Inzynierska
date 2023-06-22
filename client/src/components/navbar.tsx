@@ -72,7 +72,7 @@ const Navbar = () => {
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' } }}
+                        sx={{ mr: 2, display: { lg: 'none' } }}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -96,7 +96,7 @@ const Navbar = () => {
                             Schronisko.pl
                         </Typography>
                     </Box>
-                    <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                    <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
                         {pages.map((item) => (
                             <Button key={item} sx={{ color: '#fff' }}>
                                 {item}
@@ -114,7 +114,7 @@ const Navbar = () => {
                         keepMounted: true, // Better open performance on mobile.
                     }}
                     sx={{
-                        display: { xs: 'block', sm: 'none' },
+                        display: { xs: 'block', lg: 'none' },
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                     }}
                 >
