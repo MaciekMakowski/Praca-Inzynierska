@@ -38,7 +38,11 @@ const Footer = () => {
                     <Typography variant={"h6"} color={theme.palette.text.secondary}>
                         Kontakt
                     </Typography>
-                    <Box>
+                    <Box
+                        display={"flex"}
+                        flexDirection={"column"}
+                        gap={2}
+                    >
                         <Box
                             display={"flex"}
                             alignItems={"center"}
