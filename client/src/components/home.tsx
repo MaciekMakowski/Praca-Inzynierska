@@ -1,4 +1,4 @@
-import {Box, Container, Typography, useTheme} from "@mui/material";
+import {Box, Button, Container, Divider, Typography, useTheme} from "@mui/material";
 import back from '../img/home/back.png'
 import dogMain from '../img/home/dog.png'
 import dogMainLong from '../img/home/dogLong.png'
@@ -13,6 +13,13 @@ import dogAbout2 from '../img/home/dogAbout2.png'
 import dogIco from '../img/home/icoDog.png'
 import heartIco from '../img/home/icoHeart.png'
 import homeIco from '../img/home/icoHouse.png'
+import questMark from '../img/home/question.png'
+import dogHand from '../img/home/dogHand.png'
+import timeImg from '../img/home/time.png'
+import bookImg from '../img/home/book.png'
+import tree from '../img/home/tree.png'
+import behavior from '../img/home/behavior.png'
+import dogCircle from '../img/home/dogCircle.png'
 
 const Home = () => {
     const theme = useTheme()
@@ -24,7 +31,7 @@ const Home = () => {
         <Container
             sx={{
                 backgroundImage:`url(${back})`,
-                backgroundSize:'cover'
+                backgroundSize:'contain'
             }}
         >
             <Box
@@ -284,6 +291,342 @@ const Home = () => {
 
                 </Box>
 
+            </Box>
+            <Box
+                mt={5}
+                display={"flex"}
+                width={'100%'}
+                sx={{
+                    flexDirection:{xs:"column",lg:"row"},
+                    justifyContent:{xs:'space-evenly'},
+                    gap:3
+                }}
+            >
+                <Box
+                    display={"flex"}
+                    alignItems={'space-between'}
+                    sx={{
+                        width: {xs:"100%", lg:"fit-content"},
+                        flexDirection:{xs:"row",lg:"column"},
+                        justifyContent:'space-evenly'
+                    }}
+                >
+                    <Box
+                        boxSizing={"border-box"}
+                        p={3}
+                        display={"flex"}
+                        sx={{
+                            bgcolor:theme.palette.secondary.main,
+                            width:'12rem',
+                            height:'12rem',
+                            cursor:'pointer'
+                        }}
+                        justifyContent={"center"}
+                        alignItems={"center"}
+                        flexDirection={"column"}
+
+                    >
+                        <Box
+                            width={'5rem'}
+                            height={'5rem'}
+                            sx={{
+                                backgroundImage:`url(${questMark})`,
+                                backgroundSize:'cover'
+                            }}
+                        />
+                        <Typography textAlign={"center"} variant={'h6'} color={theme.palette.text.secondary}>
+                            Zanim Adoptujesz
+                        </Typography>
+
+                    </Box>
+                    <Box
+                        boxSizing={"border-box"}
+                        p={3}
+                        display={"flex"}
+                        sx={{
+                            bgcolor:theme.palette.secondary.main,
+                            width:'12rem',
+                            height:'12rem',
+                            cursor:'pointer'
+                        }}
+                        justifyContent={"center"}
+                        alignItems={"center"}
+                        flexDirection={"column"}
+
+                    >
+                        <Box
+                            width={'5rem'}
+                            height={'5rem'}
+                            sx={{
+                                backgroundImage:`url(${dogHand})`,
+                                backgroundSize:'cover'
+                            }}
+                        />
+                        <Typography textAlign={"center"} variant={'h6'} color={theme.palette.text.secondary}>
+                            Warunki adopcji
+                        </Typography>
+
+                    </Box>
+
+                </Box>
+                <Box
+                    display={"flex"}
+                    boxSizing={"border-box"}
+                    p={3}
+                    sx={{
+                        width: {xs:"100%", lg:"60%"},
+                        height:'40rem',
+                        bgcolor:theme.palette.background.secondary,
+                        alignItems:'center',
+                        flexDirection:'column',
+                        justifyContent:'center'
+                    }}
+                    gap={3}
+                >
+                    <Box
+                        sx={{
+                            width: {xs:'13rem', md:'25rem'},
+                            height:{xs:'13rem', md:'25rem'},
+                            backgroundImage:`url(${tree})`,
+                            backgroundSize:'cover'
+                        }}
+
+                    />
+                    <Typography
+                        width={"75%"}
+                        textAlign={"center"}
+                        variant={'h4'}
+                        color={theme.palette.text.primary}
+                    >
+                        Dziękujemy wolontariuszom
+                        i zapraszamy do pomocy
+                        więcej informacji w zakładce kontakt
+                    </Typography>
+
+
+                </Box>
+                <Box
+                    display={"flex"}
+                    alignItems={'space-between'}
+                    sx={{
+                        width: {xs:"100%", lg:"fit-content"},
+                        flexDirection:{xs:"row",lg:"column"},
+                        justifyContent:'space-evenly'
+                    }}
+                >
+                    <Box
+                        boxSizing={"border-box"}
+                        p={3}
+                        display={"flex"}
+                        sx={{
+                            bgcolor:theme.palette.secondary.main,
+                            width:'12rem',
+                            height:'12rem',
+                            cursor:'pointer',
+                        }}
+                        justifyContent={"center"}
+                        alignItems={"center"}
+                        flexDirection={"column"}
+
+                    >
+                        <Box
+                            width={'5rem'}
+                            height={'5rem'}
+                            sx={{
+                                backgroundImage:`url(${timeImg})`,
+                                backgroundSize:'cover'
+                            }}
+                        />
+                        <Typography textAlign={"center"} variant={'h6'} color={theme.palette.text.secondary}>
+                            Adopcja tymczasowa
+                        </Typography>
+
+                    </Box>
+                    <Box
+                        boxSizing={"border-box"}
+                        p={3}
+                        display={"flex"}
+                        sx={{
+                            bgcolor:theme.palette.secondary.main,
+                            width:'12rem',
+                            height:'12rem',
+                            cursor:'pointer'
+                        }}
+                        justifyContent={"center"}
+                        alignItems={"center"}
+                        flexDirection={"column"}
+
+                    >
+                        <Box
+                            width={'5rem'}
+                            height={'5rem'}
+                            sx={{
+                                backgroundImage:`url(${bookImg})`,
+                                backgroundSize:'cover'
+                            }}
+                        />
+                        <Typography textAlign={"center"} variant={'h6'} color={theme.palette.text.secondary}>
+                            Poradnik właściciela
+                        </Typography>
+
+                    </Box>
+
+                </Box>
+
+            </Box>
+            <Box
+                display={"flex"}
+                boxSizing={"border-box"}
+                justifyContent={"center"}
+                p={3}
+            >
+                <Button variant={"contained"}>Poznaj nas</Button>
+
+            </Box>
+            <Box
+                display={"flex"}
+                sx={{
+                    flexDirection:{xs:'column', lg:'row'}
+                }}
+            >
+                <Box
+                    sx={{
+                        backgroundImage:`url(${behavior})`,
+                        backgroundSize:'cover',
+                        height:{xs:'20rem', lg:'36rem'},
+                        width:{xs:'100%', lg:'40rem'}
+                    }}
+                />
+                <Box
+
+                    display={"flex"}
+                    flexDirection={"column"}
+                    bgcolor={theme.palette.background.light}
+                    sx={{
+                        width:{xs:'100%', lg:'50%'},
+                        height:{xs:'fit-content', lg:'36rem'}
+                    }}
+                >
+                    <Box
+                        bgcolor={theme.palette.primary.main}
+                        width={'100%'}
+                    >
+                        <Typography textAlign={"center"} variant={'h4'} color={theme.palette.text.secondary}>
+                            Strefa behawiorysty
+                        </Typography>
+                    </Box>
+                    <Box
+                        display={"flex"}
+                        gap={1}
+                        alignItems={"center"}
+                        flexDirection={"column"}
+                        justifyContent={"center"}
+                        boxSizing={"border-box"}
+                        px={1}
+                        py={2}
+                    >
+                        <Typography textAlign={"center"} variant={"subtitle1"} fontWeight={"bold"} color={theme.palette.text.secondary}>
+                            Jak w schronisku behawiorystki uczą psy chodzenia na smyczy
+                        </Typography>
+                        <Box
+                            display={"flex"}
+                            flexDirection={"row"}
+                            justifyContent={"center"}
+                            alignItems={"center"}
+                            gap={1}
+                        >
+                            <Box
+                                sx={{
+                                    backgroundImage:`url(${dogCircle})`,
+                                    backgroundSize:'cover',
+                                    backgroundRepeat:'no-repeat',
+                                    minHeight:'64px',
+                                    minWidth:'64px',
+                                    display:{xs:'none', sm:'block'}
+                                }}
+                            />
+
+                            <Typography variant={"caption"}  color={theme.palette.text.secondary}>
+                                Niektóre psy, które do nas trafiają panicznie boją się smyczy. Takie psy trafiają pod opiekę behawiorystek na tzw. Żółte Boksy. Na początku nie chodzą na spacery na zewnątrz tylko wychodzą z klatek na wybieg. Potem z czasem mają przypinane tzw. przedłużki – krótki kawałek smyczy i oswajają się z faktem, że coś im dynda przy […]
+                            </Typography>
+                        </Box>
+                    </Box>
+                    <Divider/>
+                    <Box
+                        display={"flex"}
+                        gap={1}
+                        alignItems={"center"}
+                        flexDirection={"column"}
+                        justifyContent={"center"}
+                        boxSizing={"border-box"}
+                        px={1}
+                        py={2}
+                    >
+                        <Typography variant={"subtitle1"} fontWeight={"bold"} color={theme.palette.text.secondary}>
+                            Jak podać kotu tabletkę?
+                        </Typography>
+                        <Box
+                            display={"flex"}
+                            flexDirection={"row"}
+                            justifyContent={"center"}
+                            alignItems={"center"}
+                            gap={1}
+                        >
+                            <Box
+                                sx={{
+                                    backgroundImage:`url(${dogCircle})`,
+                                    backgroundSize:'cover',
+                                    backgroundRepeat:'no-repeat',
+                                    minHeight:'64px',
+                                    minWidth:'64px',
+                                    display:{xs:'none', sm:'block'}
+                                }}
+                            />
+
+                            <Typography variant={"caption"}  color={theme.palette.text.secondary}>
+                                Jak podać kotu tabletkę?
+                                Nikt się nad tym nie zastanawia, dopóki nie musi podać kotu tabletki. Z pozoru taka prosta rzecz, a potrafi przysporzyć wielu trudności. Obraz dławiącego się tabletką, próbującego wyswobodzić się za pomocą pazurów z naszego uścisku kota to nic przyjemnego. Tak samo dla właściciela jak i dla samego kota jest to moment niezmiernie stresujący. Aby uniknąć […]                            </Typography>
+                        </Box>
+                    </Box>
+                    <Divider/>
+                    <Box
+                        display={"flex"}
+                        gap={1}
+                        alignItems={"center"}
+                        flexDirection={"column"}
+                        justifyContent={"center"}
+                        boxSizing={"border-box"}
+                        px={1}
+                        py={2}
+                    >
+                        <Typography variant={"subtitle1"} fontWeight={"bold"} color={theme.palette.text.secondary}>
+                            Kocia komunikacja – dźwięki
+                        </Typography>
+                        <Box
+                            display={"flex"}
+                            flexDirection={"row"}
+                            justifyContent={"center"}
+                            alignItems={"center"}
+                            gap={1}
+                        >
+                            <Box
+                                sx={{
+                                    backgroundImage:`url(${dogCircle})`,
+                                    backgroundSize:'cover',
+                                    backgroundRepeat:'no-repeat',
+                                    minHeight:'64px',
+                                    minWidth:'64px',
+                                    display:{xs:'none', sm:'block'}
+                                }}
+                            />
+
+                            <Typography variant={"caption"}  color={theme.palette.text.secondary}>
+                                Koty komunikują się z otoczeniem za pomocą sygnałów dźwiękowych, zapachowych i mowy ciała. Kocia komunikacja jest bardzo rozbudowana i często mylnie rozumiana przez człowieka jako kocia złośliwość. Komunikacja werbalnaDzikie dorosłe koty miauczą bardzo rzadko, nie potrzebują tego rodzaju komunikatów do porozumiewania się między sobą. Miauczenie kota powstaje w wyniku socjalizacji z człowiekiem. Jest to kocia […]
+                            </Typography>
+                            </Box>
+
+                        </Box>
+                </Box>
             </Box>
         </Container>
     )
