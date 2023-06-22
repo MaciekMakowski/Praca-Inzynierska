@@ -10,6 +10,9 @@ import sup5 from '../img/home/sup5.png'
 import hands from '../img/home/hands.png'
 import dogAbout1 from '../img/home/dogAbout1.png'
 import dogAbout2 from '../img/home/dogAbout2.png'
+import dogIco from '../img/home/icoDog.png'
+import heartIco from '../img/home/icoHeart.png'
+import homeIco from '../img/home/icoHouse.png'
 
 const Home = () => {
     const theme = useTheme()
@@ -188,6 +191,96 @@ const Home = () => {
                         }}
                     />
 
+
+                </Box>
+
+            </Box>
+
+            <Box
+                display={"flex"}
+                justifyContent={"center"}
+                width={'100%'}
+            >
+                <Box
+                    display={"flex"}
+                    justifyContent={"space-evenly"}
+                    border={`2px solid ${theme.palette.secondary.main}`}
+                    borderRadius={5}
+                    width={'75%'}
+                    boxSizing={"border-box"}
+                    p={3}
+                    bgcolor={theme.palette.background.secondary}
+                    sx={{
+                        flexDirection:{xs:'column',md:'row'},
+                        gap:{xs:3,lg:0}
+                    }}
+                >
+                    <Box
+                        display={"flex"}
+                        flexDirection={"column"}
+                        alignItems={"center"}
+                    >
+                            <Box
+                                sx={{
+                                    backgroundImage:`url(${dogIco})`,
+                                    backgroundSize:'cover',
+                                    backgroundRepeat:'no-repeat',
+                                    backgroundPosition:'center',
+                                    width:{xs:'2rem', lg:'4rem'},
+                                    height:{xs:'2rem', lg:'4rem'}
+                                }}
+                            />
+                        <Typography variant={'h6'} color={theme.palette.text.primary}>
+                            32
+                        </Typography>
+                        <Typography variant={'h6'} color={theme.palette.text.primary}>
+                            Zwierząt do adopcji
+                        </Typography>
+                    </Box>
+                    <Box
+                        display={"flex"}
+                        flexDirection={"column"}
+                        alignItems={"center"}
+                    >
+                        <Box
+                            sx={{
+                                backgroundImage:`url(${heartIco})`,
+                                backgroundSize:'cover',
+                                backgroundRepeat:'no-repeat',
+                                backgroundPosition:'center',
+                                width:{xs:'2rem', lg:'4rem'},
+                                height:{xs:'2rem', lg:'4rem'}
+                            }}
+                        />
+                        <Typography variant={'h6'} color={theme.palette.text.primary}>
+                            40
+                        </Typography>
+                        <Typography variant={'h6'} color={theme.palette.text.primary}>
+                            Adopcji w tym roku
+                        </Typography>
+                    </Box>
+                    <Box
+                        display={"flex"}
+                        flexDirection={"column"}
+                        alignItems={"center"}
+                    >
+                        <Box
+                            sx={{
+                                backgroundImage:`url(${homeIco})`,
+                                backgroundSize:'cover',
+                                backgroundRepeat:'no-repeat',
+                                backgroundPosition:'center',
+                                width:{xs:'2rem', lg:'4rem'},
+                                height:{xs:'2rem', lg:'4rem'}
+                            }}
+                        />
+                        <Typography variant={'h6'} color={theme.palette.text.primary}>
+                            40
+                        </Typography>
+                        <Typography variant={'h6'} color={theme.palette.text.primary}>
+                            Przyjętych w tym roku
+                        </Typography>
+                    </Box>
 
                 </Box>
 
