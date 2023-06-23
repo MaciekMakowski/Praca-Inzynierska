@@ -14,14 +14,35 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import logo from '../img/navbar/logo.png'
+import {useNavigate} from "react-router";
 
 const drawerWidth = 240;
-const pages = ['Strona główna', 'Nasze zwierzęta', 'Nasze potrzeby', 'Kontakt', 'Adopcja'];
+const pages = [
+    {
+        name:'Strona główna',
+        link:'/'
+    },
+    {
+        name:'Nasze zwierzęta',
+        link:'/'
+    },
+    {
+        name:'Nasze potrzeby',
+        link:'/needs'
+    },
+    {
+        name:'Kontakt',
+        link:'/'
+    },
+    {
+        name:'Adopcja',
+        link:'/'
+    }];
 
 
 const Navbar = () => {
-
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    const navigate = useNavigate()
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
@@ -50,10 +71,10 @@ const Navbar = () => {
             </Box>
             <Divider />
             <List>
-                {pages.map((item) => (
-                    <ListItem key={item} disablePadding>
-                        <ListItemButton sx={{ textAlign: 'center' }}>
-                            <ListItemText primary={item} />
+                {pages.map((item,index) => (
+                    <ListItem key={index} disablePadding>
+                        <ListItemButton  onClick={() => navigate(item.link)} sx={{ textAlign: 'center' }}>
+                            <ListItemText primary={item.name} />
                         </ListItemButton>
                     </ListItem>
                 ))}
@@ -97,9 +118,9 @@ const Navbar = () => {
                         </Typography>
                     </Box>
                     <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
-                        {pages.map((item) => (
-                            <Button key={item} sx={{ color: '#fff' }}>
-                                {item}
+                        {pages.map((item,index) => (
+                            <Button onClick={() => navigate(item.link)} key={index} sx={{ color: '#fff' }}>
+                                {item.name}
                             </Button>
                         ))}
                     </Box>
