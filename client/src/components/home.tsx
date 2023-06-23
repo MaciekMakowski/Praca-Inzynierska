@@ -20,6 +20,66 @@ import bookImg from '../img/home/book.png'
 import tree from '../img/home/tree.png'
 import behavior from '../img/home/behavior.png'
 import dogCircle from '../img/home/dogCircle.png'
+import WestIcon from '@mui/icons-material/West';
+import EastIcon from '@mui/icons-material/East';
+import old1 from '../img/home/olds/old1.png'
+import old2 from '../img/home/olds/old2.png'
+import old3 from '../img/home/olds/old3.png'
+import old4 from '../img/home/olds/old4.png'
+import old5 from '../img/home/olds/old5.png'
+
+const oldDogs = [
+    {
+        id:0,
+        image:old1,
+        name:"Pimpek",
+        sex:'Samiec',
+        age:'11',
+        number:'1923/23',
+    },
+    {
+        id:1,
+        image:old2,
+        name:"Złotek",
+        sex:'Samiec',
+        age:'12',
+        number:'1847/23',
+    },
+    {
+        id:2,
+        image:old3,
+        name:"Owca",
+        sex:'Samica',
+        age:'10',
+        number:'1727/23',
+    },
+    {
+        id:3,
+        image:old4,
+        name:"Kostek",
+        sex:'Samiec',
+        age:'13',
+        number:'1723/23',
+    },
+    {
+        id:4,
+        image:old5,
+        name:"Azor",
+        sex:'Samiec',
+        age:'13',
+        number:'1988/23',
+    },
+    {
+        id:5,
+        image:old1,
+        name:"Sunia",
+        sex:'Samica',
+        age:'12',
+        number:'1943/23',
+    }
+]
+
+
 
 const Home = () => {
     const theme = useTheme()
@@ -79,12 +139,12 @@ const Home = () => {
                         {supporters.map(supp => {
                             return(
                                 <Box
-                                    width={'5rem'}
-                                    height={'5rem'}
                                     sx={{
                                         backgroundImage:`url(${supp})`,
                                         backgroundSize:'contain',
-                                        backgroundRepeat:'no-repeat'
+                                        backgroundRepeat:'no-repeat',
+                                        width:{xs:'3rem', sm:'5rem'},
+                                        height:{xs:'3rem', sm:'5rem'}
                                     }}
                                 />
                             )
@@ -317,8 +377,8 @@ const Home = () => {
                         display={"flex"}
                         sx={{
                             bgcolor:theme.palette.secondary.main,
-                            width:'12rem',
-                            height:'12rem',
+                            width:{xs:'10rem', sm:'12rem'},
+                            height:{xs:'10rem', sm:'12rem'},
                             cursor:'pointer'
                         }}
                         justifyContent={"center"}
@@ -327,11 +387,11 @@ const Home = () => {
 
                     >
                         <Box
-                            width={'5rem'}
-                            height={'5rem'}
                             sx={{
                                 backgroundImage:`url(${questMark})`,
-                                backgroundSize:'cover'
+                                backgroundSize:'cover',
+                                width:{xs:'3rem', sm:'5rem'},
+                                height:{xs:'3rem', sm:'5rem'}
                             }}
                         />
                         <Typography textAlign={"center"} variant={'h6'} color={theme.palette.text.secondary}>
@@ -345,8 +405,8 @@ const Home = () => {
                         display={"flex"}
                         sx={{
                             bgcolor:theme.palette.secondary.main,
-                            width:'12rem',
-                            height:'12rem',
+                            width:{xs:'10rem', sm:'12rem'},
+                            height:{xs:'10rem', sm:'12rem'},
                             cursor:'pointer'
                         }}
                         justifyContent={"center"}
@@ -355,11 +415,11 @@ const Home = () => {
 
                     >
                         <Box
-                            width={'5rem'}
-                            height={'5rem'}
                             sx={{
                                 backgroundImage:`url(${dogHand})`,
-                                backgroundSize:'cover'
+                                backgroundSize:'cover',
+                                width:{xs:'3rem', sm:'5rem'},
+                                height:{xs:'3rem', sm:'5rem'}
                             }}
                         />
                         <Typography textAlign={"center"} variant={'h6'} color={theme.palette.text.secondary}>
@@ -420,8 +480,8 @@ const Home = () => {
                         display={"flex"}
                         sx={{
                             bgcolor:theme.palette.secondary.main,
-                            width:'12rem',
-                            height:'12rem',
+                            width:{xs:'10rem', sm:'12rem'},
+                            height:{xs:'10rem', sm:'12rem'},
                             cursor:'pointer',
                         }}
                         justifyContent={"center"}
@@ -430,11 +490,11 @@ const Home = () => {
 
                     >
                         <Box
-                            width={'5rem'}
-                            height={'5rem'}
                             sx={{
                                 backgroundImage:`url(${timeImg})`,
-                                backgroundSize:'cover'
+                                backgroundSize:'cover',
+                                width:{xs:'3rem', sm:'5rem'},
+                                height:{xs:'3rem', sm:'5rem'}
                             }}
                         />
                         <Typography textAlign={"center"} variant={'h6'} color={theme.palette.text.secondary}>
@@ -448,8 +508,8 @@ const Home = () => {
                         display={"flex"}
                         sx={{
                             bgcolor:theme.palette.secondary.main,
-                            width:'12rem',
-                            height:'12rem',
+                            width:{xs:'10rem', sm:'12rem'},
+                            height:{xs:'10rem', sm:'12rem'},
                             cursor:'pointer'
                         }}
                         justifyContent={"center"}
@@ -458,11 +518,11 @@ const Home = () => {
 
                     >
                         <Box
-                            width={'5rem'}
-                            height={'5rem'}
                             sx={{
                                 backgroundImage:`url(${bookImg})`,
-                                backgroundSize:'cover'
+                                backgroundSize:'cover',
+                                width:{xs:'3rem', sm:'5rem'},
+                                height:{xs:'3rem', sm:'5rem'}
                             }}
                         />
                         <Typography textAlign={"center"} variant={'h6'} color={theme.palette.text.secondary}>
@@ -627,6 +687,107 @@ const Home = () => {
 
                         </Box>
                 </Box>
+            </Box>
+            <Box
+                boxSizing={"border-box"}
+                py={3}
+                display={"flex"}
+            >
+                <Box
+                    bgcolor={theme.palette.background.secondary}
+                    boxSizing={"border-box"}
+                    p={2}
+                    width={'100%'}
+                    display={"flex"}
+                    justifyContent={"center"}
+                    flexDirection={"column"}
+                    gap={2}
+                >
+                    <Box
+                        display={"flex"}
+                        sx={{
+                            justifyContent:'space-between'
+                        }}
+                    >
+                        <WestIcon sx={{display:'block'}} color={"primary"} fontSize={"large"}/>
+                        <Typography textAlign={"center"} variant={'h5'} color={theme.palette.text.primary}>
+                            Wybieram seniora
+                        </Typography>
+                        <EastIcon sx={{display:'block'}} color={"primary"} fontSize={"large"}/>
+
+                    </Box>
+                    <Box
+                        width={'100%'}
+                        display={"flex"}
+                        justifyContent={"space-between"}
+                        alignItems={"center"}
+                    >
+
+                        <Box
+                            display={"flex"}
+                            justifyContent={"space-evenly"}
+                            width={'100%'}
+                            sx={{
+                                flexDirection:'row',
+                                flexWrap:{xs:'wrap', lg:'none'},
+                            }}
+                        >
+                            {oldDogs.map(dog => {
+                                return(
+                                    <Box
+                                        bgcolor={theme.palette.primary.main}
+                                        borderRadius={'0 0 5% 5%'}
+                                        display={"flex"}
+                                        sx={{
+                                            flexDirection:'column',
+                                            minWidth:'150px',
+                                            marginBottom:{xs:3,md:0}
+                                        }}
+                                    >
+                                        <Box
+                                            sx={{
+                                                backgroundImage:`url(${dog.image})`,
+                                                backgroundSize:'cover',
+                                                minHeight:{xs:'7rem', sm:'7rem'},
+                                                minWidth:{xs:'7rem', sm:'10rem'}
+                                            }}
+                                        />
+                                        <Box
+                                            display={"flex"}
+                                            flexDirection={"column"}
+                                            p={1}
+                                            boxSizing={"border-box"}
+                                        >
+                                            <Typography variant={"subtitle1"} fontWeight={"bold"} color={theme.palette.text.secondary}>
+                                                {dog.name}
+                                            </Typography>
+                                            <Typography variant={"subtitle1"} color={theme.palette.text.secondary}>
+                                                {dog.sex}
+                                            </Typography>
+                                            <Box
+                                                display={"flex"}
+                                                sx={{
+                                                    flexDirection:{xs:'column', md:'row'},
+                                                    justifyContent:'space-between'
+                                                }}
+                                            >
+                                                <Typography variant={"subtitle1"} color={theme.palette.text.secondary}>
+                                                    Wiek: {dog.age}
+                                                </Typography>
+                                                <Typography variant={"subtitle1"} color={theme.palette.text.secondary}>
+                                                    {dog.number}
+                                                </Typography>
+                                            </Box>
+                                        </Box>
+                                        <Button  color={"info"}> Więcej</Button>
+                                    </Box>
+                                )
+                            })}
+
+                        </Box>
+                    </Box>
+                </Box>
+
             </Box>
         </Container>
     )
