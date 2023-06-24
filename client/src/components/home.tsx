@@ -248,12 +248,14 @@ const Home = () => {
                         }}
                     />
                     <Box
+                        display={"flex"}
+                        flexGrow={1}
                         sx={{
                             backgroundImage:`url(${dogAbout2})`,
                             backgroundSize:'cover',
                             backgroundRepeat:'no-repeat',
                             backgroundPosition:'center',
-                            width:'100%',
+                            width:'101%',
                             height:{xs:'none', lg:'50%'}
                         }}
                     />

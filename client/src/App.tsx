@@ -7,6 +7,7 @@ import {themeOptions} from "./assets/theme";
 import { BrowserRouter as Router } from 'react-router-dom';
 import {Route, Routes, useLocation} from "react-router-dom";
 import OurNeeds from "./components/ourNeeds";
+import Contact from "./components/contact";
 function App() {
     const theme = createTheme(themeOptions)
 
@@ -21,6 +22,7 @@ function App() {
               <Routes location={location} key={location.pathname}>
                   <Route path={'/'} element={<Home/>}/>
                   <Route path={'/needs'} element={<OurNeeds/>}/>
+                  <Route path={'/contact'} element={<Contact/>}/>
                   <Route path={'/*'} element={<Home/>}/>
               </Routes>
                   </Box>
