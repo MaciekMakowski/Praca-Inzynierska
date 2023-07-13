@@ -14,9 +14,9 @@ const AdoptionInfo = (props:AdoptionInfoProps) => {
         <Box
             display={"flex"}
             width={'100%'}
-            height={'20rem'}
             sx={{
-                flexDirection: props.side === 'right' ? 'row' : props.side === 'left' ? 'row-reverse' : 'row',
+                flexDirection:{xs:'column', md: props.side === 'right' ? 'row' : props.side === 'left' ? 'row-reverse' : 'row'},
+                height:{xs:'', md:'20rem'}
             }}
         >
             <Box
@@ -25,10 +25,12 @@ const AdoptionInfo = (props:AdoptionInfoProps) => {
                 display={"flex"}
                 flexDirection={"column"}
                 gap={2}
-                width={'70%'}
                 alignItems={"center"}
                 justifyContent={"center"}
                 px={4}
+                sx={{
+                    width:{xs:'100%', md:'70%'}
+                }}
             >
                 <Typography variant={"subtitle1"} fontWeight={"bold"} color={theme.palette.text.secondary}>
                     {props.title}
@@ -42,9 +44,9 @@ const AdoptionInfo = (props:AdoptionInfoProps) => {
                     backgroundImage:`url(${props.img})`,
                     backgroundSize:'cover',
                     backgroundPosition:'center',
-                    borderRadius:props.side === 'right' ? '0px 10px 10px 0px' : props.side === 'left' ? '10px 0px 0px 10px' : '0px 10px 10px 0px',
-                    height:'100%',
-                    width:"40rem"
+                    borderRadius:{xs:'0px 0px 10px 10px', lg:props.side === 'right' ? '0px 10px 10px 0px' : props.side === 'left' ? '10px 0px 0px 10px' : '0px 10px 10px 0px'},
+                    height:{xs:'300px', md:'100%'},
+                    width:{xs:'100%', md:'40rem'}
                 }}
             />
 

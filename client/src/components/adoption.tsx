@@ -1,4 +1,5 @@
 import {Container, Box, useTheme, Typography} from "@mui/material";
+import React from "react";
 import back from "../img/home/back.png";
 import dog1 from '../img/adoption/dog1.png'
 import dog2 from '../img/adoption/dog2.png'
@@ -14,6 +15,7 @@ import ico3 from '../img/adoption/ico3.png'
 import ico4 from '../img/adoption/ico4.png'
 import ico5 from '../img/adoption/ico5.png'
 import ico6 from '../img/adoption/ico6.png'
+import had from '../img/adoption/humanAndDog.png'
 import AdoptionInfo from "./adoptionInfo";
 
 
@@ -52,9 +54,9 @@ const dogList = [
 ]
 
 type adoptParagraphsType = {
-        ico:string,
-        text:string,
-        list?:string[]
+    ico:string,
+    text:string,
+    list?:string[]
 }[]
 
 const adoptParahraps: adoptParagraphsType = [
@@ -95,6 +97,7 @@ const Adoption = () => {
 
     const theme= useTheme()
 
+
     return(
         <Container
             sx={{
@@ -121,8 +124,8 @@ const Adoption = () => {
                                 sx={{
                                     backgroundImage:`url(${dog})`,
                                     backgroundSize:'cover',
-                                    width:'16rem',
-                                    height:'10rem'
+                                    width:{xs:'6rem',sm:'10rem', lg:'16rem'},
+                                    height:{xs:'5rem',sm:'7rem', lg:'10rem'}
                                 }}
                             />
                         )
@@ -144,7 +147,7 @@ const Adoption = () => {
                         bgcolor={theme.palette.primary.main}
                         py={2}
                         sx={{
-                            borderRadius:'10px 10px 0px 0px'
+                            borderRadius:'20px 20px 0px 0px'
                         }}
                     >
                         <Typography textAlign={"center"} variant={"h6"} color={theme.palette.text.secondary}>
@@ -170,7 +173,9 @@ const Adoption = () => {
                     display={"flex"}
                     flexDirection={"column"}
                     gap={5}
-                    width={'80%'}
+                    sx={{
+                        width:{xs:'100%', lg:'80%'}
+                    }}
                 >
                     {adoptionInfos.map((info, index)=> {
                         return(
@@ -203,13 +208,15 @@ const Adoption = () => {
                                         display={'flex'}
                                         gap={2}
                                     >
-                                    <Box
-                                        width={'24px'}
-                                        height={'24px'}
-                                        sx={{
-                                            backgroundImage:`url(${para.ico})`
-                                        }}
-                                    />
+                                        <Box>
+                                            <Box
+                                                width={'24px'}
+                                                height={'24px'}
+                                                sx={{
+                                                    backgroundImage:`url(${para.ico})`,
+                                                }}
+                                            />
+                                        </Box>
                                         <Typography variant={'body1'} color={theme.palette.text.secondary}>
                                             {para.text}
                                         </Typography>
@@ -219,9 +226,9 @@ const Adoption = () => {
                                             {para.list.map((text, index) => {
                                                 return(
                                                     <li style={{
-                                                            marginLeft:'16px',
-                                                            color:theme.palette.text.secondary
-                                                        }}>
+                                                        marginLeft:'16px',
+                                                        color:theme.palette.text.secondary
+                                                    }}>
                                                         <Typography key={index} variant={'body1'} color={theme.palette.text.secondary}>
                                                             {text}
                                                         </Typography>
@@ -236,6 +243,46 @@ const Adoption = () => {
 
                     </Box>
                 </Box>
+            </Box>
+            <Box
+                width={'100%'}
+                height={'fit-content'}
+                display={"flex"}
+                pb={5}
+                sx={{
+                    flexDirection:{xs:'column', md:'row'}
+                }}
+            >
+                <Box
+                    id={'adoptedText'}
+                    p={3}
+                    boxSizing={"border-box"}
+                    display={"flex"}
+                    flexDirection={"column"}
+                    bgcolor={theme.palette.primary.main}
+                    sx={{
+                        borderRadius:{xs:'', md:'0 0 0 20px'},
+                        width:{xs:'100%', md:'60%'},
+                        height:'fit-content'
+                    }}
+                >
+                    <Typography variant={"subtitle1"} fontWeight={"bold"} color={theme.palette.text.secondary}>
+                        Jeśli już zaadoptowałeś...
+                    </Typography>
+                    <Typography variant={"body1"} color={theme.palette.text.secondary}>
+                        Przygarnięcie zwierzaka do domu na pewno spowodowało ogromną rewolucję w twoim życiu! Nagle pojawił się nowy członek rodziny, któremu trzeba poświęcić każdą wolną chwilę, przyzwyczaić do nowego miejsca zamieszkania, nauczyć zachowania. Pamiętaj aby o niego doskonale dbać. Pamiętaj o dobrym odżywianiu, świeżej wodzie do picia. Pamiętaj o szczepieniach i odrobaczaniu, które zapewnią mu ochronę. Jeśli nie chcesz wychowywać jego potomstwa, nie pozwól mu na posiadanie go poprzez sterylizację/kastrację. Nigdy nie wypuszczaj swojego zwierzaka z domu bez opieki. Psa na spacerach prowadź na smyczy i spuszczaj tylko z dala od ulic lub na terenie ogrodzonym. Jeśli tak o niego zadbasz, twój poświęcony czas i serce, wróci ze zdwojoną siłą w miłości i zaufaniu jaką dostaniesz w zamian od zwierzęcia. Zyskasz nowego, najwierniejszego przyjaciela, który w dobrych chwilach będzie świetnym kompanem do zabawy, a w tych gorszych najlepszym pocieszycielem.
+                    </Typography>
+                </Box>
+                <Box
+                    sx={{
+                        backgroundImage:`url(${had})`,
+                        backgroundSize:'cover',
+                        backgroundPosition:'center',
+                        borderRadius:{xs:'0 0 20px 20px', md:'0 0 20px 0'},
+                        width:{xs:'100%', md:'40%'},
+                        height:{xs:'24rem', md:'auto'}
+                    }}
+                />
             </Box>
         </Container>
     )

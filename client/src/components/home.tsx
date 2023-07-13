@@ -101,16 +101,16 @@ const Home = () => {
                     flexDirection:{xs:'column', lg:'row'}
                 }}
             >
-                    <Box
-                        display={"flex"}
-                        sx={{
-                            backgroundImage:{xs:`url(${dogMainLong})`, lg:`url(${dogMain})`},
-                            backgroundSize:'cover',
-                            backgroundPosition:'center',
-                            height:{xs:'20rem', lg:'25rem'},
-                            width:{xs:'100%', lg:'30rem'}
-                        }}
-                    />
+                <Box
+                    display={"flex"}
+                    sx={{
+                        backgroundImage:{xs:`url(${dogMainLong})`, lg:`url(${dogMain})`},
+                        backgroundSize:'cover',
+                        backgroundPosition:'center',
+                        height:{xs:'20rem', lg:'25rem'},
+                        width:{xs:'100%', lg:'30rem'}
+                    }}
+                />
                 <Box
                     display={"flex"}
                     flexDirection={"column"}
@@ -289,16 +289,16 @@ const Home = () => {
                         flexDirection={"column"}
                         alignItems={"center"}
                     >
-                            <Box
-                                sx={{
-                                    backgroundImage:`url(${dogIco})`,
-                                    backgroundSize:'cover',
-                                    backgroundRepeat:'no-repeat',
-                                    backgroundPosition:'center',
-                                    width:{xs:'2rem', lg:'4rem'},
-                                    height:{xs:'2rem', lg:'4rem'}
-                                }}
-                            />
+                        <Box
+                            sx={{
+                                backgroundImage:`url(${dogIco})`,
+                                backgroundSize:'cover',
+                                backgroundRepeat:'no-repeat',
+                                backgroundPosition:'center',
+                                width:{xs:'2rem', lg:'4rem'},
+                                height:{xs:'2rem', lg:'4rem'}
+                            }}
+                        />
                         <Typography variant={'h6'} color={theme.palette.text.primary}>
                             32
                         </Typography>
@@ -685,9 +685,9 @@ const Home = () => {
                             <Typography variant={"caption"}  color={theme.palette.text.secondary}>
                                 Koty komunikują się z otoczeniem za pomocą sygnałów dźwiękowych, zapachowych i mowy ciała. Kocia komunikacja jest bardzo rozbudowana i często mylnie rozumiana przez człowieka jako kocia złośliwość. Komunikacja werbalnaDzikie dorosłe koty miauczą bardzo rzadko, nie potrzebują tego rodzaju komunikatów do porozumiewania się między sobą. Miauczenie kota powstaje w wyniku socjalizacji z człowiekiem. Jest to kocia […]
                             </Typography>
-                            </Box>
-
                         </Box>
+
+                    </Box>
                 </Box>
             </Box>
             <Box
