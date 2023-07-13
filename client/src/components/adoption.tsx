@@ -116,6 +116,9 @@ const Adoption = () => {
                     width={'100%'}
                     display={'flex'}
                     justifyContent={"space-evenly"}
+                    sx={{
+                        flexWrap:{xs:'wrap', lg:'nowrap'}
+                    }}
                 >
                     {dogList.map((dog, index) => {
                         return(
@@ -124,8 +127,9 @@ const Adoption = () => {
                                 sx={{
                                     backgroundImage:`url(${dog})`,
                                     backgroundSize:'cover',
-                                    width:{xs:'6rem',sm:'10rem', lg:'16rem'},
-                                    height:{xs:'5rem',sm:'7rem', lg:'10rem'}
+                                    width:{xs:'9rem',sm:'10rem', lg:'16rem'},
+                                    height:{xs:'5rem',sm:'7rem', lg:'10rem'},
+                                    marginTop:{xs:1, md:'0px'}
                                 }}
                             />
                         )
