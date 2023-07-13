@@ -36,7 +36,7 @@ const pages = [
     },
     {
         name:'Adopcja',
-        link:'/'
+        link:'/adoption'
     }];
 
 
