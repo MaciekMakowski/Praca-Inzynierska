@@ -28,11 +28,12 @@ const AdoptionInfo = (props:AdoptionInfoProps) => {
                 alignItems={"center"}
                 justifyContent={"center"}
                 px={4}
+                py={2}
                 sx={{
                     width:{xs:'100%', md:'70%'}
                 }}
             >
-                <Typography variant={"subtitle1"} fontWeight={"bold"} color={theme.palette.text.secondary}>
+                <Typography textAlign={"center"} variant={"subtitle1"} fontWeight={"bold"} color={theme.palette.text.secondary}>
                     {props.title}
                 </Typography>
                 <Typography variant={"body1"} color={theme.palette.text.secondary}>
