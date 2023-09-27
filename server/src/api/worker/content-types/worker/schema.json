@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "workers",
+  "info": {
+    "singularName": "worker",
+    "pluralName": "workers",
+    "displayName": "worker",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "lastname": {
+      "type": "string"
+    },
+    "birth_date": {
+      "type": "date"
+    },
+    "address": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::address.address"
+    },
+    "phone_number": {
+      "type": "biginteger"
+    },
+    "proffession": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::proffession.proffession"
+    }
+  }
+}

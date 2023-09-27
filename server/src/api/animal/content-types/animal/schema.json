@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "animals",
+  "info": {
+    "singularName": "animal",
+    "pluralName": "animals",
+    "displayName": "animal",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "find_date": {
+      "type": "date"
+    },
+    "find_place": {
+      "type": "string"
+    },
+    "animal_type": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::animal-type.animal-type"
+    },
+    "birth_date": {
+      "type": "date"
+    },
+    "race": {
+      "type": "string"
+    },
+    "number": {
+      "type": "string"
+    },
+    "weight": {
+      "type": "float"
+    },
+    "sex": {
+      "type": "enumeration",
+      "enum": [
+        "male",
+        "female"
+      ]
+    },
+    "animal_state": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::animal-state.animal-state"
+    }
+  }
+}

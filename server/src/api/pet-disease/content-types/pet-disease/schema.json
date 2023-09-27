@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pet_diseases",
+  "info": {
+    "singularName": "pet-disease",
+    "pluralName": "pet-diseases",
+    "displayName": "pet_disease"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "start": {
+      "type": "date"
+    },
+    "end": {
+      "type": "date"
+    },
+    "animal": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::animal.animal"
+    },
+    "disease": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::disease.disease"
+    }
+  }
+}

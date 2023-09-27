@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "addresses",
+  "info": {
+    "singularName": "address",
+    "pluralName": "addresses",
+    "displayName": "address"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "city": {
+      "type": "string"
+    },
+    "street": {
+      "type": "string"
+    },
+    "home_number": {
+      "type": "integer"
+    },
+    "local_number": {
+      "type": "integer"
+    },
+    "postcode": {
+      "type": "integer",
+      "default": 99999
+    }
+  }
+}
