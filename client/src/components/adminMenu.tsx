@@ -21,7 +21,7 @@ const AdminMenu = () => {
         >
             {menuList.map((item,index) => {
                 return(
-                    <Box>
+                    <Box key={index}>
                         <Box
                             display={'flex'}
                             gap={'0.5rem'}
@@ -51,6 +51,7 @@ const AdminMenu = () => {
                                 {item.subList && item.subList.length > 0 && item.subList.map((subItem,subIndex) => {
                                     return(
                                             <Typography 
+                                            key={subIndex}
                                             variant="subtitle1" 
                                             sx={{
                                                 color:theme.palette.text.secondary,

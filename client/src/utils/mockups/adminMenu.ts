@@ -63,7 +63,7 @@ export const menuList:menuListType[] = [
     {
         ico:TvIcon,
         name:'Pulpit',
-        path:'/',
+        path:'/panel',
     },
     {
         ico:ConstructionIcon,
