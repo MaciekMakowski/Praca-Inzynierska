@@ -15,9 +15,15 @@ const PanelInfoSquare = (props:PanelInfoSquareProps) => {
     const theme = useTheme()
     return (
         <Box
-            sx={{width:'250px', height:'250px', backgroundColor:theme.palette.background.light}}
+            sx={{
+                width:'250px', 
+                height:'fit-content', 
+                backgroundColor:theme.palette.text.secondary,
+                marginLeft:{xs:'1rem', xl:'0rem'},
+                borderRadius:'10px',
+            }}
         >
-            <Typography textAlign={'center'} variant="h6" color={theme.palette.text.secondary}>
+            <Typography textAlign={'center'} variant="h6" color={theme.palette.text.primary}>
                 {props.title}
             </Typography>
             <Box sx={{
@@ -37,12 +43,16 @@ const PanelInfoSquare = (props:PanelInfoSquareProps) => {
                     variant="subtitle2" 
                     sx={{
                         width:'30px',
-                        color:theme.palette.text.secondary
+                        color:theme.palette.text.primary
                      }}
                     >
                         Id
                     </Typography>
-                    <Typography variant="subtitle1" color={theme.palette.text.secondary}>
+                    <Typography
+                        sx={{width:'100%',textAlign:'right'}} 
+                        variant="subtitle1" 
+                        color={theme.palette.text.primary}
+                        >
                         Imię
                     </Typography>
                 </Box>
@@ -50,6 +60,7 @@ const PanelInfoSquare = (props:PanelInfoSquareProps) => {
                     if(index < 6){
                         return(
                             <Box
+                            key={index}
                                 sx={{
                                     display:'flex', 
                                     justifyContent:'flex-start', 
@@ -63,12 +74,16 @@ const PanelInfoSquare = (props:PanelInfoSquareProps) => {
                                 variant="subtitle2"
                                 sx={{
                                     width:'30px',
-                                    color:theme.palette.text.secondary
+                                    color:index % 2 === 0 ? theme.palette.text.secondary : theme.palette.text.primary
                                  }}
                                  >
                                     #{item.id}
                                 </Typography>
-                                <Typography variant="subtitle1" color={theme.palette.text.secondary}>
+                                <Typography 
+                                sx={{width:'100%',textAlign:'right'}} 
+                                variant="subtitle1" 
+                                color={index % 2 === 0 ? theme.palette.text.secondary : theme.palette.text.primary}
+                                >
                                     {item.name}
                                 </Typography>
                             </Box>

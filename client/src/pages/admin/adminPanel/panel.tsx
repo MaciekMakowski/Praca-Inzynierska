@@ -1,6 +1,9 @@
 
 import { Box, Typography, useTheme  } from "@mui/material"
 import PanelInfoSquare from "./components/PanelInfoSquare"
+import PieChart from "../../../components/charts/pieChart"
+import { CalendarData, FoodData, PetData, VetData } from "../../../utils/mockups/diagData"
+import CalendarChart from "../../../components/charts/calendarChart"
 
 const fakeData = [
     {
@@ -34,17 +37,18 @@ const Panel = () => {
     return(
         <Box
             sx={{
-                width:'calc(100% - 200px)',
+                 width:{xs:'1900px', xl:'calc(100% - 200px)'},
                  height:'100vh',
                  boxSizing:'border-box',
                  paddingY:'2rem',
-                 paddingX:'4rem',
                  display:'flex',
                  flexDirection:'column',
                 }}
         >
             <Box 
                 sx={{
+                    boxSizing:'border-box',
+                    paddingX:'4rem',
                     display:'flex',
                     width:'100%',
                     height:'30%',
@@ -56,9 +60,35 @@ const Panel = () => {
                     <PanelInfoSquare title="Zasoby bliskie zużycia" data={fakeData}/>
                     <PanelInfoSquare title="Pracownicy na dziś" data={fakeData}/>
                     <PanelInfoSquare title="Wolontariusze na dziś" data={fakeData}/>
-
             </Box>
-
+            <Box 
+                sx={{
+                    boxSizing:'border-box',
+                    paddingX:'4rem',
+                    display:'flex',
+                    width:'100%',
+                    height:'35%',
+                    marginY:'1rem',
+                    justifyContent:'space-between',
+                    alignItems:'start',
+                    bgcolor:'#f2f2f2',
+                }}>
+                    <PieChart data={PetData} title="Zwierzęta" link="/admin/management/animals"/>
+                    <PieChart data={FoodData} title="Zasoby" link="/admin/management/resources"/>
+                    <PieChart data={VetData} title="Choroby i izolacje"/>
+            </Box>
+            <Box 
+                sx={{
+                    boxSizing:'border-box',
+                    paddingX:'4rem',
+                    display:'flex',
+                    width:'100%',
+                    height:'30%',
+                    justifyContent:'space-between',
+                    alignItems:'start',
+                }}>
+                    <CalendarChart data={CalendarData}/>
+            </Box>
         </Box>
     )
 }
