@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Box, Button, TextField, useTheme } from "@mui/material"
+import { Box, Button, TextField, useTheme, Typography, Grid } from "@mui/material"
+import AnimalListItem from "./animalListItem";
 
 
 const AnimalList = () => {
@@ -9,6 +10,14 @@ const AnimalList = () => {
     const handleChangeFilter = (value:number) => {
         if(value === filter) setFilter(0)
         if(value !== filter) setFilter(value)
+    }
+
+    const returnItems = () => {
+        const items = []
+        for (let i = 0; i < 20; i++)
+
+                items.push(<AnimalListItem key={i} color={i%2==0}/>);
+        return items
     }
     return (
         <Box
@@ -67,6 +76,44 @@ const AnimalList = () => {
                 </Button>
                 </Box>
             </Box>
+            <Grid 
+                container
+                spacing={0}
+            >
+                <Grid item xs={2.4}>
+                    <Typography 
+                        variant="subtitle1"
+                        color={theme.palette.primary.main}
+                        >
+                            #Numer
+                    </Typography>
+                </Grid>
+                <Grid item xs={2.4}>
+                    <Typography 
+                        variant="subtitle1"
+                        color={theme.palette.primary.main}
+                        >
+                            Imie
+                    </Typography>
+                </Grid>
+                <Grid item xs={2.4}>
+                    <Typography 
+                        variant="subtitle1"
+                        color={theme.palette.primary.main}
+                        >
+                            Gatunek
+                    </Typography>
+                </Grid>
+                <Grid item xs={2.4}>
+                    <Typography 
+                        variant="subtitle1"
+                        color={theme.palette.primary.main}
+                        >
+                            Wiek
+                    </Typography>
+                </Grid>
+                <Grid item xs={2.4}/>
+            </Grid>
             <Box
                 sx={{
                     display:'flex',
@@ -76,27 +123,7 @@ const AnimalList = () => {
                     overflowY:'auto',
                 }}
             >
-                <TextField/>
-                <TextField/>
-                <TextField/>
-                <TextField/>
-                <TextField/>
-                <TextField/>
-                <TextField/>
-                <TextField/>
-                <TextField/>
-                <TextField/>
-                <TextField/>
-                <TextField/>
-                <TextField/>
-                <TextField/>
-                <TextField/>
-                <TextField/>
-                <TextField/>
-                <TextField/>
-                <TextField/>
-                <TextField/>
-                <TextField/>
+                { returnItems()}
                 
             </Box>
         </Box>
