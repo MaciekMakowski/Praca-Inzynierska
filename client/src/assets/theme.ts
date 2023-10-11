@@ -4,7 +4,8 @@ import {ThemeOptions} from "@mui/material";
 declare module '@mui/material/styles' {
     interface TypeBackground{
         secondary:string,
-        light:string
+        light:string,
+        adminField:string
     }
     interface TypeText {
 
@@ -13,6 +14,22 @@ declare module '@mui/material/styles' {
 }
 
 export const themeOptions: ThemeOptions = {
+    components: {
+        MuiFormHelperText:{
+            styleOverrides:{
+                root:{
+                    color:'#003C18'
+                }
+            }
+        },
+        MuiInputLabel:{
+            styleOverrides:{
+                root:{
+                    color:'#003C18'
+                }
+            }
+        }
+        },
     palette: {
         primary: {
             main: '#003C18',
@@ -22,11 +39,12 @@ export const themeOptions: ThemeOptions = {
         },
         text: {
             primary: '#003C18',
-            secondary: '#E4E4E4'
+            secondary: '#E4E4E4',
         },
         background: {
             secondary: 'rgb(244,244,244,0.82)',
-            light: 'rgb(17,67,9,0.8)'
+            light: 'rgb(17,67,9,0.8)',
+            adminField:'#f2f2f2',
         },
         info:{
             main:'#E4E4E4'
