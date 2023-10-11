@@ -18,7 +18,7 @@ const PanelInfoSquare = (props:PanelInfoSquareProps) => {
             sx={{
                 width:'250px', 
                 height:'fit-content', 
-                backgroundColor:theme.palette.text.secondary,
+                backgroundColor:theme.palette.background.adminField,
                 marginLeft:{xs:'1rem', xl:'0rem'},
                 borderRadius:'10px',
             }}
@@ -95,9 +95,11 @@ const PanelInfoSquare = (props:PanelInfoSquareProps) => {
                 })}
             </Box>
             <Button 
-            variant="contained"
-            sx={{width:'100%'}}
-            >Sprawdź wszystkie</Button>
+                variant="contained"
+                sx={{width:'100%'}}
+            >
+                Sprawdź wszystkie
+            </Button>
         </Box>
     )
 }
