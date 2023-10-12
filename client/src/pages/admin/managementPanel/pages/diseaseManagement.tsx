@@ -1,5 +1,7 @@
 import { Box, useTheme } from "@mui/material";
 import AddDiseaseForm from "../components/addDiseaseForm";
+import AnimalList from "../components/animalList";
+import DiseaseList from "../components/diseaseList";
 
 
 const DiseaseManagement = () => {
@@ -18,9 +20,8 @@ const DiseaseManagement = () => {
         }}
         >
             <AddDiseaseForm/>
-            <Box>
-                
-            </Box>
+            <DiseaseList/>
+            <AnimalList/>
 
         </Box>
     )

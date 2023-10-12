@@ -1,22 +1,17 @@
 import { useState } from "react";
 import { Box, Button, TextField, useTheme, Typography, Grid } from "@mui/material"
 import AnimalListItem from "./animalListItem";
+import DiseaseListItem from "./diseaseListItem";
 
 
-const AnimalList = () => {
+const DiseaseList = () => {
     const theme = useTheme();
-    const [filter, setFilter] = useState(0)
-
-    const handleChangeFilter = (value:number) => {
-        if(value === filter) setFilter(0)
-        if(value !== filter) setFilter(value)
-    }
 
     const returnItems = () => {
         const items = []
         for (let i = 0; i < 20; i++)
 
-                items.push(<AnimalListItem key={i} color={i%2==0}/>);
+                items.push(<DiseaseListItem key={i} color={i%2==0}/>);
         return items
     }
     return (
@@ -57,69 +52,34 @@ const AnimalList = () => {
                     label="Wyszukaj"
                 />
                 </Box>
-                <Box 
-                    sx={{
-                        display:'flex',
-                        gap:'1rem',
-                    }}
-                >
-                <Button 
-                    variant={filter === 0 ? 'outlined' : filter === 1 ? 'contained' : 'outlined'}
-                    onClick={() => handleChangeFilter(1)}
-                >
-                    Psy
-                </Button>
-                <Button 
-                    variant={filter === 0 ? 'outlined' : filter === 2 ? 'contained' : 'outlined'}
-                    onClick={() => handleChangeFilter(2)}
-                >
-                    Koty
-                </Button>
-                </Box>
             </Box>
             <Grid 
                 container
                 spacing={0}
             >
-                <Grid item xs={2.4}>
+                <Grid item xs={3}>
                     <Typography 
                         variant="subtitle1"
                         color={theme.palette.primary.main}
                         >
-                            #Numer
+                            Nazwa
                     </Typography>
                 </Grid>
-                <Grid item xs={2.4}>
+                <Grid item xs={6.4}>
                     <Typography 
                         variant="subtitle1"
                         color={theme.palette.primary.main}
                         >
-                            Imie
+                            Objawy
                     </Typography>
                 </Grid>
                 <Grid item xs={2.4}>
-                    <Typography 
-                        variant="subtitle1"
-                        color={theme.palette.primary.main}
-                        >
-                            Gatunek
-                    </Typography>
-                </Grid>
-                <Grid item xs={2.4}>
-                    <Typography 
-                        variant="subtitle1"
-                        color={theme.palette.primary.main}
-                        >
-                            Wiek
-                    </Typography>
-                </Grid>
-                <Grid item xs={2.4}>
-                    <Typography 
+                <Typography 
                         variant="body1"
                         fontWeight={600}
                         color={theme.palette.primary.main}
-                    >
-                            Lista zwierząt
+                        >
+                            Lista chorób
                     </Typography>
                 </Grid>
             </Grid>
@@ -139,4 +99,4 @@ const AnimalList = () => {
     )
 }
 
-export default AnimalList
+export default DiseaseList
