@@ -5,22 +5,13 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs, {Dayjs} from "dayjs";
+import { AnimalType } from "../../../../utils/types/basicTypes";
 
 
-type Animal = {
-    name:string,
-    findPlace:string,
-    race:string,
-    number:string,
-    species:string,
-    weight:number,
-    sex:string,
-    birthDate:string
-}
 
 const AddAnimalForm = () => {
     const theme = useTheme();
-    const [newAnimal, setNewAnimal] = useState<Animal>({
+    const [newAnimal, setNewAnimal] = useState<AnimalType>({
         name:'',
         findPlace:'',
         race:'',
