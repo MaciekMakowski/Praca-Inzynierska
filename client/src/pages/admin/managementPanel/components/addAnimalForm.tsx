@@ -68,6 +68,7 @@ const AddAnimalForm = () => {
                     flexDirection:'column',
                     gap:'1rem',
                     borderRadius:'1rem',
+                    boxShadow:theme.shadows[3],
                 }}
             >
                 <Typography variant="h5" color={theme.palette.text.primary}>

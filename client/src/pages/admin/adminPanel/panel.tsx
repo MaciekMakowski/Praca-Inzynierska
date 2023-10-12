@@ -71,7 +71,9 @@ const Panel = () => {
                     marginY:'1rem',
                     justifyContent:'space-between',
                     alignItems:'start',
-                    bgcolor:'#f2f2f2',
+                    bgcolor:theme.palette.background.adminField,
+                    boxShadow:theme.shadows[3],
+
                 }}>
                     <PieChart data={PetData} title="Zwierzęta" link="/admin/management/animals"/>
                     <PieChart data={FoodData} title="Zasoby" link="/admin/management/resources"/>

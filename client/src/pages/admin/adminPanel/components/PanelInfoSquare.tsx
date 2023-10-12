@@ -21,6 +21,7 @@ const PanelInfoSquare = (props:PanelInfoSquareProps) => {
                 backgroundColor:theme.palette.background.adminField,
                 marginLeft:{xs:'1rem', xl:'0rem'},
                 borderRadius:'10px',
+                boxShadow:theme.shadows[4],
             }}
         >
             <Typography textAlign={'center'} variant="h6" color={theme.palette.text.primary}>

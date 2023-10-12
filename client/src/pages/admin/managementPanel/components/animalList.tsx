@@ -32,6 +32,7 @@ const AnimalList = () => {
                 padding:'1rem',
                 gap:'1rem',
                 borderRadius:'1rem',
+                boxShadow:theme.shadows[3],
             }}
         >
             <Box
