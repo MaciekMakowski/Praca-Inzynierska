@@ -18,7 +18,13 @@ const PetsManagement = () => {
         >
             <AddAnimalForm/>
             <AnimalList/>
-            <AnimalList/>
+            <Box
+                sx={{
+                    width:'40%'
+                }}
+            >
+                
+            </Box>
         
         </Box>
     )
