@@ -27,7 +27,7 @@ const PetsManagement = () => {
                 sx={{
                     height:'90%',
                     display:'flex',
-                    justifyContent:'space-between',
+                    gap:'1rem'
                 }}
             >  
             <AddAnimalForm/>

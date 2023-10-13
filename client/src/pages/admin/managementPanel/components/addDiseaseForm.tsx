@@ -14,14 +14,15 @@ const AddDiseaseForm = () => {
     return(
         <Box
                 sx={{
+                    backgroundColor: theme.palette.background.adminField,
+                    minWidth:'350px',
+                    height:'fit-content',
+                    textAlign:'center',
                     boxSizing:'border-box',
                     padding:'1rem',
-                    backgroundColor:theme.palette.background.adminField,
-                    height:'fit-content',
                     display:'flex',
                     flexDirection:'column',
-                    alignItems:'center',
-                    gap:'0.5rem',
+                    gap:'1rem',
                     borderRadius:'1rem',
                     boxShadow:theme.shadows[3],
                 }}
@@ -41,11 +42,13 @@ const AddDiseaseForm = () => {
                 <TextField
                     label="Objawy"
                     multiline
+                    fullWidth
                     rows={4}
                     onChange={(e) => setNewDisease( disease => ({...disease, description:e.target.value}))}
                 />
                 <TextField
                     label="Leczenie"
+                    fullWidth
                     multiline
                     rows={4}
                     onChange={(e) => setNewDisease( disease => ({...disease, treatment:e.target.value}))}
