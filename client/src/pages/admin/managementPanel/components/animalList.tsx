@@ -85,6 +85,7 @@ const AnimalList = () => {
                     <Typography 
                         variant="subtitle1"
                         color={theme.palette.primary.main}
+                        fontWeight={600}
                         >
                             #Numer
                     </Typography>
@@ -93,6 +94,7 @@ const AnimalList = () => {
                     <Typography 
                         variant="subtitle1"
                         color={theme.palette.primary.main}
+                        fontWeight={600}
                         >
                             Imie
                     </Typography>
@@ -101,6 +103,7 @@ const AnimalList = () => {
                     <Typography 
                         variant="subtitle1"
                         color={theme.palette.primary.main}
+                        fontWeight={600}
                         >
                             Gatunek
                     </Typography>
@@ -109,18 +112,12 @@ const AnimalList = () => {
                     <Typography 
                         variant="subtitle1"
                         color={theme.palette.primary.main}
+                        fontWeight={600}
                         >
                             Wiek
                     </Typography>
                 </Grid>
                 <Grid item xs={2.4}>
-                    <Typography 
-                        variant="body1"
-                        fontWeight={600}
-                        color={theme.palette.primary.main}
-                    >
-                            Lista zwierząt
-                    </Typography>
                 </Grid>
             </Grid>
             <Box

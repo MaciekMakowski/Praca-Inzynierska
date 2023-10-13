@@ -61,6 +61,7 @@ const DiseaseList = () => {
                     <Typography 
                         variant="subtitle1"
                         color={theme.palette.primary.main}
+                        fontWeight={600}
                         >
                             Nazwa
                     </Typography>
@@ -69,18 +70,12 @@ const DiseaseList = () => {
                     <Typography 
                         variant="subtitle1"
                         color={theme.palette.primary.main}
+                        fontWeight={600}
                         >
                             Objawy
                     </Typography>
                 </Grid>
                 <Grid item xs={2.4}>
-                <Typography 
-                        variant="body1"
-                        fontWeight={600}
-                        color={theme.palette.primary.main}
-                        >
-                            Lista chorób
-                    </Typography>
                 </Grid>
             </Grid>
             <Box
