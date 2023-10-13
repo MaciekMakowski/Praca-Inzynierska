@@ -1,4 +1,4 @@
-import { useTheme, Box, Grid, Typography, TextField, Button } from "@mui/material"
+import { useTheme, Box, Grid, Typography, TextField, Button, Pagination } from "@mui/material"
 import VolunteersListItem from "./volunteersListItem";
 
 
@@ -53,7 +53,7 @@ const VolunteersList = () => {
             </Box>
         </Box>
         <Grid
-            width="100%"
+            width="99%"
             container
             spacing={0}
         >
@@ -129,7 +129,7 @@ const VolunteersList = () => {
                         Adres
                 </Typography>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={1.5}>
             </Grid>
         </Grid>
         <Box
@@ -137,12 +137,23 @@ const VolunteersList = () => {
                 display:'flex',
                 flexDirection:'column',
                 gap:'1rem',
-                height:'95%',
+                height:'85%',
                 overflowY:'auto',
             }}
         >
-         {returnItems()}   
+         {returnItems()}  
         </Box>
+        <Box
+            sx={{
+                display:'flex',
+                justifyContent:'end',
+            }}
+        >
+            <Typography variant="subtitle1" color={theme.palette.text.primary}>
+                <Pagination count={10} size="small"/>
+            </Typography>
+        </Box>
+        
     </Box>
     )
 }

@@ -138,7 +138,11 @@ const AddAnimalForm = () => {
                 </FormControl>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DemoContainer components={['DatePicker']}>
-                        <DatePicker label="Data urodzenia" onChange={(value:Dayjs | null) =>  handleChangeBirthDate(value)}
+                        <DatePicker
+                         sx={{
+                            flexGrow:1,
+                        }} 
+                        label="Data urodzenia" onChange={(value:Dayjs | null) =>  handleChangeBirthDate(value)}
                         />
                     </DemoContainer>
                 </LocalizationProvider>

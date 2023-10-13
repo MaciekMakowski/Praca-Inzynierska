@@ -42,6 +42,10 @@ export const subList:subListType[] = [
     {
         name:"Zasoby",
         path:'/resources'
+    },
+    {
+        name:"Goście",
+        path:'/guests'
     }
 ]
 export const subListWorkers:subListType[] = [

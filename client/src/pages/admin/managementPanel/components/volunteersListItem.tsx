@@ -84,7 +84,7 @@ const VolunteersListItem = (props:VolunteersListItemProps) => {
                     Słoneczna 12a/5
             </Typography>
         </Grid>
-        <Grid item xs={1}>
+        <Grid item xs={1.5}>
             <Button
                 sx={{
                     color:{color:props.color ? theme.palette.primary.main : theme.palette.text.secondary}

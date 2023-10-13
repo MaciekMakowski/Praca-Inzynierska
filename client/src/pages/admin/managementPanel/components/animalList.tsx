@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, TextField, useTheme, Typography, Grid } from "@mui/material"
+import { Box, Button, TextField, useTheme, Typography, Grid, Pagination } from "@mui/material"
 import AnimalListItem from "./animalListItem";
 
 
@@ -23,7 +23,7 @@ const AnimalList = () => {
         <Box
             sx={{
                 backgroundColor: theme.palette.background.adminField,
-                width:'600px',
+                minWidth:'630px',
                 height:'100%',
                 textAlign:'center',
                 boxSizing:'border-box',
@@ -125,13 +125,23 @@ const AnimalList = () => {
                     display:'flex',
                     flexDirection:'column',
                     gap:'1rem',
-                    height:'95%',
+                    height:'85%',
                     overflowY:'auto',
                 }}
             >
                 { returnItems()}
                 
             </Box>
+            <Box
+                sx={{
+                    display:'flex',
+                    justifyContent:'end',
+                }}
+            >
+            <Typography variant="subtitle1" color={theme.palette.text.primary}>
+                <Pagination count={10} size="small"/>
+            </Typography>
+        </Box>
         </Box>
     )
 }

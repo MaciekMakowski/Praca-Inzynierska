@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, TextField, useTheme, Typography, Grid } from "@mui/material"
+import { Box, Button, TextField, useTheme, Typography, Grid, Pagination } from "@mui/material"
 import AnimalListItem from "./animalListItem";
 import DiseaseListItem from "./diseaseListItem";
 
@@ -66,7 +66,7 @@ const DiseaseList = () => {
                             Nazwa
                     </Typography>
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={7.8}>
                     <Typography 
                         variant="subtitle1"
                         color={theme.palette.primary.main}
@@ -75,7 +75,7 @@ const DiseaseList = () => {
                             Objawy
                     </Typography>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={2.2}>
                 </Grid>
             </Grid>
             <Box
@@ -83,13 +83,23 @@ const DiseaseList = () => {
                     display:'flex',
                     flexDirection:'column',
                     gap:'1rem',
-                    height:'95%',
+                    height:'85%',
                     overflowY:'auto',
                 }}
             >
                 { returnItems()}
                 
             </Box>
+            <Box
+                sx={{
+                    display:'flex',
+                    justifyContent:'end',
+                }}
+            >
+            <Typography variant="subtitle1" color={theme.palette.text.primary}>
+                <Pagination count={10} size="small"/>
+            </Typography>
+        </Box>
         </Box>
     )
 }

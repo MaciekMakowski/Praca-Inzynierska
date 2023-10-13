@@ -1,4 +1,4 @@
-import { Box, useTheme,Grid, Button, Typography, TextField } from "@mui/material";
+import { Box, useTheme,Grid, Button, Typography, TextField, Pagination } from "@mui/material";
 import IsolationListItem from "./isolationListItem";
 import { useState } from "react";
 
@@ -23,7 +23,7 @@ const IsolationList = () => {
         <Box
             sx={{
                 backgroundColor: theme.palette.background.adminField,
-                width:'900px',
+                width:'1000px',
                 height:'100%',
                 textAlign:'center',
                 boxSizing:'border-box',
@@ -117,7 +117,7 @@ const IsolationList = () => {
                             Imię
                         </Typography>  
                     </Grid>
-                    <Grid item xs={2.5}>
+                    <Grid item xs={2}>
                         <Typography 
                             variant="body1" 
                             fontWeight={600} 
@@ -127,7 +127,7 @@ const IsolationList = () => {
                             Data rozpoczęcia
                         </Typography>  
                     </Grid>
-                    <Grid item xs={2.5}>
+                    <Grid item xs={2}>
                         <Typography 
                             variant="body1" 
                             fontWeight={600} 
@@ -137,7 +137,7 @@ const IsolationList = () => {
                             Data zakończenia
                         </Typography>  
                     </Grid>
-                    <Grid item xs={3.5}>
+                    <Grid item xs={4}>
                         <Typography 
                             variant="body1" 
                             fontWeight={600} 
@@ -147,7 +147,7 @@ const IsolationList = () => {
                             Powód
                         </Typography>  
                     </Grid>
-                    <Grid item xs={1.5}>
+                    <Grid item xs={2}>
                     </Grid>
                 </Grid>
             </Box>
@@ -155,13 +155,23 @@ const IsolationList = () => {
                 sx={{
                     display:'flex',
                     flexDirection:'column',
-                    height:'100%',
+                    height:'90%',
                     overflow:'auto',
                     gap:'1rem',
                 }}
                 >
                     {returnItems()}
                 </Box>
+                <Box
+            sx={{
+                display:'flex',
+                justifyContent:'end',
+            }}
+        >
+            <Typography variant="subtitle1" color={theme.palette.text.primary}>
+                <Pagination count={10} size="small"/>
+            </Typography>
+        </Box>
         </Box>
     );
 }
