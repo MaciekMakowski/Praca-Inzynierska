@@ -10,6 +10,7 @@ import DiseaseManagement from '../../pages/admin/managementPanel/pages/diseaseMa
 import IsolationManagement from '../../pages/admin/managementPanel/pages/isolationManagement';
 import VolunteerManagement from '../../pages/admin/managementPanel/pages/volunteerManagement';
 import AdoptionsManagement from '../../pages/admin/managementPanel/pages/adoptionsManagement';
+import ResourcesManagement from '../../pages/admin/managementPanel/pages/resourcesManagement';
 const AdminRoutes = () => {
   return (
     <>
@@ -29,6 +30,7 @@ const AdminRoutes = () => {
           <Route path="/management/isolations" element={<IsolationManagement/>} />
           <Route path="/management/volunteers" element={<VolunteerManagement/>} />
           <Route path="/management/adoptions" element={<AdoptionsManagement/>} />
+          <Route path="/management/resources" element={<ResourcesManagement/>} />
     </Routes>
     </Box>
     </>

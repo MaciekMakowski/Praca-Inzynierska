@@ -9,7 +9,7 @@ const AdminMenu = () => {
     return(
         <Box
             sx={{
-                width:'200px',
+                minWidth:'200px',
                 height:'100%', 
                 backgroundColor:theme.palette.primary.main,
                 boxSizing:'border-box',
