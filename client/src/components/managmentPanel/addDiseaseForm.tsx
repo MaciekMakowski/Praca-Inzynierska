@@ -1,6 +1,6 @@
 import { Box, Typography, useTheme, TextField, Button } from "@mui/material";
 import { useState } from "react";
-import { DiseaseType } from "../../../../utils/types/basicTypes";
+import { DiseaseType } from "../../utils/types/basicTypes";
 
 
 const AddDiseaseForm = () => {

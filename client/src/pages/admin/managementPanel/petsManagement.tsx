@@ -1,6 +1,6 @@
 import { Box, useTheme, Typography } from "@mui/material";
-import AddAnimalForm from "../components/addAnimalForm";
-import AnimalList from "../components/animalList";
+import AddAnimalForm from "../../../components/managmentPanel/addAnimalForm";
+import AnimalList from "../../../components/managmentPanel/animalList";
 
 const PetsManagement = () => {
     const theme = useTheme();

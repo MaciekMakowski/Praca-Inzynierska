@@ -5,12 +5,12 @@ import Panel from '../../pages/admin/adminPanel/panel';
 import { Box } from "@mui/material"
 import AdminMenu from "../../components/adminMenu"
 import ManagmentPanel from '../../pages/admin/managementPanel/managementPanel';
-import PetsManagement from '../../pages/admin/managementPanel/pages/petsManagement';
-import DiseaseManagement from '../../pages/admin/managementPanel/pages/diseaseManagement';
-import IsolationManagement from '../../pages/admin/managementPanel/pages/isolationManagement';
-import VolunteerManagement from '../../pages/admin/managementPanel/pages/volunteerManagement';
-import AdoptionsManagement from '../../pages/admin/managementPanel/pages/adoptionsManagement';
-import ResourcesManagement from '../../pages/admin/managementPanel/pages/resourcesManagement';
+import PetsManagement from '../../pages/admin/managementPanel/petsManagement';
+import DiseaseManagement from '../../pages/admin/managementPanel/diseaseManagement';
+import IsolationManagement from '../../pages/admin/managementPanel/isolationManagement';
+import VolunteerManagement from '../../pages/admin/managementPanel/volunteerManagement';
+import AdoptionsManagement from '../../pages/admin/managementPanel/adoptionsManagement';
+import ResourcesManagement from '../../pages/admin/managementPanel/resourcesManagement';
 const AdminRoutes = () => {
   return (
     <>

@@ -1,9 +1,10 @@
-import { Box, Typography, useTheme } from "@mui/material";
-import AdoptionList from "../components/adoptionList";
 
-const AdoptionsManagement = () => {
+import {Box, Typography, useTheme} from "@mui/material";
+import VolunteersList from "../../../components/managmentPanel/volunteersList";
+import AddVolunteerForm from "../../../components/managmentPanel/addVolunteerForm";
 
-    const theme = useTheme()
+const VolunteerManagement = () => {
+    const theme = useTheme();
 
     return(
         <Box
@@ -12,28 +13,30 @@ const AdoptionsManagement = () => {
                 height:'100%',
                 boxSizing:'border-box',
                 display:'flex',
+                flexDirection:'column',
                 flexWrap:'wrap',
                 justifyContent:'space-around',
-                flexDirection:'column',
-                paddingX:'1rem'
+                paddingX:'1rem',
             }}
         >
             <Box>
                 <Typography variant="h4" textAlign={'start'} color={theme.palette.text.primary}>
-                    Zarządzanie Adopcjami
+                    Zarządzanie wolontariuszami
                 </Typography>
             </Box>
             <Box 
                 sx={{
                     height:'90%',
                     display:'flex',
-                    justifyContent:'start',
+                    gap:'1rem'
                 }}
-            > 
-             <AdoptionList/>
+            >  
+                <AddVolunteerForm/>
+                <VolunteersList/>
             </Box>
+        
         </Box>
     )
 }
 
-export default AdoptionsManagement
+export default VolunteerManagement;

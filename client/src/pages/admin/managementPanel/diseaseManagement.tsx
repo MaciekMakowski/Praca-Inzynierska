@@ -1,7 +1,7 @@
 import { Box, useTheme, Typography } from "@mui/material";
-import AddDiseaseForm from "../components/addDiseaseForm";
-import AnimalList from "../components/animalList";
-import DiseaseList from "../components/diseaseList";
+import AddDiseaseForm from "../../../components/managmentPanel/addDiseaseForm";
+import AnimalList from "../../../components/managmentPanel/animalList";
+import DiseaseList from "../../../components/managmentPanel/diseaseList";
 
 
 const DiseaseManagement = () => {

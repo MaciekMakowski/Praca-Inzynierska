@@ -1,6 +1,6 @@
 
 import { Box, Typography, useTheme  } from "@mui/material"
-import PanelInfoSquare from "./components/PanelInfoSquare"
+import PanelInfoSquare from "../../../components/PanelInfoSquare"
 import PieChart from "../../../components/charts/pieChart"
 import { CalendarData, FoodData, PetData, VetData } from "../../../utils/mockups/diagData"
 import CalendarChart from "../../../components/charts/calendarChart"
