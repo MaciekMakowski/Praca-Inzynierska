@@ -18,7 +18,7 @@ const DiseaseList = () => {
         <Box
             sx={{
                 backgroundColor: theme.palette.background.adminField,
-                width:'600px',
+                width:'750px',
                 height:'100%',
                 textAlign:'center',
                 boxSizing:'border-box',
@@ -57,7 +57,7 @@ const DiseaseList = () => {
                 container
                 spacing={0}
             >
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                     <Typography 
                         variant="subtitle1"
                         color={theme.palette.primary.main}
@@ -65,7 +65,7 @@ const DiseaseList = () => {
                             Nazwa
                     </Typography>
                 </Grid>
-                <Grid item xs={6.4}>
+                <Grid item xs={7.4}>
                     <Typography 
                         variant="subtitle1"
                         color={theme.palette.primary.main}

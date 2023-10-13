@@ -20,7 +20,7 @@ const DiseaseListItem = (props:DiseaseListItemProps) => {
                     backgroundColor:props.color ? '' : theme.palette.background.light,
                 }}
             >
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                     <Typography 
                         variant="subtitle1"
                         color={props.color ? theme.palette.primary.main : theme.palette.text.secondary}
@@ -28,7 +28,7 @@ const DiseaseListItem = (props:DiseaseListItemProps) => {
                             Angina
                     </Typography>
                 </Grid>
-                <Grid item xs={6.6}>
+                <Grid item xs={7.6}>
                     <Typography 
                         variant="subtitle1"
                         color={props.color ? theme.palette.primary.main : theme.palette.text.secondary}
