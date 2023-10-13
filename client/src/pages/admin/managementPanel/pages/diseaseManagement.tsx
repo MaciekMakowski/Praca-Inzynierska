@@ -18,13 +18,10 @@ const DiseaseManagement = () => {
             flexWrap:'wrap',
             justifyContent:'space-around',
             flexDirection:'column',
+            paddingX:'1rem'
         }}
         >
-            <Box
-                sx={{
-                    paddingX:'1rem',
-                }}
-            >
+            <Box>
                 <Typography variant="h4" textAlign={'start'} color={theme.palette.text.primary}>
                     Zarządzanie chorobami
                 </Typography>
@@ -33,7 +30,7 @@ const DiseaseManagement = () => {
                 sx={{
                     height:'90%',
                     display:'flex',
-                    justifyContent:'space-around',
+                    justifyContent:'space-between',
                 }}
             >
                 <AddDiseaseForm/>

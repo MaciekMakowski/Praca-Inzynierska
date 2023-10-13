@@ -3,6 +3,7 @@ import IsolationList from "../components/isolationList";
 
 const IsolationManagement = () => {
     const theme = useTheme()
+
     return(
         <Box
             sx={{
@@ -14,13 +15,10 @@ const IsolationManagement = () => {
                 flexWrap:'wrap',
                 justifyContent:'space-around',
                 flexDirection:'column',
+                paddingX:'1rem'
             }}
         >
-            <Box
-                sx={{
-                    paddingX:'1rem'
-                }}
-            >
+            <Box>
                 <Typography variant="h4" textAlign={'start'} color={theme.palette.text.primary}>
                     Zarządzanie Izolacjami
                 </Typography>

@@ -15,13 +15,10 @@ const PetsManagement = () => {
                 flexDirection:'column',
                 flexWrap:'wrap',
                 justifyContent:'space-around',
+                paddingX:'1rem',
             }}
         >
-            <Box
-                sx={{
-                    paddingX:'1rem',
-                }}
-            >
+            <Box>
                 <Typography variant="h4" textAlign={'start'} color={theme.palette.text.primary}>
                     Zarządzanie zwierzętami
                 </Typography>
@@ -30,7 +27,7 @@ const PetsManagement = () => {
                 sx={{
                     height:'90%',
                     display:'flex',
-                    justifyContent:'space-around',
+                    justifyContent:'space-between',
                 }}
             >  
             <AddAnimalForm/>

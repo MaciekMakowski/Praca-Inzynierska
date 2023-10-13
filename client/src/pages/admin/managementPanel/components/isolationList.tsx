@@ -1,8 +1,15 @@
 import { Box, useTheme,Grid, Button, Typography, TextField } from "@mui/material";
 import IsolationListItem from "./isolationListItem";
+import { useState } from "react";
 
 const IsolationList = () => {
     const theme = useTheme()
+    const [filter, setFilter] = useState(0)
+
+    const handleChangeFilter = (value:number) => {
+        if(value === filter) setFilter(0)
+        if(value !== filter) setFilter(value)
+    }
 
     const returnItems = () => {
         const items = []
@@ -68,16 +75,18 @@ const IsolationList = () => {
                                 justifyContent:'flex-end',
                             }}
                         >
-                        <Button
-                            variant="outlined"
-                        >
-                            Koty
-                        </Button>
-                        <Button
-                            variant="outlined"
-                        >
-                            Psy
-                        </Button>
+                            <Button 
+                                variant={filter === 0 ? 'outlined' : filter === 1 ? 'contained' : 'outlined'}
+                                onClick={() => handleChangeFilter(1)}
+                            >
+                                Psy
+                            </Button>
+                            <Button 
+                                variant={filter === 0 ? 'outlined' : filter === 2 ? 'contained' : 'outlined'}
+                                onClick={() => handleChangeFilter(2)}
+                            >
+                                Koty
+                            </Button>
                         </Box>
 
                     </Grid>
