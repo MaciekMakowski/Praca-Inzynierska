@@ -10,8 +10,7 @@ const DiseaseManagement = () => {
     return(
         <Box
         sx={{
-            width:'100%',
-            minWidth:'1700px',
+            minWidth:'1600px',
             height:'100%',
             boxSizing:'border-box',
             display:'flex',

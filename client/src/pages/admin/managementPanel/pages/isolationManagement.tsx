@@ -7,7 +7,6 @@ const IsolationManagement = () => {
     return(
         <Box
             sx={{
-                width:'100%',
                 minWidth:'1700px',
                 height:'100%',
                 boxSizing:'border-box',
