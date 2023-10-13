@@ -33,8 +33,6 @@ const IsolationList = () => {
                     display:'flex',
                     flexDirection:'column',
                     boxSizing:'border-box',
-                    paddingY:'0.5rem',
-                    paddingX:'1rem',
                     gap:'1rem',
                 }}
             >
@@ -56,7 +54,7 @@ const IsolationList = () => {
                             <Button variant="contained">
                                 Szukaj
                             </Button>
-                            <TextField size="small"/>
+                            <TextField size="small" label="Wyszukaj zwierzęcia"/>
                         </Box>
                     </Grid>
                     <Grid item xs={3}>

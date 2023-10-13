@@ -10,14 +10,16 @@ const IsolationManagement = () => {
                 minWidth:'1700px',
                 height:'100%',
                 boxSizing:'border-box',
-                padding:'1rem',
                 display:'flex',
                 flexWrap:'wrap',
-                justifyContent:'start',
+                justifyContent:'space-around',
                 flexDirection:'column',
             }}
         >
             <Box
+                sx={{
+                    paddingX:'1rem'
+                }}
             >
                 <Typography variant="h4" textAlign={'start'} color={theme.palette.text.primary}>
                     Zarządzanie Izolacjami
