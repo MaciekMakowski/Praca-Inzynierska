@@ -17,6 +17,7 @@ const AdminRoutes = () => {
     <Box
         sx={{
           width:'100%', 
+          minHeight:'800px',
           height:'100vh',
           display:'flex',
         }}
