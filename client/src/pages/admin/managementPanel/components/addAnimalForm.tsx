@@ -50,7 +50,7 @@ const AddAnimalForm = () => {
         <Box
                 sx={{
                     backgroundColor: theme.palette.background.adminField,
-                    width:'350px',
+                    minWidth:'350px',
                     height:'fit-content',
                     textAlign:'center',
                     boxSizing:'border-box',
