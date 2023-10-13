@@ -20,7 +20,7 @@ const IsolationManagement = () => {
         >
             <Box>
                 <Typography variant="h4" textAlign={'start'} color={theme.palette.text.primary}>
-                    Zarządzanie Izolacjami
+                    Zarządzanie izolacjami
                 </Typography>
             </Box>
             <Box 
