@@ -7,6 +7,7 @@ import AdminMenu from "../../components/adminMenu"
 import ManagmentPanel from '../../pages/admin/managementPanel/managementPanel';
 import PetsManagement from '../../pages/admin/managementPanel/pages/petsManagement';
 import DiseaseManagement from '../../pages/admin/managementPanel/pages/diseaseManagement';
+import IsolationManagement from '../../pages/admin/managementPanel/pages/isolationManagement';
 const AdminRoutes = () => {
   return (
     <>
@@ -23,6 +24,7 @@ const AdminRoutes = () => {
           <Route path="/management" element={<ManagmentPanel/>} />
           <Route path='/management/animals' element={<PetsManagement/>} /> 
           <Route path="/management/diseases" element={<DiseaseManagement/>} />
+          <Route path="/management/isolations" element={<IsolationManagement/>} />
     </Routes>
     </Box>
     </>
