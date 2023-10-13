@@ -15,7 +15,7 @@ const AddAnimalForm = () => {
         name:'',
         findPlace:'',
         race:'',
-        number:'',
+        number:0,
         species:'',
         weight:0,
         sex:'',
@@ -24,7 +24,7 @@ const AddAnimalForm = () => {
 
     const handleChange = (event: ChangeEvent<HTMLInputElement> | SelectChangeEvent, attributeName:string) => {
             const { value } = event.target;
-            const newValue = attributeName === 'weight' ? parseFloat(value) : value;
+            const newValue = attributeName === 'weight' ?  parseFloat(value) : attributeName === 'number' ?  parseFloat(value) : value;
             setNewAnimal(prevAnimal => ({ ...prevAnimal, [attributeName]: newValue }));
     };
     const handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
