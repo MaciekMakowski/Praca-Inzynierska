@@ -8,6 +8,7 @@ import ManagmentPanel from '../../pages/admin/managementPanel/managementPanel';
 import PetsManagement from '../../pages/admin/managementPanel/pages/petsManagement';
 import DiseaseManagement from '../../pages/admin/managementPanel/pages/diseaseManagement';
 import IsolationManagement from '../../pages/admin/managementPanel/pages/isolationManagement';
+import VolunteerManagement from '../../pages/admin/managementPanel/pages/volunteerManagement';
 const AdminRoutes = () => {
   return (
     <>
@@ -25,6 +26,7 @@ const AdminRoutes = () => {
           <Route path='/management/animals' element={<PetsManagement/>} /> 
           <Route path="/management/diseases" element={<DiseaseManagement/>} />
           <Route path="/management/isolations" element={<IsolationManagement/>} />
+          <Route path="/management/volunteers" element={<VolunteerManagement/>} />
     </Routes>
     </Box>
     </>
