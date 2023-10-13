@@ -18,9 +18,6 @@ const IsolationManagement = () => {
             }}
         >
             <Box
-                sx={{
-                    padding:'1rem',
-                }}
             >
                 <Typography variant="h4" textAlign={'start'} color={theme.palette.text.primary}>
                     Zarządzanie Izolacjami
