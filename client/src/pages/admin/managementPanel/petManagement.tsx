@@ -1,0 +1,247 @@
+import {Box, ImageList, Typography, useTheme, Button, Grid, IconButton} from '@mui/material' 
+import shadows from '@mui/material/styles/shadows'
+import EditIcon from '@mui/icons-material/Edit';
+const PetManagement = () => {
+    const theme = useTheme()
+    return(
+        <Box
+        sx={{
+            minWidth:'1700px',
+            height:'100%',
+            boxSizing:'border-box',
+            display:'flex',
+            flexWrap:'wrap',
+            justifyContent:'space-around',
+            flexDirection:'column',
+            paddingX:'1rem'
+        }}
+        >
+            <Box
+            >
+                <Typography variant='h5' color={theme.palette.text.primary}>
+                    Profil zwierzęcia: Puszek
+                </Typography>
+            </Box>
+            <Box 
+                sx={{
+                    height:'90%',
+                    display:'flex',
+                    justifyContent:'start',
+                    gap:'1rem',
+                }}
+            >  
+            <Box
+                sx={{
+                    display:'flex',
+                    width:'100%',
+                    gap:'1rem'
+                }}
+            >
+                <Box
+                    sx={{
+                        width:'50%',
+                    }}
+                >
+                    <Box
+                        sx={{
+                            height:'400px',
+                            display:'flex',
+                            flexDirection:'column',
+                            justifyContent:'space-between',
+                            gap:'1rem'
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                height:'40%',
+                                display:'flex',
+                                flexDirection:'column',
+                                backgroundColor:theme.palette.background.adminField,
+                                borderRadius:'1rem',
+                                boxSizing:'border-box',
+                                padding:'1rem',
+                                boxShadow:shadows[3],
+                                position:'relative'
+                            }}
+                        >
+                            <Box
+                                sx={{
+                                    position:'absolute',
+                                    right:10,
+                                    top:0,
+                                }}
+                            >
+                             <IconButton>
+                                <EditIcon/>   
+                             </IconButton>
+                            </Box>
+                            <Grid container spacing={4}>
+                                <Grid item xs={3}>
+                                    <Box
+                                        textAlign={'center'}
+                                    >
+                                        <Typography fontWeight={600} variant='body1' color={theme.palette.text.primary}>
+                                            #Numer
+                                        </Typography>
+                                        <Typography variant='body1' color={theme.palette.text.primary}>
+                                            #12313
+                                        </Typography>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={3}>
+                                <Box
+                                        textAlign={'center'}
+                                    >
+                                        <Typography fontWeight={600} variant='body1' color={theme.palette.text.primary}>
+                                            Imię
+                                        </Typography>
+                                        <Typography variant='body1' color={theme.palette.text.primary}>
+                                            Puszek
+                                        </Typography>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Box
+                                        textAlign={'center'}
+                                    >
+                                        <Typography fontWeight={600} variant='body1' color={theme.palette.text.primary}>
+                                            Miejsce Znalezienia
+                                        </Typography>
+                                        <Typography variant='body1' color={theme.palette.text.primary}>
+                                            Lasek
+                                        </Typography>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Box
+                                        textAlign={'center'}
+                                    >
+                                        <Typography fontWeight={600} variant='body1' color={theme.palette.text.primary}>
+                                            Rasa
+                                        </Typography>
+                                        <Typography variant='body1' color={theme.palette.text.primary}>
+                                            Kundel
+                                        </Typography>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Box
+                                        textAlign={'center'}
+                                    >
+                                        <Typography fontWeight={600} variant='body1' color={theme.palette.text.primary}>
+                                            Waga
+                                        </Typography>
+                                        <Typography variant='body1' color={theme.palette.text.primary}>
+                                            8 kg
+                                        </Typography>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Box
+                                        textAlign={'center'}
+                                    >
+                                        <Typography fontWeight={600} variant='body1' color={theme.palette.text.primary}>
+                                            Płeć
+                                        </Typography>
+                                        <Typography variant='body1' color={theme.palette.text.primary}>
+                                            Samiec
+                                        </Typography>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Box
+                                        textAlign={'center'}
+                                    >
+                                        <Typography fontWeight={600} variant='body1' color={theme.palette.text.primary}>
+                                            Gatunek
+                                        </Typography>
+                                        <Typography variant='body1' color={theme.palette.text.primary}>
+                                            Pies
+                                        </Typography>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Box
+                                        textAlign={'center'}
+                                    >
+                                        <Typography fontWeight={600} variant='body1' color={theme.palette.text.primary}>
+                                            Data urodzenia
+                                        </Typography>
+                                        <Typography variant='body1' color={theme.palette.text.primary}>
+                                            12-08-2022
+                                        </Typography>
+                                    </Box>
+                                </Grid>
+
+                            </Grid>
+                        </Box>
+                        
+                        <Box
+                            sx={{
+                                height:'60%',
+                                display:'flex',
+                                flexDirection:'column',
+                                backgroundColor:theme.palette.background.adminField,
+                                borderRadius:'1rem',
+                                padding:'0.5rem',
+                                boxShadow:shadows[3]
+                            }}
+                        >
+
+                        </Box>
+
+                    </Box>
+                    
+
+                </Box>
+                <Box
+                    sx={{
+                        width:'50%',
+                        height:'400px',
+                        display:'flex',
+                        flexDirection:'column',
+                        backgroundColor:theme.palette.background.adminField,
+                        borderRadius:'1rem',
+                        padding:'0.5rem',
+                        boxSizing:'border-box',
+                        boxShadow:shadows[3]
+                    }}
+                >
+                    <Typography variant='subtitle1' color={theme.palette.text.primary} p={0}>
+                        Zdjęcia
+                    </Typography>
+                    <ImageList 
+                        sx={{
+                            boxSizing:'border-box',
+                            height:'100%',
+                            m:0,
+                        }}
+                    >
+                        <Button
+                            sx={{
+                                width:'200px',
+                                height:'100px',
+                                border:`2px solid ${theme.palette.primary.main}`,
+                                borderRadius:'0.5rem',
+                                display:'flex',
+                                justifyContent:'center',
+                                alignItems:'center',
+                                cursor:'pointer'
+                            }}
+                        >
+                            <Typography variant='h3'>
+                                +
+                            </Typography>
+                        </Button>
+
+                    </ImageList>
+
+                </Box>
+            </Box>
+
+            </Box>
+        </Box>
+    )
+}
+
+export default PetManagement
