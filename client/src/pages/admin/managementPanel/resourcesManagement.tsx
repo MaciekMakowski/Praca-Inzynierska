@@ -51,9 +51,9 @@ const ResourcesManagement = () => {
                     gap:'1rem',
                 }}
             >
+                <ResourcesTypeList/>
                 <AddResourceTypeForm/>
                 <DeleteResourceType/>
-                <ResourcesTypeList/>
             </Box>
             <ResourcesList/>
         </Box>

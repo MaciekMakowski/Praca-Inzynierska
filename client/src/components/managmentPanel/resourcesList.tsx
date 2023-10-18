@@ -1,4 +1,4 @@
-import { useTheme, Box, Grid, Typography, TextField, Button, Pagination } from "@mui/material"
+import { Box, MenuItem, Select, TextField, Typography, useTheme, InputLabel, FormControl,SelectChangeEvent, Button, Grid, Pagination } from "@mui/material";
 import ResourceListItem from "./resourceListItem";
 
 
@@ -47,10 +47,31 @@ const ResourcesList = () => {
                     Szukaj
                 </Button>
             <TextField 
-                size="small"
                 label="Wyszukaj"
             />
             </Box>
+                <FormControl>
+                        <InputLabel>Rodzaj</InputLabel>
+                            <Select
+                                label="Rodzaj"
+                                name="type"
+                                variant="outlined"
+                                fullWidth
+                                sx={{
+                                    width:'200px',
+                                    color:theme.palette.text.primary, 
+                                }}
+                                defaultValue="Wszystko"
+                                // value={newAnimal.species}
+                                // onChange={handleSelectChange}
+                            >
+                                <MenuItem value={0}>Wszystko</MenuItem>
+                                <MenuItem value={1}>Jedzenie</MenuItem>
+                                <MenuItem value={2}>Higiena</MenuItem> 
+                                <MenuItem value={3}>Koce</MenuItem>
+                                <MenuItem value={4}>Inne</MenuItem>
+                            </Select>
+                </FormControl>
         </Box>
         <Grid
             width="99%"

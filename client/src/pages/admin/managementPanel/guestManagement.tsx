@@ -1,9 +1,8 @@
-
 import {Box, Typography, useTheme} from "@mui/material";
-import PersonList from "../../../components/managmentPanel/personsList";
+import PersonsList from "../../../components/managmentPanel/personsList";
 import AddPersonForm from "../../../components/managmentPanel/addPersonForm";
 
-const VolunteerManagement = () => {
+const GuestManagement = () => {
     const theme = useTheme();
 
     return(
@@ -21,7 +20,7 @@ const VolunteerManagement = () => {
         >
             <Box>
                 <Typography variant="h4" textAlign={'start'} color={theme.palette.text.primary}>
-                    Zarządzanie wolontariuszami
+                    Zarządzanie gośćmi schroniska
                 </Typography>
             </Box>
             <Box 
@@ -31,12 +30,12 @@ const VolunteerManagement = () => {
                     gap:'1rem'
                 }}
             >  
-                <AddPersonForm title="Dodaj wolontariusza"/>
-                <PersonList/>
+                <AddPersonForm title="Dodaj gościa"/>
+                <PersonsList/>
             </Box>
         
         </Box>
     )
 }
 
-export default VolunteerManagement;
+export default GuestManagement

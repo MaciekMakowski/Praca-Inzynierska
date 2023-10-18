@@ -17,7 +17,7 @@ export type AnimalType = {
     birthDate:string
 }
 
-export type VolunteerType = {
+export type PersonType = {
     number:number,
     name:string,
     lastName:string,
@@ -28,4 +28,5 @@ export type VolunteerType = {
     city:string,
     postCode:string,
     address:string,
+    pesel:number,
 }
