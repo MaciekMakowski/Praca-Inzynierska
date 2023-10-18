@@ -5,13 +5,17 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs, {Dayjs} from "dayjs";
-import { VolunteerType } from "../../utils/types/basicTypes";
+import { PersonType } from "../../utils/types/basicTypes";
 
 
+type AddPersonFormProps = {
+    title:string
+}
 
-const AddVolunteerForm = () => {
+
+const AddPersonForm = (props:AddPersonFormProps) => {
     const theme = useTheme();
-    const [newVolunteer, setNewVolunteer] = useState<VolunteerType>({
+    const [newVolunteer, setNewVolunteer] = useState<PersonType>({
         number:0,
         name:'',
         lastName:'',
@@ -22,11 +26,12 @@ const AddVolunteerForm = () => {
         city:'',
         postCode:'',
         address:'',
+        pesel:0
     })
 
     const handleChange = (event: ChangeEvent<HTMLInputElement> | SelectChangeEvent, attributeName:string) => {
             const { value } = event.target;
-            const newValue = attributeName === 'weight' ? parseFloat(value) : value;
+            const newValue = attributeName === 'pesel' || attributeName === 'phoneNumber' ? parseFloat(value) : value;
             setNewVolunteer(prevVolunteer => ({ ...prevVolunteer, [attributeName]: newValue }));
     };
     const handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -65,7 +70,7 @@ const AddVolunteerForm = () => {
                 }}
             >
                 <Typography variant="h5" color={theme.palette.text.primary}>
-                    Dodaj wolontariusza
+                    {props.title}
                 </Typography>
                 <TextField
                     variant="outlined"
@@ -78,6 +83,14 @@ const AddVolunteerForm = () => {
                     variant="outlined"
                     label="Nazwisko"
                     name="lastName"
+                    color="primary"
+                    onChange={handleTextChange}
+                />
+                <TextField
+                    variant="outlined"
+                    label="PESEL"
+                    name="pesel"
+                    type="number"
                     color="primary"
                     onChange={handleTextChange}
                 />
@@ -145,4 +158,4 @@ const AddVolunteerForm = () => {
     )
 }
 
-export default AddVolunteerForm;
+export default AddPersonForm;

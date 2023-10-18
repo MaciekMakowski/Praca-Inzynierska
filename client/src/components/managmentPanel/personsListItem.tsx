@@ -1,10 +1,10 @@
-import { useTheme, Box, Grid, Typography, TextField, Button } from "@mui/material"
+import { useTheme, Grid, Typography, Button } from "@mui/material"
 
-type VolunteersListItemProps = {
+type PersonsListItemProps = {
     color:boolean
 }
 
-const VolunteersListItem = (props:VolunteersListItemProps) => {
+const PersonsListItem = (props:PersonsListItemProps) => {
     const theme = useTheme();
 
     return(
@@ -97,4 +97,4 @@ const VolunteersListItem = (props:VolunteersListItemProps) => {
     )
 }
 
-export default VolunteersListItem;
+export default PersonsListItem;

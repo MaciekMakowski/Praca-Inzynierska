@@ -1,15 +1,15 @@
 import { useTheme, Box, Grid, Typography, TextField, Button, Pagination } from "@mui/material"
-import VolunteersListItem from "./volunteersListItem";
+import PersonsListItem from "./personsListItem";
 
 
-const VolunteersList = () => {
+const PersonsList = () => {
     const theme = useTheme();
 
     const returnItems = () => {
         const items = []
         for (let i = 0; i < 20; i++)
 
-                items.push(<VolunteersListItem key={i} color={i%2==0}/>);
+                items.push(<PersonsListItem key={i} color={i%2==0}/>);
         return items
     }
     
@@ -158,4 +158,4 @@ const VolunteersList = () => {
     )
 }
 
-export default VolunteersList
+export default PersonsList
