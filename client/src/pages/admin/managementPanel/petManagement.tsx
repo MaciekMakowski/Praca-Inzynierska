@@ -11,6 +11,10 @@ import shadows from "@mui/material/styles/shadows";
 import EditIcon from "@mui/icons-material/Edit";
 import { AnimalType } from "../../../utils/types/basicTypes";
 import PetManagementList from "../../../components/managmentPanel/petManagementList";
+import BorderAllIcon from '@mui/icons-material/BorderAll';
+import CoronavirusIcon from '@mui/icons-material/Coronavirus';
+import AddHomeIcon from '@mui/icons-material/AddHome';
+import { AllInbox } from "@mui/icons-material";
 
 const data: AnimalType = {
   number: 1234,
@@ -241,7 +245,6 @@ const PetManagement = () => {
                 sx={{
                   height: "60%",
                   display: "flex",
-                  flexDirection: "column",
                   backgroundColor: theme.palette.background.adminField,
                   borderRadius: "1rem",
                   padding: "0.5rem",
@@ -317,6 +320,36 @@ const PetManagement = () => {
                     </Typography>
                   </Box>
                 </Box>
+                <Box
+                  sx={{
+                    width: "80%",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Typography
+                    variant="subtitle2"
+                    color={theme.palette.text.primary}
+                    fontWeight={600}
+                  >
+                    Opis
+                  </Typography>
+                  <IconButton size="small">
+                    <EditIcon />
+                  </IconButton>
+
+                  </Box>
+                  <Typography variant="caption">
+                  Puszek to uroczy mały kundelek o kręconym futerku. Jego futerko ma piękny, brązowy kolor, który sprawia, że wygląda jak mały misiek. Puszek uwielbia bawić się piłką i skakać wesoło po podwórku. Jest niezwykle przyjacielski i zawsze gotów na zabawę z dziećmi. W nocy Puszek chętnie kładzie się na poduszce obok swojego właściciela, trzymając go w ciepłym towarzystwie. To mały, kochany psiak, który wnosi mnóstwo radości do życia swoich opiekunów. Puszek to także bardzo bystry piesek, który szybko uczy się nowych sztuczek i rozumie polecenia swoich właścicieli. Jego okrągłe, czekoladowe oczy potrafią rozczulić każdego, kto spojrzy mu w twarz. To mały kundelek o ogromnym sercu, gotów do oddania miłości i wierności każdego dnia.
+                  </Typography>
+                  
+                </Box>
               </Box>
             </Box>
           </Box>
@@ -385,7 +418,6 @@ const PetManagement = () => {
         </Box>
         <Box
           sx={{
-            backgroundColor: theme.palette.background.adminField,
             width: "50%",
             height: "100%",
             textAlign: "center",
@@ -395,9 +427,159 @@ const PetManagement = () => {
             padding: "1rem",
             gap: "1rem",
             borderRadius: "1rem",
-            boxShadow: theme.shadows[3],
           }}
-        ></Box>
+        >
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              width: "100%",
+              gap: "1rem",
+            }}
+          >
+          <Button
+            variant="outlined"
+            sx={{
+              width:'120px',
+              height:'120px',
+            }}
+          >
+              <Box
+                sx={{
+                  width:'100%',
+                  height:'100%',
+                }}
+              >
+                <Typography
+                  variant="subtitle2"
+                  color={theme.palette.text.primary}
+                >
+                  Rozpocznij Adopcję
+                </Typography>
+                <AddHomeIcon
+                  sx={{
+                    width:'50px',
+                    height:'50px',
+                  }}
+                />
+              </Box>
+            </Button>
+            <Button
+            variant="outlined"
+            sx={{
+              width:'120px',
+              height:'120px',
+            }}
+          >
+              <Box
+                sx={{
+                  width:'100%',
+                  height:'100%',
+                }}
+              >
+                <Typography
+                  variant="subtitle2"
+                  color={theme.palette.text.primary}
+                >
+                  Dodaj Izolacje
+                </Typography>
+                <BorderAllIcon 
+                  sx={{
+                    width:'50px',
+                    height:'50px',
+                  }}
+                />
+              </Box>
+            </Button>
+            <Button
+            variant="outlined"
+            sx={{
+              width:'120px',
+              height:'120px',
+              color:theme.palette.error.main,
+              borderColor:theme.palette.error.main,
+            }}
+            disabled
+          >
+              <Box
+                sx={{
+                  width:'100%',
+                  height:'100%',
+                }}
+              >
+                <Typography
+                  variant="subtitle2"
+                  color={theme.palette.error.main}
+                >
+                  Zakończ Izolacje
+                </Typography>
+                <BorderAllIcon 
+                  sx={{
+                    width:'50px',
+                    height:'50px',
+                  }}
+                />
+              </Box>
+            </Button>
+            <Button
+            variant="outlined"
+            sx={{
+              width:'120px',
+              height:'120px',
+            }}
+          >
+              <Box
+                sx={{
+                  width:'100%',
+                  height:'100%',
+                }}
+              >
+                <Typography
+                  variant="subtitle2"
+                  color={theme.palette.text.primary}
+                >
+                  Dodaj chorobę
+                </Typography>
+                <CoronavirusIcon 
+                  sx={{
+                    width:'50px',
+                    height:'50px',
+                  }}
+                />
+              </Box>
+            </Button>
+            <Button
+            variant="outlined"
+            sx={{
+              width:'120px',
+              height:'120px',
+              color:theme.palette.error.main,
+              borderColor:theme.palette.error.main,
+            }}
+            disabled
+          >
+              <Box
+                sx={{
+                  width:'100%',
+                  height:'100%',
+                }}
+              >
+                <Typography
+                  variant="subtitle2"
+                  color={theme.palette.error.main}
+                >
+                  Zakończ chorobę
+                </Typography>
+                <CoronavirusIcon 
+                  sx={{
+                    width:'50px',
+                    height:'50px',
+                  }}
+                />
+              </Box>
+            </Button>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );
