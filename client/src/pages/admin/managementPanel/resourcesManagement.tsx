@@ -1,8 +1,7 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import AddResourceForm from "../../../components/managmentPanel/addResourceForm";
 import ResourcesList from "../../../components/managmentPanel/resourcesList";
-import AddResourceTypeForm from "../../../components/managmentPanel/addResourceTypeForm";
-import DeleteResourceType from "../../../components/managmentPanel/deleteResourceType";
+import AddOrDelResourceTypeForm from "../../../components/managmentPanel/addOrDelResourceTypeForm";
 import ResourcesTypeList from "../../../components/managmentPanel/resourcesTypeList";
 
 
@@ -52,8 +51,7 @@ const ResourcesManagement = () => {
                 }}
             >
                 <ResourcesTypeList/>
-                <AddResourceTypeForm/>
-                <DeleteResourceType/>
+                <AddOrDelResourceTypeForm/>
             </Box>
             <ResourcesList/>
         </Box>
