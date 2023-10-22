@@ -1,4 +1,4 @@
-import ManagementWindow from "../../../components/managmentPanel/menagmentWindow";
+import ManagementWindow from "../../../components/managementPanel/menagmentWindow";
 import { Box } from "@mui/material";
 const ManagmentPanel = () => {
 
