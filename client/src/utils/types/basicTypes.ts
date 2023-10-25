@@ -35,6 +35,15 @@ export type PersonType = {
     pesel:number,
 }
 
+export type IsolationType = {
+    number?:number,
+    reason:string,
+    desc:string,
+    startDate:string,
+    endDate:string,
+    petId:number,
+}
+
 export type PetManagementProps = {
     data:AnimalType
 }

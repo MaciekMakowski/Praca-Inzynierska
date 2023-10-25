@@ -1,20 +1,12 @@
 import {
   Box,
-  ImageList,
   Typography,
   useTheme,
-  Button,
-  Grid,
-  IconButton,
 } from "@mui/material";
-import shadows from "@mui/material/styles/shadows";
-import EditIcon from "@mui/icons-material/Edit";
-import { AnimalType } from "../../../utils/types/basicTypes";
 import PetManagementList from "../../../components/managementPanel/petManagementList";
 import BorderAllIcon from "@mui/icons-material/BorderAll";
 import CoronavirusIcon from "@mui/icons-material/Coronavirus";
 import AddHomeIcon from "@mui/icons-material/AddHome";
-import { AllInbox } from "@mui/icons-material";
 import ManagementButton from "../../../components/managementPanel/managementButton";
 import PetManagementImages from "../../../components/managementPanel/petManagementImages";
 import PetManagementDesc from "../../../components/managementPanel/petManagementDesc";
@@ -22,6 +14,7 @@ import PetManagementInfo from "../../../components/managementPanel/petManagement
 import { useState } from "react";
 import AddAdoptionModal from "../../../components/managementPanel/addAdoptionModal";
 import { PetManagementProps } from "../../../utils/types/basicTypes";
+import AddIsolationModal from "../../../components/managementPanel/addIsolationModal";
 
 const PetManagement = (props:PetManagementProps) => {
   const [adoptionOpen, setAdoptionOpen] = useState(false);
@@ -128,7 +121,7 @@ const PetManagement = (props:PetManagementProps) => {
             <ManagementButton
               name="Rozpocznij Adopcję"
               ico={AddHomeIcon}
-              disabled={false}
+              disabled={props.data.status === "Do Adopcji" ? true : false}
               foo={() => setAdoptionOpen(true)}
             />
             <ManagementButton
@@ -138,7 +131,7 @@ const PetManagement = (props:PetManagementProps) => {
               foo={() => setAddIsolationOpen(true)}
             />
             <ManagementButton
-              name="Zakończ Izolacje"
+              name="Status Izolacji"
               ico={BorderAllIcon}
               disabled={true}
               foo={() => setEndIsolationOpen(true)}
@@ -150,15 +143,27 @@ const PetManagement = (props:PetManagementProps) => {
               foo={() => setAddDiseaseOpen(true)}
             />
             <ManagementButton
-              name="Zakończ Chorobę"
+              name="Status Choroby"
               ico={CoronavirusIcon}
               disabled={true}
               foo={() => setEndDiseaseOpen(true)}
             />
+            
           </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              width: "100%",
+              gap: "1rem",
+            }}
+          >
+          </Box>
+            
         </Box>
       </Box>
-      <AddAdoptionModal setOpen={setAdoptionOpen} open={adoptionOpen} petInfo={props.data}/>
+      <AddAdoptionModal setOpen={setAdoptionOpen} open={adoptionOpen} data={props.data}/>
+      <AddIsolationModal setOpen={setAddIsolationOpen} open={addIsolationOpen} data={props.data}/>
     </Box>
   );
 };
