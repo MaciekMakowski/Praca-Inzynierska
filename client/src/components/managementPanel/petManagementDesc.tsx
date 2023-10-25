@@ -1,7 +1,9 @@
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import shadows from "@mui/material/styles/shadows";
 import EditIcon from "@mui/icons-material/Edit";
-const PetManagementDesc = () => {
+import { PetManagementProps } from "../../utils/types/basicTypes";
+
+const PetManagementDesc = (props:PetManagementProps) => {
   const theme = useTheme();
 
   return (
@@ -32,7 +34,7 @@ const PetManagementDesc = () => {
             Status:
           </Typography>
           <Typography variant="body1" color={theme.palette.text.primary}>
-            Do adopcji
+            {props.data.status}
           </Typography>
         </Box>
         <Box>
@@ -44,7 +46,7 @@ const PetManagementDesc = () => {
             Izolowany:
           </Typography>
           <Typography variant="body1" color={theme.palette.text.primary}>
-            Nie
+            {props.data.isIsolated ? "Tak" : "Nie"}
           </Typography>
         </Box>
         <Box>
@@ -68,7 +70,7 @@ const PetManagementDesc = () => {
             Chory:
           </Typography>
           <Typography variant="body1" color={theme.palette.text.primary}>
-            Nie
+            {props.data.isIll ? "Tak" : "Nie"}
           </Typography>
         </Box>
       </Box>
@@ -97,17 +99,7 @@ const PetManagementDesc = () => {
           </IconButton>
         </Box>
         <Typography variant="caption">
-          Puszek to uroczy mały kundelek o kręconym futerku. Jego futerko ma
-          piękny, brązowy kolor, który sprawia, że wygląda jak mały misiek.
-          Puszek uwielbia bawić się piłką i skakać wesoło po podwórku. Jest
-          niezwykle przyjacielski i zawsze gotów na zabawę z dziećmi. W nocy
-          Puszek chętnie kładzie się na poduszce obok swojego właściciela,
-          trzymając go w ciepłym towarzystwie. To mały, kochany psiak, który
-          wnosi mnóstwo radości do życia swoich opiekunów. Puszek to także
-          bardzo bystry piesek, który szybko uczy się nowych sztuczek i rozumie
-          polecenia swoich właścicieli. Jego okrągłe, czekoladowe oczy potrafią
-          rozczulić każdego, kto spojrzy mu w twarz. To mały kundelek o ogromnym
-          sercu, gotów do oddania miłości i wierności każdego dnia.
+          {props.data.desc}
         </Typography>
       </Box>
     </Box>

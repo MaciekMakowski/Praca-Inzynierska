@@ -1,8 +1,13 @@
 import { Box, Grid, IconButton, Typography, useTheme } from "@mui/material";
 import shadows from "@mui/material/styles/shadows";
 import EditIcon from "@mui/icons-material/Edit";
+import { AnimalType } from "../../utils/types/basicTypes";
 
-const PetManagementInfo = () => {
+type PetManagementInfoProps = {
+  data: AnimalType
+};
+
+const PetManagementInfo = (props:PetManagementInfoProps) => {
   const theme = useTheme();
   return (
     <Box
@@ -40,7 +45,7 @@ const PetManagementInfo = () => {
               #Numer
             </Typography>
             <Typography variant="body1" color={theme.palette.text.primary}>
-              #12313
+              {props.data.number}
             </Typography>
           </Box>
         </Grid>
@@ -54,7 +59,7 @@ const PetManagementInfo = () => {
               Imię
             </Typography>
             <Typography variant="body1" color={theme.palette.text.primary}>
-              Puszek
+              {props.data.name}
             </Typography>
           </Box>
         </Grid>
@@ -68,7 +73,7 @@ const PetManagementInfo = () => {
               Miejsce Znalezienia
             </Typography>
             <Typography variant="body1" color={theme.palette.text.primary}>
-              Lasek
+              {props.data.findPlace}
             </Typography>
           </Box>
         </Grid>
@@ -82,7 +87,7 @@ const PetManagementInfo = () => {
               Rasa
             </Typography>
             <Typography variant="body1" color={theme.palette.text.primary}>
-              Kundel
+              {props.data.race}
             </Typography>
           </Box>
         </Grid>
@@ -96,7 +101,7 @@ const PetManagementInfo = () => {
               Waga
             </Typography>
             <Typography variant="body1" color={theme.palette.text.primary}>
-              8 kg
+              {props.data.weight} kg
             </Typography>
           </Box>
         </Grid>
@@ -110,7 +115,7 @@ const PetManagementInfo = () => {
               Płeć
             </Typography>
             <Typography variant="body1" color={theme.palette.text.primary}>
-              Samiec
+              {props.data.sex}
             </Typography>
           </Box>
         </Grid>
@@ -124,7 +129,7 @@ const PetManagementInfo = () => {
               Gatunek
             </Typography>
             <Typography variant="body1" color={theme.palette.text.primary}>
-              Pies
+              {props.data.species}
             </Typography>
           </Box>
         </Grid>
@@ -138,7 +143,7 @@ const PetManagementInfo = () => {
               Data urodzenia
             </Typography>
             <Typography variant="body1" color={theme.palette.text.primary}>
-              12-08-2022
+             {props.data.birthDate}
             </Typography>
           </Box>
         </Grid>
