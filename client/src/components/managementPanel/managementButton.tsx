@@ -13,6 +13,7 @@ type ManagementButtonProps = {
   name: string;
   ico: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
   disabled: boolean;
+  foo: () => void;
 };
 
 const ManagementButton = (props: ManagementButtonProps) => {
@@ -32,6 +33,7 @@ const ManagementButton = (props: ManagementButtonProps) => {
           : theme.palette.text.primary,
       }}
       disabled={props.disabled}
+      onClick={props.foo}
     >
       <Box
         sx={{
