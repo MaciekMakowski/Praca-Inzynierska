@@ -37,4 +37,10 @@ export type PersonType = {
 
 export type PetManagementProps = {
     data:AnimalType
-  }
+}
+
+export type EditPetModalProps = {
+    open: boolean;
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    data: AnimalType;
+  };

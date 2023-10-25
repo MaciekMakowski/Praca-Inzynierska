@@ -2,18 +2,21 @@ import {
     Box,
     useTheme,
     Modal,
+    TextField,
+    Typography,
+    Button,
     IconButton
   } from "@mui/material";
   import CloseIcon from "@mui/icons-material/Close";
-  import {EditPetModalProps } from "../../utils/types/basicTypes";
-import AddAnimalForm from "./addAnimalForm";
-  
-  const EditPetInfoModal = (props: EditPetModalProps) => {
+  import { AnimalType, EditPetModalProps } from "../../utils/types/basicTypes";
+
+
+const EditPetDescModal = (props:EditPetModalProps) => {
     const theme = useTheme();
     const handleClose = () => props.setOpen(false);
-  
-    return (
-      <Modal open={props.open} onClose={handleClose}>
+
+    return(
+        <Modal open={props.open} onClose={handleClose}>
         <Box
           sx={{
             backgroundColor: theme.palette.background.adminField,
@@ -24,6 +27,7 @@ import AddAnimalForm from "./addAnimalForm";
             width: "30%",
             minWidth:'600px',
             boxSizing: "border-box",
+            padding: "1rem",
             display: "flex",
             flexDirection: "column",
             gap: "1rem",
@@ -33,22 +37,34 @@ import AddAnimalForm from "./addAnimalForm";
         >
         <Box
           sx={{
-            position:'absolute',
-            justifyContent: "end",
-            right: 15,
-            top:15,
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            gap: "1rem",
           }}
         >
+          <Typography variant="h5" color={theme.palette.text.primary}>
+            Edytuj opis
+          </Typography>
           <IconButton onClick={handleClose}>
             <CloseIcon />
           </IconButton>
         </Box>
-            <AddAnimalForm  data={props.data}/>
-        
+           <TextField
+            multiline
+            label="Desc"
+            variant="outlined"
+            rows={9}
+            value={props.data.desc}
+            focused={props.data.desc.length > 0}
+           >
+
+           </TextField>
+          
+          <Button variant="contained">Zabisz</Button>
         </Box>
       </Modal>
     );
   };
-  
-  export default EditPetInfoModal;
-  
+
+export default EditPetDescModal

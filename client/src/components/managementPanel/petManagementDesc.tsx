@@ -2,8 +2,11 @@ import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import shadows from "@mui/material/styles/shadows";
 import EditIcon from "@mui/icons-material/Edit";
 import { PetManagementProps } from "../../utils/types/basicTypes";
+import EditPetDescModal from "./editPetDescModal";
+import { useState } from "react";
 
 const PetManagementDesc = (props:PetManagementProps) => {
+  const [descOpen, setDescOpen] = useState(false);
   const theme = useTheme();
 
   return (
@@ -94,7 +97,7 @@ const PetManagementDesc = (props:PetManagementProps) => {
           >
             Opis
           </Typography>
-          <IconButton size="small">
+          <IconButton size="small" onClick={() => setDescOpen(true)}>
             <EditIcon />
           </IconButton>
         </Box>
@@ -102,6 +105,7 @@ const PetManagementDesc = (props:PetManagementProps) => {
           {props.data.desc}
         </Typography>
       </Box>
+      <EditPetDescModal open={descOpen} setOpen={setDescOpen} data={props.data}/>
     </Box>
   );
 };
