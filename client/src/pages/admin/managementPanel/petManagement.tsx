@@ -15,6 +15,7 @@ import { useState } from "react";
 import AddAdoptionModal from "../../../components/managementPanel/addAdoptionModal";
 import { PetManagementProps } from "../../../utils/types/basicTypes";
 import AddIsolationModal from "../../../components/managementPanel/addIsolationModal";
+import ChangePetStatus from "../../../components/managementPanel/changePetStatus";
 
 const PetManagement = (props:PetManagementProps) => {
   const [adoptionOpen, setAdoptionOpen] = useState(false);
@@ -158,8 +159,8 @@ const PetManagement = (props:PetManagementProps) => {
               gap: "1rem",
             }}
           >
+            <ChangePetStatus/>
           </Box>
-            
         </Box>
       </Box>
       <AddAdoptionModal setOpen={setAdoptionOpen} open={adoptionOpen} data={props.data}/>
