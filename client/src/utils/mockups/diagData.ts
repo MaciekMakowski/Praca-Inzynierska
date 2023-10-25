@@ -1,3 +1,4 @@
+import { AnimalType } from "../types/basicTypes";
 
 export const PetData = [
     {
@@ -186,3 +187,19 @@ export const CalendarData = [
     "day": "2023-06-03"
   }
 ];
+
+
+export const puszekData:AnimalType={
+  number:23,
+  name:'Puszek',
+  findPlace:'Las Bartąg',
+  race:'Kundel',
+  weight:3.5,
+  sex:'Samiec',
+  species:'Pies',
+  birthDate:'2019-05-03',
+  desc:'Puszek to uroczy mały kundelek o kręconym futerku. Jego futerko ma piękny, brązowy kolor, który sprawia, że wygląda jak mały misiek. Puszek uwielbia bawić się piłką i skakać wesoło po podwórku. Jest niezwykle przyjacielski i zawsze gotów na zabawę z dziećmi. W nocy Puszek chętnie kładzie się na poduszce obok swojego właściciela, trzymając go w ciepłym towarzystwie. To mały, kochany psiak, który wnosi mnóstwo radości do życia swoich opiekunów. Puszek to także bardzo bystry piesek, który szybko uczy się nowych sztuczek i rozumie polecenia swoich właścicieli. Jego okrągłe, czekoladowe oczy potrafią rozczulić każdego, kto spojrzy mu w twarz. To mały kundelek o ogromnym sercu, gotów do oddania miłości i wierności każdego dnia.',
+  isIll:false,
+  isIsolated:false,
+  status:'Do adopcji'
+}

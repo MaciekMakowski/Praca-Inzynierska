@@ -15,6 +15,10 @@ export type AnimalType = {
     weight:number,
     sex:string,
     birthDate:string
+    desc:string,
+    isIll:boolean,
+    isIsolated:boolean,
+    status:string,
 }
 
 export type PersonType = {
@@ -30,3 +34,7 @@ export type PersonType = {
     address:string,
     pesel:number,
 }
+
+export type PetManagementProps = {
+    data:AnimalType
+  }

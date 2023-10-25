@@ -11,6 +11,7 @@ import AdoptionsManagement from "../../pages/admin/managementPanel/adoptionsMana
 import ResourcesManagement from "../../pages/admin/managementPanel/resourcesManagement";
 import GuestManagement from "../../pages/admin/managementPanel/guestManagement";
 import PetManagement from "../../pages/admin/managementPanel/petManagement";
+import { puszekData } from "../mockups/diagData";
 const AdminRoutes = () => {
   return (
     <>
@@ -27,7 +28,7 @@ const AdminRoutes = () => {
           <Route path="/panel" element={<Panel />} />
           <Route path="/management" element={<ManagmentPanel />} />
           <Route path="/management/animals" element={<PetsManagement />} />
-          <Route path="/management/animals/:id" element={<PetManagement />} />
+          <Route path="/management/animals/:id" element={<PetManagement data={puszekData} />} />
           <Route path="/management/diseases" element={<DiseaseManagement />} />
           <Route
             path="/management/isolations"

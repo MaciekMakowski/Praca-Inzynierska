@@ -18,9 +18,11 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs, { Dayjs } from "dayjs";
 import CloseIcon from "@mui/icons-material/Close";
+import { AnimalType } from "../../utils/types/basicTypes";
 type AddAdoptionModalProps = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  petInfo?: AnimalType;
 };
 
 const AddAdoptionModal = (props: AddAdoptionModalProps) => {
@@ -37,7 +39,6 @@ const AddAdoptionModal = (props: AddAdoptionModalProps) => {
           top: "50%",
           transform: "translate(-50%, -50%)",
           width: "60%",
-          height: "60%",
           boxSizing: "border-box",
           padding: "1rem",
           display: "flex",
@@ -88,60 +89,51 @@ const AddAdoptionModal = (props: AddAdoptionModalProps) => {
               >
                 <TextField
                   variant="outlined"
+                  label="Numer"
+                  name="number"
+                  type="number"
+                  color="primary"
+                  //onChange={handleTextChange}
+                />
+                <TextField
+                  disabled
+                  variant="outlined"
                   label="Imię"
                   name="name"
                   color="primary"
                   //onChange={handleTextChange}
                 />
                 <TextField
+                  disabled
                   variant="outlined"
                   label="Nazwisko"
                   name="lastName"
                   color="primary"
                   // onChange={handleTextChange}
                 />
-                <FormControl>
-                  <InputLabel>Płeć</InputLabel>
-                  <Select
-                    label="Płeć"
-                    name="sex"
-                    variant="outlined"
-                    sx={{
-                      color: theme.palette.text.primary,
-                    }}
-                    defaultValue="Płeć"
-                    //value={newVolunteer.sex}
-                    //onChange={handleSelectChange}
-                  >
-                    <MenuItem value={1}>Kobieta</MenuItem>
-                    <MenuItem value={2}>Mężczyzna</MenuItem>
-                  </Select>
-                </FormControl>
                 <TextField
+                  disabled
+                  variant="outlined"
+                  label="Płeć"
+                  name="sex"
+                  color="primary"
+                />
+                <TextField
+                  disabled
                   variant="outlined"
                   label="Pesel"
                   name="pesel"
                   color="primary"
                   // onChange={handleTextChange}
                 />
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DemoContainer
-                    sx={{
-                      width: "100%",
-                      paddingTop: "5px",
-                    }}
-                    components={["DatePicker"]}
-                  >
-                    <DatePicker
-                      sx={{
-                        width: "100%",
-                      }}
-                      label="Data urodzenia"
-                      //onChange={(value:Dayjs | null) =>  handleChangeBirthDate(value)}
-                    />
-                  </DemoContainer>
-                </LocalizationProvider>
-              </Box>
+                <TextField
+                  disabled
+                  variant="outlined"
+                  label="Data urodzenia"
+                  name="birthDate"
+                  color="primary"
+                />
+                </Box>
               <Box
                 sx={{
                   display: "flex",
@@ -150,7 +142,20 @@ const AddAdoptionModal = (props: AddAdoptionModalProps) => {
                   width: "250px",
                 }}
               >
+                <Button
+                  disabled
+                  variant="outlined"
+                  color="primary"
+                  fullWidth
+                  size="large"
+                  sx={{
+                    height: "100%",
+                  }}
+                >
+                  Szukaj
+                </Button>
                 <TextField
+                  disabled
                   variant="outlined"
                   label="Numer telefonu"
                   name="phoneNumber"
@@ -159,6 +164,7 @@ const AddAdoptionModal = (props: AddAdoptionModalProps) => {
                   //onChange={handleTextChange}
                 />
                 <TextField
+                  disabled
                   variant="outlined"
                   label="E-mail"
                   name="email"
@@ -166,6 +172,7 @@ const AddAdoptionModal = (props: AddAdoptionModalProps) => {
                   // onChange={handleTextChange}
                 />
                 <TextField
+                  disabled
                   variant="outlined"
                   label="Miasto"
                   name="city"
@@ -173,6 +180,7 @@ const AddAdoptionModal = (props: AddAdoptionModalProps) => {
                   //onChange={handleTextChange}
                 />
                 <TextField
+                  disabled
                   variant="outlined"
                   label="Kod pocztowy"
                   name="postCode"
@@ -180,6 +188,7 @@ const AddAdoptionModal = (props: AddAdoptionModalProps) => {
                   //onChange={handleTextChange}
                 />
                 <TextField
+                  disabled
                   variant="outlined"
                   label="Adres"
                   name="address"
@@ -214,7 +223,10 @@ const AddAdoptionModal = (props: AddAdoptionModalProps) => {
                   variant="outlined"
                   label="Numer"
                   name="number"
+                  type="number"
                   color="primary"
+                  disabled={props.petInfo && true}
+                  value={props.petInfo?.number}
                   //onChange={handleTextChange}
                 />
                 <TextField
@@ -223,6 +235,7 @@ const AddAdoptionModal = (props: AddAdoptionModalProps) => {
                   label="Imię"
                   name="name"
                   color="primary"
+                  value={props.petInfo?.name}
                   // onChange={handleTextChange}
                 />
                 <TextField
@@ -231,6 +244,7 @@ const AddAdoptionModal = (props: AddAdoptionModalProps) => {
                   label="Płeć"
                   name="sex"
                   color="primary"
+                  value={props.petInfo?.sex}
                   // onChange={handleTextChange}
                 />
                 <TextField
@@ -239,6 +253,7 @@ const AddAdoptionModal = (props: AddAdoptionModalProps) => {
                   label="Data urodzenia"
                   name="birthDate"
                   color="primary"
+                  value={props.petInfo?.birthDate}
                   //onChange={handleTextChange}
                 />
                 <TextField
@@ -247,6 +262,7 @@ const AddAdoptionModal = (props: AddAdoptionModalProps) => {
                   label="Rasa"
                   name="race"
                   color="primary"
+                  value={props.petInfo?.race}
                   //onChange={handleTextChange}
                 />
               </Box>
@@ -266,6 +282,7 @@ const AddAdoptionModal = (props: AddAdoptionModalProps) => {
                   sx={{
                     height: "100%",
                   }}
+                  disabled={props.petInfo && true}
                 >
                   Szukaj zwierzęcia
                 </Button>
@@ -275,6 +292,7 @@ const AddAdoptionModal = (props: AddAdoptionModalProps) => {
                   label="Gatunek"
                   name="species"
                   color="primary"
+                  value={props.petInfo?.species}
                   //onChange={handleTextChange}
                 />
                 <TextField
@@ -283,14 +301,16 @@ const AddAdoptionModal = (props: AddAdoptionModalProps) => {
                   label="Waga"
                   name="weight"
                   color="primary"
+                  value={props.petInfo?.weight}
                   // onChange={handleTextChange}
                 />
                 <TextField
                   disabled
                   variant="outlined"
-                  label="Wiek"
-                  name="age"
+                  label="Data Urodzin"
+                  name="birthDate"
                   color="primary"
+                  value={props.petInfo?.birthDate}
                   //onChange={handleTextChange}
                 />
                 <TextField
@@ -299,6 +319,7 @@ const AddAdoptionModal = (props: AddAdoptionModalProps) => {
                   label="Miejsce znalezienia"
                   name="findPlace"
                   color="primary"
+                  value={props.petInfo?.findPlace}
                   //onChange={handleTextChange}
                 />
               </Box>

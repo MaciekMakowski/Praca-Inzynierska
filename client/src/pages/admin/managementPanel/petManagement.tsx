@@ -19,19 +19,19 @@ import ManagementButton from "../../../components/managementPanel/managementButt
 import PetManagementImages from "../../../components/managementPanel/petManagementImages";
 import PetManagementDesc from "../../../components/managementPanel/petManagementDesc";
 import PetManagementInfo from "../../../components/managementPanel/petManagementInfo";
+import { useState } from "react";
+import AddAdoptionModal from "../../../components/managementPanel/addAdoptionModal";
+import { PetManagementProps } from "../../../utils/types/basicTypes";
 
-const data: AnimalType = {
-  number: 1234,
-  name: "Puszek",
-  findPlace: "Las Bartąg",
-  race: "Kundel",
-  weight: 6.42,
-  sex: "Samiec",
-  species: "Pies",
-  birthDate: "20-09-2022",
-};
+const PetManagement = (props:PetManagementProps) => {
+  const [adoptionOpen, setAdoptionOpen] = useState(false);
+  const [infoOpen, setInfoOpen] = useState(false);
+  const [descionOpen, setDescOpen] = useState(false);
+  const [addIsolationOpen, setAddIsolationOpen] = useState(false);
+  const [endIsolationOpen, setEndIsolationOpen] = useState(false);
+  const [addDiseaseOpen, setAddDiseaseOpen] = useState(false);
+  const [endDiseaseOpen, setEndDiseaseOpen] = useState(false);
 
-const PetManagement = () => {
   const theme = useTheme();
   return (
     <Box
@@ -50,7 +50,7 @@ const PetManagement = () => {
     >
       <Box>
         <Typography variant="h5" color={theme.palette.text.primary}>
-          Profil zwierzęcia: Puszek
+          Profil zwierzęcia: {props.data.name}
         </Typography>
       </Box>
       <Box
@@ -81,8 +81,8 @@ const PetManagement = () => {
                 gap: "1rem",
               }}
             >
-              <PetManagementInfo />
-              <PetManagementDesc />
+              <PetManagementInfo data={props.data}/>
+              <PetManagementDesc data={props.data}/>
             </Box>
           </Box>
           <PetManagementImages />
@@ -131,30 +131,36 @@ const PetManagement = () => {
               name="Rozpocznij Adopcję"
               ico={AddHomeIcon}
               disabled={false}
+              foo={() => setAdoptionOpen(true)}
             />
             <ManagementButton
               name="Dodaj Izolacje"
               ico={BorderAllIcon}
               disabled={false}
+              foo={() => setAddIsolationOpen(true)}
             />
             <ManagementButton
               name="Zakończ Izolacje"
               ico={BorderAllIcon}
               disabled={true}
+              foo={() => setEndIsolationOpen(true)}
             />
             <ManagementButton
               name="Dodaj Chorobę"
               ico={CoronavirusIcon}
               disabled={false}
+              foo={() => setAddDiseaseOpen(true)}
             />
             <ManagementButton
               name="Zakończ Chorobę"
               ico={CoronavirusIcon}
               disabled={true}
+              foo={() => setEndDiseaseOpen(true)}
             />
           </Box>
         </Box>
       </Box>
+      <AddAdoptionModal setOpen={setAdoptionOpen} open={adoptionOpen} petInfo={props.data}/>
     </Box>
   );
 };
