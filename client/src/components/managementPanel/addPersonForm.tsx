@@ -23,7 +23,7 @@ type AddPersonFormProps = {
 };
 
 const AddPersonForm = (props: AddPersonFormProps) => {
-  const theme = useThŚeme();
+  const theme = useTheme();
   const [newVolunteer, setNewVolunteer] = useState<PersonType>({
     number: 0,
     name: "",

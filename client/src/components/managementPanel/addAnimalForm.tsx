@@ -18,7 +18,12 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs, { Dayjs } from "dayjs";
 import { AnimalType } from "../../utils/types/basicTypes";
 
-const AddAnimalForm = () => {
+type AddAnimalFormProps = {
+  data?: AnimalType;
+};
+
+
+const AddAnimalForm = (props:AddAnimalFormProps) => {
   const theme = useTheme();
   const [newAnimal, setNewAnimal] = useState<AnimalType>({
     name: "",
@@ -86,6 +91,7 @@ const AddAnimalForm = () => {
         Dodaj zwierzę
       </Typography>
       <TextField
+        value={props.data && props.data.name}
         variant="outlined"
         label="Imię"
         name="name"
@@ -93,6 +99,7 @@ const AddAnimalForm = () => {
         onChange={handleTextChange}
       />
       <TextField
+      value={props.data && props.data.findPlace}
         variant="outlined"
         label="Miejsce znalezienia"
         name="findPlace"
@@ -100,6 +107,7 @@ const AddAnimalForm = () => {
         onChange={handleTextChange}
       />
       <TextField
+        value={props.data && props.data.race}
         variant="outlined"
         label="Rasa"
         name="race"
@@ -107,6 +115,7 @@ const AddAnimalForm = () => {
         onChange={handleTextChange}
       />
       <TextField
+        value={props.data && props.data.number}
         variant="outlined"
         label="Numer"
         name="number"
@@ -115,6 +124,7 @@ const AddAnimalForm = () => {
         onChange={handleTextChange}
       />
       <TextField
+        value={props.data && props.data.weight}
         variant="outlined"
         label="Waga"
         name="weight"
@@ -125,13 +135,14 @@ const AddAnimalForm = () => {
       <FormControl>
         <InputLabel>Gatunek</InputLabel>
         <Select
+          
           label="Gatunek"
           name="species"
           variant="outlined"
           sx={{
             color: theme.palette.text.primary,
           }}
-          defaultValue="Gatunek"
+          defaultValue={props.data ? props.data.species : "Gatunek"}
           value={newAnimal.species}
           onChange={handleSelectChange}
         >
@@ -148,7 +159,7 @@ const AddAnimalForm = () => {
           sx={{
             color: theme.palette.text.primary,
           }}
-          defaultValue="Płeć"
+          defaultValue={props.data ? props.data.sex : "Płeć"}
           value={newAnimal.sex}
           onChange={handleSelectChange}
         >
@@ -162,6 +173,7 @@ const AddAnimalForm = () => {
             sx={{
               flexGrow: 1,
             }}
+            defaultValue={props.data && new Dayjs(props.data.birthDate)}
             label="Data urodzenia"
             onChange={(value: Dayjs | null) => handleChangeBirthDate(value)}
           />
