@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, Dispatch} from "react";
 import {
   Box,
   MenuItem,
@@ -17,6 +17,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs, { Dayjs } from "dayjs";
 import { AnimalType, PetManagementProps } from "../../utils/types/basicTypes";
+import { handleTextChange, handleSelectChange, handleChangeDate } from "../../utils/functions/handlers";
 
 
 
@@ -37,41 +38,17 @@ const AddAnimalForm = (props:PetManagementProps) => {
     status:props.data ? props.data.status : "New",
   });
 
-  const handleChange = (
-    event: ChangeEvent<HTMLInputElement> | SelectChangeEvent,
-    attributeName: string
-  ) => {
-    const { value } = event.target;
-    const newValue =
-      attributeName === "weight"
-        ? parseFloat(value)
-        : attributeName === "number"
-        ? parseFloat(value)
-        : value;
-    setNewAnimal((prevAnimal) => ({
-      ...prevAnimal,
-      [attributeName]: newValue,
-    }));
-  };
-  const handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const attributeName = event.target.name;
-    if (attributeName) {
-      handleChange(event, attributeName);
-    }
-  };
-  const handleSelectChange = (event: SelectChangeEvent) => {
-    const attributeName = event.target.name;
-    if (attributeName) {
-      handleChange(event, attributeName);
-    }
-  };
-  const handleChangeBirthDate = (value: Dayjs | null) => {
+  const textChange = (event: ChangeEvent<HTMLInputElement>) =>{
+    handleTextChange(event, setNewAnimal)
+  }
+
+  const selectChange = (event: SelectChangeEvent) => {
+    handleSelectChange(event, setNewAnimal)
+  }
+  const dateChange = (value: Dayjs | null) => {
     if (value === null) return;
-    setNewAnimal((prevAnimal) => ({
-      ...prevAnimal,
-      birthDate: value.format("YYYY-MM-DD"),
-    }));
-  };
+    handleChangeDate(value.format('DD-MM-YYYY'), setNewAnimal, 'birthDate')
+  }
   return (
     <Box
       sx={{
@@ -92,46 +69,46 @@ const AddAnimalForm = (props:PetManagementProps) => {
         {props.data ? "Edytuj zwierzę" : "Dodaj zwierzę"}
       </Typography>
       <TextField
-        value={props.data && props.data.name}
+        value={newAnimal.name}
         variant="outlined"
         label="Imię"
         name="name"
         color="primary"
-        onChange={handleTextChange}
+        onChange={textChange}
       />
       <TextField
-      value={props.data && props.data.findPlace}
+      value={newAnimal.findPlace}
         variant="outlined"
         label="Miejsce znalezienia"
         name="findPlace"
         color="primary"
-        onChange={handleTextChange}
+        onChange={textChange}
       />
       <TextField
-        value={props.data && props.data.race}
+        value={newAnimal.race}
         variant="outlined"
         label="Rasa"
         name="race"
         color="primary"
-        onChange={handleTextChange}
+        onChange={textChange}
       />
       <TextField
-        value={props.data && props.data.number}
+        value={newAnimal.number}
         variant="outlined"
         label="Numer"
         name="number"
         type="number"
         color="primary"
-        onChange={handleTextChange}
+        onChange={textChange}
       />
       <TextField
-        value={props.data && props.data.weight}
+        value={newAnimal.weight}
         variant="outlined"
         label="Waga"
         name="weight"
         type="number"
         color="primary"
-        onChange={handleTextChange}
+        onChange={textChange}
       />
       <FormControl>
         <InputLabel>Gatunek</InputLabel>
@@ -145,7 +122,7 @@ const AddAnimalForm = (props:PetManagementProps) => {
           }}
           defaultValue={"Gatunek"}
           value={newAnimal.species}
-          onChange={handleSelectChange}
+          onChange={selectChange}
         >
           <MenuItem value={"Pies"}>Pies</MenuItem>
           <MenuItem value={"Kot"}>Kot</MenuItem>
@@ -162,7 +139,7 @@ const AddAnimalForm = (props:PetManagementProps) => {
           }}
           defaultValue={"Płeć"}
           value={newAnimal.sex}
-          onChange={handleSelectChange}
+          onChange={selectChange}
         >
           <MenuItem value={"Samiec"}>Samiec</MenuItem>
           <MenuItem value={"Samica"}>Samica</MenuItem>
@@ -174,9 +151,9 @@ const AddAnimalForm = (props:PetManagementProps) => {
             sx={{
               flexGrow: 1,
             }}
-            defaultValue={props.data && dayjs(props.data.birthDate)}
+            defaultValue={dayjs(newAnimal.birthDate)}
             label="Data urodzenia"
-            onChange={(value: Dayjs | null) => handleChangeBirthDate(value)}
+            onChange={(value: Dayjs | null) => dateChange(value)}
           />
         </DemoContainer>
       </LocalizationProvider>
