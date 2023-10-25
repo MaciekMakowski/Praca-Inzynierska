@@ -143,7 +143,6 @@ const AddAdoptionModal = (props: AddAdoptionModalProps) => {
                 }}
               >
                 <Button
-                  disabled
                   variant="outlined"
                   color="primary"
                   fullWidth
