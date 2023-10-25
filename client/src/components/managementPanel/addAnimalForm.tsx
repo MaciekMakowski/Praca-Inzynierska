@@ -16,24 +16,25 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs, { Dayjs } from "dayjs";
-import { AnimalType } from "../../utils/types/basicTypes";
-
-type AddAnimalFormProps = {
-  data?: AnimalType;
-};
+import { AnimalType, PetManagementProps } from "../../utils/types/basicTypes";
 
 
-const AddAnimalForm = (props:AddAnimalFormProps) => {
+
+const AddAnimalForm = (props:PetManagementProps) => {
   const theme = useTheme();
   const [newAnimal, setNewAnimal] = useState<AnimalType>({
-    name: "",
-    findPlace: "",
-    race: "",
-    number: 0,
-    species: "",
-    weight: 0,
-    sex: "",
-    birthDate: "",
+    name: props.data ? props.data.name : "",
+    findPlace: props.data ? props.data.findPlace : "",
+    race: props.data ? props.data.race : "",
+    number: props.data ? props.data.number : 0,
+    species: props.data ? props.data.species : "",
+    weight: props.data ? props.data.weight : 0,
+    sex: props.data ? props.data.sex : "",
+    birthDate: props.data ? props.data.birthDate : "",
+    desc:props.data ? props.data.desc : "",
+    isIll: props.data ? props.data.isIll : false,
+    isIsolated: props.data ? props.data.isIsolated : false,
+    status:props.data ? props.data.status : "New",
   });
 
   const handleChange = (
@@ -88,7 +89,7 @@ const AddAnimalForm = (props:AddAnimalFormProps) => {
       }}
     >
       <Typography variant="h5" color={theme.palette.text.primary}>
-        Dodaj zwierzę
+        {props.data ? "Edytuj zwierzę" : "Dodaj zwierzę"}
       </Typography>
       <TextField
         value={props.data && props.data.name}
@@ -142,12 +143,12 @@ const AddAnimalForm = (props:AddAnimalFormProps) => {
           sx={{
             color: theme.palette.text.primary,
           }}
-          defaultValue={props.data ? props.data.species : "Gatunek"}
+          defaultValue={"Gatunek"}
           value={newAnimal.species}
           onChange={handleSelectChange}
         >
-          <MenuItem value={1}>Pies</MenuItem>
-          <MenuItem value={2}>Kot</MenuItem>
+          <MenuItem value={"Pies"}>Pies</MenuItem>
+          <MenuItem value={"Kot"}>Kot</MenuItem>
         </Select>
       </FormControl>
       <FormControl>
@@ -159,12 +160,12 @@ const AddAnimalForm = (props:AddAnimalFormProps) => {
           sx={{
             color: theme.palette.text.primary,
           }}
-          defaultValue={props.data ? props.data.sex : "Płeć"}
+          defaultValue={"Płeć"}
           value={newAnimal.sex}
           onChange={handleSelectChange}
         >
-          <MenuItem value={1}>Samiec</MenuItem>
-          <MenuItem value={2}>Samica</MenuItem>
+          <MenuItem value={"Samiec"}>Samiec</MenuItem>
+          <MenuItem value={"Samica"}>Samica</MenuItem>
         </Select>
       </FormControl>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -173,14 +174,14 @@ const AddAnimalForm = (props:AddAnimalFormProps) => {
             sx={{
               flexGrow: 1,
             }}
-            defaultValue={props.data && new Dayjs(props.data.birthDate)}
+            defaultValue={props.data && dayjs(props.data.birthDate)}
             label="Data urodzenia"
             onChange={(value: Dayjs | null) => handleChangeBirthDate(value)}
           />
         </DemoContainer>
       </LocalizationProvider>
       <Button variant="contained" onClick={() => console.log(newAnimal)}>
-        Dodaj
+        {props.data ? "Zapisz" : "Dodaj"}
       </Button>
     </Box>
   );

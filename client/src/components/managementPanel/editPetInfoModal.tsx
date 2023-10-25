@@ -35,7 +35,7 @@ import AddAnimalForm from "./addAnimalForm";
             borderRadius: [3],
           }}
         >
-            <AddAnimalForm />
+            <AddAnimalForm  data={props.data}/>
         
         </Box>
       </Modal>

@@ -25,8 +25,6 @@ import { PetManagementProps } from "../../../utils/types/basicTypes";
 
 const PetManagement = (props:PetManagementProps) => {
   const [adoptionOpen, setAdoptionOpen] = useState(false);
-  const [infoOpen, setInfoOpen] = useState(false);
-  const [descionOpen, setDescOpen] = useState(false);
   const [addIsolationOpen, setAddIsolationOpen] = useState(false);
   const [endIsolationOpen, setEndIsolationOpen] = useState(false);
   const [addDiseaseOpen, setAddDiseaseOpen] = useState(false);

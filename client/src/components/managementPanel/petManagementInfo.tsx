@@ -2,6 +2,8 @@ import { Box, Grid, IconButton, Typography, useTheme } from "@mui/material";
 import shadows from "@mui/material/styles/shadows";
 import EditIcon from "@mui/icons-material/Edit";
 import { AnimalType } from "../../utils/types/basicTypes";
+import { useState } from "react";
+import EditPetInfoModal from "./editPetInfoModal";
 
 type PetManagementInfoProps = {
   data: AnimalType
@@ -9,6 +11,7 @@ type PetManagementInfoProps = {
 
 const PetManagementInfo = (props:PetManagementInfoProps) => {
   const theme = useTheme();
+  const [infoOpen, setInfoOpen] = useState(false);
   return (
     <Box
       sx={{
@@ -30,7 +33,7 @@ const PetManagementInfo = (props:PetManagementInfoProps) => {
           top: 0,
         }}
       >
-        <IconButton>
+        <IconButton onClick={() => setInfoOpen(true)}>
           <EditIcon />
         </IconButton>
       </Box>
@@ -148,6 +151,7 @@ const PetManagementInfo = (props:PetManagementInfoProps) => {
           </Box>
         </Grid>
       </Grid>
+      <EditPetInfoModal open={infoOpen} setOpen={setInfoOpen} data={props.data}/>
     </Box>
   );
 };
