@@ -1,14 +1,13 @@
 import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 
-import DiseaseInfoModal from "./diseaseInfoModal";
+import InfoModal from "./InfoModal";
 import { testDiseaseData } from "../../utils/mockups/diagData";
 import { useState } from "react";
 
 type PetManagementListItemProps = {
   color: boolean;
-  type: "disease" | "isolation"
+  type: "disease" | "isolation";
 };
-
 
 const PetManagementListItem = (props: PetManagementListItemProps) => {
   const theme = useTheme();
@@ -77,12 +76,26 @@ const PetManagementListItem = (props: PetManagementListItemProps) => {
           Przejdź
         </Button>
       </Grid>
-        
+
       {props.type === "disease" && (
-        <DiseaseInfoModal open={open} setOpen={setOpen}  data={testDiseaseData}/>
+        <InfoModal
+          open={open}
+          setOpen={setOpen}
+          data={testDiseaseData}
+          reason="Nazwa choroby"
+          desc="Zalecane leczenie"
+          buttonText="Zakończ chorobę"
+        />
       )}
       {props.type === "isolation" && (
-        <DiseaseInfoModal open={open} setOpen={setOpen}  data={testDiseaseData}/>
+        <InfoModal
+          open={open}
+          setOpen={setOpen}
+          data={testDiseaseData}
+          reason="Powód"
+          desc="Opis"
+          buttonText="Zakończ izolację"
+        />
       )}
     </Grid>
   );

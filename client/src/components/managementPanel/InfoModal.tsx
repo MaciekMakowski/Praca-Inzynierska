@@ -16,7 +16,7 @@ import {
 
 import CloseIcon from "@mui/icons-material/Close";
 
-const DiseaseInfoModal = (props: DiseaseInfoProps) => {
+const InfoModal = (props: DiseaseInfoProps) => {
   const theme = useTheme();
   const handleClose = () => props.setOpen(false);
 
@@ -157,7 +157,7 @@ const DiseaseInfoModal = (props: DiseaseInfoProps) => {
                 fontWeight={600}
                 color={theme.palette.text.primary}
               >
-                Nazwa choroby:
+                {props.reason}:
               </Typography>
             </Grid>
             <Grid item xs={1}>
@@ -174,7 +174,7 @@ const DiseaseInfoModal = (props: DiseaseInfoProps) => {
                 fontWeight={600}
                 color={theme.palette.text.primary}
               >
-                Zalecane leczenie:
+                {props.desc}:
               </Typography>
             </Grid>
             <Grid item xs={1}>
@@ -220,7 +220,7 @@ const DiseaseInfoModal = (props: DiseaseInfoProps) => {
               </Typography>
             </Grid>
             <Grid item xs={4}>
-              <Button variant="contained">Zakończ chorobę</Button>
+              <Button variant="contained">{props.buttonText}</Button>
             </Grid>
           </Grid>
         </Grid>
@@ -229,4 +229,4 @@ const DiseaseInfoModal = (props: DiseaseInfoProps) => {
   );
 };
 
-export default DiseaseInfoModal;
+export default InfoModal;
