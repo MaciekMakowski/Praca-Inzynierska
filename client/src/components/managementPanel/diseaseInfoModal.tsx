@@ -1,7 +1,12 @@
-import { AnimalType, DiseaseInfoProps, EditPetModalProps } from "../../utils/types/basicTypes";
+import {
+  AnimalType,
+  DiseaseInfoProps,
+  EditPetModalProps,
+} from "../../utils/types/basicTypes";
 import {
   Box,
   Button,
+  Grid,
   IconButton,
   Modal,
   TextField,
@@ -11,9 +16,9 @@ import {
 
 import CloseIcon from "@mui/icons-material/Close";
 
-const DiseaseInfoModal = (props:DiseaseInfoProps) => {
-    const theme = useTheme();
-    const handleClose = () => props.setOpen(false);
+const DiseaseInfoModal = (props: DiseaseInfoProps) => {
+  const theme = useTheme();
+  const handleClose = () => props.setOpen(false);
 
   return (
     <Modal open={props.open} onClose={handleClose}>
@@ -44,14 +49,181 @@ const DiseaseInfoModal = (props:DiseaseInfoProps) => {
           }}
         >
           <Typography variant="h5" color={theme.palette.text.primary}>
-                Angina zwierzęcia Puszek
+            Angina zwierzęcia Puszek
           </Typography>
           <IconButton onClick={handleClose}>
             <CloseIcon />
           </IconButton>
         </Box>
-
-
+        <Grid container>
+          <Grid container item xs={3} direction={"column"}>
+            <Grid item xs={1}>
+              <Typography
+                variant="subtitle1"
+                fontWeight={600}
+                color={theme.palette.text.primary}
+              >
+                {" "}
+                Imię:{" "}
+              </Typography>
+            </Grid>
+            <Grid item xs={1}>
+              <Typography
+                variant="subtitle1"
+                color={theme.palette.text.primary}
+              >
+                {" "}
+                Puszek{" "}
+              </Typography>
+            </Grid>
+            <Grid item xs={1}>
+              <Typography
+                variant="subtitle1"
+                fontWeight={600}
+                color={theme.palette.text.primary}
+              >
+                {" "}
+                Gatunek:{" "}
+              </Typography>
+            </Grid>
+            <Grid item xs={1}>
+              <Typography
+                variant="subtitle1"
+                color={theme.palette.text.primary}
+              >
+                {" "}
+                Pies{" "}
+              </Typography>
+            </Grid>
+            <Grid item xs={1}>
+              <Typography
+                variant="subtitle1"
+                fontWeight={600}
+                color={theme.palette.text.primary}
+              >
+                {" "}
+                Rasa:{" "}
+              </Typography>
+            </Grid>
+            <Grid item xs={1}>
+              <Typography
+                variant="subtitle1"
+                color={theme.palette.text.primary}
+              >
+                {" "}
+                Kundel{" "}
+              </Typography>
+            </Grid>
+            <Grid item xs={1}>
+              <Typography
+                variant="subtitle1"
+                fontWeight={600}
+                color={theme.palette.text.primary}
+              >
+                {" "}
+                Wiek:{" "}
+              </Typography>
+            </Grid>
+            <Grid item xs={1}>
+              <Typography
+                variant="subtitle1"
+                color={theme.palette.text.primary}
+              >
+                16
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid container item xs={5} direction={"column"}>
+            <Grid item xs={1}>
+              <Typography
+                variant="subtitle1"
+                fontWeight={600}
+                color={theme.palette.text.primary}
+              >
+                Data rozpoznania:
+              </Typography>
+            </Grid>
+            <Grid item xs={1}>
+              <Typography
+                variant="subtitle1"
+                color={theme.palette.text.primary}
+              >
+                2022-04-24
+              </Typography>
+            </Grid>
+            <Grid item xs={1}>
+              <Typography
+                variant="subtitle1"
+                fontWeight={600}
+                color={theme.palette.text.primary}
+              >
+                Nazwa choroby:
+              </Typography>
+            </Grid>
+            <Grid item xs={1}>
+              <Typography
+                variant="subtitle1"
+                color={theme.palette.text.primary}
+              >
+                Angina
+              </Typography>
+            </Grid>
+            <Grid item xs={1}>
+              <Typography
+                variant="subtitle1"
+                fontWeight={600}
+                color={theme.palette.text.primary}
+              >
+                Zalecane leczenie:
+              </Typography>
+            </Grid>
+            <Grid item xs={1}>
+              <Typography
+                variant="subtitle1"
+                color={theme.palette.text.primary}
+              >
+                Podawanie leków, przebywanie w ciepłym
+              </Typography>
+            </Grid>
+            <Grid item xs={1}>
+              <Typography
+                variant="subtitle1"
+                fontWeight={600}
+                color={theme.palette.text.primary}
+              >
+                Data zakończenia:
+              </Typography>
+            </Grid>
+            <Grid item xs={1}>
+              <Typography
+                variant="subtitle1"
+                color={theme.palette.text.primary}
+              >
+                Trwa
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid container item xs={4} spacing={2} direction={"column"}>
+            <Grid item xs={2}>
+              <Typography
+                variant="subtitle1"
+                fontWeight={600}
+                color={theme.palette.text.primary}
+              >
+                Status:
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                color={theme.palette.text.primary}
+              >
+                Chory
+              </Typography>
+            </Grid>
+            <Grid item xs={4}>
+              <Button variant="contained">Zakończ chorobę</Button>
+            </Grid>
+          </Grid>
+        </Grid>
       </Box>
     </Modal>
   );

@@ -4,12 +4,13 @@ import DiseaseInfoModal from "./diseaseInfoModal";
 import { testDiseaseData } from "../../utils/mockups/diagData";
 import { useState } from "react";
 
-type DiseaseListItemProps = {
+type PetManagementListItemProps = {
   color: boolean;
+  type: "disease" | "isolation"
 };
 
 
-const PetManagementListItem = (props: DiseaseListItemProps) => {
+const PetManagementListItem = (props: PetManagementListItemProps) => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
 
@@ -76,8 +77,13 @@ const PetManagementListItem = (props: DiseaseListItemProps) => {
           Przejdź
         </Button>
       </Grid>
-
-      <DiseaseInfoModal open={open} setOpen={setOpen}  data={testDiseaseData}/>
+        
+      {props.type === "disease" && (
+        <DiseaseInfoModal open={open} setOpen={setOpen}  data={testDiseaseData}/>
+      )}
+      {props.type === "isolation" && (
+        <DiseaseInfoModal open={open} setOpen={setOpen}  data={testDiseaseData}/>
+      )}
     </Grid>
   );
 };

@@ -1,19 +1,20 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import PetManagementList from "../../../components/managementPanel/petManagementList";
-import BorderAllIcon from "@mui/icons-material/BorderAll";
-import CoronavirusIcon from "@mui/icons-material/Coronavirus";
-import AddHomeIcon from "@mui/icons-material/AddHome";
-import ManagementButton from "../../../components/managementPanel/managementButton";
-import PetManagementImages from "../../../components/managementPanel/petManagementImages";
-import PetManagementDesc from "../../../components/managementPanel/petManagementDesc";
-import PetManagementInfo from "../../../components/managementPanel/petManagementInfo";
-import { useState } from "react";
+
 import AddAdoptionModal from "../../../components/managementPanel/addAdoptionModal";
-import { PetManagementProps } from "../../../utils/types/basicTypes";
+import AddHomeIcon from "@mui/icons-material/AddHome";
 import AddIsolationModal from "../../../components/managementPanel/addPetIsolationModal";
-import ChangePetStatus from "../../../components/managementPanel/changePetStatus";
-import BlockIcon from '@mui/icons-material/Block';
 import AddPetDiseaseModal from "../../../components/managementPanel/addPetDiseaseModal";
+import BlockIcon from '@mui/icons-material/Block';
+import BorderAllIcon from "@mui/icons-material/BorderAll";
+import ChangePetStatus from "../../../components/managementPanel/changePetStatus";
+import CoronavirusIcon from "@mui/icons-material/Coronavirus";
+import ManagementButton from "../../../components/managementPanel/managementButton";
+import PetManagementDesc from "../../../components/managementPanel/petManagementDesc";
+import PetManagementImages from "../../../components/managementPanel/petManagementImages";
+import PetManagementInfo from "../../../components/managementPanel/petManagementInfo";
+import PetManagementList from "../../../components/managementPanel/petManagementList";
+import { PetManagementProps } from "../../../utils/types/basicTypes";
+import { useState } from "react";
 
 const PetManagement = (props: PetManagementProps) => {
   const [adoptionOpen, setAdoptionOpen] = useState(false);
@@ -93,8 +94,8 @@ const PetManagement = (props: PetManagementProps) => {
             height: "100%",
           }}
         >
-          <PetManagementList title="Historia Izolacji" />
-          <PetManagementList title="Historia Chorób" />
+          <PetManagementList title="Historia Izolacji" type="isolation" />
+          <PetManagementList title="Historia Chorób" type="disease" />
         </Box>
         <Box
           sx={{

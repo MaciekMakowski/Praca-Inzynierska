@@ -1,8 +1,10 @@
-import { Box, useTheme, Typography, Grid } from "@mui/material";
+import { Box, Grid, Typography, useTheme } from "@mui/material";
+
 import PetManagementListItem from "./petManagementListItem";
 
 type PetManagementListProps = {
   title: string;
+  type: "disease" | "isolation";
 };
 
 const PetManagementList = (props: PetManagementListProps) => {
@@ -11,7 +13,7 @@ const PetManagementList = (props: PetManagementListProps) => {
   const returnItems = () => {
     const items = [];
     for (let i = 0; i < 20; i++)
-      items.push(<PetManagementListItem key={i} color={i % 2 == 0} />);
+      items.push(<PetManagementListItem key={i} color={i % 2 == 0} type={props.type}/>);
     return items;
   };
 
