@@ -7,6 +7,7 @@ import AddPetDiseaseModal from "../../../components/managementPanel/addPetDiseas
 import BlockIcon from '@mui/icons-material/Block';
 import BorderAllIcon from "@mui/icons-material/BorderAll";
 import ChangePetStatus from "../../../components/managementPanel/changePetStatus";
+import ChangeStatusConfirmModal from "../../../components/managementPanel/changeStatusConfirmModal";
 import CoronavirusIcon from "@mui/icons-material/Coronavirus";
 import ManagementButton from "../../../components/managementPanel/managementButton";
 import PetManagementDesc from "../../../components/managementPanel/petManagementDesc";
@@ -22,6 +23,8 @@ const PetManagement = (props: PetManagementProps) => {
   const [endIsolationOpen, setEndIsolationOpen] = useState(false);
   const [addDiseaseOpen, setAddDiseaseOpen] = useState(false);
   const [endDiseaseOpen, setEndDiseaseOpen] = useState(false);
+  const [changeStatusOpen, setChangeStatusOpen] = useState(false);
+  
 
   const theme = useTheme();
   return (
@@ -149,7 +152,7 @@ const PetManagement = (props: PetManagementProps) => {
               name="Zablokuj adopcje"
               ico={BlockIcon}
               disabled={false}
-              foo={() => setEndDiseaseOpen(true)}
+              foo={() => setChangeStatusOpen(true)}
             />
             <ManagementButton
               name="Status Izolacji"
@@ -180,6 +183,11 @@ const PetManagement = (props: PetManagementProps) => {
         setOpen={setAddDiseaseOpen}
         open={addDiseaseOpen}
         data={props.data}
+        />
+        <ChangeStatusConfirmModal
+            setOpen={setChangeStatusOpen}
+            open={changeStatusOpen}
+            petid={props.data.number}
         />
     </Box>
   );

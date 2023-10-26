@@ -1,20 +1,16 @@
 import {
   Box,
-  MenuItem,
-  Select,
+  Button,
+  IconButton,
+  Modal,
   TextField,
   Typography,
   useTheme,
-  InputLabel,
-  FormControl,
-  SelectChangeEvent,
-  Button,
-  Modal,
-  IconButton,
 } from "@mui/material";
-import dayjs, { Dayjs } from "dayjs";
+
 import CloseIcon from "@mui/icons-material/Close";
-import { AnimalType, EditPetModalProps } from "../../utils/types/basicTypes";
+import { EditPetModalProps } from "../../utils/types/basicTypes";
+import dayjs from "dayjs";
 import { handleTextChange } from "../../utils/functions/handlers";
 import { useState } from "react";
 
