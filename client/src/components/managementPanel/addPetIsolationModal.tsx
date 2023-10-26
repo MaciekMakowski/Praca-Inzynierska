@@ -15,7 +15,7 @@ import dayjs, {Dayjs} from "dayjs";
 import CloseIcon from "@mui/icons-material/Close";
 import { AnimalType, EditPetModalProps, IsolationType } from "../../utils/types/basicTypes";
 import { useState } from "react";
-
+import { handleChangeDate } from "../../utils/functions/handlers";
 const AddIsolationModal = (props: EditPetModalProps) => {
   const theme = useTheme();
   const handleClose = () => props.setOpen(false);
@@ -26,13 +26,10 @@ const AddIsolationModal = (props: EditPetModalProps) => {
     desc: "",
     petId: props.data.number,
   });
-  const handleChangeDate = (value: Dayjs | null) => {
+  const dateChange = (value: Dayjs | null) => {
     if (value === null) return;
-    setNewIsolation((prevIsolation) => ({
-      ...prevIsolation,
-      startDate: value.format("YYYY-MM-DD"),
-    }));
-  };
+    handleChangeDate(value.format('DD-MM-YYYY'), setNewIsolation, 'startDate')
+  }
 
   return (
     <Modal open={props.open} onClose={handleClose}>
@@ -88,7 +85,7 @@ const AddIsolationModal = (props: EditPetModalProps) => {
                 flexGrow: 1,
               }}
               label="Data rozpoczęcia izolacji"
-              onChange={(value: Dayjs | null) => handleChangeDate(value)}
+              onChange={(value: Dayjs | null) => dateChange(value)}
             />
           </DemoContainer>
         </LocalizationProvider>

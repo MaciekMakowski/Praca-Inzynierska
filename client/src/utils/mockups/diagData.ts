@@ -1,4 +1,4 @@
-import { AnimalType } from "../types/basicTypes";
+import { AnimalType, DiseaseType } from "../types/basicTypes";
 
 export const PetData = [
     {
@@ -203,3 +203,30 @@ export const puszekData:AnimalType={
   isIsolated:false,
   status:'Do adopcji'
 }
+
+export const diseasesData:DiseaseType[] = [
+  {
+    number:1,
+    name:'Wścieklizna',
+    description:'jakis opis',
+    treatment:'jakis opis'
+  },
+  {
+    number:2,
+    name:'Angina',
+    description:'jakis opis',
+    treatment:'jakis opis'
+  },
+  {
+    number:3,
+    name:'Zapalenie ucha',
+    description:'jakis opis',
+    treatment:'jakis opis'
+  },
+  {
+    number:4,
+    name:'Zapalenie płuc',
+    description:'jakis opis',
+    treatment:'jakis opis'
+  }
+]

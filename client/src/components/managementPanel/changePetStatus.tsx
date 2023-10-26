@@ -26,6 +26,7 @@ const ChangePetStatus = () => {
             color: theme.palette.text.primary,
             width: "600px",
           }}
+          size="small"
           defaultValue={"Status"}
           onChange={selectChange}
         >

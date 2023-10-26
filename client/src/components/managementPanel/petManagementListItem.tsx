@@ -32,7 +32,7 @@ const PetManagementListItem = (props: DiseaseListItemProps) => {
           2022-04-24
         </Typography>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={4}>
         <Typography
           variant="subtitle1"
           color={
@@ -43,6 +43,19 @@ const PetManagementListItem = (props: DiseaseListItemProps) => {
           textAlign={"center"}
         >
           Angina
+        </Typography>
+      </Grid>
+      <Grid item xs={2}>
+        <Typography
+          variant="subtitle1"
+          color={
+            props.color
+              ? theme.palette.primary.main
+              : theme.palette.text.secondary
+          }
+          textAlign={"center"}
+        >
+          Status
         </Typography>
       </Grid>
       <Grid item xs={3}>

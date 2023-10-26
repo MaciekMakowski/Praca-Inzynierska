@@ -1,8 +1,4 @@
-import {
-  Box,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import PetManagementList from "../../../components/managementPanel/petManagementList";
 import BorderAllIcon from "@mui/icons-material/BorderAll";
 import CoronavirusIcon from "@mui/icons-material/Coronavirus";
@@ -14,10 +10,12 @@ import PetManagementInfo from "../../../components/managementPanel/petManagement
 import { useState } from "react";
 import AddAdoptionModal from "../../../components/managementPanel/addAdoptionModal";
 import { PetManagementProps } from "../../../utils/types/basicTypes";
-import AddIsolationModal from "../../../components/managementPanel/addIsolationModal";
+import AddIsolationModal from "../../../components/managementPanel/addPetIsolationModal";
 import ChangePetStatus from "../../../components/managementPanel/changePetStatus";
+import BlockIcon from '@mui/icons-material/Block';
+import AddPetDiseaseModal from "../../../components/managementPanel/addPetDiseaseModal";
 
-const PetManagement = (props:PetManagementProps) => {
+const PetManagement = (props: PetManagementProps) => {
   const [adoptionOpen, setAdoptionOpen] = useState(false);
   const [addIsolationOpen, setAddIsolationOpen] = useState(false);
   const [endIsolationOpen, setEndIsolationOpen] = useState(false);
@@ -73,8 +71,8 @@ const PetManagement = (props:PetManagementProps) => {
                 gap: "1rem",
               }}
             >
-              <PetManagementInfo data={props.data}/>
-              <PetManagementDesc data={props.data}/>
+              <PetManagementInfo data={props.data} />
+              <PetManagementDesc data={props.data} />
             </Box>
           </Box>
           <PetManagementImages />
@@ -91,7 +89,7 @@ const PetManagement = (props:PetManagementProps) => {
           sx={{
             display: "flex",
             gap: "1rem",
-            width: "50%",
+            width: "70%",
             height: "100%",
           }}
         >
@@ -100,7 +98,7 @@ const PetManagement = (props:PetManagementProps) => {
         </Box>
         <Box
           sx={{
-            width: "50%",
+            width: "30%",
             height: "100%",
             textAlign: "center",
             boxSizing: "border-box",
@@ -132,24 +130,11 @@ const PetManagement = (props:PetManagementProps) => {
               foo={() => setAddIsolationOpen(true)}
             />
             <ManagementButton
-              name="Status Izolacji"
-              ico={BorderAllIcon}
-              disabled={true}
-              foo={() => setEndIsolationOpen(true)}
-            />
-            <ManagementButton
               name="Dodaj Chorobę"
               ico={CoronavirusIcon}
               disabled={false}
               foo={() => setAddDiseaseOpen(true)}
             />
-            <ManagementButton
-              name="Status Choroby"
-              ico={CoronavirusIcon}
-              disabled={true}
-              foo={() => setEndDiseaseOpen(true)}
-            />
-            
           </Box>
           <Box
             sx={{
@@ -159,12 +144,42 @@ const PetManagement = (props:PetManagementProps) => {
               gap: "1rem",
             }}
           >
-            <ChangePetStatus/>
+            <ManagementButton
+              name="Zablokuj adopcje"
+              ico={BlockIcon}
+              disabled={false}
+              foo={() => setEndDiseaseOpen(true)}
+            />
+            <ManagementButton
+              name="Status Izolacji"
+              ico={BorderAllIcon}
+              disabled={true}
+              foo={() => setEndIsolationOpen(true)}
+            />
+            <ManagementButton
+              name="Status Choroby"
+              ico={CoronavirusIcon}
+              disabled={true}
+              foo={() => setEndDiseaseOpen(true)}
+            />
           </Box>
         </Box>
       </Box>
-      <AddAdoptionModal setOpen={setAdoptionOpen} open={adoptionOpen} data={props.data}/>
-      <AddIsolationModal setOpen={setAddIsolationOpen} open={addIsolationOpen} data={props.data}/>
+      <AddAdoptionModal
+        setOpen={setAdoptionOpen}
+        open={adoptionOpen}
+        data={props.data}
+      />
+      <AddIsolationModal
+        setOpen={setAddIsolationOpen}
+        open={addIsolationOpen}
+        data={props.data}
+      />
+      <AddPetDiseaseModal
+        setOpen={setAddDiseaseOpen}
+        open={addDiseaseOpen}
+        data={props.data}
+        />
     </Box>
   );
 };

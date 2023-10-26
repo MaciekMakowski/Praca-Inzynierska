@@ -12,17 +12,20 @@ import {
   Modal,
   IconButton,
 } from "@mui/material";
-import { DatePicker } from "@mui/x-date-pickers";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs, { Dayjs } from "dayjs";
 import CloseIcon from "@mui/icons-material/Close";
 import { AnimalType, EditPetModalProps } from "../../utils/types/basicTypes";
+import { handleTextChange } from "../../utils/functions/handlers";
+import { useState } from "react";
 
 const AddAdoptionModal = (props: EditPetModalProps) => {
   const theme = useTheme();
+  const [userId,setUserId] = useState<string>("")
   const handleClose = () => props.setOpen(false);
+
+  const textChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    handleTextChange(event, setUserId)
+  }
 
   return (
     <Modal open={props.open} onClose={handleClose}>
@@ -88,7 +91,7 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
                   name="number"
                   type="number"
                   color="primary"
-                  //onChange={handleTextChange}
+                  onChange={textChange}
                 />
                 <TextField
                   disabled
@@ -96,7 +99,6 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
                   label="Imię"
                   name="name"
                   color="primary"
-                  //onChange={handleTextChange}
                 />
                 <TextField
                   disabled
@@ -104,7 +106,6 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
                   label="Nazwisko"
                   name="lastName"
                   color="primary"
-                  // onChange={handleTextChange}
                 />
                 <TextField
                   disabled
@@ -119,7 +120,6 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
                   label="Pesel"
                   name="pesel"
                   color="primary"
-                  // onChange={handleTextChange}
                 />
                 <TextField
                   disabled
@@ -301,10 +301,10 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
                 <TextField
                   disabled
                   variant="outlined"
-                  label="Data Urodzin"
-                  name="birthDate"
+                  label="Wiek"
+                  name="age"
                   color="primary"
-                  value={props.data?.birthDate}
+                  value={dayjs().diff(props.data?.birthDate, "year")}
                   //onChange={handleTextChange}
                 />
                 <TextField

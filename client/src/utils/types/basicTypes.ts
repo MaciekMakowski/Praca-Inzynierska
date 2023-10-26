@@ -1,6 +1,7 @@
 
 
 export type DiseaseType = {
+    number: number,
     name: string,
     description: string,
     treatment: string,
@@ -42,6 +43,13 @@ export type IsolationType = {
     startDate:string,
     endDate:string,
     petId:number,
+}
+
+export type PetDiseaseType = {
+    diseaseId:number,
+    petId:number,
+    startDate:string,
+    endDate:string | null,
 }
 
 export type PetManagementProps = {
