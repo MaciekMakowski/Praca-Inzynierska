@@ -1,11 +1,17 @@
-import { Box, Button, Typography, useTheme, Grid } from "@mui/material";
+import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
+
+import DiseaseInfoModal from "./diseaseInfoModal";
+import { testDiseaseData } from "../../utils/mockups/diagData";
+import { useState } from "react";
 
 type DiseaseListItemProps = {
   color: boolean;
 };
 
+
 const PetManagementListItem = (props: DiseaseListItemProps) => {
   const theme = useTheme();
+  const [open, setOpen] = useState(false);
 
   return (
     <Grid
@@ -65,10 +71,13 @@ const PetManagementListItem = (props: DiseaseListItemProps) => {
               ? theme.palette.primary.main
               : theme.palette.text.secondary,
           }}
+          onClick={() => setOpen(true)}
         >
           Przejdź
         </Button>
       </Grid>
+
+      <DiseaseInfoModal open={open} setOpen={setOpen}  data={testDiseaseData}/>
     </Grid>
   );
 };

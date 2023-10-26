@@ -1,4 +1,4 @@
-import { AnimalType, DiseaseType } from "../types/basicTypes";
+import { AnimalType, DiseaseType, PetDiseaseType } from "../types/basicTypes";
 
 export const PetData = [
     {
@@ -230,3 +230,10 @@ export const diseasesData:DiseaseType[] = [
     treatment:'jakis opis'
   }
 ]
+
+export const testDiseaseData:PetDiseaseType={
+  diseaseId:1,
+  petId:23,
+  startDate:'2021-05-03',
+  endDate:'2021-05-10'
+}

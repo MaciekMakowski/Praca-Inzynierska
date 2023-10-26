@@ -61,3 +61,9 @@ export type EditPetModalProps = {
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     data: AnimalType;
   };
+
+  export type DiseaseInfoProps = {
+    open: boolean;
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    data:PetDiseaseType
+  };
