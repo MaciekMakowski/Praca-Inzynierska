@@ -1,15 +1,17 @@
 import {
-  useTheme,
   Box,
-  Grid,
-  Typography,
-  TextField,
   Button,
+  Grid,
   Pagination,
+  TextField,
+  Typography,
+  useTheme,
 } from "@mui/material";
+
+import AddAdoptionModal from "./addAdoptionModal";
 import AdoptionListItem from "./adoptionListItem";
 import { useState } from "react";
-import AddAdoptionModal from "./addAdoptionModal";
+
 const AdoptionList = () => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -138,7 +140,7 @@ const AdoptionList = () => {
           <Pagination count={10} size="small" />
         </Typography>
       </Box>
-      <AddAdoptionModal open={open} setOpen={setOpen} />
+      <AddAdoptionModal open={open} setOpen={setOpen}/>
     </Box>
   );
 };

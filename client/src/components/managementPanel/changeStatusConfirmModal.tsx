@@ -42,7 +42,7 @@ const ChangeStatusConfirmModal = (props:ConfirmModalProps) => {
             }}
         >
             <Button variant="contained">Tak</Button>
-            <Button variant="outlined">Nie</Button>
+            <Button variant="outlined" onClick={handleClose}>Nie</Button>
         </Box>
       </Box>
     </Modal>

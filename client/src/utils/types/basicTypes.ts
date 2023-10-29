@@ -53,13 +53,13 @@ export type PetDiseaseType = {
 }
 
 export type PetManagementProps = {
-    data:AnimalType
+    data?:AnimalType
 }
 
 export type EditPetModalProps = {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    data: AnimalType;
+    data?: AnimalType;
   };
 
   export type DiseaseInfoProps = {
