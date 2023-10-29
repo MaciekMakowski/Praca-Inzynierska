@@ -1,23 +1,24 @@
 import {
+  Autocomplete,
   Box,
-  useTheme,
+  Button,
+  IconButton,
   Modal,
   TextField,
   Typography,
-  Button,
-  IconButton,
-  Autocomplete
+  useTheme
 } from "@mui/material";
+import { EditPetModalProps, PetDiseaseType } from "../../utils/types/basicTypes";
+import dayjs, { Dayjs } from "dayjs";
+
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import CloseIcon from "@mui/icons-material/Close";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import dayjs, { Dayjs } from "dayjs";
-import CloseIcon from "@mui/icons-material/Close";
-import { EditPetModalProps, PetDiseaseType } from "../../utils/types/basicTypes";
-import { useState } from "react";
-import { handleChangeDate } from "../../utils/functions/handlers";
 import { diseasesData } from "../../utils/mockups/diagData";
+import { handleChangeDate } from "../../utils/functions/handlers";
+import { useState } from "react";
 
 const AddPetDiseaseModal = (props: EditPetModalProps) => {
   const theme = useTheme();
@@ -26,7 +27,7 @@ const AddPetDiseaseModal = (props: EditPetModalProps) => {
     startDate: "",
     endDate: "",
     diseaseId: 0,
-    petId: props.data.number,
+    petId: typeof props.data === "number" ? props.data : 0,
   });
   const dateChange = (value: Dayjs | null) => {
     if (value === null) return;

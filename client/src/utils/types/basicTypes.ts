@@ -1,4 +1,4 @@
-
+import { Modal } from "@mui/material"
 
 export type DiseaseType = {
     number: number,
@@ -61,6 +61,11 @@ export type EditPetModalProps = {
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     data?: AnimalType;
   };
+
+export type ModalProps = {
+    open: boolean;
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
   export type DiseaseInfoProps = {
     open: boolean;
