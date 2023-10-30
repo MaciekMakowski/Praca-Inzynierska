@@ -1,17 +1,17 @@
 import {
   Box,
+  Button,
+  FormControl,
+  Grid,
+  InputLabel,
   MenuItem,
+  Pagination,
   Select,
   TextField,
   Typography,
   useTheme,
-  InputLabel,
-  FormControl,
-  SelectChangeEvent,
-  Button,
-  Grid,
-  Pagination,
 } from "@mui/material";
+
 import ResourceListItem from "./resourceListItem";
 
 const ResourcesList = () => {

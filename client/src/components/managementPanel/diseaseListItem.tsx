@@ -1,4 +1,4 @@
-import { Box, Button, Typography, useTheme, Grid } from "@mui/material";
+import { Button, Grid, Typography, useTheme } from "@mui/material";
 
 type DiseaseListItemProps = {
   color: boolean;

@@ -1,13 +1,20 @@
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import shadows from "@mui/material/styles/shadows";
+
 import EditIcon from "@mui/icons-material/Edit";
-import { PetManagementProps } from "../../utils/types/basicTypes";
 import EditPetDescModal from "./editPetDescModal";
+import { PetManagementProps } from "../../utils/types/basicTypes";
+import shadows from "@mui/material/styles/shadows";
 import { useState } from "react";
 
 const PetManagementDesc = (props:PetManagementProps) => {
   const [descOpen, setDescOpen] = useState(false);
   const theme = useTheme();
+  const [data, setData] = useState(props.data ? props.data : {
+    status: "Brak danych",
+    isIsolated: false,
+    isIll: false,
+    desc: "Brak danych"
+  });
 
   return (
     <Box
@@ -37,7 +44,7 @@ const PetManagementDesc = (props:PetManagementProps) => {
             Status:
           </Typography>
           <Typography variant="body1" color={theme.palette.text.primary}>
-            {props.data.status}
+            {data.status}
           </Typography>
         </Box>
         <Box>
@@ -49,7 +56,7 @@ const PetManagementDesc = (props:PetManagementProps) => {
             Izolowany:
           </Typography>
           <Typography variant="body1" color={theme.palette.text.primary}>
-            {props.data.isIsolated ? "Tak" : "Nie"}
+            {data.isIsolated ? "Tak" : "Nie"}
           </Typography>
         </Box>
         <Box>
@@ -73,7 +80,7 @@ const PetManagementDesc = (props:PetManagementProps) => {
             Chory:
           </Typography>
           <Typography variant="body1" color={theme.palette.text.primary}>
-            {props.data.isIll ? "Tak" : "Nie"}
+            {data.isIll ? "Tak" : "Nie"}
           </Typography>
         </Box>
       </Box>
@@ -102,7 +109,7 @@ const PetManagementDesc = (props:PetManagementProps) => {
           </IconButton>
         </Box>
         <Typography variant="caption">
-          {props.data.desc}
+          {data.desc}
         </Typography>
       </Box>
       <EditPetDescModal open={descOpen} setOpen={setDescOpen} data={props.data}/>

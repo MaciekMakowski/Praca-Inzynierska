@@ -1,19 +1,20 @@
 import {
     Box,
-    useTheme,
+    Button,
+    IconButton,
     Modal,
     TextField,
     Typography,
-    Button,
-    IconButton
-  } from "@mui/material";
-  import CloseIcon from "@mui/icons-material/Close";
-  import { AnimalType, EditPetModalProps } from "../../utils/types/basicTypes";
+    useTheme
+} from "@mui/material";
 
+import CloseIcon from "@mui/icons-material/Close";
+import { EditPetModalProps } from "../../utils/types/basicTypes";
 
 const EditPetDescModal = (props:EditPetModalProps) => {
     const theme = useTheme();
     const handleClose = () => props.setOpen(false);
+    const desc = typeof props.data === "string" ? props.data : "";
 
     return(
         <Modal open={props.open} onClose={handleClose}>
@@ -55,8 +56,8 @@ const EditPetDescModal = (props:EditPetModalProps) => {
             label="Desc"
             variant="outlined"
             rows={9}
-            value={props.data.desc}
-            focused={props.data.desc.length > 0}
+            value={desc}
+            focused={desc.length > 0}
            >
 
            </TextField>

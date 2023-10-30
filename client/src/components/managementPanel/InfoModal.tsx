@@ -1,20 +1,17 @@
 import {
-  AnimalType,
-  DiseaseInfoProps,
-  EditPetModalProps,
-} from "../../utils/types/basicTypes";
-import {
   Box,
   Button,
   Grid,
   IconButton,
   Modal,
-  TextField,
   Typography,
   useTheme,
 } from "@mui/material";
 
 import CloseIcon from "@mui/icons-material/Close";
+import {
+  DiseaseInfoProps,
+} from "../../utils/types/basicTypes";
 
 const InfoModal = (props: DiseaseInfoProps) => {
   const theme = useTheme();

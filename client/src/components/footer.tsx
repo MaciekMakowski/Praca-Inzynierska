@@ -1,13 +1,13 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import PhoneIcon from "@mui/icons-material/Phone";
+
 import EmailIcon from "@mui/icons-material/Email";
+import PhoneIcon from "@mui/icons-material/Phone";
 import PinDropIcon from "@mui/icons-material/PinDrop";
 import fbLogo from "../img/footer/fb.png";
 import instaLogo from "../img/footer/insta.png";
 import tiktokLogo from "../img/footer/tiktok.png";
 import ytLogo from "../img/footer/yt.png";
 
-import * as React from "react";
 const Footer = () => {
   const theme = useTheme();
 

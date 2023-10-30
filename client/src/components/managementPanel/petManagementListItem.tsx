@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
+import { Button, Grid, Typography, useTheme } from "@mui/material";
 
 import InfoModal from "./InfoModal";
 import { testDiseaseData } from "../../utils/mockups/diagData";

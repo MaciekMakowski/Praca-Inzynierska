@@ -1,14 +1,13 @@
-import { useState } from "react";
 import {
   Box,
   Button,
-  TextField,
-  useTheme,
-  Typography,
   Grid,
   Pagination,
+  TextField,
+  Typography,
+  useTheme,
 } from "@mui/material";
-import AnimalListItem from "./animalListItem";
+
 import DiseaseListItem from "./diseaseListItem";
 
 const DiseaseList = () => {

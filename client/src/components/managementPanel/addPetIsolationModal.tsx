@@ -1,21 +1,23 @@
+import { AnimalType, EditPetModalProps, IsolationType } from "../../utils/types/basicTypes";
 import {
   Box,
-  useTheme,
+  Button,
+  IconButton,
   Modal,
   TextField,
   Typography,
-  Button,
-  IconButton,
+  useTheme,
 } from "@mui/material";
+import dayjs, {Dayjs} from "dayjs";
+
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import CloseIcon from "@mui/icons-material/Close";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import dayjs, {Dayjs} from "dayjs";
-import CloseIcon from "@mui/icons-material/Close";
-import { AnimalType, EditPetModalProps, IsolationType } from "../../utils/types/basicTypes";
-import { useState } from "react";
 import { handleChangeDate } from "../../utils/functions/handlers";
+import { useState } from "react";
+
 const AddIsolationModal = (props: EditPetModalProps) => {
   const theme = useTheme();
   const handleClose = () => props.setOpen(false);
@@ -24,7 +26,7 @@ const AddIsolationModal = (props: EditPetModalProps) => {
     endDate: "",
     reason: "",
     desc: "",
-    petId: props.data.number,
+    petId: typeof props.data === "number" ? props.data : 0,
   });
   const dateChange = (value: Dayjs | null) => {
     if (value === null) return;
