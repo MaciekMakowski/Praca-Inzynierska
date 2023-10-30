@@ -9,12 +9,11 @@ import {themeOptions} from "./assets/theme";
 
 function App() {
     const theme = createTheme(themeOptions)
-    const location = useLocation()
   return (
       <>
           <ThemeProvider theme={theme}>
               <Router>
-                <Routes location={location} key={location.pathname}>
+                <Routes>
                     <Route path="/*" element={<UserRoutes />} />
                     <Route path="/admin" element={<LoginRoutes />} />
                     <Route path="/admin/*" element={<AdminRoutes />} />

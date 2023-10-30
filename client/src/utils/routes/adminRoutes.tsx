@@ -1,18 +1,21 @@
-import { Routes, Route } from "react-router-dom";
-import Panel from "../../pages/admin/adminPanel/panel";
-import { Box } from "@mui/material";
+import { Route, Routes, useLocation } from "react-router-dom";
+
 import AdminMenu from "../../components/adminMenu";
-import ManagmentPanel from "../../pages/admin/managementPanel/managementPanel";
-import PetsManagement from "../../pages/admin/managementPanel/petsManagement";
-import DiseaseManagement from "../../pages/admin/managementPanel/diseaseManagement";
-import IsolationManagement from "../../pages/admin/managementPanel/isolationManagement";
-import VolunteerManagement from "../../pages/admin/managementPanel/volunteerManagement";
 import AdoptionsManagement from "../../pages/admin/managementPanel/adoptionsManagement";
-import ResourcesManagement from "../../pages/admin/managementPanel/resourcesManagement";
+import { Box } from "@mui/material";
+import DiseaseManagement from "../../pages/admin/managementPanel/diseaseManagement";
 import GuestManagement from "../../pages/admin/managementPanel/guestManagement";
+import IsolationManagement from "../../pages/admin/managementPanel/isolationManagement";
+import ManagmentPanel from "../../pages/admin/managementPanel/managementPanel";
+import Panel from "../../pages/admin/adminPanel/panel";
 import PetManagement from "../../pages/admin/managementPanel/petManagement";
+import PetsManagement from "../../pages/admin/managementPanel/petsManagement";
+import ResourcesManagement from "../../pages/admin/managementPanel/resourcesManagement";
+import VolunteerManagement from "../../pages/admin/managementPanel/volunteerManagement";
 import { puszekData } from "../mockups/diagData";
+
 const AdminRoutes = () => {
+  const location = useLocation();
   return (
     <>
       <Box
@@ -24,7 +27,7 @@ const AdminRoutes = () => {
         }}
       >
         <AdminMenu />
-        <Routes>
+        <Routes location={location} key={location.pathname}>
           <Route path="/panel" element={<Panel />} />
           <Route path="/management" element={<ManagmentPanel />} />
           <Route path="/management/animals" element={<PetsManagement />} />

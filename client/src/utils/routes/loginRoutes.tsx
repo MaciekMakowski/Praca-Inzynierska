@@ -1,8 +1,11 @@
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
+
 import LoginPage from "../../pages/admin/loginPage";
+
 const LoginRoutes = () => {
+  const location = useLocation();
   return (
-    <Routes>
+    <Routes location={location} key={location.pathname}>
       <Route path="/" element={<LoginPage />} />
     </Routes>
   );
