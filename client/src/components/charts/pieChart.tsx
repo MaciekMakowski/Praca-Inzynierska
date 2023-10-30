@@ -1,4 +1,5 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
+
 import { ResponsivePie } from "@nivo/pie";
 import { useNavigate } from "react-router";
 
@@ -16,10 +17,10 @@ const PieChart = (props: dataType<any>) => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        height: "70%",
-        width: "33%",
+        height: { xs: "30%", md: "100%" },
+        width: {xs:'100%', md:'30%'},
         alignItems: "center",
-        marginY: "1rem",
+        marginY: {xs:"0",lg:"1rem"},
       }}
     >
       <ResponsivePie
@@ -73,7 +74,11 @@ const PieChart = (props: dataType<any>) => {
       />
       {props.title && (
         <>
-          <Typography variant="subtitle1" color={theme.palette.text.primary}>
+          <Typography variant="subtitle1" color={theme.palette.text.primary}
+            sx={{
+              marginTop: '-2rem',
+            }}
+          >
             {props.title}
           </Typography>
           {props.link && (

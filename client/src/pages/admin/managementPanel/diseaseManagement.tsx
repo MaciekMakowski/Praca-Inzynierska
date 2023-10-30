@@ -1,4 +1,5 @@
-import { Box, useTheme, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
+
 import AddDiseaseForm from "../../../components/managementPanel/addDiseaseForm";
 import AnimalList from "../../../components/managementPanel/animalList";
 import DiseaseList from "../../../components/managementPanel/diseaseList";
@@ -7,22 +8,11 @@ const DiseaseManagement = () => {
   const theme = useTheme();
 
   return (
-    <Box
-      sx={{
-        minWidth: "1600px",
-        height: "100%",
-        boxSizing: "border-box",
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-        flexDirection: "column",
-        paddingX: "1rem",
-      }}
-    >
+    <>
       <Box>
         <Typography
           variant="h4"
-          textAlign={"start"}
+          textAlign={"center"}
           color={theme.palette.text.primary}
         >
           Zarządzanie chorobami
@@ -33,13 +23,14 @@ const DiseaseManagement = () => {
           height: "90%",
           display: "flex",
           gap: "1rem",
+          flexDirection: { xs: "column", lg: "row" },
         }}
       >
         <AddDiseaseForm />
         <DiseaseList />
         <AnimalList />
       </Box>
-    </Box>
+    </>
   );
 };
 

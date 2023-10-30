@@ -22,11 +22,24 @@ const AdminRoutes = () => {
         sx={{
           width: "100%",
           minHeight: "800px",
-          height: "100vh",
+          height: {xs: "100%", md: "100vh"},
           display: "flex",
         }}
       >
         <AdminMenu />
+        <Box
+          sx={{
+            minWidth: {xs: "100%", md: "600px"},
+            height: "100%",
+            width: "100%",
+            boxSizing: "border-box",
+            display: "flex",
+            justifyContent: "space-around",
+            flexDirection: "column",
+            paddingX: "1rem",
+            marginTop: {xs: "70px", md: "0"},
+          }}
+        >
         <Routes location={location} key={location.pathname}>
           <Route path="/panel" element={<Panel />} />
           <Route path="/management" element={<ManagmentPanel />} />
@@ -51,6 +64,7 @@ const AdminRoutes = () => {
           />
           <Route path="/management/guests" element={<GuestManagement />} />
         </Routes>
+        </Box>
       </Box>
     </>
   );

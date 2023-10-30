@@ -1,4 +1,4 @@
-import { useTheme, Grid, Typography, Button } from "@mui/material";
+import { Button, Grid, Typography, useTheme } from "@mui/material";
 
 type PersonsListItemProps = {
   color: boolean;
@@ -17,6 +17,7 @@ const PersonsListItem = (props: PersonsListItemProps) => {
         boxSizing: "border-box",
         paddingY: "0.5rem",
         alignItems: "center",
+        width: "100%",
         backgroundColor: props.color ? "" : theme.palette.background.light,
       }}
     >

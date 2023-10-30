@@ -20,7 +20,7 @@ const DiseaseListItem = (props: DiseaseListItemProps) => {
         backgroundColor: props.color ? "" : theme.palette.background.light,
       }}
     >
-      <Grid item xs={2}>
+      <Grid item xs={3} lg={2}>
         <Typography
           variant="subtitle1"
           color={
@@ -32,21 +32,20 @@ const DiseaseListItem = (props: DiseaseListItemProps) => {
           Angina
         </Typography>
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={6} lg={8}>
         <Typography
           variant="subtitle1"
-          color={
-            props.color
-              ? theme.palette.primary.main
-              : theme.palette.text.secondary
-          }
-          textAlign={"left"}
+          sx={{
+            textAlign:'left',
+            color: props.color? theme.palette.primary.main : theme.palette.text.secondary
+          }}
+          
         >
           Duszenie, kaszel, katar, brak apetytu, gorączka, obrzęk szyji,
-          ślinotok, biegunka, wymioty, zapalen
+          ślinotok, biegunka, wymioty, zapalenie jelit cos tam jeszcze
         </Typography>
       </Grid>
-      <Grid item xs={2}>
+      <Grid item xs={3} lg={2}>
         <Button
           sx={{
             color: props.color

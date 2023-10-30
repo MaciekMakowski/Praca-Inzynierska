@@ -17,6 +17,7 @@ const AdoptionListItem = (props: AdoptionListItemProps) => {
         paddingY: "0.5rem",
         alignItems: "center",
         backgroundColor: props.color ? "" : theme.palette.background.light,
+        width:{xs:'800px', md:'100%'},
       }}
     >
       <Grid item xs={1}>
@@ -55,7 +56,7 @@ const AdoptionListItem = (props: AdoptionListItemProps) => {
           Reksio
         </Typography>
       </Grid>
-      <Grid item xs={2.5}>
+      <Grid item xs={2}>
         <Typography
           variant="subtitle1"
           color={
@@ -91,7 +92,7 @@ const AdoptionListItem = (props: AdoptionListItemProps) => {
           Nowa
         </Typography>
       </Grid>
-      <Grid item xs={1}>
+      <Grid item xs={1.5}>
         <Button
           sx={{
             color: props.color

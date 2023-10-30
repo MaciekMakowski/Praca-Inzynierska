@@ -1,12 +1,13 @@
 import {
   Box,
-  useTheme,
-  Grid,
   Button,
-  Typography,
-  TextField,
+  Grid,
   Pagination,
+  TextField,
+  Typography,
+  useTheme,
 } from "@mui/material";
+
 import IsolationListItem from "./isolationListItem";
 import { useState } from "react";
 
@@ -30,7 +31,6 @@ const IsolationList = () => {
     <Box
       sx={{
         backgroundColor: theme.palette.background.adminField,
-        width: "1000px",
         height: "100%",
         textAlign: "center",
         boxSizing: "border-box",
@@ -40,143 +40,129 @@ const IsolationList = () => {
         gap: "1rem",
         borderRadius: "1rem",
         boxShadow: theme.shadows[3],
+        width: {xs:'none', md:'700px' ,lg:'1000px'},
       }}
     >
       <Box
         sx={{
+          width: "100%",
           display: "flex",
-          flexDirection: "column",
-          boxSizing: "border-box",
+          justifyContent: "space-between",
           gap: "1rem",
         }}
       >
-        <Grid
-          container
+        <Box
           sx={{
-            boxSizing: "border-box",
-            paddingX: "1rem",
+            display: "flex",
+            gap: "1rem",
           }}
         >
-          <Grid item xs={6}>
-            <Box
-              sx={{
-                width: "100%",
-                display: "flex",
-                gap: "1rem",
-                justifyContent: "flex-start",
-              }}
-            >
-              <Button variant="contained">Szukaj</Button>
-              <TextField size="small" label="Wyszukaj zwierzęcia" />
-            </Box>
-          </Grid>
-          <Grid item xs={3}></Grid>
-          <Grid item xs={3}>
-            <Box
-              sx={{
-                width: "100%",
-                display: "flex",
-                gap: "1rem",
-                justifyContent: "flex-end",
-              }}
-            >
-              <Button
-                variant={
-                  filter === 0
-                    ? "outlined"
-                    : filter === 1
-                    ? "contained"
-                    : "outlined"
-                }
-                onClick={() => handleChangeFilter(1)}
-              >
-                Psy
-              </Button>
-              <Button
-                variant={
-                  filter === 0
-                    ? "outlined"
-                    : filter === 2
-                    ? "contained"
-                    : "outlined"
-                }
-                onClick={() => handleChangeFilter(2)}
-              >
-                Koty
-              </Button>
-            </Box>
-          </Grid>
-        </Grid>
-        <Grid
-          container
+          <Button variant="contained">Szukaj</Button>
+          <TextField size="small" label="Wyszukaj" />
+        </Box>
+        <Box
           sx={{
-            boxSizing: "border-box",
-            paddingX: "1rem",
+            display: "flex",
+            gap: "1rem",
           }}
         >
-          <Grid item xs={1}>
-            <Typography
-              variant="body1"
-              fontWeight={600}
-              textAlign={"center"}
-              color={theme.palette.text.primary}
-            >
-              Numer
-            </Typography>
-          </Grid>
-          <Grid item xs={1}>
-            <Typography
-              variant="body1"
-              fontWeight={600}
-              textAlign={"center"}
-              color={theme.palette.text.primary}
-            >
-              Imię
-            </Typography>
-          </Grid>
-          <Grid item xs={2}>
-            <Typography
-              variant="body1"
-              fontWeight={600}
-              textAlign={"center"}
-              color={theme.palette.text.primary}
-            >
-              Data rozpoczęcia
-            </Typography>
-          </Grid>
-          <Grid item xs={2}>
-            <Typography
-              variant="body1"
-              fontWeight={600}
-              textAlign={"center"}
-              color={theme.palette.text.primary}
-            >
-              Data zakończenia
-            </Typography>
-          </Grid>
-          <Grid item xs={4}>
-            <Typography
-              variant="body1"
-              fontWeight={600}
-              textAlign={"center"}
-              color={theme.palette.text.primary}
-            >
-              Powód
-            </Typography>
-          </Grid>
-          <Grid item xs={2}></Grid>
-        </Grid>
+          <Button
+            variant={
+              filter === 0
+                ? "outlined"
+                : filter === 1
+                ? "contained"
+                : "outlined"
+            }
+            onClick={() => handleChangeFilter(1)}
+          >
+            Psy
+          </Button>
+          <Button
+            variant={
+              filter === 0
+                ? "outlined"
+                : filter === 2
+                ? "contained"
+                : "outlined"
+            }
+            onClick={() => handleChangeFilter(2)}
+          >
+            Koty
+          </Button>
+        </Box>
       </Box>
+      <Box 
+        sx={{
+          overflowX:'auto',
+          overflowY:'clip'
+        }}
+      >
+      <Grid container spacing={0} 
+        sx={{
+          width: {xs:'700px', lg:'100%'},
+        }}
+      >
+      <Grid item xs={1}>
+        <Typography
+          variant="body1"
+          textAlign={"center"}
+          color={theme.palette.text.primary}
+        >
+          Numer
+        </Typography>
+      </Grid>
+      <Grid item xs={1}>
+        <Typography
+          variant="body1"
+          textAlign={"center"}
+          color={theme.palette.text.primary}
+        >
+          Imię
+        </Typography>
+      </Grid>
+      <Grid item xs={2}>
+        <Typography
+          variant="body1"
+          textAlign={"center"}
+          color={theme.palette.text.primary}
+        >
+          Data zakończenia
+        </Typography>
+      </Grid>
+      <Grid item xs={2}>
+        <Typography
+          variant="body1"
+          textAlign={"center"}
+          color={theme.palette.text.primary}
+        >
+          Data zakończenia
+        </Typography>
+      </Grid>
+      <Grid item xs={4}>
+        <Typography
+          variant="body1"
+          textAlign={"center"}
+          color={theme.palette.text.primary}
+        >
+          Powód
+        </Typography>
+      </Grid>
+      <Grid item xs={2}>
+      </Grid>
+      </Grid>
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
-          height: "90%",
-          overflow: "auto",
           gap: "1rem",
+          height: {xs:'60vh', lg:'100%'},
+          width: {xs:'700px', lg:'100%'},
+          overflowY:'auto',
         }}
       >
         {returnItems()}
+      </Box>
       </Box>
       <Box
         sx={{

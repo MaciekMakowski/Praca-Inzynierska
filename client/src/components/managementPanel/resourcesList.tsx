@@ -28,7 +28,6 @@ const ResourcesList = () => {
     <Box
       sx={{
         backgroundColor: theme.palette.background.adminField,
-        width: "900px",
         height: "100%",
         textAlign: "center",
         boxSizing: "border-box",
@@ -38,6 +37,7 @@ const ResourcesList = () => {
         gap: "1rem",
         borderRadius: "1rem",
         boxShadow: theme.shadows[3],
+        width: {xs:'none', md:'700px' ,lg:'900px'},
       }}
     >
       <Box
@@ -65,7 +65,7 @@ const ResourcesList = () => {
             variant="outlined"
             fullWidth
             sx={{
-              width: "200px",
+              width: {xs:'50px', md:'200px'},
               color: theme.palette.text.primary,
             }}
             defaultValue="Wszystko"
@@ -80,7 +80,17 @@ const ResourcesList = () => {
           </Select>
         </FormControl>
       </Box>
-      <Grid width="99%" container spacing={0}>
+      <Box
+        sx={{
+          overflowX:'auto',
+          overflowY:'clip'
+        }}
+      >
+      <Grid width="99%" container spacing={0}
+              sx={{
+                width: {xs:'1000px', lg:'100%'},
+              }}
+      >
         <Grid item xs={1.5}>
           <Typography
             variant="subtitle1"
@@ -142,11 +152,13 @@ const ResourcesList = () => {
           display: "flex",
           flexDirection: "column",
           gap: "1rem",
-          height: "85%",
-          overflowY: "auto",
+          height: {xs:'60vh', lg:'100%'},
+          width: {xs:'1000px', lg:'100%'},
+          overflowY:'auto',
         }}
       >
         {returnItems()}
+      </Box>
       </Box>
       <Box
         sx={{

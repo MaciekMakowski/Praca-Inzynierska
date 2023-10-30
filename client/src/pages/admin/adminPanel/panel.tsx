@@ -1,13 +1,14 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import PanelInfoSquare from "../../../components/PanelInfoSquare";
-import PieChart from "../../../components/charts/pieChart";
 import {
   CalendarData,
   FoodData,
   PetData,
   VetData,
 } from "../../../utils/mockups/diagData";
+
 import CalendarChart from "../../../components/charts/calendarChart";
+import PanelInfoSquare from "../../../components/PanelInfoSquare";
+import PieChart from "../../../components/charts/pieChart";
 
 const fakeData = [
   {
@@ -39,25 +40,18 @@ const fakeData = [
 const Panel = () => {
   const theme = useTheme();
   return (
-    <Box
-      sx={{
-        width: { xs: "1900px", xl: "calc(100% - 200px)" },
-        height: "100vh",
-        boxSizing: "border-box",
-        paddingY: "2rem",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
+    <>
       <Box
         sx={{
           boxSizing: "border-box",
-          paddingX: "4rem",
+          paddingX: {xs:'0', md:'4rem'},
+          gap: {xs:'1rem', md:'0'},
           display: "flex",
           width: "100%",
           height: "30%",
           justifyContent: "space-between",
           alignItems: "center",
+          flexDirection: { xs: "column", md: "row"},
         }}
       >
         <PanelInfoSquare title="Zakończone izolacje" data={fakeData} />
@@ -69,15 +63,16 @@ const Panel = () => {
       <Box
         sx={{
           boxSizing: "border-box",
-          paddingX: "4rem",
+          paddingX: {xs:'0', md:'4rem'},
           display: "flex",
           width: "100%",
-          height: "35%",
+          height: {xs:'100vh', md:'30%'},
           marginY: "1rem",
           justifyContent: "space-between",
           alignItems: "start",
           bgcolor: theme.palette.background.adminField,
           boxShadow: theme.shadows[3],
+          flexDirection: { xs: "column", md: "row"},
         }}
       >
         <PieChart
@@ -105,7 +100,7 @@ const Panel = () => {
       >
         <CalendarChart data={CalendarData} />
       </Box>
-    </Box>
+      </>
   );
 };
 

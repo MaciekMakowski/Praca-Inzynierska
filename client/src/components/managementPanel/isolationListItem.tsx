@@ -17,6 +17,7 @@ const IsolationListItem = (props: IsolationListItemProps) => {
         paddingY: "0.5rem",
         alignItems: "center",
         backgroundColor: props.color ? "" : theme.palette.background.light,
+        width: {xs:'700px', lg:'100%'},
       }}
     >
       <Grid item xs={1}>

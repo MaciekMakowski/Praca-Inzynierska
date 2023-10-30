@@ -27,7 +27,6 @@ const AdoptionList = () => {
     <Box
       sx={{
         backgroundColor: theme.palette.background.adminField,
-        flexGrow: 1,
         height: "100%",
         textAlign: "center",
         boxSizing: "border-box",
@@ -37,6 +36,7 @@ const AdoptionList = () => {
         gap: "1rem",
         borderRadius: "1rem",
         boxShadow: theme.shadows[3],
+        width: {xs:'none', md:'700px' ,lg:'100%'},
       }}
     >
       <Box
@@ -62,7 +62,17 @@ const AdoptionList = () => {
           </Button>
         </Box>
       </Box>
-      <Grid width="99%" container spacing={0}>
+      <Box
+          sx={{
+            overflowX:'auto',
+            overflowY:'clip'
+          }}
+      >
+      <Grid width="99%" container spacing={0}
+          sx={{
+            width: {xs:'800px', lg:'100%'},
+          }}
+      >
         <Grid item xs={1}>
           <Typography
             variant="subtitle1"
@@ -90,7 +100,7 @@ const AdoptionList = () => {
             Zwierzę
           </Typography>
         </Grid>
-        <Grid item xs={2.5}>
+        <Grid item xs={2}>
           <Typography
             variant="subtitle1"
             color={theme.palette.primary.main}
@@ -117,18 +127,20 @@ const AdoptionList = () => {
             Status
           </Typography>
         </Grid>
-        <Grid item xs={1}></Grid>
+        <Grid item xs={1.5}></Grid>
       </Grid>
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
           gap: "1rem",
-          height: "95%",
-          overflowY: "auto",
+          height: {xs:'60vh', lg:'100%'},
+          width: {xs:'800px', lg:'100%'},
+          overflowY:'auto',
         }}
       >
         {returnItems()}
+      </Box>
       </Box>
       <Box
         sx={{

@@ -1,29 +1,19 @@
 import { Box, Typography, useTheme } from "@mui/material";
+
+import AddOrDelResourceTypeForm from "../../../components/managementPanel/addOrDelResourceTypeForm";
 import AddResourceForm from "../../../components/managementPanel/addResourceForm";
 import ResourcesList from "../../../components/managementPanel/resourcesList";
-import AddOrDelResourceTypeForm from "../../../components/managementPanel/addOrDelResourceTypeForm";
 import ResourcesTypeList from "../../../components/managementPanel/resourcesTypeList";
 
 const ResourcesManagement = () => {
   const theme = useTheme();
 
   return (
-    <Box
-      sx={{
-        minWidth: "1700px",
-        height: "100%",
-        boxSizing: "border-box",
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-        flexDirection: "column",
-        paddingX: "1rem",
-      }}
-    >
+    <>
       <Box>
         <Typography
           variant="h4"
-          textAlign={"start"}
+          textAlign={"center"}
           color={theme.palette.text.primary}
         >
           Zarządzanie zasobami
@@ -34,6 +24,7 @@ const ResourcesManagement = () => {
           height: "90%",
           display: "flex",
           justifyContent: "start",
+          flexDirection: { xs: "column", md: "row"},
           gap: "1rem",
         }}
       >
@@ -58,7 +49,7 @@ const ResourcesManagement = () => {
         </Box>
         <ResourcesList />
       </Box>
-    </Box>
+    </>
   );
 };
 

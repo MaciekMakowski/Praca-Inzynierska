@@ -1,4 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
+
 import { ResponsiveCalendar } from "@nivo/calendar";
 
 type dayInfo = {
@@ -13,7 +14,8 @@ const CalendarChart = (props: dataType) => {
   return (
     <Box
       sx={{
-        display: "flex",
+        
+        display: { xs: "none", md: "flex" },
         flexDirection: "column",
         height: "80%",
         width: "100%",

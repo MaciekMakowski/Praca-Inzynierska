@@ -80,6 +80,7 @@ const DiseaseList = () => {
           flexDirection: "column",
           gap: "1rem",
           height: "85%",
+          maxHeight:{xs:'40vh', lg:'85%'},
           overflowY: "auto",
         }}
       >

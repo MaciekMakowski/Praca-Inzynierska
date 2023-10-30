@@ -1,12 +1,43 @@
-import { Box, useTheme, Typography, SvgIcon } from "@mui/material";
-import { menuList } from "../utils/mockups/adminMenu";
+import { AppBar, Box, Divider, Drawer, IconButton, List, Toolbar, Typography, useTheme } from "@mui/material";
+
+import AdminMenuList from "./adminMenuList";
+import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router";
+import { useState } from "react";
 
 const AdminMenu = () => {
   const theme = useTheme();
+  const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
+  const drawerWidth = 240;
+
+  const handleDrawerToggle = () => {
+    setMobileOpen((prevState) => !prevState);
+  };
+  const drawer = (
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+      <Box
+        py={2}
+        justifyContent={"center"}
+        alignItems={"center"}
+        display={"flex"}
+        gap={2}
+      >
+        <Box
+          width={"3rem"}
+          height={"3rem"}
+        />
+        <Typography variant="h6">Schronisko.pl</Typography>
+      </Box>
+      <Divider />
+      <List>
+        <AdminMenuList primary={true}/>
+      </List>
+    </Box>
+  );
 
   return (
+    <>
     <Box
       sx={{
         minWidth: "200px",
@@ -14,67 +45,58 @@ const AdminMenu = () => {
         backgroundColor: theme.palette.primary.main,
         boxSizing: "border-box",
         padding: "1rem",
-        display: "flex",
         flexDirection: "column",
         gap: "1rem",
+        display: { xs: "none", lg: "flex" },
       }}
     >
-      {menuList.map((item, index) => {
-        return (
-          <Box key={index}>
-            <Box
-              display={"flex"}
-              gap={"0.5rem"}
-              justifyContent={"flex-start"}
-              alignItems={"center"}
-            >
-              <SvgIcon
-                component={item.ico}
-                sx={{ color: theme.palette.text.secondary }}
-              />
-              <Typography
-                variant="h6"
-                sx={{
-                  color: theme.palette.text.secondary,
-                  cursor: "pointer",
-                }}
-                onClick={() => navigate(`/admin${item.path}`)}
-              >
-                {item.name}
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.5rem",
-                marginLeft: "2rem",
-              }}
-            >
-              {item.subList &&
-                item.subList.length > 0 &&
-                item.subList.map((subItem, subIndex) => {
-                  return (
-                    <Typography
-                      key={subIndex}
-                      variant="subtitle1"
-                      sx={{
-                        color: theme.palette.text.secondary,
-                        cursor: "pointer",
-                      }}
-                      onClick={() =>
-                        navigate(`/admin${item.path}${subItem.path}`)
-                      }
-                    >
-                      {subItem.name}
-                    </Typography>
-                  );
-                })}
-            </Box>
-          </Box>
-        );
-      })}
+      <AdminMenuList primary={false}/>
     </Box>
+    <AppBar component="nav" color={"secondary"} sx={{display:{xs:'block', lg:'none'}}}>
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { lg: "none" } }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Box
+            py={2}
+            justifyContent={"center"}
+            alignItems={"center"}
+            display={"flex"}
+            gap={2}
+            flexGrow={1}
+          >
+            <Typography flexGrow={1} variant="h6">
+              Schronisko.pl
+            </Typography>
+          </Box>
+          </Toolbar>
+        </AppBar>
+    <Box component="nav">
+          <Drawer
+            variant="temporary"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            ModalProps={{
+              keepMounted: true, // Better open performance on mobile.
+            }}
+            sx={{
+              display: { xs: "block", lg: "none" },
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: drawerWidth,
+              },
+            }}
+          >
+            {drawer}
+          </Drawer>
+        </Box>
+        </>
   );
 };
 

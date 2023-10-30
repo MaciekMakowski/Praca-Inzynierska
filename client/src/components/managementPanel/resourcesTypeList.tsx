@@ -1,4 +1,5 @@
-import { useTheme, Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, useTheme } from "@mui/material";
+
 import ResourceTypeListItem from "./resourcesTypeListItem";
 
 const ResourcesTypeList = () => {
@@ -15,8 +16,8 @@ const ResourcesTypeList = () => {
     <Box
       sx={{
         backgroundColor: theme.palette.background.adminField,
-        flexGrow: 1,
-        height: "30%",
+        flexGrow: {xs:0, md:1},
+        height: {xs:'40vh', md:'30%'},
         textAlign: "center",
         boxSizing: "border-box",
         display: "flex",
@@ -25,10 +26,11 @@ const ResourcesTypeList = () => {
         gap: "1rem",
         borderRadius: "1rem",
         boxShadow: theme.shadows[3],
+        width: {xs:'none', md:'700px' ,lg:'100%'},
       }}
     >
       <Grid width="99%" container spacing={0}>
-        <Grid item xs={3}>
+        <Grid item xs={4} lg={3}>
           <Typography
             variant="subtitle1"
             color={theme.palette.primary.main}
@@ -37,7 +39,7 @@ const ResourcesTypeList = () => {
             Numer
           </Typography>
         </Grid>
-        <Grid item xs={9}>
+        <Grid item xs={8} lg={9}>
           <Typography
             variant="subtitle1"
             color={theme.palette.primary.main}
@@ -52,7 +54,8 @@ const ResourcesTypeList = () => {
           display: "flex",
           flexDirection: "column",
           gap: "1rem",
-          height: "85%",
+          height: {xs:'60vh', lg:'100%'},
+          width: {xs:'100%', lg:'100%'},
           overflowY: "auto",
         }}
       >

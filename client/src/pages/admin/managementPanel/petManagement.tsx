@@ -28,20 +28,7 @@ const PetManagement = (props: PetManagementProps) => {
   const theme = useTheme();
   if (!props.data) return <div></div>;
   return (
-    <Box
-      sx={{
-        minWidth: "1700px",
-        width: "100%",
-        height: "100%",
-        boxSizing: "border-box",
-        display: "flex",
-        flexDirection: "column",
-        paddingX: "1rem",
-        paddingBottom: "1rem",
-        justifyContent: "flex-start",
-        gap: "1rem",
-      }}
-    >
+    <>
       <Box>
         <Typography variant="h5" color={theme.palette.text.primary}>
           Profil zwierzęcia: {props.data.name}
@@ -189,7 +176,7 @@ const PetManagement = (props: PetManagementProps) => {
             open={changeStatusOpen}
             petid={props.data.number}
         />
-    </Box>
+    </>
   );
 };
 

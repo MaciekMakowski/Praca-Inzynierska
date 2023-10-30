@@ -1,27 +1,17 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import PersonList from "../../../components/managementPanel/personsList";
+
 import AddPersonForm from "../../../components/managementPanel/addPersonForm";
+import PersonList from "../../../components/managementPanel/personsList";
 
 const VolunteerManagement = () => {
   const theme = useTheme();
 
   return (
-    <Box
-      sx={{
-        minWidth: "1700px",
-        height: "100%",
-        boxSizing: "border-box",
-        display: "flex",
-        flexDirection: "column",
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-        paddingX: "1rem",
-      }}
-    >
+    <>
       <Box>
         <Typography
           variant="h4"
-          textAlign={"start"}
+          textAlign={"center"}
           color={theme.palette.text.primary}
         >
           Zarządzanie wolontariuszami
@@ -32,12 +22,14 @@ const VolunteerManagement = () => {
           height: "90%",
           display: "flex",
           gap: "1rem",
+          width: "100%",
+          flexDirection: { xs: "column", md: "row"},
         }}
       >
         <AddPersonForm title="Dodaj wolontariusza" />
         <PersonList />
       </Box>
-    </Box>
+    </>
   );
 };
 

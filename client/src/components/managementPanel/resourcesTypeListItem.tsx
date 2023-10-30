@@ -1,4 +1,4 @@
-import { useTheme, Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, useTheme } from "@mui/material";
 
 type ResourceTypeListItemProps = {
   color: boolean;
@@ -9,7 +9,6 @@ const ResourceTypeListItem = (props: ResourceTypeListItemProps) => {
 
   return (
     <Grid
-      width="99%"
       container
       spacing={0}
       sx={{
@@ -21,7 +20,7 @@ const ResourceTypeListItem = (props: ResourceTypeListItemProps) => {
         backgroundColor: props.color ? "" : theme.palette.background.light,
       }}
     >
-      <Grid item xs={3}>
+      <Grid item xs={4} lg={3}>
         <Typography
           variant="subtitle1"
           color={
@@ -33,7 +32,7 @@ const ResourceTypeListItem = (props: ResourceTypeListItemProps) => {
           1
         </Typography>
       </Grid>
-      <Grid item xs={9}>
+      <Grid item xs={8} lg={9}>
         <Typography
           variant="subtitle1"
           color={

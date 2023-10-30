@@ -1,4 +1,5 @@
-import { Box, Button, Typography, useTheme, Grid } from "@mui/material";
+import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
+
 import { useNavigate } from "react-router";
 
 type AnimalListItemProps = {
@@ -14,6 +15,7 @@ const AnimalListItem = (props: AnimalListItemProps) => {
       container
       spacing={0}
       sx={{
+        width: { xs: "600px", lg: "100%" },
         border: props.color ? `1px solid ${theme.palette.primary.main}` : "",
         borderRadius: "0.3rem",
         boxSizing: "border-box",

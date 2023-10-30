@@ -1,23 +1,13 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import PersonsList from "../../../components/managementPanel/personsList";
+
 import AddPersonForm from "../../../components/managementPanel/addPersonForm";
+import PersonsList from "../../../components/managementPanel/personsList";
 
 const GuestManagement = () => {
   const theme = useTheme();
 
   return (
-    <Box
-      sx={{
-        minWidth: "1700px",
-        height: "100%",
-        boxSizing: "border-box",
-        display: "flex",
-        flexDirection: "column",
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-        paddingX: "1rem",
-      }}
-    >
+    <>
       <Box>
         <Typography
           variant="h4"
@@ -32,12 +22,13 @@ const GuestManagement = () => {
           height: "90%",
           display: "flex",
           gap: "1rem",
+          flexDirection: { xs: "column", md: "row"},
         }}
       >
         <AddPersonForm title="Dodaj gościa" />
         <PersonsList />
       </Box>
-    </Box>
+    </>
   );
 };
 

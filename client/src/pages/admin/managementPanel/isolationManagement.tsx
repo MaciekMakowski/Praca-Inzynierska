@@ -1,24 +1,14 @@
 import { Box, Typography, useTheme } from "@mui/material";
+
 import IsolationList from "../../../components/managementPanel/isolationList";
 
 const IsolationManagement = () => {
     const theme = useTheme()
 
     return(
-        <Box
-            sx={{
-                minWidth:'1700px',
-                height:'100%',
-                boxSizing:'border-box',
-                display:'flex',
-                flexWrap:'wrap',
-                justifyContent:'space-around',
-                flexDirection:'column',
-                paddingX:'1rem'
-            }}
-        >
+        <>
             <Box>
-                <Typography variant="h4" textAlign={'start'} color={theme.palette.text.primary}>
+                <Typography variant="h4" textAlign={'center'} color={theme.palette.text.primary}>
                     Zarządzanie izolacjami
                 </Typography>
             </Box>
@@ -27,11 +17,13 @@ const IsolationManagement = () => {
                     height:'90%',
                     display:'flex',
                     justifyContent:'start',
+                    flexDirection: { xs: "column", md: "row"},
+                    width:'100%'
                 }}
             >  
                 <IsolationList/>
             </Box>
-        </Box>
+        </>
     )
 }
 

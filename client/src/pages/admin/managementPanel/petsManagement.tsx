@@ -1,26 +1,16 @@
-import { Box, useTheme, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
+
 import AddAnimalForm from "../../../components/managementPanel/addAnimalForm";
 import AnimalList from "../../../components/managementPanel/animalList";
 
 const PetsManagement = () => {
   const theme = useTheme();
   return (
-    <Box
-      sx={{
-        minWidth: "1700px",
-        height: "100%",
-        boxSizing: "border-box",
-        display: "flex",
-        flexDirection: "column",
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-        paddingX: "1rem",
-      }}
-    >
+    <>
       <Box>
         <Typography
           variant="h4"
-          textAlign={"start"}
+          textAlign={"center"}
           color={theme.palette.text.primary}
         >
           Zarządzanie zwierzętami
@@ -31,6 +21,7 @@ const PetsManagement = () => {
           height: "90%",
           display: "flex",
           gap: "1rem",
+          flexDirection: { xs: "column", md: "row"}
         }}
       >
         <AddAnimalForm />
@@ -41,7 +32,7 @@ const PetsManagement = () => {
           }}
         ></Box>
       </Box>
-    </Box>
+      </>
   );
 };
 

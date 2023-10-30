@@ -1,12 +1,13 @@
 import {
-  useTheme,
   Box,
-  Grid,
-  Typography,
-  TextField,
   Button,
+  Grid,
   Pagination,
+  TextField,
+  Typography,
+  useTheme,
 } from "@mui/material";
+
 import PersonsListItem from "./personsListItem";
 
 const PersonsList = () => {
@@ -23,7 +24,6 @@ const PersonsList = () => {
     <Box
       sx={{
         backgroundColor: theme.palette.background.adminField,
-        flexGrow: 1,
         height: "100%",
         textAlign: "center",
         boxSizing: "border-box",
@@ -33,6 +33,7 @@ const PersonsList = () => {
         gap: "1rem",
         borderRadius: "1rem",
         boxShadow: theme.shadows[3],
+        width: {xs:'none', md:'700px' ,lg:'100%'},
       }}
     >
       <Box
@@ -53,7 +54,16 @@ const PersonsList = () => {
           <TextField size="small" label="Wyszukaj" />
         </Box>
       </Box>
-      <Grid width="99%" container spacing={0}>
+      <Box
+        sx={{
+          overflowX:'auto',
+          overflowY:'clip'
+        }}
+      >
+        <Grid container spacing={5}        
+         sx={{
+          width: {xs:'1000px', lg:'100%'},
+        }}>
         <Grid item xs={1}>
           <Typography
             variant="subtitle1"
@@ -133,11 +143,13 @@ const PersonsList = () => {
           display: "flex",
           flexDirection: "column",
           gap: "1rem",
-          height: "85%",
-          overflowY: "auto",
+          height: {xs:'60vh', lg:'100%'},
+          width: {xs:'1000px', lg:'100%'},
+          overflowY:'auto',
         }}
       >
         {returnItems()}
+      </Box>
       </Box>
       <Box
         sx={{
