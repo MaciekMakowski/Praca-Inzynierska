@@ -1,32 +1,33 @@
 import {Box, Button, Container, Divider, Typography, useTheme} from "@mui/material";
+
+import EastIcon from '@mui/icons-material/East';
+import WestIcon from '@mui/icons-material/West';
 import back from '../img/home/back.png'
-import dogMain from '../img/home/dog.png'
-import dogMainLong from '../img/home/dogLong.png'
-import sup1 from '../img/home/sup1.png'
-import sup2 from '../img/home/sup2.png'
-import sup3 from '../img/home/sup3.png'
-import sup4 from '../img/home/sup4.png'
-import sup5 from '../img/home/sup5.png'
-import hands from '../img/home/hands.png'
+import behavior from '../img/home/behavior.png'
+import bookImg from '../img/home/book.png'
 import dogAbout1 from '../img/home/dogAbout1.png'
 import dogAbout2 from '../img/home/dogAbout2.png'
+import dogCircle from '../img/home/dogCircle.png'
+import dogHand from '../img/home/dogHand.png'
 import dogIco from '../img/home/icoDog.png'
+import dogMain from '../img/home/dog.png'
+import dogMainLong from '../img/home/dogLong.png'
+import hands from '../img/home/hands.png'
 import heartIco from '../img/home/icoHeart.png'
 import homeIco from '../img/home/icoHouse.png'
-import questMark from '../img/home/question.png'
-import dogHand from '../img/home/dogHand.png'
-import timeImg from '../img/home/time.png'
-import bookImg from '../img/home/book.png'
-import tree from '../img/home/tree.png'
-import behavior from '../img/home/behavior.png'
-import dogCircle from '../img/home/dogCircle.png'
-import WestIcon from '@mui/icons-material/West';
-import EastIcon from '@mui/icons-material/East';
 import old1 from '../img/home/olds/old1.png'
 import old2 from '../img/home/olds/old2.png'
 import old3 from '../img/home/olds/old3.png'
 import old4 from '../img/home/olds/old4.png'
 import old5 from '../img/home/olds/old5.png'
+import questMark from '../img/home/question.png'
+import sup1 from '../img/home/sup1.png'
+import sup2 from '../img/home/sup2.png'
+import sup3 from '../img/home/sup3.png'
+import sup4 from '../img/home/sup4.png'
+import sup5 from '../img/home/sup5.png'
+import timeImg from '../img/home/time.png'
+import tree from '../img/home/tree.png'
 
 const oldDogs = [
     {
@@ -126,7 +127,11 @@ const Home = () => {
                     bgcolor={'#fff'}
                     gap={3}
                 >
-                    <Typography textAlign={"center"} width={'60%'} variant="h3" color={theme.palette.text.primary}>
+                    <Typography sx={{
+                        textAlign:"center",
+                        width:{xs:'100%', lg:'60%'}
+                    }} 
+                    variant="h3" color={theme.palette.text.primary}>
                         Schronisko dla zwierząt w Olsztynie
                     </Typography>
                     <Typography textAlign={"center"} variant={'h5'} color={theme.palette.text.primary}>
@@ -455,8 +460,10 @@ const Home = () => {
 
                     />
                     <Typography
-                        width={"75%"}
-                        textAlign={"center"}
+                        sx={{
+                            width: {xs:'100%', md:'75%'},
+                            textAlign:'center'
+                        }}
                         variant={'h4'}
                         color={theme.palette.text.primary}
                     >
