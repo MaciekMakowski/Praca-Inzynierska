@@ -7,7 +7,6 @@ import Footer from "../../components/footer";
 import Home from "../../pages/home";
 import Navbar from "../../components/navbar";
 import Needs from "../../pages/ourNeeds";
-import React from "react";
 
 const UserRoutes = () => {
   const location = useLocation();
