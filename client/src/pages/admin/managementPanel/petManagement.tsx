@@ -6,7 +6,6 @@ import AddIsolationModal from "../../../components/managementPanel/addPetIsolati
 import AddPetDiseaseModal from "../../../components/managementPanel/addPetDiseaseModal";
 import BlockIcon from '@mui/icons-material/Block';
 import BorderAllIcon from "@mui/icons-material/BorderAll";
-import ChangePetStatus from "../../../components/managementPanel/changePetStatus";
 import ChangeStatusConfirmModal from "../../../components/managementPanel/changeStatusConfirmModal";
 import CoronavirusIcon from "@mui/icons-material/Coronavirus";
 import ManagementButton from "../../../components/managementPanel/managementButton";
@@ -27,6 +26,7 @@ const PetManagement = (props: PetManagementProps) => {
   
 
   const theme = useTheme();
+  if (!props.data) return <div></div>;
   return (
     <Box
       sx={{

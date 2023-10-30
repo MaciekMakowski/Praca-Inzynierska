@@ -1,25 +1,24 @@
-import { useState, ChangeEvent, Dispatch} from "react";
+import { AnimalType, PetManagementProps } from "../../utils/types/basicTypes";
 import {
   Box,
+  Button,
+  FormControl,
+  InputLabel,
   MenuItem,
   Select,
+  SelectChangeEvent,
   TextField,
   Typography,
   useTheme,
-  InputLabel,
-  FormControl,
-  SelectChangeEvent,
-  Button,
 } from "@mui/material";
+import { ChangeEvent, useState } from "react";
+import dayjs, { Dayjs } from "dayjs";
+import { handleChangeDate, handleSelectChange, handleTextChange } from "../../utils/functions/handlers";
+
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import dayjs, { Dayjs } from "dayjs";
-import { AnimalType, PetManagementProps } from "../../utils/types/basicTypes";
-import { handleTextChange, handleSelectChange, handleChangeDate } from "../../utils/functions/handlers";
-
-
 
 const AddAnimalForm = (props:PetManagementProps) => {
   const theme = useTheme();
