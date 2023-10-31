@@ -47,12 +47,12 @@ const Panel = () => {
           boxSizing: "border-box",
           paddingX: {xs:'0', md:'4rem'},
           gap: {xs:'1rem', md:'0'},
-          display: "flex",
+          display: {display:'none',lg:"flex"},
           width: "100%",
           height: "30%",
           justifyContent: "space-between",
           alignItems: "center",
-          flexDirection: { xs: "column", lg: "row"},
+          flexDirection: { lg: "row"},
           flexWrap: {xs:'wrap', lg:'nowrap'},
         }}
       >

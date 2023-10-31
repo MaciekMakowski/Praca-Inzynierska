@@ -29,10 +29,12 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
         sx={{
           backgroundColor: theme.palette.background.adminField,
           position: "absolute",
+          maxHeight: "80vh",
+          overflowY: "auto",
           left: "50%",
           top: "50%",
           transform: "translate(-50%, -50%)",
-          width: "60%",
+          width: {xs:"90%", xl:"60%"},
           boxSizing: "border-box",
           padding: "1rem",
           display: "flex",
@@ -63,14 +65,21 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
             justifyContent: "space-between",
           }}
         >
-          <Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent:"flex-end"
+            }}
+          >
             <Typography variant="h6" color={theme.palette.text.primary}>
-              Dane adoptującego
+              Adoptujący
             </Typography>
             <Box
               sx={{
                 display: "flex",
                 gap: "1rem",
+                flexDirection: { xs: "column", md: "row" },
               }}
             >
               <Box
@@ -78,7 +87,7 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
                   display: "flex",
                   flexDirection: "column",
                   gap: "1rem",
-                  width: "250px",
+                  width: {xs:"100%", md:"50%"},
                 }}
               >
                 <TextField
@@ -89,6 +98,17 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
                   color="primary"
                   onChange={textChange}
                 />
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  fullWidth
+                  size="large"
+                  sx={{
+                    height: "100%",
+                  }}
+                >
+                  Szukaj
+                </Button>
                 <TextField
                   disabled
                   variant="outlined"
@@ -130,20 +150,9 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
                   display: "flex",
                   flexDirection: "column",
                   gap: "1rem",
-                  width: "250px",
+                  width: {xs:"100%", md:"50%"},
                 }}
               >
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  fullWidth
-                  size="large"
-                  sx={{
-                    height: "100%",
-                  }}
-                >
-                  Szukaj
-                </Button>
                 <TextField
                   disabled
                   variant="outlined"
@@ -191,14 +200,22 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
               </Box>
             </Box>
           </Box>
-          <Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent:"flex-start",
+              marginLeft: "1rem",
+            }}
+          >
             <Typography variant="h6" color={theme.palette.text.primary}>
-              Dane zwierzęcia
+              Zwierzę
             </Typography>
             <Box
               sx={{
                 display: "flex",
                 gap: "1rem",
+                flexDirection: { xs: "column", md: "row" },
               }}
             >
               <Box
@@ -206,7 +223,7 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
                   display: "flex",
                   flexDirection: "column",
                   gap: "1rem",
-                  width: "250px",
+                  width: {xs:"100%", md:"50%"},
                 }}
               >
                 <TextField
@@ -219,15 +236,14 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
                   value={props.data?.number}
                   //onChange={handleTextChange}
                 />
-                <TextField
-                  disabled
+                <Button
                   variant="outlined"
-                  label="Imię"
-                  name="name"
                   color="primary"
-                  value={props.data?.name}
-                  // onChange={handleTextChange}
-                />
+                  fullWidth
+                  size="large"
+                >
+                  Szukaj
+                </Button>
                 <TextField
                   disabled
                   variant="outlined"
@@ -261,21 +277,9 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
                   display: "flex",
                   flexDirection: "column",
                   gap: "1rem",
-                  width: "250px",
+                  width: {xs:"100%", md:"50%"},
                 }}
               >
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  fullWidth
-                  size="large"
-                  sx={{
-                    height: "100%",
-                  }}
-                  disabled={props.data && true}
-                >
-                  Szukaj zwierzęcia
-                </Button>
                 <TextField
                   disabled
                   variant="outlined"
