@@ -1,14 +1,7 @@
-import {Container, Box, Typography, useTheme, TextField, Checkbox, Button} from "@mui/material";
+import {Box, Button, Checkbox, Container, TextField, Typography, useTheme} from "@mui/material";
+
+import {CheckBox} from "@mui/icons-material";
 import back from "../img/home/back.png";
-import mapImg from '../img/contact/map.png'
-import dog1 from '../img/contact/dogs/dog1.png'
-import dog2 from '../img/contact/dogs/dog2.png'
-import dog3 from '../img/contact/dogs/dog3.png'
-import dog4 from '../img/contact/dogs/dog4.png'
-import dog5 from '../img/contact/dogs/dog5.png'
-import dog6 from '../img/contact/dogs/dog6.png'
-import dog7 from '../img/contact/dogs/dog7.png'
-import dog8 from '../img/contact/dogs/dog8.png'
 import cat1 from '../img/contact/cats/cat1.png'
 import cat2 from '../img/contact/cats/cat2.png'
 import cat3 from '../img/contact/cats/cat3.png'
@@ -17,10 +10,16 @@ import cat5 from '../img/contact/cats/cat5.png'
 import cat6 from '../img/contact/cats/cat6.png'
 import cat7 from '../img/contact/cats/cat7.png'
 import cat8 from '../img/contact/cats/cat8.png'
+import dog1 from '../img/contact/dogs/dog1.png'
+import dog2 from '../img/contact/dogs/dog2.png'
+import dog3 from '../img/contact/dogs/dog3.png'
+import dog4 from '../img/contact/dogs/dog4.png'
+import dog5 from '../img/contact/dogs/dog5.png'
+import dog6 from '../img/contact/dogs/dog6.png'
+import dog7 from '../img/contact/dogs/dog7.png'
+import dog8 from '../img/contact/dogs/dog8.png'
+import mapImg from '../img/contact/map.png'
 import postDog from '../img/contact/postdog.png'
-import {CheckBox} from "@mui/icons-material";
-
-
 
 const dogsImages = [
     dog1, dog2,dog3, dog4, dog5, dog6, dog7, dog8
@@ -173,6 +172,7 @@ const Contact = () => {
                         <Box
                             key={index}
                             sx={{
+                                display:{xs:index<2 ?'flex' : 'none', sm:index<3 ?'flex' : 'none',  md:index<4 ?'flex' : 'none', lg:'block'},
                                 backgroundImage:`url(${dog})`,
                                 backgroundSize:'cover',
                                 width:'8rem',
@@ -285,6 +285,7 @@ const Contact = () => {
                         <Box
                             key={index}
                             sx={{
+                                display:{xs:index<2 ?'flex' : 'none', sm:index<3 ?'flex' : 'none',  md:index<4 ?'flex' : 'none', lg:'block'},
                                 backgroundImage:`url(${cat})`,
                                 backgroundSize:'cover',
                                 backgroundPosition:'center',
