@@ -34,7 +34,6 @@ const AdminMenuList = (props:AdminMenuListProps) => {
                   color: color,
                   cursor: "pointer",
                 }}
-                onClick={() => navigateTo(navigate,`/admin${item.path}`)}
               >
                 {item.name}
               </Typography>
