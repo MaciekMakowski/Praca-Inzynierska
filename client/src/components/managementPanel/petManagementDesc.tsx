@@ -19,11 +19,13 @@ const PetManagementDesc = (props:PetManagementProps) => {
   return (
     <Box
       sx={{
-        height: "60%",
+        boxSizing: "border-box",
+        height: {xs:"100%", md:"100%", xl:"60%"},
+        width:"100%",
         display: "flex",
         backgroundColor: theme.palette.background.adminField,
         borderRadius: "1rem",
-        padding: "0.5rem",
+        padding: "1rem",
         boxShadow: shadows[3],
       }}
     >
@@ -108,7 +110,7 @@ const PetManagementDesc = (props:PetManagementProps) => {
             <EditIcon />
           </IconButton>
         </Box>
-        <Typography variant="caption">
+        <Typography variant="caption" textOverflow={"ellipsis"}>
           {data.desc}
         </Typography>
       </Box>

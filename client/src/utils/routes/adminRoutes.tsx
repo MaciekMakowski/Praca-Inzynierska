@@ -38,7 +38,7 @@ const AdminRoutes = () => {
             justifyContent: "space-around",
             flexDirection: "column",
             paddingX: "1rem",
-            marginTop: {xs: "70px", md: "0"},
+            marginTop: {xs: "70px", lg: "0"},
           }}
         >
         <Routes location={location} key={location.pathname}>

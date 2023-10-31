@@ -1,12 +1,14 @@
 import { Box, Button, ImageList, Typography, useTheme } from "@mui/material";
+
 import shadows from "@mui/material/styles/shadows";
+
 const PetManagementImages = () => {
   const theme = useTheme();
   return (
     <Box
       sx={{
-        width: "50%",
-        height: "400px",
+        width: {xs:"100%", xl:"50%"},
+        height: "100%",
         display: "flex",
         flexDirection: "column",
         backgroundColor: theme.palette.background.adminField,

@@ -29,11 +29,20 @@ const PetManagement = (props: PetManagementProps) => {
   if (!props.data) return <div></div>;
   return (
     <>
-      <Box>
-        <Typography variant="h5" color={theme.palette.text.primary}>
+      <Box height={'10%'}>
+        <Typography variant="h5" color={theme.palette.text.primary} textAlign={'center'}>
           Profil zwierzęcia: {props.data.name}
         </Typography>
       </Box>
+      <Box 
+        sx={{
+          height:'90%',
+          display:'flex',
+          justifyContent:'start',
+          flexDirection: "column",
+          width:'100%'
+        }}
+      >
       <Box
         sx={{
           display: "flex",
@@ -46,16 +55,17 @@ const PetManagement = (props: PetManagementProps) => {
             display: "flex",
             width: "100%",
             gap: "1rem",
+            flexDirection: { xs: "column", xl: "row" },
           }}
         >
           <Box
             sx={{
-              width: "50%",
+              width: {xs:"100%", xl:"50%"},
             }}
           >
             <Box
               sx={{
-                height: "400px",
+                height: "100%",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
@@ -72,16 +82,20 @@ const PetManagement = (props: PetManagementProps) => {
       <Box
         sx={{
           display: "flex",
-          height: "50%",
           gap: "1rem",
+          marginTop: "1rem",
+          flexDirection: {xs:"column", xl:"row",},
         }}
       >
         <Box
           sx={{
+            maxHeight:{xs:"fit-content",lg:"40vh"},
             display: "flex",
             gap: "1rem",
-            width: "70%",
+            width: {xs:"100%", xl:"70%"},
             height: "100%",
+            flexDirection: {xs:"column", lg:"row",}
+            
           }}
         >
           <PetManagementList title="Historia Izolacji" type="isolation" />
@@ -89,7 +103,7 @@ const PetManagement = (props: PetManagementProps) => {
         </Box>
         <Box
           sx={{
-            width: "30%",
+            width: {xs:"100%", xl:"30%"},
             height: "100%",
             textAlign: "center",
             boxSizing: "border-box",
@@ -176,6 +190,7 @@ const PetManagement = (props: PetManagementProps) => {
             open={changeStatusOpen}
             petid={props.data.number}
         />
+      </Box>
     </>
   );
 };

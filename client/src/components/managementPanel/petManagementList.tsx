@@ -21,8 +21,8 @@ const PetManagementList = (props: PetManagementListProps) => {
     <Box
       sx={{
         backgroundColor: theme.palette.background.adminField,
-        width: "50%",
-        height: "100%",
+        width: {xs:"100%", lg:"50%"},
+        height: {xs:"50vh", lg:"100%"},
         textAlign: "center",
         boxSizing: "border-box",
         display: "flex",

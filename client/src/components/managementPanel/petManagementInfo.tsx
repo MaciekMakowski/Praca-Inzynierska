@@ -1,9 +1,10 @@
 import { Box, Grid, IconButton, Typography, useTheme } from "@mui/material";
-import shadows from "@mui/material/styles/shadows";
-import EditIcon from "@mui/icons-material/Edit";
+
 import { AnimalType } from "../../utils/types/basicTypes";
-import { useState } from "react";
+import EditIcon from "@mui/icons-material/Edit";
 import EditPetInfoModal from "./editPetInfoModal";
+import shadows from "@mui/material/styles/shadows";
+import { useState } from "react";
 
 type PetManagementInfoProps = {
   data: AnimalType
@@ -15,7 +16,8 @@ const PetManagementInfo = (props:PetManagementInfoProps) => {
   return (
     <Box
       sx={{
-        height: "50%",
+        height: {xs:"100%", xl:"40%"},
+        weight: {xs:"100%", md:"50%", xl:"100%"},
         display: "flex",
         flexDirection: "column",
         backgroundColor: theme.palette.background.adminField,
