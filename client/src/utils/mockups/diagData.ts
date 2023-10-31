@@ -32,136 +32,24 @@ export const VetData = {
   ]
 }
 
-export const CalendarData = [
-  {
-    "value": 7,
-    "day": "2023-05-03"
-  },
-  {
-    "value": 15,
-    "day": "2023-05-04"
-  },
-  {
-    "value": 4,
-    "day": "2023-05-05"
-  },
-  {
-    "value": 18,
-    "day": "2023-05-06"
-  },
-  {
-    "value": 10,
-    "day": "2023-05-07"
-  },
-  {
-    "value": 12,
-    "day": "2023-05-08"
-  },
-  {
-    "value": 5,
-    "day": "2023-05-09"
-  },
-  {
-    "value": 9,
-    "day": "2023-05-10"
-  },
-  {
-    "value": 13,
-    "day": "2023-05-11"
-  },
-  {
-    "value": 2,
-    "day": "2023-05-12"
-  },
-  {
-    "value": 14,
-    "day": "2023-05-13"
-  },
-  {
-    "value": 8,
-    "day": "2023-05-14"
-  },
-  {
-    "value": 11,
-    "day": "2023-05-15"
-  },
-  {
-    "value": 16,
-    "day": "2023-05-16"
-  },
-  {
-    "value": 19,
-    "day": "2023-05-17"
-  },
-  {
-    "value": 20,
-    "day": "2023-05-18"
-  },
-  {
-    "value": 5,
-    "day": "2023-05-19"
-  },
-  {
-    "value": 17,
-    "day": "2023-05-20"
-  },
-  {
-    "value": 8,
-    "day": "2023-05-21"
-  },
-  {
-    "value": 3,
-    "day": "2023-05-22"
-  },
-  {
-    "value": 16,
-    "day": "2023-05-23"
-  },
-  {
-    "value": 9,
-    "day": "2023-05-24"
-  },
-  {
-    "value": 6,
-    "day": "2023-05-25"
-  },
-  {
-    "value": 18,
-    "day": "2023-05-26"
-  },
-  {
-    "value": 1,
-    "day": "2023-05-27"
-  },
-  {
-    "value": 13,
-    "day": "2023-05-28"
-  },
-  {
-    "value": 7,
-    "day": "2023-05-29"
-  },
-  {
-    "value": 20,
-    "day": "2023-05-30"
-  },
-  {
-    "value": 12,
-    "day": "2023-05-31"
-  },
-  {
-    "value": 4,
-    "day": "2023-06-01"
-  },
-  {
-    "value": 11,
-    "day": "2023-06-02"
-  },
-  {
-    "value": 18,
-    "day": "2023-06-03"
-  }
-];
+export const VisitorsData = {
+  labels: ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec","Lipiec","Sierpień","Wrzesień", "Paździenik", "Listopad", "Grudzień"],
+  datasets: [
+    {
+      label: "Odwiedziny wolontariuszy w schronisku",
+      data: [33, 53, 85, 41, 44, 65, 33, 53, 85, 41, 44, 65],
+      fill: true,
+      backgroundColor: "rgba(75,192,192,0.2)",
+      borderColor: "rgba(75,192,192,1)"
+    },
+    {
+      label: "Odwiedziny gości w schronisku",
+      data: [109, 80, 55, 223, 45, 142, 109, 80, 55, 223, 45, 142],
+      fill: false,
+      borderColor: "#742774"
+    }
+  ]
+};
 
 
 export const puszekData:AnimalType={

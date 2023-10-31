@@ -1,12 +1,13 @@
 import { Box, useTheme } from "@mui/material";
 import {
-  CalendarData,
   FoodData,
   PetData,
-  VetData
+  VetData,
+  VisitorsData
 } from "../../../utils/mockups/diagData";
 
-import CalendarChart from "../../../components/charts/calendarChart";
+import CalendarChart from "../../../components/charts/LineChart";
+import LineChart from "../../../components/charts/LineChart";
 import PanelInfoSquare from "../../../components/PanelInfoSquare";
 import PieChart from "../../../components/charts/pieChart";
 
@@ -102,7 +103,7 @@ const Panel = () => {
           alignItems: "start",
         }}
       >
-        <CalendarChart data={CalendarData} />
+        <LineChart data={VisitorsData} />
       </Box>
       </>
   );

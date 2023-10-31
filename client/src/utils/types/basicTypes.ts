@@ -3,7 +3,9 @@ export type ChartDataType = {
     datasets: {
       label: string;
       data: number[];
-      backgroundColor?: string[];
+      backgroundColor?: string[] | string;
+      fill?: boolean;
+      borderColor?: string;
     }[];
   }
 

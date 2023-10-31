@@ -1,26 +1,26 @@
 import { Box, Button, Typography } from "@mui/material";
 
-type dayInfo = {
-  day: string;
-  value: number;
-};
+import { ChartDataType } from "../../utils/types/basicTypes";
+import { Line } from "react-chartjs-2";
 
 type dataType = {
-  data: dayInfo[];
+  data: ChartDataType;
 };
-const CalendarChart = (props: dataType) => {
+const LineChart = (props: dataType) => {
   return (
     <Box
       sx={{
         
-        display: { xs: "none", md: "flex" },
+        display:  "flex" ,
         flexDirection: "column",
-        height: "80%",
+        height: {xs:"30vh",md:"80%"},
         width: "100%",
         alignItems: "center",
       }}
     >
-      <Typography variant="subtitle1">Odwiedźiny wolontariuszy</Typography>
+      <Line data={props.data} options={{
+        maintainAspectRatio: false,
+      }}/>
     
       <Button
         variant="outlined"
@@ -34,4 +34,4 @@ const CalendarChart = (props: dataType) => {
   );
 };
 
-export default CalendarChart;
+export default LineChart;
