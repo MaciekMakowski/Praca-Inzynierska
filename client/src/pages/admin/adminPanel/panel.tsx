@@ -1,9 +1,9 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import {
   CalendarData,
   FoodData,
   PetData,
-  VetData,
+  VetData
 } from "../../../utils/mockups/diagData";
 
 import CalendarChart from "../../../components/charts/calendarChart";
@@ -51,7 +51,8 @@ const Panel = () => {
           height: "30%",
           justifyContent: "space-between",
           alignItems: "center",
-          flexDirection: { xs: "column", md: "row"},
+          flexDirection: { xs: "column", lg: "row"},
+          flexWrap: {xs:'wrap', lg:'nowrap'},
         }}
       >
         <PanelInfoSquare title="Zakończone izolacje" data={fakeData} />
@@ -82,10 +83,13 @@ const Panel = () => {
         />
         <PieChart
           data={FoodData}
-          title="Zasoby"
+          title="Karma w schronisku"
           link="/admin/management/resources"
         />
-        <PieChart data={VetData} title="Choroby i izolacje" />
+        <PieChart
+          data={VetData}
+          title="Izolacje i choroby"
+        />
       </Box>
       <Box
         sx={{

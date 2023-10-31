@@ -1,86 +1,47 @@
+import 'chart.js/auto'
+
 import { Box, Button, Typography, useTheme } from "@mui/material";
 
-import { ResponsivePie } from "@nivo/pie";
+import { ChartDataType } from "../../utils/types/basicTypes";
+import { ChartOptions } from "chart.js";
+import { Pie } from "react-chartjs-2";
 import { useNavigate } from "react-router";
 
 type dataType<T> = {
-  data: T[];
-  title?: string;
+  data: ChartDataType;
+  title: string;
   link?: string;
 };
 
 const PieChart = (props: dataType<any>) => {
   const theme = useTheme();
   const navigate = useNavigate();
+  const options:ChartOptions<'pie'> = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display:false
+      },
+      title: {
+        display: true,
+        text: props.title,
+      },
+    },
+  };
+
   return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
-        height: { xs: "30%", md: "100%" },
+        height: { xs: "30%", md: "60%" },
         width: {xs:'100%', md:'30%'},
         alignItems: "center",
         marginY: {xs:"0",lg:"1rem"},
+        gap: "1rem",
       }}
     >
-      <ResponsivePie
-        data={props.data}
-        colors={props.data.map((item: any) => item.color)}
-        margin={{ top: 15, right: 80, bottom: 10, left: 80 }}
-        innerRadius={0.5}
-        padAngle={0.7}
-        enableArcLinkLabels={false}
-        cornerRadius={3}
-        activeOuterRadiusOffset={8}
-        borderWidth={1}
-        borderColor={{
-          from: "color",
-          modifiers: [["darker", 0.2]],
-        }}
-        arcLinkLabelsSkipAngle={10}
-        arcLinkLabelsTextColor="#FFFFFF"
-        arcLinkLabelsThickness={2}
-        arcLinkLabelsColor={{ from: "color" }}
-        arcLabelsSkipAngle={10}
-        arcLabelsTextColor={{
-          from: "color",
-          modifiers: [["darker", 2]],
-        }}
-        legends={[
-          {
-            anchor: "left",
-            direction: "column",
-            justify: false,
-            translateX: -50,
-            translateY: 0,
-            itemsSpacing: 10,
-            itemWidth: 130,
-            itemHeight: 18,
-            itemTextColor: "#000",
-            itemDirection: "left-to-right",
-            itemOpacity: 1,
-            symbolSize: 18,
-            symbolShape: "circle",
-            effects: [
-              {
-                on: "hover",
-                style: {
-                  itemTextColor: "#000",
-                },
-              },
-            ],
-          },
-        ]}
-      />
-      {props.title && (
-        <>
-          <Typography variant="subtitle1" color={theme.palette.text.primary}
-            sx={{
-              marginTop: '-2rem',
-            }}
-          >
-            {props.title}
-          </Typography>
+      <Pie data={props.data} options={options} />
           {props.link && (
             <Button
               variant="outlined"
@@ -97,8 +58,6 @@ const PieChart = (props: dataType<any>) => {
               Przejdź do zarządzania
             </Button>
           )}
-        </>
-      )}
     </Box>
   );
 };

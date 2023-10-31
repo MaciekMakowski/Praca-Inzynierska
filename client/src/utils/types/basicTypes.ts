@@ -1,4 +1,11 @@
-import { Modal } from "@mui/material"
+export type ChartDataType = {
+    labels: string[];
+    datasets: {
+      label: string;
+      data: number[];
+      backgroundColor?: string[];
+    }[];
+  }
 
 export type DiseaseType = {
     number: number,
