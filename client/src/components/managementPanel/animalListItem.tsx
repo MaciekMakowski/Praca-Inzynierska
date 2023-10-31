@@ -33,7 +33,7 @@ const AnimalListItem = (props: AnimalListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          123123132
+          123123
         </Typography>
       </Grid>
       <Grid item xs={2.4}>

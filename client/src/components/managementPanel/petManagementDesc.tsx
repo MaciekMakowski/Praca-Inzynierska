@@ -31,7 +31,7 @@ const PetManagementDesc = (props:PetManagementProps) => {
     >
       <Box
         sx={{
-          width: "20%",
+          width: {xs:"30%", md:'20%'},
           display: "flex",
           flexDirection: "column",
           gap: "0.3rem",
@@ -88,7 +88,7 @@ const PetManagementDesc = (props:PetManagementProps) => {
       </Box>
       <Box
         sx={{
-          width: "80%",
+          width: {xs:"70%",md:"80%"},
           display: "flex",
           flexDirection: "column",
         }}

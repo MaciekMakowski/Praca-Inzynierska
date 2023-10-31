@@ -39,7 +39,7 @@ const PetManagementInfo = (props:PetManagementInfoProps) => {
           <EditIcon />
         </IconButton>
       </Box>
-      <Grid container spacing={4}>
+      <Grid container spacing={0} direction={{xs:'column', md:'row'}}>
         <Grid item xs={3}>
           <Box textAlign={"center"}>
             <Typography
