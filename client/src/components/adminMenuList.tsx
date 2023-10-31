@@ -32,8 +32,14 @@ const AdminMenuList = (props:AdminMenuListProps) => {
                 variant="h6"
                 sx={{
                   color: color,
-                  cursor: "pointer",
+                  cursor: index === 0 ? "pointer" : "default",
                 }}
+                onClick={() => {
+                  if(index === 0){
+                    navigateTo(navigate,`/admin${item.path}`)
+                  }
+                }
+                }
               >
                 {item.name}
               </Typography>
