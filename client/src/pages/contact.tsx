@@ -81,8 +81,8 @@ const Contact = () => {
                                     display={"flex"}
                                     justifyContent={"start"}
                                     sx={{
-                                        flexDirection:{xs:'row', lg:'column'},
-                                        gap:{xs:3, lg:0}
+                                        flexDirection:'column',
+                                        gap:{xs:0, lg:0}
                                     }}
                                 >
                                     <Typography variant={"body1"} color={theme.palette.text.primary}>
@@ -96,11 +96,20 @@ const Contact = () => {
                                     </Typography>
                                 </Box>
                                 <Box>
-                                    <Typography variant={"body1"} color={theme.palette.text.primary}>
-                                        Biuro: 123 456 789
+                                    <Typography variant={"body1"} fontWeight={600} color={theme.palette.text.primary}>
+                                        Biuro: 
                                     </Typography>
                                     <Typography variant={"body1"} color={theme.palette.text.primary}>
-                                        Telefon interwencyjny 24h: 987 653 4321
+                                        123 456 789
+                                    </Typography>
+                                    <Typography variant={"body1"} fontWeight={600} color={theme.palette.text.primary}>
+                                        Telefon interwencyjny 24h:
+                                    </Typography>
+                                    <Typography variant={"body1"} color={theme.palette.text.primary}>
+                                        987 653 4321
+                                    </Typography>
+                                    <Typography variant={"body1"} fontWeight={600} color={theme.palette.text.primary}>
+                                        Email
                                     </Typography>
                                     <Typography variant={"body1"} color={theme.palette.text.primary}>
                                         schronisko@gmail.com
