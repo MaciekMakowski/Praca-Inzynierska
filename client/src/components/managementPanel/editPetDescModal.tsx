@@ -26,7 +26,7 @@ const EditPetDescModal = (props:EditPetModalProps) => {
             top: "50%",
             transform: "translate(-50%, -50%)",
             width: "30%",
-            minWidth:'600px',
+            minWidth:{xs:'90%', lg:"600px"},
             boxSizing: "border-box",
             padding: "1rem",
             display: "flex",

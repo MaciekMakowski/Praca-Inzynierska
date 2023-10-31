@@ -43,7 +43,7 @@ const AddPetDiseaseModal = (props: EditPetModalProps) => {
           left: "50%",
           top: "50%",
           transform: "translate(-50%, -50%)",
-          width: "25%",
+          width: {xs:'90%', md:"60%", lg:'40%', xl:'30%'},
           minWidth: "300px",
           boxSizing: "border-box",
           padding: "1rem",

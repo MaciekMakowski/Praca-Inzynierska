@@ -1,14 +1,15 @@
 import {
     Box,
-    useTheme,
+    IconButton,
     Modal,
-    IconButton
-  } from "@mui/material";
-  import CloseIcon from "@mui/icons-material/Close";
-  import {EditPetModalProps } from "../../utils/types/basicTypes";
+    useTheme
+} from "@mui/material";
+
 import AddAnimalForm from "./addAnimalForm";
-  
-  const EditPetInfoModal = (props: EditPetModalProps) => {
+import CloseIcon from "@mui/icons-material/Close";
+import {EditPetModalProps} from "../../utils/types/basicTypes";
+
+const EditPetInfoModal = (props: EditPetModalProps) => {
     const theme = useTheme();
     const handleClose = () => props.setOpen(false);
   
@@ -22,7 +23,7 @@ import AddAnimalForm from "./addAnimalForm";
             top: "50%",
             transform: "translate(-50%, -50%)",
             width: "30%",
-            minWidth:'600px',
+            minWidth:{xs:'90%', lg:"600px"},
             boxSizing: "border-box",
             display: "flex",
             flexDirection: "column",
