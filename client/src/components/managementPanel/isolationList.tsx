@@ -40,7 +40,7 @@ const IsolationList = () => {
         gap: "1rem",
         borderRadius: "1rem",
         boxShadow: theme.shadows[3],
-        width: {xs:'none', md:'700px' ,lg:'1000px'},
+        width: {xs:'none', md:'100%' ,lg:'1000px'},
       }}
     >
       <Box
@@ -100,7 +100,7 @@ const IsolationList = () => {
       >
       <Grid container spacing={0} 
         sx={{
-          width: {xs:'700px', lg:'100%'},
+          width: {xs:'800px', md:'100%'},
         }}
       >
       <Grid item xs={1}>
@@ -156,8 +156,8 @@ const IsolationList = () => {
           display: "flex",
           flexDirection: "column",
           gap: "1rem",
-          height: {xs:'60vh', lg:'100%'},
-          width: {xs:'700px', lg:'100%'},
+          height: {xs:'60vh', md:'100%', lg:'100%'},
+          width: {xs:'800px', md:'100%'},
           overflowY:'auto',
         }}
       >

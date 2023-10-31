@@ -23,7 +23,8 @@ const VolunteerManagement = () => {
           display: "flex",
           gap: "1rem",
           width: "100%",
-          flexDirection: { xs: "column", md: "row"},
+          flexDirection: { xs: "column", xl: "row"},
+          alignItems:"center"
         }}
       >
         <AddPersonForm title="Dodaj wolontariusza" />

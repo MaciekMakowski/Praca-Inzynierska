@@ -15,7 +15,7 @@ const AnimalListItem = (props: AnimalListItemProps) => {
       container
       spacing={0}
       sx={{
-        width: { xs: "600px", lg: "100%" },
+        width: { xs: "100%", lg: "100%" },
         border: props.color ? `1px solid ${theme.palette.primary.main}` : "",
         borderRadius: "0.3rem",
         boxSizing: "border-box",

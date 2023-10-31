@@ -23,7 +23,7 @@ const DiseaseManagement = () => {
           height: "90%",
           display: "flex",
           gap: "1rem",
-          flexDirection: { xs: "column", lg: "row" },
+          flexDirection: { xs: "column", xl: "row" },
         }}
       >
         <AddDiseaseForm />

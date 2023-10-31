@@ -40,6 +40,7 @@ const AdminMenu = () => {
     <>
     <Box
       sx={{
+        position: "fixed",
         minWidth: "200px",
         height: "100%",
         backgroundColor: theme.palette.primary.main,

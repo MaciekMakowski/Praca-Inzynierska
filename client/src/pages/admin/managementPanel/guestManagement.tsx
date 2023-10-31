@@ -22,7 +22,8 @@ const GuestManagement = () => {
           height: "90%",
           display: "flex",
           gap: "1rem",
-          flexDirection: { xs: "column", md: "row"},
+          flexDirection: { xs: "column", lg: "row"},
+          alignItems: "center",
         }}
       >
         <AddPersonForm title="Dodaj gościa" />

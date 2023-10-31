@@ -33,6 +33,7 @@ const DiseaseList = () => {
         gap: "1rem",
         borderRadius: "1rem",
         boxShadow: theme.shadows[3],
+        minWidth:{xs:'100%', lg:'550px'},
       }}
     >
       <Box
@@ -53,7 +54,11 @@ const DiseaseList = () => {
           <TextField size="small" label="Wyszukaj" />
         </Box>
       </Box>
-      <Grid container spacing={0}>
+      <Grid container spacing={0}
+        sx={{
+          width: {xs:'100%', lg:'100%'},
+        }}
+      >
         <Grid item xs={2}>
           <Typography
             variant="subtitle1"
@@ -63,7 +68,7 @@ const DiseaseList = () => {
             Nazwa
           </Typography>
         </Grid>
-        <Grid item xs={7.8}>
+        <Grid item xs={6} lg={7.2}>
           <Typography
             variant="subtitle1"
             color={theme.palette.primary.main}
@@ -72,7 +77,7 @@ const DiseaseList = () => {
             Objawy
           </Typography>
         </Grid>
-        <Grid item xs={2.2}></Grid>
+        <Grid item xs={3.2} lg={2.2}></Grid>
       </Grid>
       <Box
         sx={{

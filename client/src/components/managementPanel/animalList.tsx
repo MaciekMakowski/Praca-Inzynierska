@@ -39,7 +39,8 @@ const AnimalList = () => {
         gap: "1rem",
         borderRadius: "1rem",
         boxShadow: theme.shadows[3],
-        width: {xs:'none', md:'700px'},
+        minWidth:{xs:'100%', md:'500px'}
+
       }}
     >
       <Box
@@ -99,7 +100,7 @@ const AnimalList = () => {
       >
       <Grid container spacing={0}  
         sx={{
-          width: {xs:'600px', lg:'100%'},
+          width: {xs:'100%', lg:'100%'},
         }}>
         <Grid item xs={2.4}>
           <Typography
@@ -144,8 +145,8 @@ const AnimalList = () => {
           display: "flex",
           flexDirection: "column",
           gap: "1rem",
-          height: {xs:'60vh', lg:'100%'},
-          width: {xs:'600px', lg:'100%'},
+          height: {xs:'60vh', md:'100%', lg:'100%'},
+          width: '100%',
           overflowY:'auto',
         }}
       >

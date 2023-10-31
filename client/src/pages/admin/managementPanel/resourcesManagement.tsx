@@ -24,7 +24,7 @@ const ResourcesManagement = () => {
           height: "90%",
           display: "flex",
           justifyContent: "start",
-          flexDirection: { xs: "column", md: "row"},
+          flexDirection: { xs: "column", xl: "row"},
           gap: "1rem",
         }}
       >

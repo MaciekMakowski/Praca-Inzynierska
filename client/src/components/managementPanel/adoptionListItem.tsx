@@ -17,7 +17,6 @@ const AdoptionListItem = (props: AdoptionListItemProps) => {
         paddingY: "0.5rem",
         alignItems: "center",
         backgroundColor: props.color ? "" : theme.palette.background.light,
-        width:{xs:'800px', md:'100%'},
       }}
     >
       <Grid item xs={1}>

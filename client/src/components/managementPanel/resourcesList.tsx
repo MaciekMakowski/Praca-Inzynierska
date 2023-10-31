@@ -37,7 +37,7 @@ const ResourcesList = () => {
         gap: "1rem",
         borderRadius: "1rem",
         boxShadow: theme.shadows[3],
-        width: {xs:'none', md:'700px' ,lg:'900px'},
+        width: {xs:'none', md:'100%'},
       }}
     >
       <Box

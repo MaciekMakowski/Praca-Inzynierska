@@ -31,7 +31,8 @@ const AdminRoutes = () => {
           sx={{
             minWidth: {xs: "100%", md: "600px"},
             height: "100%",
-            width: "100%",
+            width: {xs:'100%', lg:'"calc(100% - 200px)"'},
+            marginLeft: {xs:"0",lg:"200px"},
             boxSizing: "border-box",
             display: "flex",
             justifyContent: "space-around",

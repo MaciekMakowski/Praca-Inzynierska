@@ -17,7 +17,7 @@ const ResourcesTypeList = () => {
       sx={{
         backgroundColor: theme.palette.background.adminField,
         flexGrow: {xs:0, md:1},
-        height: {xs:'40vh', md:'30%'},
+        height: {xs:'40vh', xl:'30%'},
         textAlign: "center",
         boxSizing: "border-box",
         display: "flex",
@@ -26,7 +26,7 @@ const ResourcesTypeList = () => {
         gap: "1rem",
         borderRadius: "1rem",
         boxShadow: theme.shadows[3],
-        width: {xs:'none', md:'700px' ,lg:'100%'},
+        width: {xs:'none', md:'100%'},
       }}
     >
       <Grid width="99%" container spacing={0}>
@@ -54,8 +54,8 @@ const ResourcesTypeList = () => {
           display: "flex",
           flexDirection: "column",
           gap: "1rem",
-          height: {xs:'60vh', lg:'100%'},
-          width: {xs:'100%', lg:'100%'},
+          height: {xs:'60vh', xl:'100%'},
+          width: {xs:'100%', xl:'100%'},
           overflowY: "auto",
         }}
       >

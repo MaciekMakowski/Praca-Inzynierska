@@ -33,7 +33,7 @@ const PersonsList = () => {
         gap: "1rem",
         borderRadius: "1rem",
         boxShadow: theme.shadows[3],
-        width: {xs:'none', md:'700px' ,lg:'100%'},
+        width: '100%',
       }}
     >
       <Box
@@ -60,9 +60,9 @@ const PersonsList = () => {
           overflowY:'clip'
         }}
       >
-        <Grid container spacing={5}        
+        <Grid container spacing={0}        
          sx={{
-          width: {xs:'1000px', lg:'100%'},
+          width: {xs:'1000px', md:'100%'},
         }}>
         <Grid item xs={1}>
           <Typography
@@ -144,7 +144,7 @@ const PersonsList = () => {
           flexDirection: "column",
           gap: "1rem",
           height: {xs:'60vh', lg:'100%'},
-          width: {xs:'1000px', lg:'100%'},
+          width: {xs:'1000px', md:'100%'},
           overflowY:'auto',
         }}
       >

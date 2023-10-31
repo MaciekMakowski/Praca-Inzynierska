@@ -36,7 +36,7 @@ const AdoptionList = () => {
         gap: "1rem",
         borderRadius: "1rem",
         boxShadow: theme.shadows[3],
-        width: {xs:'none', md:'700px' ,lg:'100%'},
+        width: {xs:'none',md:'100%'},
       }}
     >
       <Box
@@ -68,9 +68,9 @@ const AdoptionList = () => {
             overflowY:'clip'
           }}
       >
-      <Grid width="99%" container spacing={0}
+      <Grid width="98%" container spacing={0}
           sx={{
-            width: {xs:'800px', lg:'100%'},
+            width: {xs:'800px', sm:'100%'},
           }}
       >
         <Grid item xs={1}>
@@ -134,8 +134,8 @@ const AdoptionList = () => {
           display: "flex",
           flexDirection: "column",
           gap: "1rem",
-          height: {xs:'60vh', lg:'100%'},
-          width: {xs:'800px', lg:'100%'},
+          height: {xs:'60vh',md:'100%'},
+          width: {xs:'800px', sm:'100%'},
           overflowY:'auto',
         }}
       >
