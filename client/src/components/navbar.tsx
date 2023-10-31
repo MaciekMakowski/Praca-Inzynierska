@@ -1,6 +1,8 @@
 import * as React from "react";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
@@ -12,8 +14,8 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import logo from "../img/navbar/logo.png";
+import { navigateTo } from "../utils/functions/navigators";
 import { useNavigate } from "react-router";
 
 const drawerWidth = 240;
@@ -72,7 +74,7 @@ const Navbar = () => {
         {pages.map((item, index) => (
           <ListItem key={index} disablePadding>
             <ListItemButton
-              onClick={() => navigate(item.link)}
+              onClick={() => navigateTo(navigate,item.link)}
               sx={{ textAlign: "center" }}
             >
               <ListItemText primary={item.name} />
@@ -119,7 +121,7 @@ const Navbar = () => {
           <Box sx={{ display: { xs: "none", lg: "block" } }}>
             {pages.map((item, index) => (
               <Button
-                onClick={() => navigate(item.link)}
+                onClick={() => navigateTo(navigate,item.link)}
                 key={index}
                 sx={{ color: "#fff" }}
               >

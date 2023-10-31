@@ -1,5 +1,6 @@
 import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 
+import { navigateTo } from "../../utils/functions/navigators";
 import { useNavigate } from "react-router";
 
 type AnimalListItemProps = {
@@ -79,7 +80,7 @@ const AnimalListItem = (props: AnimalListItemProps) => {
               ? theme.palette.primary.main
               : theme.palette.text.secondary,
           }}
-          onClick={() => navigate(`/admin/management/animals/123`)}
+          onClick={() => navigateTo(navigate,`/admin/management/animals/123`)}
         >
           Przejdź
         </Button>

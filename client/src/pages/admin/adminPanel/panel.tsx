@@ -95,7 +95,6 @@ const Panel = () => {
       <Box
         sx={{
           boxSizing: "border-box",
-          paddingX: "4rem",
           display: "flex",
           width: "100%",
           height: "30%",
@@ -103,7 +102,7 @@ const Panel = () => {
           alignItems: "start",
         }}
       >
-        <LineChart data={VisitorsData} />
+        <LineChart data={VisitorsData} link="/admin/management/volunteers"/>
       </Box>
       </>
   );

@@ -5,6 +5,7 @@ import { Box, Button, Typography, useTheme } from "@mui/material";
 import { ChartDataType } from "../../utils/types/basicTypes";
 import { ChartOptions } from "chart.js";
 import { Pie } from "react-chartjs-2";
+import { navigateTo } from "../../utils/functions/navigators";
 import { useNavigate } from "react-router";
 
 type dataType<T> = {
@@ -51,7 +52,7 @@ const PieChart = (props: dataType<any>) => {
               onClick={() => {
                 const link = props.link;
                 if (link) {
-                  navigate(link);
+                  navigateTo(navigate,link);
                 }
               }}
             >

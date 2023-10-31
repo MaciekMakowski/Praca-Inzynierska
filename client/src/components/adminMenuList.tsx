@@ -1,6 +1,7 @@
 import { Box, SvgIcon, Typography, useTheme } from "@mui/material";
 
 import { menuList } from "../utils/mockups/adminMenu";
+import { navigateTo } from "../utils/functions/navigators";
 import { useNavigate } from "react-router";
 
 type AdminMenuListProps = {
@@ -33,7 +34,7 @@ const AdminMenuList = (props:AdminMenuListProps) => {
                   color: color,
                   cursor: "pointer",
                 }}
-                onClick={() => navigate(`/admin${item.path}`)}
+                onClick={() => navigateTo(navigate,`/admin${item.path}`)}
               >
                 {item.name}
               </Typography>
@@ -59,7 +60,7 @@ const AdminMenuList = (props:AdminMenuListProps) => {
                         textAlign: "left",
                       }}
                       onClick={() =>
-                        navigate(`/admin${item.path}${subItem.path}`)
+                        navigateTo(navigate,`/admin${item.path}${subItem.path}`)
                       }
                     >
                       {subItem.name}
