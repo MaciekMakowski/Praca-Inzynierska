@@ -56,7 +56,7 @@ const AdminMenuList = (props:AdminMenuListProps) => {
                       sx={{
                         color: color,
                         cursor: "pointer",
-                        textAlign: { xs: "left", lg: "center" },
+                        textAlign: "left",
                       }}
                       onClick={() =>
                         navigate(`/admin${item.path}${subItem.path}`)
