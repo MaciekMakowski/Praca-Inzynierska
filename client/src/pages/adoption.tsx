@@ -1,23 +1,23 @@
-import {Container, Box, useTheme, Typography} from "@mui/material";
+import {Box, Container, Typography, useTheme} from "@mui/material";
+
+import AdoptionInfo from "./adoptionInfo";
 import React from "react";
 import back from "../img/home/back.png";
 import dog1 from '../img/adoption/dog1.png'
 import dog2 from '../img/adoption/dog2.png'
 import dog3 from '../img/adoption/dog3.png'
 import dog4 from '../img/adoption/dog4.png'
-import info1 from '../img/adoption/info1.png'
-import info2 from '../img/adoption/info2.png'
-import info3 from '../img/adoption/info3.png'
-import info4 from '../img/adoption/info4.png'
+import had from '../img/adoption/humanAndDog.png'
 import ico1 from '../img/adoption/ico1.png'
 import ico2 from '../img/adoption/ico2.png'
 import ico3 from '../img/adoption/ico3.png'
 import ico4 from '../img/adoption/ico4.png'
 import ico5 from '../img/adoption/ico5.png'
 import ico6 from '../img/adoption/ico6.png'
-import had from '../img/adoption/humanAndDog.png'
-import AdoptionInfo from "./adoptionInfo";
-
+import info1 from '../img/adoption/info1.png'
+import info2 from '../img/adoption/info2.png'
+import info3 from '../img/adoption/info3.png'
+import info4 from '../img/adoption/info4.png'
 
 const adoptionInfos = [
     {
@@ -125,11 +125,13 @@ const Adoption = () => {
                             <Box
                                 key={index}
                                 sx={{
+                                    display:{xs:index<1 ?'flex' : 'none', lg:'block'},
                                     backgroundImage:`url(${dog})`,
                                     backgroundSize:'cover',
-                                    width:{xs:'9rem',sm:'10rem', lg:'16rem'},
-                                    height:{xs:'5rem',sm:'7rem', lg:'10rem'},
-                                    marginTop:{xs:1, md:'0px'}
+                                    backgroundPosition:'center',
+                                    width:{xs:'30rem', lg:'16rem'},
+                                    height:{xs:'15rem', lg:'10rem'},
+                                    borderRadius:'20px',
                                 }}
                             />
                         )
