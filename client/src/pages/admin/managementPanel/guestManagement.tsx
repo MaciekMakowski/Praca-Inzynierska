@@ -11,7 +11,7 @@ const GuestManagement = () => {
       <Box>
         <Typography
           variant="h4"
-          textAlign={"start"}
+          textAlign={"center"}
           color={theme.palette.text.primary}
         >
           Zarządzanie gośćmi schroniska

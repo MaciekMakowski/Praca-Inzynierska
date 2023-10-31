@@ -108,6 +108,7 @@ const IsolationList = () => {
           variant="body1"
           textAlign={"center"}
           color={theme.palette.text.primary}
+          fontWeight={600}
         >
           Numer
         </Typography>
@@ -117,6 +118,7 @@ const IsolationList = () => {
           variant="body1"
           textAlign={"center"}
           color={theme.palette.text.primary}
+          fontWeight={600}
         >
           Imię
         </Typography>
@@ -126,6 +128,7 @@ const IsolationList = () => {
           variant="body1"
           textAlign={"center"}
           color={theme.palette.text.primary}
+          fontWeight={600}
         >
           Data zakończenia
         </Typography>
@@ -135,6 +138,7 @@ const IsolationList = () => {
           variant="body1"
           textAlign={"center"}
           color={theme.palette.text.primary}
+          fontWeight={600}
         >
           Data zakończenia
         </Typography>
@@ -144,6 +148,7 @@ const IsolationList = () => {
           variant="body1"
           textAlign={"center"}
           color={theme.palette.text.primary}
+          fontWeight={600}
         >
           Powód
         </Typography>
