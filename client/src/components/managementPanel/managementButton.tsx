@@ -1,11 +1,12 @@
 import {
-  Button,
-  Typography,
   Box,
-  useTheme,
-  SvgIconTypeMap,
+  Button,
   SvgIcon,
+  SvgIconTypeMap,
+  Typography,
+  useTheme,
 } from "@mui/material";
+
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { createElement } from "react";
 
@@ -31,6 +32,7 @@ const ManagementButton = (props: ManagementButtonProps) => {
         borderColor: props.disabled
           ? theme.palette.error.main
           : theme.palette.text.primary,
+          paddingX:{xs:"0", md:"1rem"},
       }}
       disabled={props.disabled}
       onClick={props.foo}
@@ -48,6 +50,8 @@ const ManagementButton = (props: ManagementButtonProps) => {
               ? theme.palette.error.main
               : theme.palette.text.primary,
           }}
+          textAlign={"center"}
+        
         >
           {props.name}
         </Typography>
