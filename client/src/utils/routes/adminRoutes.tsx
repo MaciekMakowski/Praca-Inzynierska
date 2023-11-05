@@ -9,7 +9,7 @@ import GuestManagement from "../../pages/admin/managementPanel/guestManagement";
 import IsolationManagement from "../../pages/admin/managementPanel/isolationManagement";
 import ManagmentPanel from "../../pages/admin/managementPanel/managementPanel";
 import Panel from "../../pages/admin/adminPanel/panel";
-import PersonDetails from "../../components/managementPanel/personDetails";
+import PersonDetails from "../../pages/admin/managementPanel/personDetails";
 import PetManagement from "../../pages/admin/managementPanel/petManagement";
 import PetsManagement from "../../pages/admin/managementPanel/petsManagement";
 import ResourcesManagement from "../../pages/admin/managementPanel/resourcesManagement";

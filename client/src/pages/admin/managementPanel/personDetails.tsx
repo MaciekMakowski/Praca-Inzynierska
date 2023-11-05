@@ -1,6 +1,9 @@
 import { Box, Grid, Typography, useTheme } from "@mui/material";
 
-import GuestVisitHistory from "./guestVisitHistory";
+import EventNoteIcon from '@mui/icons-material/EventNote';
+import GuestVisitHistory from "../../../components/managementPanel/guestVisitHistory";
+import ManagementButton from "../../../components/managementPanel/managementButton";
+import PersonOffIcon from '@mui/icons-material/PersonOff';
 import shadows from "@mui/material/styles/shadows";
 import { useParams } from "react-router";
 
@@ -27,15 +30,20 @@ const PersonDetails = () => {
 
   return (
     <>
-      <Typography variant="h6" color={theme.palette.text.primary}>
-        Profil {type == "guest" ? "gościa" : "wolontariusza"} o id {id}
-      </Typography>
+      <Box height={"10%"}>
+        <Typography variant="h4" color={theme.palette.text.primary}>
+          Profil {type == "guest" ? "gościa" : "wolontariusza"} o id {id}
+        </Typography>
+      </Box>
+
       <Box
         sx={{
-          display: "flex",
+          height:'90%',
+          display:'flex',
+          justifyContent:'start',
           flexDirection: "column",
-          gap: "1rem",
-          height: "90%",
+          gap:'1rem',
+          width:'100%'
         }}
       >
         <Box
@@ -69,7 +77,18 @@ const PersonDetails = () => {
             );
           })}
         </Box>
-        <GuestVisitHistory/>
+        <Box
+          sx={{
+            height: "85%",
+            display: "flex",
+            gap: "1rem",
+            flexDirection: { xs: "column", md: "row"}
+          }}
+        >
+          <GuestVisitHistory />
+          <ManagementButton name="Zarejestruj wejście" ico={EventNoteIcon} disabled={false} foo={() => null}/>
+          <ManagementButton name="Zarejestruj wyjście" ico={PersonOffIcon} disabled foo={() => null}/>
+        </Box>
       </Box>
     </>
   );

@@ -1,12 +1,15 @@
 import { Button, Grid, Typography, useTheme } from "@mui/material";
 
+import { navigateTo } from "../../utils/functions/navigators";
+import { useNavigate } from "react-router";
+
 type PersonsListItemProps = {
   color: boolean;
 };
 
 const PersonsListItem = (props: PersonsListItemProps) => {
   const theme = useTheme();
-
+  const navigate = useNavigate();
   return (
     <Grid
       container
@@ -126,6 +129,7 @@ const PersonsListItem = (props: PersonsListItemProps) => {
                 : theme.palette.text.secondary,
             },
           }}
+          onClick={() => navigateTo(navigate, "/admin/management/personDetails/guest/1")}
         >
           Przejdź
         </Button>

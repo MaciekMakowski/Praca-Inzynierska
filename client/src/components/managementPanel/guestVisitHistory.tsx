@@ -29,7 +29,7 @@ const GuestVisitHistory = () => {
     <Box
       sx={{
         backgroundColor: theme.palette.background.adminField,
-        height: "90%",
+        height: "100%",
         textAlign: "center",
         boxSizing: "border-box",
         display: "flex",
