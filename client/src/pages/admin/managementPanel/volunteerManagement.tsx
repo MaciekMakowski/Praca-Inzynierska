@@ -28,7 +28,7 @@ const VolunteerManagement = () => {
         }}
       >
         <AddPersonForm title="Dodaj wolontariusza" />
-        <PersonList />
+        <PersonList type="volunteer"/>
       </Box>
     </>
   );

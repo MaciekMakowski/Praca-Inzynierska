@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 
 type PersonsListItemProps = {
   color: boolean;
+  type: string;
 };
 
 const PersonsListItem = (props: PersonsListItemProps) => {
@@ -129,7 +130,7 @@ const PersonsListItem = (props: PersonsListItemProps) => {
                 : theme.palette.text.secondary,
             },
           }}
-          onClick={() => navigateTo(navigate, "/admin/management/personDetails/guest/1")}
+          onClick={() => navigateTo(navigate, `/admin/management/personDetails/${props.type}/1`)}
         >
           Przejdź
         </Button>

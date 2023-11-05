@@ -10,13 +10,17 @@ import {
 
 import PersonsListItem from "./personsListItem";
 
-const PersonsList = () => {
+type PersonListProps = {
+  type:string
+}
+
+const PersonsList = (props:PersonListProps) => {
   const theme = useTheme();
 
   const returnItems = () => {
     const items = [];
     for (let i = 0; i < 20; i++)
-      items.push(<PersonsListItem key={i} color={i % 2 == 0} />);
+      items.push(<PersonsListItem type={props.type} key={i} color={i % 2 == 0} />);
     return items;
   };
 

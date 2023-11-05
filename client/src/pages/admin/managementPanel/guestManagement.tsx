@@ -27,7 +27,7 @@ const GuestManagement = () => {
         }}
       >
         <AddPersonForm title="Dodaj gościa" />
-        <PersonsList />
+        <PersonsList type="guest"/>
       </Box>
     </>
   );

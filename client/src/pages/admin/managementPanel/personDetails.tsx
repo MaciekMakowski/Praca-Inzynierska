@@ -26,6 +26,7 @@ const personData: PersonDetails = {
   Adres: "ul. Nowa 1",
 };
 
+
 const PersonDetails = () => {
   const theme = useTheme();
   const { type, id } = useParams();
@@ -96,6 +97,7 @@ const PersonDetails = () => {
             sx={{
               display:'flex',
               justifyContent:'space-around',
+              gap:'1rem',
             }}
           >
           <ManagementButton name="Zarejestruj wejście" ico={EventNoteIcon} disabled={false} foo={() => null}/>
