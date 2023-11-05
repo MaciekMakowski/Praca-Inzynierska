@@ -90,7 +90,7 @@ const AnimalListItem = (props: AnimalListItemProps) => {
           Las bartąg
         </Typography>
       </Grid>
-      <Grid item xs={1.5}>
+      <Grid item xs={2.5}>
         <Typography
           variant="subtitle1"
           color={
@@ -103,7 +103,7 @@ const AnimalListItem = (props: AnimalListItemProps) => {
           Europejczyk
         </Typography>
       </Grid>
-      <Grid item xs={2.4}>
+      <Grid item xs={2}>
         <Button
           sx={{
             color: props.color

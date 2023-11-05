@@ -99,7 +99,7 @@ const AnimalList = () => {
       >
       <Grid container spacing={0}  
         sx={{
-          width: {xs:'100%', lg:'100%'},
+          width: {xs:'1000px', md:'100%'},
           paddingRight:{xs:'0', lg:'1rem'},
           
         }}>
@@ -148,7 +148,7 @@ const AnimalList = () => {
             Miejsce znalezienia
           </Typography>
         </Grid>
-        <Grid item xs={1.5}>
+        <Grid item xs={2.5}>
           <Typography
             variant="subtitle1"
             color={theme.palette.primary.main}
@@ -157,15 +157,15 @@ const AnimalList = () => {
             Rasa
           </Typography>
         </Grid>
-        <Grid item xs={2.4}></Grid>
+        <Grid item xs={2}></Grid>
       </Grid>
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
           gap: "1rem",
-          height: {xs:'60vh', md:'100%', lg:'100%'},
-          width: '100%',
+          height: {xs:'60vh', md:'100%'},
+          width: {xs:'1000px', md:'100%'},
           overflowY:'auto',
         }}
       >
