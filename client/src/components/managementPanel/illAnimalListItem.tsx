@@ -7,7 +7,7 @@ type AnimalListItemProps = {
   color: boolean;
 };
 
-const AnimalListItem = (props: AnimalListItemProps) => {
+const IllAnimalListItem = (props: AnimalListItemProps) => {
   const theme = useTheme();
   const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ const AnimalListItem = (props: AnimalListItemProps) => {
         backgroundColor: props.color ? "" : theme.palette.background.light,
       }}
     >
-      <Grid item xs={1.5}>
+      <Grid item xs={2.4}>
         <Typography
           variant="subtitle1"
           color={
@@ -33,12 +33,11 @@ const AnimalListItem = (props: AnimalListItemProps) => {
               ? theme.palette.primary.main
               : theme.palette.text.secondary
           }
-          textAlign={"center"}
         >
           123123
         </Typography>
       </Grid>
-      <Grid item xs={1.5}>
+      <Grid item xs={2.4}>
         <Typography
           variant="subtitle1"
           color={
@@ -46,12 +45,11 @@ const AnimalListItem = (props: AnimalListItemProps) => {
               ? theme.palette.primary.main
               : theme.palette.text.secondary
           }
-          textAlign={"center"}
         >
           Puszek
         </Typography>
       </Grid>
-      <Grid item xs={1.5}>
+      <Grid item xs={2.4}>
         <Typography
           variant="subtitle1"
           color={
@@ -59,12 +57,11 @@ const AnimalListItem = (props: AnimalListItemProps) => {
               ? theme.palette.primary.main
               : theme.palette.text.secondary
           }
-          textAlign={"center"}
         >
           Kot
         </Typography>
       </Grid>
-      <Grid item xs={1}>
+      <Grid item xs={2.4}>
         <Typography
           variant="subtitle1"
           color={
@@ -72,35 +69,8 @@ const AnimalListItem = (props: AnimalListItemProps) => {
               ? theme.palette.primary.main
               : theme.palette.text.secondary
           }
-          textAlign={"center"}
         >
           16
-        </Typography>
-      </Grid>
-      <Grid item xs={2}>
-        <Typography
-          variant="subtitle1"
-          color={
-            props.color
-              ? theme.palette.primary.main
-              : theme.palette.text.secondary
-          }
-          textAlign={"center"}
-        >
-          Las bartąg
-        </Typography>
-      </Grid>
-      <Grid item xs={1.5}>
-        <Typography
-          variant="subtitle1"
-          color={
-            props.color
-              ? theme.palette.primary.main
-              : theme.palette.text.secondary
-          }
-          textAlign={"center"}
-        >
-          Europejczyk
         </Typography>
       </Grid>
       <Grid item xs={2.4}>
@@ -110,7 +80,7 @@ const AnimalListItem = (props: AnimalListItemProps) => {
               ? theme.palette.primary.main
               : theme.palette.text.secondary,
           }}
-          onClick={() => navigateTo(navigate,`/admin/management/animals/5`)}
+          onClick={() => navigateTo(navigate,`/admin/management/animals/diseases/5`)}
         >
           Przejdź
         </Button>
@@ -119,4 +89,4 @@ const AnimalListItem = (props: AnimalListItemProps) => {
   );
 };
 
-export default AnimalListItem;
+export default IllAnimalListItem;

@@ -1,10 +1,9 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
 
 import EditIsolationModal from "../../../components/managementPanel/editIsolationModal";
-import { useNavigate } from "react-router";
 import { useState } from "react";
 
-const IsolationDetails = () => {
+const PetDiseaseDetails = () => {
     const theme = useTheme();
     const [open, setOpen] = useState(false);
     return(
@@ -25,7 +24,7 @@ const IsolationDetails = () => {
             }}
         >
         <Typography variant="h6" color={theme.palette.text.primary} fontWeight={600}>
-          Izolacja zwierzęcia
+          Choroba zwierzęcia
           <Typography variant="body1"> Imie zwierzęcia</Typography>
         </Typography>
         <Typography variant="subtitle1" color={theme.palette.text.primary} fontWeight={600}>
@@ -37,8 +36,8 @@ const IsolationDetails = () => {
             <Typography variant="body1"> brak</Typography>
         </Typography>
         <Typography variant="subtitle1" color={theme.palette.text.primary} fontWeight={600}>
-            Powód
-            <Typography variant="body1"> Jakiś tam powód</Typography>
+            Objawy
+            <Typography variant="body1"> Jakieś tam objawy</Typography>
         </Typography>
         <Typography variant="subtitle1" color={theme.palette.text.primary} fontWeight={600}>
             Status
@@ -57,4 +56,4 @@ const IsolationDetails = () => {
     )
 }
 
-export default IsolationDetails;
+export default PetDiseaseDetails

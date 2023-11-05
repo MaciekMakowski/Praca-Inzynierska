@@ -1,8 +1,8 @@
 import { Box, Typography, useTheme } from "@mui/material";
 
 import AddDiseaseForm from "../../../components/managementPanel/addDiseaseForm";
-import AnimalList from "../../../components/managementPanel/animalList";
 import DiseaseList from "../../../components/managementPanel/diseaseList";
+import IllAnimalList from "../../../components/managementPanel/illAnimalList";
 
 const DiseaseManagement = () => {
   const theme = useTheme();
@@ -28,7 +28,7 @@ const DiseaseManagement = () => {
       >
         <AddDiseaseForm />
         <DiseaseList />
-        <AnimalList />
+        <IllAnimalList />
       </Box>
     </>
   );

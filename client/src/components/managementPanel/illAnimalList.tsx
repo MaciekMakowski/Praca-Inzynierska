@@ -8,10 +8,10 @@ import {
   useTheme,
 } from "@mui/material";
 
-import AnimalListItem from "./animalListItem";
+import IllAnimalListItem from "./illAnimalListItem";
 import { useState } from "react";
 
-const AnimalList = () => {
+const IllAnimalList = () => {
   const theme = useTheme();
   const [filter, setFilter] = useState(0);
 
@@ -23,7 +23,7 @@ const AnimalList = () => {
   const returnItems = () => {
     const items = [];
     for (let i = 0; i < 20; i++)
-      items.push(<AnimalListItem key={i} color={i % 2 == 0} />);
+      items.push(<IllAnimalListItem key={i} color={i % 2 == 0} />);
     return items;
   };
   return (
@@ -39,7 +39,8 @@ const AnimalList = () => {
         gap: "1rem",
         borderRadius: "1rem",
         boxShadow: theme.shadows[3],
-        minWidth:{xs:'100%', md:'75%'},
+        minWidth:{xs:'100%', md:'500px'}
+
       }}
     >
       <Box
@@ -100,10 +101,8 @@ const AnimalList = () => {
       <Grid container spacing={0}  
         sx={{
           width: {xs:'100%', lg:'100%'},
-          paddingRight:{xs:'0', lg:'1rem'},
-          
         }}>
-        <Grid item xs={1.5}>
+        <Grid item xs={2.4}>
           <Typography
             variant="subtitle1"
             color={theme.palette.primary.main}
@@ -112,7 +111,7 @@ const AnimalList = () => {
             #Numer
           </Typography>
         </Grid>
-        <Grid item xs={1.5}>
+        <Grid item xs={2.4}>
           <Typography
             variant="subtitle1"
             color={theme.palette.primary.main}
@@ -121,7 +120,7 @@ const AnimalList = () => {
             Imie
           </Typography>
         </Grid>
-        <Grid item xs={1.5}>
+        <Grid item xs={2.4}>
           <Typography
             variant="subtitle1"
             color={theme.palette.primary.main}
@@ -130,31 +129,13 @@ const AnimalList = () => {
             Gatunek
           </Typography>
         </Grid>
-        <Grid item xs={1}>
+        <Grid item xs={2.4}>
           <Typography
             variant="subtitle1"
             color={theme.palette.primary.main}
             fontWeight={600}
           >
             Wiek
-          </Typography>
-        </Grid>
-        <Grid item xs={2}>
-          <Typography
-            variant="subtitle1"
-            color={theme.palette.primary.main}
-            fontWeight={600}
-          >
-            Miejsce znalezienia
-          </Typography>
-        </Grid>
-        <Grid item xs={1.5}>
-          <Typography
-            variant="subtitle1"
-            color={theme.palette.primary.main}
-            fontWeight={600}
-          >
-            Rasa
           </Typography>
         </Grid>
         <Grid item xs={2.4}></Grid>
@@ -185,4 +166,5 @@ const AnimalList = () => {
     </Box>
   );
 };
-export default AnimalList;
+
+export default IllAnimalList;

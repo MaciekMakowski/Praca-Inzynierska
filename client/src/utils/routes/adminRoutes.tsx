@@ -11,6 +11,7 @@ import IsolationManagement from "../../pages/admin/managementPanel/isolationMana
 import ManagmentPanel from "../../pages/admin/managementPanel/managementPanel";
 import Panel from "../../pages/admin/adminPanel/panel";
 import PersonDetails from "../../pages/admin/managementPanel/personDetails";
+import PetDiseaseDetails from "../../pages/admin/managementPanel/petDiseaseDetails";
 import PetManagement from "../../pages/admin/managementPanel/petManagement";
 import PetsManagement from "../../pages/admin/managementPanel/petsManagement";
 import ResourcesManagement from "../../pages/admin/managementPanel/resourcesManagement";
@@ -51,6 +52,10 @@ const AdminRoutes = () => {
             <Route
               path="/management/animals/:id"
               element={<PetManagement data={puszekData} />}
+            />
+            <Route
+              path="/management/animals/diseases/:id"
+              element={<PetDiseaseDetails />}
             />
             <Route
               path="/management/diseases"
