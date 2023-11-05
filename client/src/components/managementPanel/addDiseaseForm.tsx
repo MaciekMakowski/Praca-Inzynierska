@@ -1,9 +1,9 @@
 import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
+import { DiseaseManagementProps, DiseaseType } from "../../utils/types/basicTypes";
 
-import { DiseaseType } from "../../utils/types/basicTypes";
 import { useState } from "react";
 
-const AddDiseaseForm = () => {
+const AddDiseaseForm = (props:DiseaseManagementProps) => {
   const theme = useTheme();
   const [newDisase, setNewDisease] = useState<DiseaseType>({
     number: 0,
