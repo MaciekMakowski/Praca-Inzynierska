@@ -1,9 +1,11 @@
 import { Box, Grid, Typography, useTheme } from "@mui/material";
 
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import GuestVisitHistory from "../../../components/managementPanel/guestVisitHistory";
 import ManagementButton from "../../../components/managementPanel/managementButton";
 import PersonOffIcon from '@mui/icons-material/PersonOff';
+import VolunteerMeetingsList from "../../../components/managementPanel/volunteerMeetingsList";
 import shadows from "@mui/material/styles/shadows";
 import { useParams } from "react-router";
 
@@ -54,6 +56,7 @@ const PersonDetails = () => {
             boxSizing: "border-box",
             justifyContent: "space-around",
             boxShadow: shadows[3],
+            flexDirection: { xs: "column", md: "row" },
           }}
         >
           {Object.keys(personData).map((key) => {
@@ -68,7 +71,7 @@ const PersonDetails = () => {
                 </Typography>
                 <Typography
                   variant="body1"
-                  textAlign={"center"}
+                  textAlign={{xs:"start",md:"center"}}
                   color={theme.palette.text.primary}
                 >
                   {personData[key]}
@@ -86,8 +89,21 @@ const PersonDetails = () => {
           }}
         >
           <GuestVisitHistory />
+          {type == "guest" ? null : 
+            <VolunteerMeetingsList/>
+          }
+          <Box 
+            sx={{
+              display:'flex',
+              justifyContent:'space-around',
+            }}
+          >
           <ManagementButton name="Zarejestruj wejście" ico={EventNoteIcon} disabled={false} foo={() => null}/>
           <ManagementButton name="Zarejestruj wyjście" ico={PersonOffIcon} disabled foo={() => null}/>
+          {type == "guest" ? null : 
+            <ManagementButton name="Zapisz na spotkanie" ico={EventAvailableIcon} disabled={false} foo={() => null}/>
+          }
+          </Box>
         </Box>
       </Box>
     </>
