@@ -3,11 +3,13 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import AdminMenu from "../../components/adminMenu";
 import AdoptionsManagement from "../../pages/admin/managementPanel/adoptionsManagement";
 import { Box } from "@mui/material";
+import DiseaseDetails from "../../components/managementPanel/diseaseDetails";
 import DiseaseManagement from "../../pages/admin/managementPanel/diseaseManagement";
 import GuestManagement from "../../pages/admin/managementPanel/guestManagement";
 import IsolationManagement from "../../pages/admin/managementPanel/isolationManagement";
 import ManagmentPanel from "../../pages/admin/managementPanel/managementPanel";
 import Panel from "../../pages/admin/adminPanel/panel";
+import PersonDetails from "../../components/managementPanel/personDetails";
 import PetManagement from "../../pages/admin/managementPanel/petManagement";
 import PetsManagement from "../../pages/admin/managementPanel/petsManagement";
 import ResourcesManagement from "../../pages/admin/managementPanel/resourcesManagement";
@@ -22,49 +24,63 @@ const AdminRoutes = () => {
         sx={{
           width: "100%",
           minHeight: "800px",
-          height: {xs: "100%", md: "100vh"},
+          height: { xs: "100%", md: "100vh" },
           display: "flex",
         }}
       >
         <AdminMenu />
         <Box
           sx={{
-            minWidth: {xs: "100%", md: "600px"},
+            minWidth: { xs: "100%", md: "600px" },
             height: "100%",
-            width: {xs:'100%', lg:'"calc(100% - 200px)"'},
-            marginLeft: {xs:"0",lg:"200px"},
+            width: { xs: "100%", lg: '"calc(100% - 200px)"' },
+            marginLeft: { xs: "0", lg: "200px" },
             boxSizing: "border-box",
             display: "flex",
             justifyContent: "space-around",
             flexDirection: "column",
             paddingX: "1rem",
-            marginTop: {xs: "70px", lg: "0"},
+            marginTop: { xs: "70px", lg: "0" },
           }}
         >
-        <Routes location={location} key={location.pathname}>
-          <Route path="/panel" element={<Panel />} />
-          <Route path="/management" element={<ManagmentPanel />} />
-          <Route path="/management/animals" element={<PetsManagement />} />
-          <Route path="/management/animals/:id" element={<PetManagement data={puszekData} />} />
-          <Route path="/management/diseases" element={<DiseaseManagement />} />
-          <Route
-            path="/management/isolations"
-            element={<IsolationManagement />}
-          />
-          <Route
-            path="/management/volunteers"
-            element={<VolunteerManagement />}
-          />
-          <Route
-            path="/management/adoptions"
-            element={<AdoptionsManagement />}
-          />
-          <Route
-            path="/management/resources"
-            element={<ResourcesManagement />}
-          />
-          <Route path="/management/guests" element={<GuestManagement />} />
-        </Routes>
+          <Routes location={location} key={location.pathname}>
+            <Route path="/panel" element={<Panel />} />
+            <Route path="/management" element={<ManagmentPanel />} />
+            <Route path="/management/animals" element={<PetsManagement />} />
+            <Route
+              path="/management/animals/:id"
+              element={<PetManagement data={puszekData} />}
+            />
+            <Route
+              path="/management/diseases"
+              element={<DiseaseManagement />}
+            />
+            <Route
+              path="/management/diseases/:id"
+              element={<DiseaseDetails />}
+            />
+            <Route
+              path="/management/isolations"
+              element={<IsolationManagement />}
+            />
+            <Route
+              path="/management/volunteers"
+              element={<VolunteerManagement />}
+            />
+            <Route
+              path="/management/adoptions"
+              element={<AdoptionsManagement />}
+            />
+            <Route
+              path="/management/resources"
+              element={<ResourcesManagement />}
+            />
+            <Route path="/management/guests" element={<GuestManagement />} />
+            <Route
+              path="/management/personDetails/:type/:id"
+              element={<PersonDetails />}
+            />
+          </Routes>
         </Box>
       </Box>
     </>
