@@ -3,9 +3,10 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import AdminMenu from "../../components/adminMenu";
 import AdoptionsManagement from "../../pages/admin/managementPanel/adoptionsManagement";
 import { Box } from "@mui/material";
-import DiseaseDetails from "../../components/managementPanel/diseaseDetails";
+import DiseaseDetails from "../../pages/admin/managementPanel/diseaseDetails";
 import DiseaseManagement from "../../pages/admin/managementPanel/diseaseManagement";
 import GuestManagement from "../../pages/admin/managementPanel/guestManagement";
+import IsolationDetails from "../../pages/admin/managementPanel/isolationDetails";
 import IsolationManagement from "../../pages/admin/managementPanel/isolationManagement";
 import ManagmentPanel from "../../pages/admin/managementPanel/managementPanel";
 import Panel from "../../pages/admin/adminPanel/panel";
@@ -62,6 +63,10 @@ const AdminRoutes = () => {
             <Route
               path="/management/isolations"
               element={<IsolationManagement />}
+            />
+            <Route
+              path="/management/isolation/:id"
+              element={<IsolationDetails />}
             />
             <Route
               path="/management/volunteers"

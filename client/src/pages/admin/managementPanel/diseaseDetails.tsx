@@ -1,7 +1,7 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
 
-import AddDiseaseForm from "./addDiseaseForm";
-import EditDiseaseModal from "./editDiseaseModal";
+import AddDiseaseForm from "../../../components/managementPanel/addDiseaseForm";
+import EditDiseaseModal from "../../../components/managementPanel/editDiseaseModal";
 import { useState } from "react";
 
 const DiseaseDetails = () => {

@@ -1,12 +1,15 @@
 import { Button, Grid, Typography, useTheme } from "@mui/material";
 
+import { navigateTo } from "../../utils/functions/navigators";
+import { useNavigate } from "react-router";
+
 type IsolationListItemProps = {
   color: boolean;
 };
 
 const IsolationListItem = (props: IsolationListItemProps) => {
   const theme = useTheme();
-
+  const navigate = useNavigate();
   return (
     <Grid
       container
@@ -91,6 +94,7 @@ const IsolationListItem = (props: IsolationListItemProps) => {
               ? theme.palette.text.primary
               : theme.palette.text.secondary,
           }}
+          onClick={() => navigateTo(navigate, "/admin/management/isolation/1")}
         >
           Przejdź
         </Button>
