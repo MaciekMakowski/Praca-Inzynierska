@@ -6,9 +6,12 @@ import {
   Modal,
   TextField,
   Typography,
-  useTheme
+  useTheme,
 } from "@mui/material";
-import { EditPetModalProps, PetDiseaseType } from "../../utils/types/basicTypes";
+import {
+  EditIsolationModalProps,
+  PetDiseaseType,
+} from "../../utils/types/basicTypes";
 import dayjs, { Dayjs } from "dayjs";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -16,11 +19,11 @@ import CloseIcon from "@mui/icons-material/Close";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { diseasesData } from "../../utils/mockups/diagData";
 import { handleChangeDate } from "../../utils/functions/handlers";
+import { isolationStatusList } from "../../utils/mockups/adminMenu";
 import { useState } from "react";
 
-const AddPetDiseaseModal = (props: EditPetModalProps) => {
+const EditIsolationModal = (props: EditIsolationModalProps) => {
   const theme = useTheme();
   const handleClose = () => props.setOpen(false);
   const [newDisease, setNewDisease] = useState<PetDiseaseType>({
@@ -31,8 +34,8 @@ const AddPetDiseaseModal = (props: EditPetModalProps) => {
   });
   const dateChange = (value: Dayjs | null) => {
     if (value === null) return;
-    handleChangeDate(value.format('DD-MM-YYYY'), setNewDisease, 'startDate')
-  }
+    handleChangeDate(value.format("DD-MM-YYYY"), setNewDisease, "startDate");
+  };
 
   return (
     <Modal open={props.open} onClose={handleClose}>
@@ -43,7 +46,7 @@ const AddPetDiseaseModal = (props: EditPetModalProps) => {
           left: "50%",
           top: "50%",
           transform: "translate(-50%, -50%)",
-          width: {xs:'90%', md:"60%", lg:'40%', xl:'30%'},
+          width: { xs: "90%", md: "60%", lg: "40%", xl: "30%" },
           minWidth: "300px",
           boxSizing: "border-box",
           padding: "1rem",
@@ -63,35 +66,54 @@ const AddPetDiseaseModal = (props: EditPetModalProps) => {
           }}
         >
           <Typography variant="h5" color={theme.palette.text.primary}>
-            Dodaj chorobę
+            Edytuj izolacje
           </Typography>
           <IconButton onClick={handleClose}>
             <CloseIcon />
           </IconButton>
-      </Box>
-      <Autocomplete
-        disablePortal
-        id="combo-box-demo"
-        options={diseasesData.map((option) => option.name)}
-        fullWidth
-        renderInput={(params) => <TextField {...params} label="Nazwa choroby" />}
-        />
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={["DatePicker"]}>
-              <DatePicker
-                sx={{
-                  flexGrow: 1,
-                }}
-                label="Data rozpoczęcia choroby"
-                onChange={(value: Dayjs | null) => dateChange(value)}
-              />
-            </DemoContainer>
-          </LocalizationProvider>
-
-          <Button variant="contained">Zapisz</Button>
         </Box>
+        <TextField 
+        label="Powód"
+        fullWidth
+        multiline
+        minRows={4}
+        ></TextField>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={["DatePicker"]}>
+            <DatePicker
+              sx={{
+                flexGrow: 1,
+              }}
+              label="Data rozpoczęcia izolacji"
+              onChange={(value: Dayjs | null) => dateChange(value)}
+            />
+          </DemoContainer>
+        </LocalizationProvider>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={["DatePicker"]}>
+            <DatePicker
+              sx={{
+                flexGrow: 1,
+              }}
+              label="Data zakończenia izolacji"
+              onChange={(value: Dayjs | null) => dateChange(value)}
+            />
+          </DemoContainer>
+        </LocalizationProvider>
+        <Autocomplete
+          disablePortal
+          id="combo-box-demo"
+          options={isolationStatusList.map((option) => option.name)}
+          fullWidth
+          renderInput={(params) => (
+            <TextField {...params} label="Status izolacji" />
+          )}
+        />
+
+        <Button variant="contained">Zabisz</Button>
+      </Box>
     </Modal>
   );
 };
 
-export default AddPetDiseaseModal;
+export default EditIsolationModal;

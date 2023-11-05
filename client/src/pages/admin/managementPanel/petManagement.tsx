@@ -89,7 +89,7 @@ const PetManagement = (props: PetManagementProps) => {
       >
         <Box
           sx={{
-            maxHeight:{xs:"fit-content",lg:"40vh"},
+            maxHeight:{xs:"fit-content",lg:"45vh"},
             display: "flex",
             gap: "1rem",
             width: {xs:"100%", xl:"70%"},

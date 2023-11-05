@@ -40,7 +40,7 @@ const IsolationList = () => {
         gap: "1rem",
         borderRadius: "1rem",
         boxShadow: theme.shadows[3],
-        width: {xs:'none', md:'100%' ,lg:'1000px'},
+        width: {xs:'none', md:'100%'},
       }}
     >
       <Box
@@ -101,6 +101,7 @@ const IsolationList = () => {
       <Grid container spacing={0} 
         sx={{
           width: {xs:'800px', md:'100%'},
+          paddingRight:{xs:'0', md:'1rem'}
         }}
       >
       <Grid item xs={1}>
@@ -123,7 +124,17 @@ const IsolationList = () => {
           Imię
         </Typography>
       </Grid>
-      <Grid item xs={2}>
+      <Grid item xs={2} md={1.5}>
+        <Typography
+          variant="body1"
+          textAlign={"center"}
+          color={theme.palette.text.primary}
+          fontWeight={600}
+        >
+          Data  rozpoczęcia
+        </Typography>
+      </Grid>
+      <Grid item xs={2} md={1.5}>
         <Typography
           variant="body1"
           textAlign={"center"}
@@ -133,17 +144,7 @@ const IsolationList = () => {
           Data zakończenia
         </Typography>
       </Grid>
-      <Grid item xs={2}>
-        <Typography
-          variant="body1"
-          textAlign={"center"}
-          color={theme.palette.text.primary}
-          fontWeight={600}
-        >
-          Data zakończenia
-        </Typography>
-      </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={2} md={4.5}>
         <Typography
           variant="body1"
           textAlign={"center"}
@@ -153,7 +154,17 @@ const IsolationList = () => {
           Powód
         </Typography>
       </Grid>
-      <Grid item xs={2}>
+      <Grid item xs={2} md={1.5}>
+        <Typography
+          variant="body1"
+          textAlign={"center"}
+          color={theme.palette.text.primary}
+          fontWeight={600}
+        >
+          Status
+        </Typography>
+      </Grid>
+      <Grid item xs={2} md={1}>
       </Grid>
       </Grid>
       <Box

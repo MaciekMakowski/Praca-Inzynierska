@@ -75,6 +75,13 @@ export type EditPetModalProps = {
     data?: AnimalType;
   };
 
+  
+export type EditIsolationModalProps = {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  data?: IsolationType;
+};
+
 export type ModalProps = {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;

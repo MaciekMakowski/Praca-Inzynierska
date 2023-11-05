@@ -1,10 +1,9 @@
+import ConstructionIcon from '@mui/icons-material/Construction';
 import { OverridableComponent } from "@mui/material/OverridableComponent";
+import PersonIcon from '@mui/icons-material/Person';
+import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
 import { SvgIconTypeMap } from "@mui/material";
 import TvIcon from '@mui/icons-material/Tv';
-import ConstructionIcon from '@mui/icons-material/Construction';
-import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
-import PersonIcon from '@mui/icons-material/Person';
-
 
 export type subListType = {
     name:string,
@@ -88,4 +87,20 @@ export const menuList:menuListType[] = [
         subList:subListWorkers
     }
 
+]
+
+export const isolationStatusList =[
+    {
+        name:'W trakcie',
+        value:'inProgress'
+    },
+    {
+        name:'Zakończone',
+        value:'finished'
+    },
+    {
+        name:'Anulowane',
+        value:'canceled'
+    },
+    
 ]

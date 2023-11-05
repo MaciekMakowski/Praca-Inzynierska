@@ -48,7 +48,7 @@ const IsolationListItem = (props: IsolationListItemProps) => {
           Puszek
         </Typography>
       </Grid>
-      <Grid item xs={2}>
+      <Grid item xs={2} md={1.5}>
         <Typography
           variant="body1"
           textAlign={"center"}
@@ -61,7 +61,7 @@ const IsolationListItem = (props: IsolationListItemProps) => {
           23.09.2021
         </Typography>
       </Grid>
-      <Grid item xs={2}>
+      <Grid item xs={2} md={1.5}>
         <Typography
           variant="body1"
           textAlign={"center"}
@@ -74,7 +74,7 @@ const IsolationListItem = (props: IsolationListItemProps) => {
           30.09.2021
         </Typography>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={2} md={4.5}>
         <Typography
           variant="body1"
           textAlign={"center"}
@@ -87,7 +87,20 @@ const IsolationListItem = (props: IsolationListItemProps) => {
           Angina, brak apetytu
         </Typography>
       </Grid>
-      <Grid item xs={2}>
+      <Grid item xs={2} md={1.5}>
+        <Typography
+          variant="body1"
+          textAlign={"center"}
+          color={
+            props.color
+              ? theme.palette.text.primary
+              : theme.palette.text.secondary
+          }
+        >
+          Zakńczona
+        </Typography>
+      </Grid>
+      <Grid item xs={2} md={1}>
         <Button
           sx={{
             color: props.color
