@@ -49,7 +49,7 @@ const IllAnimalListItem = (props: AnimalListItemProps) => {
           Puszek
         </Typography>
       </Grid>
-      <Grid item xs={2.4}>
+      <Grid item xs={2}>
         <Typography
           variant="subtitle1"
           color={
@@ -61,7 +61,7 @@ const IllAnimalListItem = (props: AnimalListItemProps) => {
           Kot
         </Typography>
       </Grid>
-      <Grid item xs={2.4}>
+      <Grid item xs={2}>
         <Typography
           variant="subtitle1"
           color={
@@ -73,7 +73,7 @@ const IllAnimalListItem = (props: AnimalListItemProps) => {
           16
         </Typography>
       </Grid>
-      <Grid item xs={2.4}>
+      <Grid item xs={3.2}>
         <Button
           sx={{
             color: props.color

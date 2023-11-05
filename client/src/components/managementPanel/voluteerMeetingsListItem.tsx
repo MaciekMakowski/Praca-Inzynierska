@@ -57,7 +57,17 @@ const VolunteerMeetingsListItem = (props: any) => {
         </Typography>
       </Grid>
       <Grid item xs={3}>
-            <Button>Przejdź</Button>
+            <Button
+              sx={{
+                color: {
+                  color: props.color
+                    ? theme.palette.primary.main
+                    : theme.palette.text.secondary,
+                },
+              }}
+            >
+              Przejdź
+              </Button>
           </Grid>
         
     </Grid>
