@@ -1,6 +1,7 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import AdminMenu from "../../components/adminMenu";
+import AdoptionDetails from "../../pages/admin/managementPanel/adoptionDetails";
 import AdoptionsManagement from "../../pages/admin/managementPanel/adoptionsManagement";
 import { Box } from "@mui/material";
 import DiseaseDetails from "../../pages/admin/managementPanel/diseaseDetails";
@@ -82,6 +83,11 @@ const AdminRoutes = () => {
               path="/management/adoptions"
               element={<AdoptionsManagement />}
             />
+            <Route
+              path="/management/adoptions/:id"
+              element={<AdoptionDetails />}
+            />
+
             <Route
               path="/management/resources"
               element={<ResourcesManagement />}

@@ -1,11 +1,15 @@
 import { Button, Grid, Typography, useTheme } from "@mui/material";
 
+import { navigateTo } from "../../utils/functions/navigators";
+import { useNavigate } from "react-router";
+
 type AdoptionListItemProps = {
   color: boolean;
 };
 
 const AdoptionListItem = (props: AdoptionListItemProps) => {
   const theme = useTheme();
+  const navigate = useNavigate();
 
   return (
     <Grid
@@ -98,6 +102,7 @@ const AdoptionListItem = (props: AdoptionListItemProps) => {
               ? theme.palette.text.primary
               : theme.palette.text.secondary,
           }}
+          onClick={() => navigateTo(navigate,"/admin/management/adoptions/1")}
         >
           Przejdź
         </Button>
