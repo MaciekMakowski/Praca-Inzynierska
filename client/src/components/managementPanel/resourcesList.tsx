@@ -86,9 +86,10 @@ const ResourcesList = () => {
           overflowY:'clip'
         }}
       >
-      <Grid width="99%" container spacing={0}
+      <Grid width="100%" container spacing={0}
               sx={{
                 width: {xs:'1000px', lg:'100%'},
+                paddingRight: {xs:'0', lg:'1rem'},
               }}
       >
         <Grid item xs={1.5}>

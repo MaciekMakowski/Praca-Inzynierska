@@ -1,15 +1,16 @@
 import {
   Box,
-  Typography,
-  useTheme,
-  TextField,
-  Checkbox,
   Button,
-  Select,
-  MenuItem,
+  Checkbox,
   FormControl,
   InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+  useTheme,
 } from "@mui/material";
+
 import { useState } from "react";
 
 const AddOrDelResourceTypeForm = () => {
@@ -58,6 +59,26 @@ const AddOrDelResourceTypeForm = () => {
             color="primary"
             //onChange={handleTextChange}
           />
+          <FormControl>
+        <InputLabel>Kategoria główna</InputLabel>
+        <Select
+          label="Kategoria główna"
+          name="type"
+          variant="outlined"
+          sx={{
+            color: theme.palette.text.primary,
+          }}
+          defaultValue="Kategoria główna"
+          // value={newAnimal.species}
+          // onChange={handleSelectChange}
+        >
+          <MenuItem value={4}>Brak</MenuItem>
+          <MenuItem value={1}>Jedzenie</MenuItem>
+          <MenuItem value={2}>Higiena</MenuItem>
+          <MenuItem value={3}>Zabawka</MenuItem>
+          <MenuItem value={3}>Koce</MenuItem>
+        </Select>
+      </FormControl>
           <Button variant="contained" color="primary">
             Dodaj
           </Button>

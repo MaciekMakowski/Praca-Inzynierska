@@ -1,21 +1,23 @@
 import {
   Box,
-  Typography,
-  useTheme,
-  TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
   Button,
   Checkbox,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+  useTheme,
 } from "@mui/material";
+import { ChangeEvent, useState } from "react";
+import dayjs, { Dayjs } from "dayjs";
+
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import dayjs, { Dayjs } from "dayjs";
-import { ChangeEvent, useState } from "react";
+
 const AddResourceForm = () => {
   const theme = useTheme();
   const [checked, setChecked] = useState(false);
@@ -85,6 +87,25 @@ const AddResourceForm = () => {
             color: theme.palette.text.primary,
           }}
           defaultValue="Rodzaj"
+          // value={newAnimal.species}
+          // onChange={handleSelectChange}
+        >
+          <MenuItem value={1}>Jedzenie</MenuItem>
+          <MenuItem value={2}>Higiena</MenuItem>
+          <MenuItem value={3}>Zabawka</MenuItem>
+          <MenuItem value={3}>Koce</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl>
+        <InputLabel>Podkategoria</InputLabel>
+        <Select
+          label="Podkategoria"
+          name="type"
+          variant="outlined"
+          sx={{
+            color: theme.palette.text.primary,
+          }}
+          defaultValue="Podkategoria"
           // value={newAnimal.species}
           // onChange={handleSelectChange}
         >
