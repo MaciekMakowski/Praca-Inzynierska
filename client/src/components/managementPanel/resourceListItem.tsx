@@ -1,11 +1,15 @@
 import { Button, Grid, Typography, useTheme } from "@mui/material";
 
+import { navigateTo } from "../../utils/functions/navigators";
+import { useNavigate } from "react-router";
+
 type ResourceListItemProps = {
   color: boolean;
 };
 
 const ResourceListItem = (props: ResourceListItemProps) => {
   const theme = useTheme();
+  const navigate = useNavigate();
 
   return (
     <Grid
@@ -99,6 +103,7 @@ const ResourceListItem = (props: ResourceListItemProps) => {
               ? theme.palette.primary.main
               : theme.palette.text.secondary,
           }}
+          onClick={() => navigateTo(navigate, "/admin/management/resources/1")}
         >
           Przejdź
         </Button>

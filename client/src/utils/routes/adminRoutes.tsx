@@ -14,6 +14,7 @@ import PersonDetails from "../../pages/admin/managementPanel/personDetails";
 import PetDiseaseDetails from "../../pages/admin/managementPanel/petDiseaseDetails";
 import PetManagement from "../../pages/admin/managementPanel/petManagement";
 import PetsManagement from "../../pages/admin/managementPanel/petsManagement";
+import ResourceDetails from "../../pages/admin/managementPanel/resourceDetails";
 import ResourcesManagement from "../../pages/admin/managementPanel/resourcesManagement";
 import VolunteerManagement from "../../pages/admin/managementPanel/volunteerManagement";
 import { puszekData } from "../mockups/diagData";
@@ -84,6 +85,10 @@ const AdminRoutes = () => {
             <Route
               path="/management/resources"
               element={<ResourcesManagement />}
+            />
+            <Route
+              path="/management/resources/:id"
+              element={<ResourceDetails />}
             />
             <Route path="/management/guests" element={<GuestManagement />} />
             <Route
