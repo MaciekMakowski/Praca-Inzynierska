@@ -9,7 +9,7 @@ const PetDiseaseDetails = () => {
     return(
         <>
         <Typography variant="h4" color={theme.palette.text.primary}>
-        Szczegóły izolacji
+        Szczegóły choroby zwierzęcia
       </Typography>
       <Box
         sx={{
