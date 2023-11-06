@@ -13,6 +13,7 @@ const VolunteerManagement = () => {
           variant="h4"
           textAlign={"center"}
           color={theme.palette.text.primary}
+          fontWeight={600}
         >
           Zarządzanie wolontariuszami
         </Typography>

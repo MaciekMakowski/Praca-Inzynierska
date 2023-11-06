@@ -7,24 +7,25 @@ const AdoptionsManagement = () => {
 
   return (
     <>
-        <Typography
-          variant="h4"
-          textAlign={"center"}
-          color={theme.palette.text.primary}
-        >
-          Zarządzanie Adopcjami
-        </Typography>
+      <Typography
+        variant="h4"
+        textAlign={"center"}
+        color={theme.palette.text.primary}
+        fontWeight={600}
+      >
+        Zarządzanie Adopcjami
+      </Typography>
       <Box
         sx={{
           height: "90%",
           display: "flex",
           justifyContent: "start",
-          flexDirection: { xs: "column", md: "row"},
+          flexDirection: { xs: "column", md: "row" },
           width: "100%",
         }}
       >
         <AdoptionList />
-        </Box>
+      </Box>
     </>
   );
 };

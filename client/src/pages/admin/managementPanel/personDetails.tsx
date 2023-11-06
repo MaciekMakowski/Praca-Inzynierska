@@ -1,10 +1,10 @@
 import { Box, Grid, Typography, useTheme } from "@mui/material";
 
-import EventAvailableIcon from '@mui/icons-material/EventAvailable';
-import EventNoteIcon from '@mui/icons-material/EventNote';
+import EventAvailableIcon from "@mui/icons-material/EventAvailable";
+import EventNoteIcon from "@mui/icons-material/EventNote";
 import GuestVisitHistory from "../../../components/managementPanel/guestVisitHistory";
 import ManagementButton from "../../../components/managementPanel/managementButton";
-import PersonOffIcon from '@mui/icons-material/PersonOff';
+import PersonOffIcon from "@mui/icons-material/PersonOff";
 import VolunteerMeetingsList from "../../../components/managementPanel/volunteerMeetingsList";
 import shadows from "@mui/material/styles/shadows";
 import { useParams } from "react-router";
@@ -26,7 +26,6 @@ const personData: PersonDetails = {
   Adres: "ul. Nowa 1",
 };
 
-
 const PersonDetails = () => {
   const theme = useTheme();
   const { type, id } = useParams();
@@ -34,19 +33,23 @@ const PersonDetails = () => {
   return (
     <>
       <Box height={"10%"}>
-        <Typography variant="h4" color={theme.palette.text.primary}>
+        <Typography
+          variant="h4"
+          fontWeight={600}
+          color={theme.palette.text.primary}
+        >
           Profil {type == "guest" ? "gościa" : "wolontariusza"} o id {id}
         </Typography>
       </Box>
 
       <Box
         sx={{
-          height:'90%',
-          display:'flex',
-          justifyContent:'start',
+          height: "90%",
+          display: "flex",
+          justifyContent: "start",
           flexDirection: "column",
-          gap:'1rem',
-          width:'100%'
+          gap: "1rem",
+          width: "100%",
         }}
       >
         <Box
@@ -72,7 +75,7 @@ const PersonDetails = () => {
                 </Typography>
                 <Typography
                   variant="body1"
-                  textAlign={{xs:"start",md:"center"}}
+                  textAlign={{ xs: "start", md: "center" }}
                   color={theme.palette.text.primary}
                 >
                   {personData[key]}
@@ -86,25 +89,38 @@ const PersonDetails = () => {
             height: "85%",
             display: "flex",
             gap: "1rem",
-            flexDirection: { xs: "column", md: "row"}
+            flexDirection: { xs: "column", md: "row" },
           }}
         >
           <GuestVisitHistory />
-          {type == "guest" ? null : 
-            <VolunteerMeetingsList/>
-          }
-          <Box 
+          {type == "guest" ? null : <VolunteerMeetingsList />}
+          <Box
             sx={{
-              display:'flex',
-              justifyContent:'space-around',
-              gap:'1rem',
+              display: "flex",
+              justifyContent: "space-around",
+              gap: "1rem",
             }}
           >
-          <ManagementButton name="Zarejestruj wejście" ico={EventNoteIcon} disabled={false} foo={() => null}/>
-          <ManagementButton name="Zarejestruj wyjście" ico={PersonOffIcon} disabled foo={() => null}/>
-          {type == "guest" ? null : 
-            <ManagementButton name="Zapisz na spotkanie" ico={EventAvailableIcon} disabled={false} foo={() => null}/>
-          }
+            <ManagementButton
+              name="Zarejestruj wejście"
+              ico={EventNoteIcon}
+              disabled={false}
+              foo={() => null}
+            />
+            <ManagementButton
+              name="Zarejestruj wyjście"
+              ico={PersonOffIcon}
+              disabled
+              foo={() => null}
+            />
+            {type == "guest" ? null : (
+              <ManagementButton
+                name="Zapisz na spotkanie"
+                ico={EventAvailableIcon}
+                disabled={false}
+                foo={() => null}
+              />
+            )}
           </Box>
         </Box>
       </Box>

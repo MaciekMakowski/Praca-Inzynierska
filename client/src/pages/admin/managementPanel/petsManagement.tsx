@@ -12,6 +12,7 @@ const PetsManagement = () => {
           variant="h4"
           textAlign={"center"}
           color={theme.palette.text.primary}
+          fontWeight={600}
         >
           Zarządzanie zwierzętami
         </Typography>
@@ -21,7 +22,7 @@ const PetsManagement = () => {
           height: "90%",
           display: "flex",
           gap: "1rem",
-          flexDirection: { xs: "column", md: "row"}
+          flexDirection: { xs: "column", md: "row" },
         }}
       >
         <AddAnimalForm />
@@ -32,7 +33,7 @@ const PetsManagement = () => {
           }}
         ></Box>
       </Box>
-      </>
+    </>
   );
 };
 

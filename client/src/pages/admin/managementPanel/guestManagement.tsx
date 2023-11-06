@@ -13,6 +13,7 @@ const GuestManagement = () => {
           variant="h4"
           textAlign={"center"}
           color={theme.palette.text.primary}
+          fontWeight={600}
         >
           Zarządzanie gośćmi schroniska
         </Typography>
@@ -22,12 +23,12 @@ const GuestManagement = () => {
           height: "90%",
           display: "flex",
           gap: "1rem",
-          flexDirection: { xs: "column", lg: "row"},
+          flexDirection: { xs: "column", lg: "row" },
           alignItems: "center",
         }}
       >
         <AddPersonForm title="Dodaj gościa" />
-        <PersonsList type="guest"/>
+        <PersonsList type="guest" />
       </Box>
     </>
   );
