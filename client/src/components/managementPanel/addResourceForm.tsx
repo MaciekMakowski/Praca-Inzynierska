@@ -68,7 +68,7 @@ const AddResourceForm = () => {
           sx={{
             color: theme.palette.text.primary,
           }}
-          defaultValue="Jednostka"
+          defaultValue=""
           // value={newAnimal.species}
           // onChange={handleSelectChange}
         >
@@ -86,7 +86,7 @@ const AddResourceForm = () => {
           sx={{
             color: theme.palette.text.primary,
           }}
-          defaultValue="Rodzaj"
+          defaultValue=""
           // value={newAnimal.species}
           // onChange={handleSelectChange}
         >
@@ -105,7 +105,7 @@ const AddResourceForm = () => {
           sx={{
             color: theme.palette.text.primary,
           }}
-          defaultValue="Podkategoria"
+          defaultValue=""
           // value={newAnimal.species}
           // onChange={handleSelectChange}
         >

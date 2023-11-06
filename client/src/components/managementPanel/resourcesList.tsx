@@ -68,15 +68,15 @@ const ResourcesList = () => {
               width: {xs:'50px', md:'200px'},
               color: theme.palette.text.primary,
             }}
-            defaultValue="Wszystko"
+            defaultValue={1}
             // value={newAnimal.species}
             // onChange={handleSelectChange}
           >
-            <MenuItem value={0}>Wszystko</MenuItem>
-            <MenuItem value={1}>Jedzenie</MenuItem>
-            <MenuItem value={2}>Higiena</MenuItem>
-            <MenuItem value={3}>Koce</MenuItem>
-            <MenuItem value={4}>Inne</MenuItem>
+            <MenuItem value={1}>Wszystko</MenuItem>
+            <MenuItem value={2}>Jedzenie</MenuItem>
+            <MenuItem value={3}>Higiena</MenuItem>
+            <MenuItem value={4}>Koce</MenuItem>
+            <MenuItem value={5}>Inne</MenuItem>
           </Select>
         </FormControl>
       </Box>

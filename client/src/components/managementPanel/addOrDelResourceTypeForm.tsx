@@ -68,7 +68,7 @@ const AddOrDelResourceTypeForm = () => {
           sx={{
             color: theme.palette.text.primary,
           }}
-          defaultValue="Kategoria główna"
+          defaultValue=''
           // value={newAnimal.species}
           // onChange={handleSelectChange}
         >
