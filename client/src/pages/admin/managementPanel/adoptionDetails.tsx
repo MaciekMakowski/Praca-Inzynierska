@@ -21,6 +21,7 @@ const AdoptionDetails = () => {
           width: "100%",
           display: "flex",
           height: "90%",
+          gap: "1rem",
         }}
       >
         <Box
@@ -35,14 +36,18 @@ const AdoptionDetails = () => {
             boxShadow: shadows[3],
           }}
         >
+          <Typography
+            variant="h6"
+            fontWeight={600}
+            color={theme.palette.text.primary}
+          >
+            Założenie Wniosku
+          </Typography>
+          <Typography variant="body1" color={theme.palette.text.primary}>
+            Data złożenia:
+            <span style={{ fontWeight: 600 }}>20-03-2021</span>
+          </Typography>
           <Box>
-            <Typography
-              variant="h6"
-              fontWeight={600}
-              color={theme.palette.text.primary}
-            >
-              Założenie Wniosku
-            </Typography>
             <Typography variant="body1" color={theme.palette.text.primary}>
               Osoba Składająca Wniosek:{" "}
               <span style={{ fontWeight: 600 }}>Jan Kowalski</span>
@@ -78,6 +83,10 @@ const AdoptionDetails = () => {
               Przejdz do profilu
             </Button>
           </Box>
+
+          <Typography variant="body1" color={theme.palette.text.primary}>
+            Status: <span style={{ fontWeight: 600 }}>Oczekujący</span>
+          </Typography>
         </Box>
       </Box>
     </>
