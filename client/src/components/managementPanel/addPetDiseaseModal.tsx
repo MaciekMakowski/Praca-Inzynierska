@@ -76,6 +76,16 @@ const AddPetDiseaseModal = (props: EditPetModalProps) => {
         fullWidth
         renderInput={(params) => <TextField {...params} label="Nazwa choroby" />}
         />
+        <TextField
+          fullWidth
+          label="Objawy"
+          multiline
+          rows={4}
+          variant="outlined"
+        
+        >
+
+        </TextField>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
               <DatePicker
