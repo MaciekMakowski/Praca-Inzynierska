@@ -39,8 +39,10 @@ const PetManagementImages = () => {
             alignItems: "center",
             cursor: "pointer",
           }}
+          component="label"
         >
-          <Typography variant="h3">+</Typography>
+          <input type="file" accept="image/*"  style={{display:'none'}} ></input>
+          <Typography variant="h3" color={theme.palette.text.primary}>+</Typography>
         </Button>
       </ImageList>
     </Box>
