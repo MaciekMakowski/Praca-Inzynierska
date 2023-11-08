@@ -1,6 +1,8 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
 
 import EditIsolationModal from "../../../components/managementPanel/editIsolationModal";
+import EditPetDiseaseModal from "../../../components/managementPanel/editPetDiseaseModal";
+import { testDiseaseData } from "../../../utils/mockups/adminMenu";
 import { useState } from "react";
 
 const PetDiseaseDetails = () => {
@@ -32,8 +34,16 @@ const PetDiseaseDetails = () => {
             color={theme.palette.text.primary}
             fontWeight={600}
           >
+            Rodzaj choroby
+            <Typography variant="body1"> {testDiseaseData.diseaseId}</Typography>
+          </Typography>
+          <Typography
+            variant="h6"
+            color={theme.palette.text.primary}
+            fontWeight={600}
+          >
             Choroba zwierzęcia
-            <Typography variant="body1"> Imie zwierzęcia</Typography>
+            <Typography variant="body1"> {testDiseaseData.petId}</Typography>
           </Typography>
           <Typography
             variant="subtitle1"
@@ -41,7 +51,10 @@ const PetDiseaseDetails = () => {
             fontWeight={600}
           >
             Data rozpoczęcia
-            <Typography variant="body1"> 20-03-2021</Typography>
+            <Typography variant="body1">
+              {" "}
+              {testDiseaseData.startDate}
+            </Typography>
           </Typography>
           <Typography
             variant="subtitle1"
@@ -49,7 +62,7 @@ const PetDiseaseDetails = () => {
             fontWeight={600}
           >
             Data zakończenia
-            <Typography variant="body1"> brak</Typography>
+            <Typography variant="body1"> {testDiseaseData.endDate}</Typography>
           </Typography>
           <Typography
             variant="subtitle1"
@@ -57,7 +70,7 @@ const PetDiseaseDetails = () => {
             fontWeight={600}
           >
             Objawy
-            <Typography variant="body1"> Jakieś tam objawy</Typography>
+            <Typography variant="body1"> {testDiseaseData.status}</Typography>
           </Typography>
           <Typography
             variant="subtitle1"
@@ -65,7 +78,7 @@ const PetDiseaseDetails = () => {
             fontWeight={600}
           >
             Status
-            <Typography variant="body1"> Zakończona</Typography>
+            <Typography variant="body1"> {testDiseaseData.status}</Typography>
           </Typography>
           <Box>
             <Button variant="contained" onClick={() => setOpen(true)}>
@@ -74,7 +87,11 @@ const PetDiseaseDetails = () => {
           </Box>
         </Box>
       </Box>
-      <EditIsolationModal setOpen={setOpen} open={open} />
+      <EditPetDiseaseModal
+        open={open}
+        setOpen={setOpen}
+        data={testDiseaseData}
+      />
     </>
   );
 };
