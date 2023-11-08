@@ -47,7 +47,6 @@ const AddResourceForm = (props: AddResourceFormProps) => {
 
   const selectChange =(event: SelectChangeEvent) => {
     handleSelectChange(event, setNewResource);
-    console.log(newResource.type)
   }
   const textChange = (event: ChangeEvent<HTMLInputElement>) => {
     handleTextChange(event, setNewResource)

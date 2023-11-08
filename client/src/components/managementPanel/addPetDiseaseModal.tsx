@@ -16,7 +16,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { diseasesData } from "../../utils/mockups/diagData";
+import { diseasesData } from "../../utils/mockups/adminMenu";
 import { handleChangeDate } from "../../utils/functions/handlers";
 import { useState } from "react";
 

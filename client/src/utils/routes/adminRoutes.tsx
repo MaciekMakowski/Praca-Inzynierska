@@ -18,7 +18,7 @@ import PetsManagement from "../../pages/admin/managementPanel/petsManagement";
 import ResourceDetails from "../../pages/admin/managementPanel/resourceDetails";
 import ResourcesManagement from "../../pages/admin/managementPanel/resourcesManagement";
 import VolunteerManagement from "../../pages/admin/managementPanel/volunteerManagement";
-import { puszekData } from "../mockups/diagData";
+import { puszekData } from "../mockups/adminMenu";
 
 const AdminRoutes = () => {
   const location = useLocation();

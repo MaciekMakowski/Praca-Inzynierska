@@ -63,10 +63,10 @@ export type PersonType = {
 export type IsolationType = {
   number?: number;
   reason: string;
-  desc: string;
   startDate: string;
   endDate: string;
   petId: number;
+  status: string
 };
 
 export type PetDiseaseType = {
@@ -131,3 +131,4 @@ export type ResourceType = {
   unit: string;
   expirationDate?: string | null;
 };
+

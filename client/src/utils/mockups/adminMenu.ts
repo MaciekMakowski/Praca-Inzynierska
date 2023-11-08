@@ -1,4 +1,4 @@
-import { AnimalType, DiseaseType, PetDiseaseType } from "../types/basicTypes";
+import { AnimalType, DiseaseType, IsolationType, PetDiseaseType } from "../types/basicTypes";
 
 import ConstructionIcon from '@mui/icons-material/Construction';
 import PersonIcon from '@mui/icons-material/Person';
@@ -152,8 +152,8 @@ export const puszekData:AnimalType={
   export const testDiseaseData:PetDiseaseType={
     diseaseId:1,
     petId:23,
-    startDate:'2021-05-03',
-    endDate:'2021-05-10'
+    startDate:'2021-10-10',
+    endDate:'2021-10-10',
   }
 
 export const diseaseDataDetails:DiseaseType ={
@@ -161,4 +161,13 @@ export const diseaseDataDetails:DiseaseType ={
     name:'Wścieklizna',
     description:'jakis opis',
     treatment:'jakis opis'
+}
+
+export const isolationDataDetails:IsolationType ={
+    number:1,
+    reason:'jakis opis',
+    startDate:'2021-10-10',
+    endDate:'2021-10-10',
+    petId:23,
+    status:isolationStatusList[0].name
 }

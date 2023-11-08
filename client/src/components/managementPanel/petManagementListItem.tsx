@@ -1,7 +1,7 @@
 import { Button, Grid, Typography, useTheme } from "@mui/material";
 
 import InfoModal from "./InfoModal";
-import { testDiseaseData } from "../../utils/mockups/diagData";
+import { testDiseaseData } from "../../utils/mockups/adminMenu";
 import { useState } from "react";
 
 type PetManagementListItemProps = {

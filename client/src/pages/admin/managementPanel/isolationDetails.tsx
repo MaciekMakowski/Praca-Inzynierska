@@ -1,6 +1,7 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
 
 import EditIsolationModal from "../../../components/managementPanel/editIsolationModal";
+import { isolationDataDetails } from "../../../utils/mockups/adminMenu";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 
@@ -34,7 +35,7 @@ const IsolationDetails = () => {
             fontWeight={600}
           >
             Izolacja zwierzęcia
-            <Typography variant="body1"> Imie zwierzęcia</Typography>
+            <Typography variant="body1"> {isolationDataDetails.petId}</Typography>
           </Typography>
           <Typography
             variant="subtitle1"
@@ -42,7 +43,7 @@ const IsolationDetails = () => {
             fontWeight={600}
           >
             Data rozpoczęcia
-            <Typography variant="body1"> 20-03-2021</Typography>
+            <Typography variant="body1"> {isolationDataDetails.startDate}</Typography>
           </Typography>
           <Typography
             variant="subtitle1"
@@ -50,7 +51,7 @@ const IsolationDetails = () => {
             fontWeight={600}
           >
             Data zakończenia
-            <Typography variant="body1"> brak</Typography>
+            <Typography variant="body1"> {isolationDataDetails.endDate}</Typography>
           </Typography>
           <Typography
             variant="subtitle1"
@@ -58,7 +59,7 @@ const IsolationDetails = () => {
             fontWeight={600}
           >
             Powód
-            <Typography variant="body1"> Jakiś tam powód</Typography>
+            <Typography variant="body1"> {isolationDataDetails.reason}</Typography>
           </Typography>
           <Typography
             variant="subtitle1"
@@ -66,7 +67,7 @@ const IsolationDetails = () => {
             fontWeight={600}
           >
             Status
-            <Typography variant="body1"> Zakończona</Typography>
+            <Typography variant="body1"> {isolationDataDetails.status}</Typography>
           </Typography>
           <Box>
             <Button variant="contained" onClick={() => setOpen(true)}>
@@ -75,7 +76,7 @@ const IsolationDetails = () => {
           </Box>
         </Box>
       </Box>
-      <EditIsolationModal setOpen={setOpen} open={open} />
+      <EditIsolationModal setOpen={setOpen} open={open} data={isolationDataDetails}/>
     </>
   );
 };
