@@ -166,6 +166,7 @@ const AddResourceForm = (props: AddResourceFormProps) => {
               sx={{
                 flexGrow: 1,
               }}
+              format="DD-MM-YYYY"
               value={dayjs(newResource.expirationDate)}
               label="Data przydatności" 
               onChange={(value:Dayjs | null) =>  dateChange(value)}

@@ -25,8 +25,8 @@ const AddIsolationModal = (props: EditPetModalProps) => {
     startDate: "",
     endDate: "",
     reason: "",
-    desc: "",
     petId: typeof props.data === "number" ? props.data : 0,
+    status: "Zakończona",
   });
   const dateChange = (value: Dayjs | null) => {
     if (value === null) return;
@@ -86,6 +86,7 @@ const AddIsolationModal = (props: EditPetModalProps) => {
               sx={{
                 flexGrow: 1,
               }}
+              format="DD-MM-YYYY"
               label="Data rozpoczęcia izolacji"
               onChange={(value: Dayjs | null) => dateChange(value)}
             />

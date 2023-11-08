@@ -82,6 +82,7 @@ const AddPetDiseaseModal = (props: EditPetModalProps) => {
                 sx={{
                   flexGrow: 1,
                 }}
+                format="DD-MM-YYYY"
                 label="Data rozpoczęcia choroby"
                 onChange={(value: Dayjs | null) => dateChange(value)}
               />

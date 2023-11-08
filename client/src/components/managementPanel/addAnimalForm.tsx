@@ -156,7 +156,8 @@ const AddAnimalForm = (props:PetManagementProps) => {
             sx={{
               flexGrow: 1,
             }}
-            defaultValue={dayjs(newAnimal.birthDate)}
+            format="DD-MM-YYYY"
+            value={dayjs(newAnimal.birthDate)}
             label="Data urodzenia"
             onChange={(value: Dayjs | null) => dateChange(value)}
           />

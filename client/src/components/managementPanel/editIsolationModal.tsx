@@ -102,6 +102,7 @@ const EditIsolationModal = (props: EditIsolationModalProps) => {
               sx={{
                 flexGrow: 1,
               }}
+              format="DD-MM-YYYY"
               label="Data rozpoczęcia izolacji"
               value={dayjs(newIsolation.startDate)}
               onChange={(value: Dayjs | null) => dateChange(value, "startDate")}
@@ -115,6 +116,7 @@ const EditIsolationModal = (props: EditIsolationModalProps) => {
               sx={{
                 flexGrow: 1,
               }}
+              format="DD-MM-YYYY"
               defaultValue={dayjs()}
               label="Data zakończenia izolacji"
               value={dayjs(newIsolation.endDate)}

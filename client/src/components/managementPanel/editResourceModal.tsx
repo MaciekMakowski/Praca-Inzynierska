@@ -1,30 +1,11 @@
 import {
   Box,
-  Button,
-  FormControl,
-  IconButton,
-  InputLabel,
-  MenuItem,
   Modal,
-  Select,
-  TextField,
-  Typography,
   useTheme,
 } from "@mui/material";
-import { CategoryList, SubcategoryList, UnitList } from "../../utils/mockups/selects";
-import dayjs, { Dayjs } from "dayjs";
-import { useEffect, useState } from "react";
 
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import AddResourceForm from "./addResourceForm";
-import CloseIcon from "@mui/icons-material/Close";
-import { DatePicker } from "@mui/x-date-pickers";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { ResourceType } from "../../utils/types/basicTypes";
-import { SelectChangeEvent } from "@mui/material";
-import { handleChangeDate } from "../../utils/functions/handlers";
-import { handleSelectChange } from "../../utils/functions/handlers";
 
 type EditResourceModalProps = {
   open: boolean;

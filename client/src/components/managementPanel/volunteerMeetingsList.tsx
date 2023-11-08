@@ -57,6 +57,7 @@ const VolunteerMeetingsList = () => {
               sx={{
                 flexGrow: 1,
               }}
+              format="DD-MM-YYYY"
               defaultValue={dayjs(filter, "DD-MM-YYYY")}
               label="Data wizyty"
               onChange={(value: Dayjs | null) => dateChange(value)}
