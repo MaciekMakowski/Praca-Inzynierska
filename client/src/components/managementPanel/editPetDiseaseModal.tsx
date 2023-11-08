@@ -14,11 +14,15 @@ import {
 } from "@mui/material";
 import {
   EditIsolationModalProps,
+  EditPetDiseaseModalProps,
   IsolationType,
   PetDiseaseType,
 } from "../../utils/types/basicTypes";
 import dayjs, { Dayjs } from "dayjs";
-import { handleChangeDate, handleSelectChange } from "../../utils/functions/handlers";
+import {
+  handleChangeDate,
+  handleSelectChange,
+} from "../../utils/functions/handlers";
 import { useEffect, useState } from "react";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -28,29 +32,29 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { isolationStatusList } from "../../utils/mockups/adminMenu";
 
-const EditIsolationModal = (props: EditIsolationModalProps) => {
+const EditPetDiseaseModal = (props: EditPetDiseaseModalProps) => {
   const theme = useTheme();
   const handleClose = () => props.setOpen(false);
-  const [newIsolation, setNewIsolation] = useState<IsolationType>({
+  const [newPetDisease, setNewPetDisease] = useState<PetDiseaseType>({
     petId: 0,
+    diseaseId: 0,
     startDate: "",
     endDate: "",
     status: "",
-    reason: "",
+    symptoms: "",
   });
-  const dateChange = (value: Dayjs | null, fieldName:string) => {
+  const dateChange = (value: Dayjs | null, fieldName: string) => {
     if (value === null) return;
-    handleChangeDate(value.format("DD-MM-YYYY"), setNewIsolation, fieldName);
+    handleChangeDate(value.format("DD-MM-YYYY"), setNewPetDisease, fieldName);
   };
 
-  const selectChange = (event:SelectChangeEvent) => {
-    handleSelectChange(event, setNewIsolation);
-  }
-
+  const selectChange = (event: SelectChangeEvent) => {
+    handleSelectChange(event, setNewPetDisease);
+  };
 
   useEffect(() => {
-    if(props.data){
-      setNewIsolation(props.data)
+    if (props.data) {
+      setNewPetDisease(props.data);
     }
   }, [props.data]);
 
@@ -83,18 +87,18 @@ const EditIsolationModal = (props: EditIsolationModalProps) => {
           }}
         >
           <Typography variant="h5" color={theme.palette.text.primary}>
-            Edytuj izolacje
+            Edytuj chorobę zwierzęcia
           </Typography>
           <IconButton onClick={handleClose}>
             <CloseIcon />
           </IconButton>
         </Box>
-        <TextField 
-        label="Powód"
-        fullWidth
-        multiline
-        minRows={4}
-        value={newIsolation.reason}
+        <TextField
+          label="Objawy"
+          fullWidth
+          multiline
+          minRows={4}
+          value={newPetDisease.symptoms}
         ></TextField>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={["DatePicker"]}>
@@ -103,8 +107,8 @@ const EditIsolationModal = (props: EditIsolationModalProps) => {
                 flexGrow: 1,
               }}
               format="DD-MM-YYYY"
-              label="Data rozpoczęcia izolacji"
-              value={dayjs(newIsolation.startDate)}
+              label="Data rozpoczęcia choroby"
+              value={dayjs(newPetDisease.startDate)}
               onChange={(value: Dayjs | null) => dateChange(value, "startDate")}
             />
           </DemoContainer>
@@ -116,31 +120,33 @@ const EditIsolationModal = (props: EditIsolationModalProps) => {
                 flexGrow: 1,
               }}
               format="DD-MM-YYYY"
-              label="Data zakończenia izolacji"
-              value={dayjs(newIsolation.endDate)}
-              onChange={(value: Dayjs | null) => dateChange(value , "endDate")}
+              label="Data zakończenia choroby"
+              value={dayjs(newPetDisease.endDate)}
+              onChange={(value: Dayjs | null) => dateChange(value, "endDate")}
             />
           </DemoContainer>
         </LocalizationProvider>
         <FormControl>
-        <InputLabel>Status</InputLabel>
-        <Select
-          label="Rodzaj"
-          name="status"
-          variant="outlined"
-          sx={{
-            color: theme.palette.text.primary,
-          }}
-          value={newIsolation.status}
-          onChange={selectChange}
-        >
-          {isolationStatusList.map((status,index) => {
-            return(
-              <MenuItem key={index} value={status.name}>{status.name}</MenuItem>
-            )
-          })}
-        </Select>
-      </FormControl>
+          <InputLabel>Status</InputLabel>
+          <Select
+            label="Rodzaj"
+            name="status"
+            variant="outlined"
+            sx={{
+              color: theme.palette.text.primary,
+            }}
+            value={newPetDisease.status}
+            onChange={selectChange}
+          >
+            {isolationStatusList.map((status, index) => {
+              return (
+                <MenuItem key={index} value={status.name}>
+                  {status.name}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
 
         <Button variant="contained">Zabisz</Button>
       </Box>
@@ -148,4 +154,4 @@ const EditIsolationModal = (props: EditIsolationModalProps) => {
   );
 };
 
-export default EditIsolationModal;
+export default EditPetDiseaseModal;
