@@ -11,7 +11,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { handleChangeDate, handleSelectChange, handleTextChange } from "../../utils/functions/handlers";
 
@@ -23,18 +23,18 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 const AddAnimalForm = (props:PetManagementProps) => {
   const theme = useTheme();
   const [newAnimal, setNewAnimal] = useState<AnimalType>({
-    name: props.data ? props.data.name : "",
-    findPlace: props.data ? props.data.findPlace : "",
-    race: props.data ? props.data.race : "",
-    number: props.data ? props.data.number : 0,
-    species: props.data ? props.data.species : "",
-    weight: props.data ? props.data.weight : 0,
-    sex: props.data ? props.data.sex : "",
-    birthDate: props.data ? props.data.birthDate : "",
-    desc:props.data ? props.data.desc : "",
-    isIll: props.data ? props.data.isIll : false,
-    isIsolated: props.data ? props.data.isIsolated : false,
-    status:props.data ? props.data.status : "New",
+    name: "",
+    findPlace: "",
+    race:  "",
+    number: 0,
+    species:  "",
+    weight:  0,
+    sex:  "",
+    birthDate: "",
+    desc: "",
+    isIll: false,
+    isIsolated:  false,
+    status: "New",
   });
 
   const textChange = (event: ChangeEvent<HTMLInputElement>) =>{
@@ -48,6 +48,12 @@ const AddAnimalForm = (props:PetManagementProps) => {
     if (value === null) return;
     handleChangeDate(value.format('DD-MM-YYYY'), setNewAnimal, 'birthDate')
   }
+
+  useEffect(() => {
+    if(!props.data) return;
+    setNewAnimal(props.data);
+  }, [props.data]);
+
   return (
     <Box
       sx={{

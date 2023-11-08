@@ -12,17 +12,22 @@ import {
   useTheme,
 } from "@mui/material";
 import { CategoryList, SubcategoryList, UnitList } from "../../utils/mockups/selects";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
+import { handleSelectChange, handleTextChange } from "../../utils/functions/handlers";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { ResourceType } from "../../utils/types/basicTypes";
-import { handleSelectChange } from "../../utils/functions/handlers";
 
-const AddResourceForm = () => {
+type AddResourceFormProps = {
+  data?: ResourceType;
+};
+
+
+const AddResourceForm = (props: AddResourceFormProps) => {
   const theme = useTheme();
   const [checked, setChecked] = useState(false);
   const [newResource, setNewResource] = useState<ResourceType>({
@@ -43,12 +48,26 @@ const AddResourceForm = () => {
     handleSelectChange(event, setNewResource);
     console.log(newResource.type)
   }
+  const textChange = (event: ChangeEvent<HTMLInputElement>) => {
+    handleTextChange(event, setNewResource)
+  }
+
+  const dateChange = (value: Dayjs | null) => {
+    if (value === null) return;
+    handleChangeDate(value.format('DD-MM-YYYY'), setNewAnimal, 'expirationDate')
+  }
+
+  useEffect(() => {
+    if(!props.data) return;
+    setNewResource(props.data);
+    setChecked(props.data.expirationDate !== null);
+  }, [props.data]);
 
   return (
     <Box
       sx={{
         backgroundColor: theme.palette.background.adminField,
-        minWidth: "350px",
+        minWidth: props.data ? '100%' : "350px",
         height: "fit-content",
         textAlign: "center",
         boxSizing: "border-box",
@@ -68,31 +87,33 @@ const AddResourceForm = () => {
         label="Nazwa"
         name="name"
         color="primary"
-        //onChange={handleTextChange}
+        onChange={textChange}
+        value={newResource.name}
       />
       <TextField
         variant="outlined"
         label="Ilość"
         name="findPlace"
         color="primary"
-        //onChange={handleTextChange}
+        onChange={textChange}
+        value={newResource.quantity}
       />
       <FormControl>
         <InputLabel>Jedonstka</InputLabel>
         <Select
           label="Jednostka"
-          name="species"
+          name="unit"
           variant="outlined"
           sx={{
             color: theme.palette.text.primary,
           }}
           defaultValue=""
-          // value={newAnimal.species}
-          // onChange={handleSelectChange}
+          value={newResource.unit}
+          onChange={selectChange}
         >
           {UnitList.map((unit) => {
             return(
-              <MenuItem key={unit.id} value={unit.id}>{unit.name}</MenuItem>
+              <MenuItem key={unit.id} value={unit.name}>{unit.name}</MenuItem>
             )
           })}
         </Select>
@@ -121,14 +142,14 @@ const AddResourceForm = () => {
         <InputLabel>Podkategoria</InputLabel>
         <Select
           label="Podkategoria"
-          name="type"
+          name="subtype"
           variant="outlined"
           sx={{
             color: theme.palette.text.primary,
           }}
           defaultValue=""
-          // value={newAnimal.species}
-          // onChange={handleSelectChange}
+          value={newResource.subtype}
+          onChange={selectChange}
         >
           {SubcategoryList.map((cat) => {
               if(cat.categoryId === newResource.type){
@@ -145,7 +166,9 @@ const AddResourceForm = () => {
               sx={{
                 flexGrow: 1,
               }}
-              label="Data przydatności" //onChange={(value:Dayjs | null) =>  handleChangeBirthDate(value)}
+              value={dayjs(newResource.expirationDate)}
+              label="Data przydatności" 
+              onChange={(value:Dayjs | null) =>  dateChange(value)}
             />
           </DemoContainer>
         </LocalizationProvider>
@@ -156,7 +179,7 @@ const AddResourceForm = () => {
           alignItems: "center",
         }}
       >
-        <Checkbox onChange={handleCheckBoxChange} />
+        <Checkbox onChange={handleCheckBoxChange}  checked={checked}/>
         <Typography variant="subtitle1" color={theme.palette.text.primary}>
           Posiada datę przydatności
         </Typography>
