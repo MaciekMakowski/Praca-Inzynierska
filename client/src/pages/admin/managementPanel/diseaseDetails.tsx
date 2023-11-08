@@ -2,6 +2,7 @@ import { Box, Button, Typography, useTheme } from "@mui/material";
 
 import AddDiseaseForm from "../../../components/managementPanel/addDiseaseForm";
 import EditDiseaseModal from "../../../components/managementPanel/editDiseaseModal";
+import { diseaseDataDetails } from "../../../utils/mockups/adminMenu";
 import { useState } from "react";
 
 const DiseaseDetails = () => {
@@ -35,7 +36,7 @@ const DiseaseDetails = () => {
             fontWeight={600}
           >
             Nazwa choroby:
-            <Typography variant="body1"> Jakaś nazwa</Typography>
+            <Typography variant="body1"> {diseaseDataDetails.name}</Typography>
           </Typography>
           <Typography
             variant="subtitle1"
@@ -45,8 +46,7 @@ const DiseaseDetails = () => {
             Objawy:
             <Typography variant="body1">
               {" "}
-              jakieś objawy text, jakieś objawy text, jakieś objawy text, jakieś
-              objawy text, jakieś objawy text, jakieś objawy text
+              {diseaseDataDetails.description}
             </Typography>
           </Typography>
           <Typography
@@ -57,8 +57,7 @@ const DiseaseDetails = () => {
             Zalecane leczenie:
             <Typography variant="body1">
               {" "}
-              jakieś objawy text, jakieś objawy text, jakieś objawy text, jakieś
-              objawy text, jakieś objawy text, jakieś objawy text
+              {diseaseDataDetails.treatment}
             </Typography>
           </Typography>
           <Box>
@@ -68,7 +67,7 @@ const DiseaseDetails = () => {
           </Box>
         </Box>
       </Box>
-      <EditDiseaseModal open={open} setOpen={setOpen} />
+      <EditDiseaseModal open={open} setOpen={setOpen} data={diseaseDataDetails}/>
     </>
   );
 };

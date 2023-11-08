@@ -1,7 +1,8 @@
 import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
 import { DiseaseManagementProps, DiseaseType } from "../../utils/types/basicTypes";
+import { useEffect, useState } from "react";
 
-import { useState } from "react";
+import { handleTextChange } from "../../utils/functions/handlers";
 
 const AddDiseaseForm = (props:DiseaseManagementProps) => {
   const theme = useTheme();
@@ -11,6 +12,16 @@ const AddDiseaseForm = (props:DiseaseManagementProps) => {
     description: "",
     treatment: "",
   });
+
+
+  const textChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleTextChange(e, setNewDisease);
+  }
+  useEffect(() => {
+    if(props.data){
+      setNewDisease(props.data)
+    }
+  },[props.data])
 
   return (
     <Box
@@ -34,34 +45,28 @@ const AddDiseaseForm = (props:DiseaseManagementProps) => {
       <TextField
         fullWidth
         label="Nazwa choroby"
+        name="name"
         variant="outlined"
-        onChange={(e) =>
-          setNewDisease((disease) => ({ ...disease, name: e.target.value }))
-        }
+        onChange={textChange}
+        value={newDisase.name}
       />
       <TextField
         label="Objawy"
+        name="description"
         multiline
         fullWidth
         rows={4}
-        onChange={(e) =>
-          setNewDisease((disease) => ({
-            ...disease,
-            description: e.target.value,
-          }))
-        }
+        onChange={textChange}
+        value={newDisase.description}
       />
       <TextField
         label="Leczenie"
+        name="treatment"
         fullWidth
         multiline
         rows={4}
-        onChange={(e) =>
-          setNewDisease((disease) => ({
-            ...disease,
-            treatment: e.target.value,
-          }))
-        }
+        onChange={textChange}
+        value={newDisase.treatment}
       />
       <Button
         variant="contained"

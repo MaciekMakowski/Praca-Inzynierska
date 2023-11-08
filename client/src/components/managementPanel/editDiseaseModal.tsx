@@ -2,8 +2,9 @@ import { Box, IconButton, Modal, useTheme } from "@mui/material";
 
 import AddDiseaseForm from "./addDiseaseForm";
 import CloseIcon from "@mui/icons-material/Close";
+import { EditDiseaseProps } from "../../utils/types/basicTypes";
 
-const EditDiseaseModal = (props: any) => {
+const EditDiseaseModal = (props: EditDiseaseProps) => {
     const theme = useTheme();
     const handleClose = () => props.setOpen(false);
     return(
