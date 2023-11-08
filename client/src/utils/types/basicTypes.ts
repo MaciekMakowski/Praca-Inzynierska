@@ -1,3 +1,18 @@
+import { OverridableComponent } from "@mui/material/OverridableComponent";
+import { SvgIconTypeMap } from "@mui/material";
+
+export type subListType = {
+  name:string,
+  path:string,
+}
+
+export type menuListType = {
+  ico:OverridableComponent<SvgIconTypeMap<{}, "svg">> & { muiName: string; },
+  name:string,
+  path:string,
+  subList?:subListType[]
+}
+
 export type ChartDataType = {
     labels: string[];
     datasets: {
@@ -101,4 +116,15 @@ export type ConfirmModalProps = {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     petid:number,
+}
+
+export type ResourceType = {
+
+  id:number,
+  name:string,
+  type:string,
+  subtype:string,
+  quantity:number,
+  unit:string,
+  expirationDate?:string | null,
 }

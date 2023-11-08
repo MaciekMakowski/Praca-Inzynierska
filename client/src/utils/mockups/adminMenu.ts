@@ -1,21 +1,10 @@
 import ConstructionIcon from '@mui/icons-material/Construction';
-import { OverridableComponent } from "@mui/material/OverridableComponent";
 import PersonIcon from '@mui/icons-material/Person';
+import { ResourceType } from '../types/basicTypes';
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
-import { SvgIconTypeMap } from "@mui/material";
 import TvIcon from '@mui/icons-material/Tv';
-
-export type subListType = {
-    name:string,
-    path:string,
-}
-
-export type menuListType = {
-    ico:OverridableComponent<SvgIconTypeMap<{}, "svg">> & { muiName: string; },
-    name:string,
-    path:string,
-    subList?:subListType[]
-}
+import { menuListType } from '../types/basicTypes';
+import { subListType } from '../types/basicTypes';
 
 export const subList:subListType[] = [
     {
@@ -104,3 +93,14 @@ export const isolationStatusList =[
     },
     
 ]
+
+
+export const resourceDetailsData:ResourceType ={
+    id:1,
+    name:"Whiskas",
+    quantity:10,
+    subtype:"Karma sucha dla kota",
+    type:"Jedzenie",
+    unit:"Kilogramy",
+    expirationDate:"2021-10-10"
+}

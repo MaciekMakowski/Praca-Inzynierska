@@ -1,5 +1,7 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
 
+import EditResourceModal from "../../../components/managementPanel/editResourceModal";
+import { resourceDetailsData } from "../../../utils/mockups/adminMenu";
 import { useState } from "react";
 
 const ResourceDetails = () => {
@@ -32,7 +34,7 @@ const ResourceDetails = () => {
             fontWeight={600}
           >
             Nazwa zasobu
-            <Typography variant="body1"> Whiskas</Typography>
+            <Typography variant="body1"> {resourceDetailsData.name}</Typography>
           </Typography>
           <Typography
             variant="subtitle1"
@@ -40,7 +42,7 @@ const ResourceDetails = () => {
             fontWeight={600}
           >
             Rodzaj zasobu
-            <Typography variant="body1"> Jedzenie</Typography>
+            <Typography variant="body1"> {resourceDetailsData.type}</Typography>
           </Typography>
           <Typography
             variant="subtitle1"
@@ -48,7 +50,7 @@ const ResourceDetails = () => {
             fontWeight={600}
           >
             Podkategoria
-            <Typography variant="body1"> Karma sucha</Typography>
+            <Typography variant="body1"> {resourceDetailsData.subtype}</Typography>
           </Typography>
           <Typography
             variant="subtitle1"
@@ -56,7 +58,7 @@ const ResourceDetails = () => {
             fontWeight={600}
           >
             Ilość
-            <Typography variant="body1"> 10</Typography>
+            <Typography variant="body1"> {resourceDetailsData.quantity}</Typography>
           </Typography>
           <Typography
             variant="subtitle1"
@@ -64,7 +66,7 @@ const ResourceDetails = () => {
             fontWeight={600}
           >
             Jednostka
-            <Typography variant="body1"> Kg</Typography>
+            <Typography variant="body1"> {resourceDetailsData.unit}</Typography>
           </Typography>
           <Typography
             variant="subtitle1"
@@ -72,7 +74,7 @@ const ResourceDetails = () => {
             fontWeight={600}
           >
             Data ważności
-            <Typography variant="body1"> 10-09-03</Typography>
+            <Typography variant="body1"> {resourceDetailsData.expirationDate}</Typography>
           </Typography>
           <Box>
             <Button variant="contained" onClick={() => setOpen(true)}>
@@ -81,6 +83,7 @@ const ResourceDetails = () => {
           </Box>
         </Box>
       </Box>
+      <EditResourceModal open={open} setOpen={setOpen} data={resourceDetailsData}/>
     </>
   );
 };

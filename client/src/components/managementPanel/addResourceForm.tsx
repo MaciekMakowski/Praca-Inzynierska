@@ -6,10 +6,12 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  SelectChangeEvent,
   TextField,
   Typography,
   useTheme,
 } from "@mui/material";
+import { CategoryList, SubcategoryList, UnitList } from "../../utils/mockups/selects";
 import { ChangeEvent, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 
@@ -17,14 +19,30 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { ResourceType } from "../../utils/types/basicTypes";
+import { handleSelectChange } from "../../utils/functions/handlers";
 
 const AddResourceForm = () => {
   const theme = useTheme();
   const [checked, setChecked] = useState(false);
+  const [newResource, setNewResource] = useState<ResourceType>({
+    id: 0,
+    name: "",
+    type: "",
+    subtype: "",
+    quantity: 0,
+    unit: "",
+    expirationDate: null,
+  })
 
   const handleCheckBoxChange = (event: ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
   };
+
+  const selectChange =(event: SelectChangeEvent) => {
+    handleSelectChange(event, setNewResource);
+    console.log(newResource.type)
+  }
 
   return (
     <Box
@@ -72,9 +90,11 @@ const AddResourceForm = () => {
           // value={newAnimal.species}
           // onChange={handleSelectChange}
         >
-          <MenuItem value={1}>Kilogramy</MenuItem>
-          <MenuItem value={2}>Litry</MenuItem>
-          <MenuItem value={3}>Sztuki</MenuItem>
+          {UnitList.map((unit) => {
+            return(
+              <MenuItem key={unit.id} value={unit.id}>{unit.name}</MenuItem>
+            )
+          })}
         </Select>
       </FormControl>
       <FormControl>
@@ -87,13 +107,14 @@ const AddResourceForm = () => {
             color: theme.palette.text.primary,
           }}
           defaultValue=""
-          // value={newAnimal.species}
-          // onChange={handleSelectChange}
+          value={newResource.type}
+          onChange={selectChange}
         >
-          <MenuItem value={1}>Jedzenie</MenuItem>
-          <MenuItem value={2}>Higiena</MenuItem>
-          <MenuItem value={3}>Zabawka</MenuItem>
-          <MenuItem value={3}>Koce</MenuItem>
+          {CategoryList.map((cat) => {
+            return(
+              <MenuItem key={cat.id} value={cat.name}>{cat.name}</MenuItem>
+            )
+          })}
         </Select>
       </FormControl>
       <FormControl>
@@ -109,10 +130,12 @@ const AddResourceForm = () => {
           // value={newAnimal.species}
           // onChange={handleSelectChange}
         >
-          <MenuItem value={1}>Jedzenie</MenuItem>
-          <MenuItem value={2}>Higiena</MenuItem>
-          <MenuItem value={3}>Zabawka</MenuItem>
-          <MenuItem value={3}>Koce</MenuItem>
+          {SubcategoryList.map((cat) => {
+              if(cat.categoryId === newResource.type){
+                return <MenuItem key={cat.id} value={cat.name}>{cat.name}</MenuItem>
+              }
+              
+          })}
         </Select>
       </FormControl>
       {checked && (
