@@ -28,6 +28,8 @@ const AddPetDiseaseModal = (props: EditPetModalProps) => {
     endDate: "",
     diseaseId: 0,
     petId: typeof props.data === "number" ? props.data : 0,
+    symptoms: "",
+    status: "active",
   });
   const dateChange = (value: Dayjs | null) => {
     if (value === null) return;
