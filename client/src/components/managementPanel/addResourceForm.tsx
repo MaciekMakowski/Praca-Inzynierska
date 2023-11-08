@@ -21,6 +21,7 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { ResourceType } from "../../utils/types/basicTypes";
+import { handleChangeDate } from "../../utils/functions/handlers";
 
 type AddResourceFormProps = {
   data?: ResourceType;
@@ -54,7 +55,7 @@ const AddResourceForm = (props: AddResourceFormProps) => {
 
   const dateChange = (value: Dayjs | null) => {
     if (value === null) return;
-    handleChangeDate(value.format('DD-MM-YYYY'), setNewAnimal, 'expirationDate')
+    handleChangeDate(value.format('DD-MM-YYYY'), setNewResource, 'expirationDate')
   }
 
   useEffect(() => {
