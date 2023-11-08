@@ -74,6 +74,8 @@ export type PetDiseaseType = {
   petId: number;
   startDate: string;
   endDate: string | null;
+  symptoms: string;
+  status: string;
 };
 
 export type PetManagementProps = {
@@ -115,6 +117,12 @@ export type DiseaseInfoProps = {
   desc: string;
   buttonText: string;
 };
+
+export type EditPetDiseaseModalProps = {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  data?: PetDiseaseType;
+}
 
 export type ConfirmModalProps = {
   open: boolean;

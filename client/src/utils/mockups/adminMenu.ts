@@ -154,6 +154,8 @@ export const puszekData:AnimalType={
     petId:23,
     startDate:'2021-10-10',
     endDate:'2021-10-10',
+    symptoms:'jakis opis',
+    status:'W trakcie'
   }
 
 export const diseaseDataDetails:DiseaseType ={
