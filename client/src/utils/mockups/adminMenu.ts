@@ -36,7 +36,11 @@ export const subList:subListType[] = [
     {
         name:"Goście",
         path:'/guests'
-    }
+    },
+    {
+        name:"Spotkania",
+        path:'/meetings'
+    },
 ]
 export const subListWorkers:subListType[] = [
     {
