@@ -1,6 +1,6 @@
 import { Box, Typography, useTheme } from "@mui/material";
 
-import IsolationList from "../../../components/managementPanel/isolationList";
+import MeetingList from "../../../components/managementPanel/mettingList";
 
 const MeetingManagement = () => {
     const theme = useTheme();
@@ -25,7 +25,7 @@ const MeetingManagement = () => {
           width: "100%",
         }}
       >
-        <IsolationList />
+        <MeetingList />
       </Box>
     </>
     )
