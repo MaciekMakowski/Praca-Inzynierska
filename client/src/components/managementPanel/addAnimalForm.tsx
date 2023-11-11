@@ -30,7 +30,7 @@ const AddAnimalForm = (props:PetManagementProps) => {
     species:  "",
     weight:  0,
     sex:  "",
-    birthDate: "",
+    birthDate: dayjs().format('DD-MM-YYYY'),
     desc: "",
     isIll: false,
     isIsolated:  false,
