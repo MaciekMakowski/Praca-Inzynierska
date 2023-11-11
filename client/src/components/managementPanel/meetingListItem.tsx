@@ -107,7 +107,7 @@ const MeetingListItem = (props: MeetingListItemProps) => {
               ? theme.palette.text.primary
               : theme.palette.text.secondary,
           }}
-          onClick={() => navigateTo(navigate, "/admin/management/isolation/1")}
+          onClick={() => navigateTo(navigate, "/admin/management/meetings/1")}
         >
           Przejdź
         </Button>
