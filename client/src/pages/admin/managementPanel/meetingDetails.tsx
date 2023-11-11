@@ -1,12 +1,17 @@
 import { Box, Typography, useTheme } from "@mui/material";
 
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import ChangeMeetingStatusModal from "../../../components/managementPanel/changeMeetingStatusModal";
 import { GuestData } from "../../../utils/mockups/adminMenu";
 import ManagementButton from "../../../components/managementPanel/managementButton";
 import MeetingDetailsPerson from "../../../components/managementPanel/meetingDetailsPerson";
+import { useState } from "react";
 
 const MeetingDetails = () => {
   const theme = useTheme();
+    const [open, setOpen] = useState(false);
+
+
   return (
     <>
       <Typography
@@ -51,11 +56,21 @@ const MeetingDetails = () => {
               14:15
             </Typography>
           </Typography>
+          <Typography
+            variant="subtitle1"
+            fontWeight={600}
+            color={theme.palette.text.primary}
+          >
+            Status:{" "}
+            <Typography variant="body1" display={"inline"}>
+              Oczekująca
+            </Typography>
+          </Typography>
           <Box 
           sx={{
             marginX: 'auto',
           }}>
-          <ManagementButton name={"Zmień Status"} ico={CalendarMonthIcon} disabled={false} foo={() => {}}/>
+          <ManagementButton name={"Zmień Status"} ico={CalendarMonthIcon} disabled={false} foo={() => setOpen(true)}/>
           </Box>
         </Box>
         <MeetingDetailsPerson
@@ -85,6 +100,7 @@ const MeetingDetails = () => {
           sex={GuestData.sex}
         />
       </Box>
+      <ChangeMeetingStatusModal open={open} setOpen={setOpen}/>
     </>
   );
 };

@@ -1,4 +1,3 @@
-import { AnimalType, EditPetModalProps, IsolationType } from "../../utils/types/basicTypes";
 import {
   Box,
   Button,
@@ -8,11 +7,12 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import dayjs, {Dayjs} from "dayjs";
+import { EditPetModalProps, IsolationType } from "../../utils/types/basicTypes";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import CloseIcon from "@mui/icons-material/Close";
 import { DatePicker } from "@mui/x-date-pickers";
+import {Dayjs} from "dayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { handleChangeDate } from "../../utils/functions/handlers";
