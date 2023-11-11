@@ -177,3 +177,19 @@ export const isolationDataDetails:IsolationType ={
     petId:23,
     status:isolationStatusList[0].name
 }
+
+
+export const GuestData = {
+    name:'Jan',
+    lastName:'Kowalski',
+    phoneNumber:'123456789',
+    email:'asdasd@wp.pl',
+    birthDate:'2021-10-10',
+    address:'Nowakowska 43b/2',
+    city:'Olsztyn',
+    postCode:'10-123',
+    pesel:'12345678901',
+    sex:'Mężczyzna',
+
+
+}

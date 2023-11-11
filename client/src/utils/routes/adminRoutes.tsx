@@ -10,6 +10,7 @@ import GuestManagement from "../../pages/admin/managementPanel/guestManagement";
 import IsolationDetails from "../../pages/admin/managementPanel/isolationDetails";
 import IsolationManagement from "../../pages/admin/managementPanel/isolationManagement";
 import ManagmentPanel from "../../pages/admin/managementPanel/managementPanel";
+import MeetingDetails from "../../pages/admin/managementPanel/meetingDetails";
 import MeetingManagement from "../../pages/admin/managementPanel/meetingManagement";
 import Panel from "../../pages/admin/adminPanel/panel";
 import PersonDetails from "../../pages/admin/managementPanel/personDetails";
@@ -105,6 +106,10 @@ const AdminRoutes = () => {
             <Route
               path="/management/meetings"
               element={<MeetingManagement />}
+            />
+            <Route
+              path="/management/meetings/:id"
+              element={<MeetingDetails />}
             />
           </Routes>
         </Box>
