@@ -13,7 +13,11 @@ import {
 } from "@mui/material";
 import { ChangeEvent, useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
-import { handleChangeDate, handleSelectChange, handleTextChange } from "../../utils/functions/handlers";
+import {
+  handleChangeDate,
+  handleSelectChange,
+  handleTextChange,
+} from "../../utils/functions/handlers";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers";
@@ -22,105 +26,148 @@ import { ErrorInput } from "../../utils/types/errorInput";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { createAnimal } from "../../utils/services/posts";
 
-const AddAnimalForm = (props:PetManagementProps) => {
+const AddAnimalForm = (props: PetManagementProps) => {
   const theme = useTheme();
   const [newAnimal, setNewAnimal] = useState<AnimalType>({
     id: 0,
-    attributes:{
+    attributes: {
       name: "",
       findPlace: "",
-      race:  "",
-      species:  "",
-      weight:  0,
-      sex:  "",
-      birthDate: dayjs().format('DD-MM-YYYY'),
+      race: "",
+      species: "",
+      weight: 0,
+      sex: "",
+      birthDate: dayjs().format("YYYY-MM-DD"),
       description: "",
       isIll: false,
-      isIsolated:  false,
-      toAdoption:  false,
-      adopted:  false,
-    }
+      isIsolated: false,
+      toAdoption: false,
+      adopted: false,
+    },
   });
   const [errorList, setErrorList] = useState<ErrorInput>({
-    name:{
-      status: false
+    name: {
+      status: false,
     },
-    findPlace:{
-      status: false
+    findPlace: {
+      status: false,
     },
-    race:{
-      status: false
+    birthDate:{
+      status: false,
     },
-    species:{
-      status: false
+    race: {
+      status: false,
     },
-    weight:{
-      status: false
+    species: {
+      status: false,
     },
-    sex:{
-      status: false
+    weight: {
+      status: false,
+    },
+    sex: {
+      status: false,
     },
   });
-  const [formError, setFormError] = useState(true);
 
   const setAsError = (index: string) => {
-    setErrorList((prev:any) => ({
+    setErrorList((prev: any) => ({
       ...prev,
       [index]: {
-        status: true
-      }
-    }))
-  }
+        status: true,
+      },
+    }));
+
+  };
   const unsetAsError = (index: string) => {
-    setErrorList((prev:any) => ({
+    setErrorList((prev: any) => ({
       ...prev,
       [index]: {
-        status: false
-      }
-    }))
+        status: false,
+      },
+    }));
+  };
+
+  const validateForm = async () => {
+    if (newAnimal.attributes.name === "") {
+      setAsError("name")
+      return false
+    }
+    else unsetAsError("name");
+    if (newAnimal.attributes.findPlace === "") {
+      setAsError("findPlace")
+      return false
+    }
+    else unsetAsError("findPlace");
+    if (newAnimal.attributes.race === "") {
+      setAsError("race")
+      return false
+    }
+    else unsetAsError("race");
+    if (newAnimal.attributes.species === "") {
+      setAsError("species")
+      return false
+  }
+    else unsetAsError("species");
+    if (newAnimal.attributes.weight === 0) {
+      setAsError("weight")
+      return false
+    }
+    else unsetAsError("weight");
+    if (newAnimal.attributes.sex === "") {
+      setAsError("sex")
+      return false
+    }
+    else unsetAsError("sex");
+    if (dayjs(newAnimal.attributes.birthDate).isAfter(dayjs())) 
+    {
+    setAsError("birthDate")
+    return false
+    }
+    else unsetAsError("birthDate");
+
+    return true
   }
   const sendForm = () => {
-    if(newAnimal.attributes.name === "") setAsError("name") 
-    else unsetAsError("name")
-    if(newAnimal.attributes.findPlace === "") setAsError("findPlace") 
-    else unsetAsError("findPlace")
-    if(newAnimal.attributes.race === "") setAsError("race")
-    else unsetAsError("race")
-    if(newAnimal.attributes.species === "") setAsError("species")
-    else unsetAsError("species")
-    if(newAnimal.attributes.weight === 0) setAsError("weight")
-    else unsetAsError("weight")
-    if(newAnimal.attributes.sex === "") setAsError("sex")
-    else unsetAsError("sex")
-    console.log(errorList)
-    Object.keys(errorList).forEach((key) => {
-      if (errorList[key].status === true) {
-        setFormError(true);
-      } else
-        setFormError(false);
-    });
-  }
 
-  useEffect(() => {
-    if(!formError) {
-      createAnimal(newAnimal)
-    }
-  }, [formError])
+      validateForm().then((res) => {
+        if(res === true){
+          createAnimal(newAnimal);
+      setNewAnimal({
+        id: 0,
+        attributes: {
+          name: "",
+          findPlace: "",
+          race: "",
+          species: "",
+          weight: 0,
+          sex: "",
+          birthDate: dayjs().format("YYYY-MM-DD"),
+          description: "",
+          isIll: false,
+          isIsolated: false,
+          toAdoption: false,
+          adopted: false,
+        },
+      });
+        }
+      })
+    
+  };
 
-  const textChange = (event: ChangeEvent<HTMLInputElement>) =>{
-    handleTextChange(event, setNewAnimal)
-  }
+  const textChange = (event: ChangeEvent<HTMLInputElement>) => {
+    handleTextChange(event, setNewAnimal);
+  };
 
   const selectChange = (event: SelectChangeEvent) => {
-    handleSelectChange(event, setNewAnimal)
-  }
+    handleSelectChange(event, setNewAnimal);
+  };
   const dateChange = (value: Dayjs | null) => {
     if (value === null) return;
-    handleChangeDate(value.format('YYYY-MM-DD'), setNewAnimal, 'birthDate')
-  }
+    handleChangeDate(value.format("YYYY-MM-DD"), setNewAnimal, "birthDate");
+  };
 
   useEffect(() => {
-    if(!props.data) return;
+    if (!props.data) return;
     setNewAnimal(props.data);
   }, [props.data]);
 
@@ -153,7 +200,7 @@ const AddAnimalForm = (props:PetManagementProps) => {
         error={errorList.name.status}
       />
       <TextField
-      value={newAnimal.attributes.findPlace}
+        value={newAnimal.attributes.findPlace}
         variant="outlined"
         label="Miejsce znalezienia"
         name="findPlace"
@@ -183,7 +230,6 @@ const AddAnimalForm = (props:PetManagementProps) => {
       <FormControl>
         <InputLabel>Gatunek</InputLabel>
         <Select
-          
           label="Gatunek"
           name="species"
           variant="outlined"
