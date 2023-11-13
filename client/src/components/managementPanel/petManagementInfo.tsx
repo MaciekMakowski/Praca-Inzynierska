@@ -50,7 +50,7 @@ const PetManagementInfo = (props:PetManagementInfoProps) => {
               #Numer
             </Typography>
             <Typography variant="body1" color={theme.palette.text.primary}>
-              {props.data.number}
+              {props.data.id}
             </Typography>
           </Box>
         </Grid>
@@ -64,7 +64,7 @@ const PetManagementInfo = (props:PetManagementInfoProps) => {
               Imię
             </Typography>
             <Typography variant="body1" color={theme.palette.text.primary}>
-              {props.data.name}
+              {props.data.attributes.name}
             </Typography>
           </Box>
         </Grid>
@@ -78,7 +78,7 @@ const PetManagementInfo = (props:PetManagementInfoProps) => {
               Miejsce Znalezienia
             </Typography>
             <Typography variant="body1" color={theme.palette.text.primary}>
-              {props.data.findPlace}
+              {props.data.attributes.findPlace}
             </Typography>
           </Box>
         </Grid>
@@ -92,7 +92,7 @@ const PetManagementInfo = (props:PetManagementInfoProps) => {
               Rasa
             </Typography>
             <Typography variant="body1" color={theme.palette.text.primary}>
-              {props.data.race}
+              {props.data.attributes.race}
             </Typography>
           </Box>
         </Grid>
@@ -106,7 +106,7 @@ const PetManagementInfo = (props:PetManagementInfoProps) => {
               Waga
             </Typography>
             <Typography variant="body1" color={theme.palette.text.primary}>
-              {props.data.weight} kg
+              {props.data.attributes.weight} kg
             </Typography>
           </Box>
         </Grid>
@@ -120,7 +120,7 @@ const PetManagementInfo = (props:PetManagementInfoProps) => {
               Płeć
             </Typography>
             <Typography variant="body1" color={theme.palette.text.primary}>
-              {props.data.sex}
+              {props.data.attributes.sex}
             </Typography>
           </Box>
         </Grid>
@@ -134,7 +134,7 @@ const PetManagementInfo = (props:PetManagementInfoProps) => {
               Gatunek
             </Typography>
             <Typography variant="body1" color={theme.palette.text.primary}>
-              {props.data.species}
+              {props.data.attributes.species}
             </Typography>
           </Box>
         </Grid>
@@ -148,7 +148,7 @@ const PetManagementInfo = (props:PetManagementInfoProps) => {
               Data urodzenia
             </Typography>
             <Typography variant="body1" color={theme.palette.text.primary}>
-             {props.data.birthDate}
+             {props.data.attributes.birthDate}
             </Typography>
           </Box>
         </Grid>

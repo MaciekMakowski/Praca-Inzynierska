@@ -1,9 +1,11 @@
 import { Box, Typography, useTheme } from "@mui/material";
+import { useEffect, useState } from "react";
 
 import AddAdoptionModal from "../../../components/managementPanel/addAdoptionModal";
 import AddHomeIcon from "@mui/icons-material/AddHome";
 import AddIsolationModal from "../../../components/managementPanel/addPetIsolationModal";
 import AddPetDiseaseModal from "../../../components/managementPanel/addPetDiseaseModal";
+import { AnimalType } from "../../../utils/types/basicTypes";
 import BlockIcon from "@mui/icons-material/Block";
 import BorderAllIcon from "@mui/icons-material/BorderAll";
 import ChangeStatusConfirmModal from "../../../components/managementPanel/changeStatusConfirmModal";
@@ -13,20 +15,32 @@ import PetManagementDesc from "../../../components/managementPanel/petManagement
 import PetManagementImages from "../../../components/managementPanel/petManagementImages";
 import PetManagementInfo from "../../../components/managementPanel/petManagementInfo";
 import PetManagementList from "../../../components/managementPanel/petManagementList";
-import { PetManagementProps } from "../../../utils/types/basicTypes";
-import { useState } from "react";
+import { getAnimal } from "../../../utils/services/gets";
+import { useParams } from "react-router";
 
-const PetManagement = (props: PetManagementProps) => {
+const PetManagement = () => {
+  const [animalData, setAnimalData] = useState<AnimalType | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [adoptionOpen, setAdoptionOpen] = useState(false);
   const [addIsolationOpen, setAddIsolationOpen] = useState(false);
   const [endIsolationOpen, setEndIsolationOpen] = useState(false);
   const [addDiseaseOpen, setAddDiseaseOpen] = useState(false);
   const [endDiseaseOpen, setEndDiseaseOpen] = useState(false);
   const [changeStatusOpen, setChangeStatusOpen] = useState(false);
-
   const theme = useTheme();
-  if (!props.data) return <div></div>;
-  return (
+  const {petId} = useParams();
+
+  useEffect(() => {
+    if(petId)
+    getAnimal(petId).then((res) => {
+      setAnimalData(res);
+      setIsLoading(false);
+    });
+  }, []);
+  return (    
+    <> 
+    {!isLoading ? 
+    animalData !== null ?
     <>
       <Box height={"10%"}>
         <Typography
@@ -35,7 +49,7 @@ const PetManagement = (props: PetManagementProps) => {
           color={theme.palette.text.primary}
           textAlign={"center"}
         >
-          Profil zwierzęcia: {props.data.name}
+          Profil zwierzęcia: {animalData?.attributes.name}
         </Typography>
       </Box>
       <Box
@@ -76,8 +90,8 @@ const PetManagement = (props: PetManagementProps) => {
                   gap: "1rem",
                 }}
               >
-                <PetManagementInfo data={props.data} />
-                <PetManagementDesc data={props.data} />
+                <PetManagementInfo data={animalData} />
+                <PetManagementDesc data={animalData} />
               </Box>
             </Box>
             <PetManagementImages />
@@ -128,7 +142,7 @@ const PetManagement = (props: PetManagementProps) => {
               <ManagementButton
                 name="Rozpocznij Adopcję"
                 ico={AddHomeIcon}
-                disabled={props.data.status === "Do Adopcji" ? true : false}
+                disabled={animalData.attributes.adopted ? true : false}
                 foo={() => setAdoptionOpen(true)}
               />
               <ManagementButton
@@ -176,24 +190,25 @@ const PetManagement = (props: PetManagementProps) => {
         <AddAdoptionModal
           setOpen={setAdoptionOpen}
           open={adoptionOpen}
-          data={props.data}
+          data={animalData}
         />
         <AddIsolationModal
           setOpen={setAddIsolationOpen}
           open={addIsolationOpen}
-          data={props.data}
+          data={animalData}
         />
         <AddPetDiseaseModal
           setOpen={setAddDiseaseOpen}
           open={addDiseaseOpen}
-          data={props.data}
+          data={animalData}
         />
         <ChangeStatusConfirmModal
           setOpen={setChangeStatusOpen}
           open={changeStatusOpen}
-          petid={props.data.number}
+          petid={animalData.id}
         />
       </Box>
+      </> : <></> : <></>}
     </>
   );
 };

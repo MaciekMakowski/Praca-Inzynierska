@@ -18,24 +18,94 @@ import { handleChangeDate, handleSelectChange, handleTextChange } from "../../ut
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { ErrorInput } from "../../utils/types/errorInput";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { createAnimal } from "../../utils/services/posts";
 
 const AddAnimalForm = (props:PetManagementProps) => {
   const theme = useTheme();
   const [newAnimal, setNewAnimal] = useState<AnimalType>({
-    name: "",
-    findPlace: "",
-    race:  "",
-    number: 0,
-    species:  "",
-    weight:  0,
-    sex:  "",
-    birthDate: dayjs().format('DD-MM-YYYY'),
-    desc: "",
-    isIll: false,
-    isIsolated:  false,
-    status: "New",
+    id: 0,
+    attributes:{
+      name: "",
+      findPlace: "",
+      race:  "",
+      species:  "",
+      weight:  0,
+      sex:  "",
+      birthDate: dayjs().format('DD-MM-YYYY'),
+      description: "",
+      isIll: false,
+      isIsolated:  false,
+      toAdoption:  false,
+      adopted:  false,
+    }
   });
+  const [errorList, setErrorList] = useState<ErrorInput>({
+    name:{
+      status: false
+    },
+    findPlace:{
+      status: false
+    },
+    race:{
+      status: false
+    },
+    species:{
+      status: false
+    },
+    weight:{
+      status: false
+    },
+    sex:{
+      status: false
+    },
+  });
+  const [formError, setFormError] = useState(true);
+
+  const setAsError = (index: string) => {
+    setErrorList((prev:any) => ({
+      ...prev,
+      [index]: {
+        status: true
+      }
+    }))
+  }
+  const unsetAsError = (index: string) => {
+    setErrorList((prev:any) => ({
+      ...prev,
+      [index]: {
+        status: false
+      }
+    }))
+  }
+  const sendForm = () => {
+    if(newAnimal.attributes.name === "") setAsError("name") 
+    else unsetAsError("name")
+    if(newAnimal.attributes.findPlace === "") setAsError("findPlace") 
+    else unsetAsError("findPlace")
+    if(newAnimal.attributes.race === "") setAsError("race")
+    else unsetAsError("race")
+    if(newAnimal.attributes.species === "") setAsError("species")
+    else unsetAsError("species")
+    if(newAnimal.attributes.weight === 0) setAsError("weight")
+    else unsetAsError("weight")
+    if(newAnimal.attributes.sex === "") setAsError("sex")
+    else unsetAsError("sex")
+    console.log(errorList)
+    Object.keys(errorList).forEach((key) => {
+      if (errorList[key].status === true) {
+        setFormError(true);
+      } else
+        setFormError(false);
+    });
+  }
+
+  useEffect(() => {
+    if(!formError) {
+      createAnimal(newAnimal)
+    }
+  }, [formError])
 
   const textChange = (event: ChangeEvent<HTMLInputElement>) =>{
     handleTextChange(event, setNewAnimal)
@@ -46,7 +116,7 @@ const AddAnimalForm = (props:PetManagementProps) => {
   }
   const dateChange = (value: Dayjs | null) => {
     if (value === null) return;
-    handleChangeDate(value.format('DD-MM-YYYY'), setNewAnimal, 'birthDate')
+    handleChangeDate(value.format('YYYY-MM-DD'), setNewAnimal, 'birthDate')
   }
 
   useEffect(() => {
@@ -74,46 +144,41 @@ const AddAnimalForm = (props:PetManagementProps) => {
         {props.data ? "Edytuj zwierzę" : "Dodaj zwierzę"}
       </Typography>
       <TextField
-        value={newAnimal.name}
+        value={newAnimal.attributes.name}
         variant="outlined"
         label="Imię"
         name="name"
         color="primary"
         onChange={textChange}
+        error={errorList.name.status}
       />
       <TextField
-      value={newAnimal.findPlace}
+      value={newAnimal.attributes.findPlace}
         variant="outlined"
         label="Miejsce znalezienia"
         name="findPlace"
         color="primary"
         onChange={textChange}
+        error={errorList.findPlace.status}
       />
       <TextField
-        value={newAnimal.race}
+        value={newAnimal.attributes.race}
         variant="outlined"
         label="Rasa"
         name="race"
         color="primary"
         onChange={textChange}
+        error={errorList.race.status}
       />
       <TextField
-        value={newAnimal.number}
-        variant="outlined"
-        label="Numer"
-        name="number"
-        type="number"
-        color="primary"
-        onChange={textChange}
-      />
-      <TextField
-        value={newAnimal.weight}
+        value={newAnimal.attributes.weight}
         variant="outlined"
         label="Waga"
         name="weight"
         type="number"
         color="primary"
         onChange={textChange}
+        error={errorList.weight.status}
       />
       <FormControl>
         <InputLabel>Gatunek</InputLabel>
@@ -126,8 +191,9 @@ const AddAnimalForm = (props:PetManagementProps) => {
             color: theme.palette.text.primary,
           }}
           defaultValue={"Gatunek"}
-          value={newAnimal.species}
+          value={newAnimal.attributes.species}
           onChange={selectChange}
+          error={errorList.species.status}
         >
           <MenuItem value={"Pies"}>Pies</MenuItem>
           <MenuItem value={"Kot"}>Kot</MenuItem>
@@ -143,8 +209,9 @@ const AddAnimalForm = (props:PetManagementProps) => {
             color: theme.palette.text.primary,
           }}
           defaultValue={"Płeć"}
-          value={newAnimal.sex}
+          value={newAnimal.attributes.sex}
           onChange={selectChange}
+          error={errorList.sex.status}
         >
           <MenuItem value={"Samiec"}>Samiec</MenuItem>
           <MenuItem value={"Samica"}>Samica</MenuItem>
@@ -156,14 +223,14 @@ const AddAnimalForm = (props:PetManagementProps) => {
             sx={{
               flexGrow: 1,
             }}
-            format="DD-MM-YYYY"
-            value={dayjs(newAnimal.birthDate)}
+            format="YYYY-MM-DD"
+            value={dayjs(newAnimal.attributes.birthDate)}
             label="Data urodzenia"
             onChange={(value: Dayjs | null) => dateChange(value)}
           />
         </DemoContainer>
       </LocalizationProvider>
-      <Button variant="contained" onClick={() => console.log(newAnimal)}>
+      <Button variant="contained" onClick={() => sendForm()}>
         {props.data ? "Zapisz" : "Dodaj"}
       </Button>
     </Box>

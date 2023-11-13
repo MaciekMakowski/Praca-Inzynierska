@@ -32,18 +32,21 @@ export type DiseaseType = {
 };
 
 export type AnimalType = {
-  name: string;
-  findPlace: string;
-  race: string;
-  number: number;
-  species: string;
-  weight: number;
-  sex: string;
-  birthDate: string;
-  desc: string;
-  isIll: boolean;
-  isIsolated: boolean;
-  status: string;
+  id: number;
+  attributes:{
+    name: string;
+    findPlace: string;
+    race: string;
+    species: string;
+    weight: number;
+    sex: string;
+    birthDate: string;
+    description: string;
+    isIll: boolean;
+    isIsolated: boolean;
+    toAdoption:boolean;
+    adopted: boolean;
+  } 
 };
 
 export type PersonType = {

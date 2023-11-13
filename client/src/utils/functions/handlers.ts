@@ -12,12 +12,13 @@ export const handleChange = (
     const newValue =
       attributeName === "weight"
         ? parseFloat(value)
-        : attributeName === "number"
-        ? parseFloat(value)
         : value;
     foo((prevItem:any) => ({
       ...prevItem,
-      [attributeName]: newValue,
+      'attributes': {
+        ...prevItem.attributes,
+        [attributeName]: newValue,
+      },
     }));
   };
 
@@ -37,6 +38,9 @@ export const handleSelectChange = (event: SelectChangeEvent, foo:Dispatch<React.
 export const handleChangeDate = (value: string, foo:Dispatch<React.SetStateAction<any>>, attributeName:string) => {
     foo((prevItem:any) => ({
       ...prevItem,
-      [attributeName]: value,
+      'attributes': {
+        ...prevItem.attributes,
+        [attributeName]: value,
+      },
     }));
   };

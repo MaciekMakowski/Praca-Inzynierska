@@ -7,25 +7,28 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { useEffect, useState } from "react";
 
 import AnimalListItem from "./animalListItem";
-import { useState } from "react";
+import { AnimalType } from "../../utils/types/basicTypes";
+import { getAnimals } from "../../utils/services/gets";
 
 const AnimalList = () => {
   const theme = useTheme();
   const [filter, setFilter] = useState(0);
+  const [animalList, setAnimalList] = useState<AnimalType[] | null>(null)
 
   const handleChangeFilter = (value: number) => {
     if (value === filter) setFilter(0);
     if (value !== filter) setFilter(value);
   };
 
-  const returnItems = () => {
-    const items = [];
-    for (let i = 0; i < 20; i++)
-      items.push(<AnimalListItem key={i} color={i % 2 == 0} />);
-    return items;
-  };
+
+  useEffect(() => {
+      getAnimals().then((res) => {
+        setAnimalList(res);
+      });
+  }, []);
   return (
     <Box
       sx={{
@@ -169,7 +172,12 @@ const AnimalList = () => {
           overflowY:'auto',
         }}
       >
-        {returnItems()}
+        {
+        animalList?.map((animal, i) => {
+          return <AnimalListItem key={i} color={i % 2 == 0} animal={animal}/>
+        })
+        }
+    
       </Box>
       </Box>
       <Box

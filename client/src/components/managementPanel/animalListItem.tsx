@@ -1,10 +1,12 @@
 import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 
+import { AnimalType } from "../../utils/types/basicTypes";
 import { navigateTo } from "../../utils/functions/navigators";
 import { useNavigate } from "react-router";
 
 type AnimalListItemProps = {
   color: boolean;
+  animal:AnimalType
 };
 
 const AnimalListItem = (props: AnimalListItemProps) => {
@@ -35,7 +37,7 @@ const AnimalListItem = (props: AnimalListItemProps) => {
           }
           textAlign={"center"}
         >
-          123123
+          {props.animal.id}
         </Typography>
       </Grid>
       <Grid item xs={1.5}>
@@ -48,7 +50,7 @@ const AnimalListItem = (props: AnimalListItemProps) => {
           }
           textAlign={"center"}
         >
-          Puszek
+          {props.animal.attributes.name}
         </Typography>
       </Grid>
       <Grid item xs={1.5}>
@@ -61,7 +63,7 @@ const AnimalListItem = (props: AnimalListItemProps) => {
           }
           textAlign={"center"}
         >
-          Kot
+          {props.animal.attributes.species}
         </Typography>
       </Grid>
       <Grid item xs={1}>
@@ -74,7 +76,7 @@ const AnimalListItem = (props: AnimalListItemProps) => {
           }
           textAlign={"center"}
         >
-          16
+          {props.animal.attributes.birthDate}
         </Typography>
       </Grid>
       <Grid item xs={2}>
@@ -87,7 +89,7 @@ const AnimalListItem = (props: AnimalListItemProps) => {
           }
           textAlign={"center"}
         >
-          Las bartąg
+          {props.animal.attributes.findPlace}
         </Typography>
       </Grid>
       <Grid item xs={2.5}>
@@ -100,7 +102,7 @@ const AnimalListItem = (props: AnimalListItemProps) => {
           }
           textAlign={"center"}
         >
-          Europejczyk
+          {props.animal.attributes.race}
         </Typography>
       </Grid>
       <Grid item xs={2}>
@@ -110,7 +112,7 @@ const AnimalListItem = (props: AnimalListItemProps) => {
               ? theme.palette.primary.main
               : theme.palette.text.secondary,
           }}
-          onClick={() => navigateTo(navigate,`/admin/management/animals/5`)}
+          onClick={() => navigateTo(navigate,`/admin/management/animals/${props.animal.id}`)}
         >
           Przejdź
         </Button>

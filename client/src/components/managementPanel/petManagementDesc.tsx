@@ -1,20 +1,20 @@
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { useEffect, useState } from "react";
 
+import { AnimalType } from "../../utils/types/basicTypes";
 import EditIcon from "@mui/icons-material/Edit";
 import EditPetDescModal from "./editPetDescModal";
-import { PetManagementProps } from "../../utils/types/basicTypes";
+import ReactMarkdown from "react-markdown";
 import shadows from "@mui/material/styles/shadows";
-import { useState } from "react";
 
-const PetManagementDesc = (props:PetManagementProps) => {
+type PetManagementDescProps = {
+  data: AnimalType
+};
+
+const PetManagementDesc = (props:PetManagementDescProps) => {
   const [descOpen, setDescOpen] = useState(false);
   const theme = useTheme();
-  const [data, setData] = useState(props.data ? props.data : {
-    status: "Brak danych",
-    isIsolated: false,
-    isIll: false,
-    desc: "Brak danych"
-  });
+
 
   return (
     <Box
@@ -46,7 +46,7 @@ const PetManagementDesc = (props:PetManagementProps) => {
             Status:
           </Typography>
           <Typography variant="body1" color={theme.palette.text.primary}>
-            {data.status}
+            {props.data.attributes.toAdoption ? "Do adopcji" : "Nie do adopcji"}
           </Typography>
         </Box>
         <Box>
@@ -58,19 +58,7 @@ const PetManagementDesc = (props:PetManagementProps) => {
             Izolowany:
           </Typography>
           <Typography variant="body1" color={theme.palette.text.primary}>
-            {data.isIsolated ? "Tak" : "Nie"}
-          </Typography>
-        </Box>
-        <Box>
-          <Typography
-            variant="body1"
-            fontWeight={600}
-            color={theme.palette.text.primary}
-          >
-            Powód izolacji:
-          </Typography>
-          <Typography variant="body1" color={theme.palette.text.primary}>
-            Brak
+            {props.data.attributes.isIsolated ? "Tak" : "Nie"}
           </Typography>
         </Box>
         <Box>
@@ -82,7 +70,7 @@ const PetManagementDesc = (props:PetManagementProps) => {
             Chory:
           </Typography>
           <Typography variant="body1" color={theme.palette.text.primary}>
-            {data.isIll ? "Tak" : "Nie"}
+            {props.data.attributes.isIll ? "Tak" : "Nie"}
           </Typography>
         </Box>
       </Box>
@@ -111,7 +99,10 @@ const PetManagementDesc = (props:PetManagementProps) => {
           </IconButton>
         </Box>
         <Typography variant="caption" textOverflow={"ellipsis"}>
-          {data.desc}
+          <ReactMarkdown>
+                      {props.data.attributes.description}
+          </ReactMarkdown>
+
         </Typography>
       </Box>
       <EditPetDescModal open={descOpen} setOpen={setDescOpen} data={props.data}/>

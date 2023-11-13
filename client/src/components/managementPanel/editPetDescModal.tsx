@@ -14,7 +14,7 @@ import { EditPetModalProps } from "../../utils/types/basicTypes";
 const EditPetDescModal = (props:EditPetModalProps) => {
     const theme = useTheme();
     const handleClose = () => props.setOpen(false);
-    const desc = typeof props.data?.desc === "string" ? props.data.desc : "";
+    const desc = typeof props.data?.attributes.description === "string" ? props.data.attributes.description : "";
 
     return(
         <Modal open={props.open} onClose={handleClose}>
