@@ -4,7 +4,8 @@
   "info": {
     "singularName": "resources-type",
     "pluralName": "resources-types",
-    "displayName": "resources_type"
+    "displayName": "Resources_type",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,11 @@
   "attributes": {
     "name": {
       "type": "string"
+    },
+    "resource_subtypes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::resource-subtype.resource-subtype"
     }
   }
 }

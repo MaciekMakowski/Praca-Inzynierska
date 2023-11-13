@@ -4,7 +4,8 @@
   "info": {
     "singularName": "isolation",
     "pluralName": "isolations",
-    "displayName": "isolation"
+    "displayName": "Isolation",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,18 +13,27 @@
   "pluginOptions": {},
   "attributes": {
     "reason": {
-      "type": "string"
-    },
-    "start": {
-      "type": "date"
-    },
-    "end": {
-      "type": "date"
+      "type": "text"
     },
     "animal": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::animal.animal"
+    },
+    "startDate": {
+      "type": "date"
+    },
+    "endDate": {
+      "type": "date"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "Oczekująca",
+        "W trakcie",
+        "Zakończona",
+        "Anulowana"
+      ]
     }
   }
 }

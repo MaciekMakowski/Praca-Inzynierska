@@ -4,7 +4,8 @@
   "info": {
     "singularName": "resource",
     "pluralName": "resources",
-    "displayName": "resource"
+    "displayName": "Resource",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,23 +15,24 @@
     "name": {
       "type": "string"
     },
+    "quantity": {
+      "type": "integer"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "expirationDate": {
+      "type": "date"
+    },
     "resources_type": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::resources-type.resources-type"
     },
-    "quantity": {
-      "type": "integer"
-    },
-    "expiry_date": {
-      "type": "date"
-    },
-    "status": {
-      "type": "enumeration",
-      "enum": [
-        "present",
-        "consumed"
-      ]
+    "resource_subtype": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::resource-subtype.resource-subtype"
     }
   }
 }

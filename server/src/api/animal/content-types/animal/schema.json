@@ -4,7 +4,7 @@
   "info": {
     "singularName": "animal",
     "pluralName": "animals",
-    "displayName": "animal",
+    "displayName": "Animal",
     "description": ""
   },
   "options": {
@@ -13,42 +13,47 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
-    },
-    "find_date": {
-      "type": "date"
-    },
-    "find_place": {
-      "type": "string"
-    },
-    "animal_type": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::animal-type.animal-type"
-    },
-    "birth_date": {
-      "type": "date"
+      "type": "string",
+      "required": true
     },
     "race": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
-    "number": {
-      "type": "string"
-    },
-    "weight": {
-      "type": "float"
+    "species": {
+      "type": "string",
+      "required": true
     },
     "sex": {
-      "type": "enumeration",
-      "enum": [
-        "male",
-        "female"
-      ]
+      "type": "string",
+      "required": true
     },
-    "animal_state": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::animal-state.animal-state"
+    "findPlace": {
+      "type": "string",
+      "required": true
+    },
+    "birthDate": {
+      "type": "date",
+      "required": true
+    },
+    "weight": {
+      "type": "decimal",
+      "required": true
+    },
+    "isIll": {
+      "type": "boolean"
+    },
+    "isIsolated": {
+      "type": "boolean"
+    },
+    "toAdoption": {
+      "type": "boolean"
+    },
+    "adopted": {
+      "type": "boolean"
+    },
+    "description": {
+      "type": "richtext"
     }
   }
 }

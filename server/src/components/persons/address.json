@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_persons_addresses",
+  "info": {
+    "displayName": "address",
+    "icon": "house"
+  },
+  "options": {},
+  "attributes": {
+    "city": {
+      "type": "string"
+    },
+    "postCode": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    }
+  }
+}

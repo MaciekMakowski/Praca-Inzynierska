@@ -4,7 +4,8 @@
   "info": {
     "singularName": "disease",
     "pluralName": "diseases",
-    "displayName": "disease"
+    "displayName": "Disease",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,8 +15,11 @@
     "name": {
       "type": "string"
     },
-    "desc": {
-      "type": "text"
+    "description": {
+      "type": "blocks"
+    },
+    "treatment": {
+      "type": "blocks"
     }
   }
 }

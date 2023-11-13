@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "adoptions",
+  "collectionName": "meetings",
   "info": {
-    "singularName": "adoption",
-    "pluralName": "adoptions",
-    "displayName": "Adoption",
+    "singularName": "meeting",
+    "pluralName": "meetings",
+    "displayName": "Meeting",
     "description": ""
   },
   "options": {
@@ -12,26 +12,26 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "animal": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::animal.animal"
-    },
     "guest": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::guest.guest"
     },
+    "volunteer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::volunteer.volunteer"
+    },
     "date": {
-      "type": "date"
+      "type": "datetime"
     },
     "status": {
       "type": "enumeration",
       "enum": [
-        "Oczekująca",
+        "Oczekujące",
         "W trakcie",
-        "Anulowana",
-        "Zakończona"
+        "Zakończone",
+        "Anulowane"
       ]
     }
   }

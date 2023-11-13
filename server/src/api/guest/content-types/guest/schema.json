@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "volunteers",
+  "collectionName": "guests",
   "info": {
-    "singularName": "volunteer",
-    "pluralName": "volunteers",
-    "displayName": "Volunteer",
-    "description": ""
+    "singularName": "guest",
+    "pluralName": "guests",
+    "displayName": "Guest"
   },
   "options": {
     "draftAndPublish": true
