@@ -1,16 +1,19 @@
 import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
-import { DiseaseManagementProps, DiseaseType } from "../../utils/types/basicTypes";
 import { useEffect, useState } from "react";
 
+import { DiseaseManagementProps } from "../../utils/types/propsTypes";
+import { DiseaseType } from "../../utils/types/basicTypes";
 import { handleTextChange } from "../../utils/functions/handlers";
 
 const AddDiseaseForm = (props:DiseaseManagementProps) => {
   const theme = useTheme();
   const [newDisase, setNewDisease] = useState<DiseaseType>({
-    number: 0,
-    name: "",
-    description: "",
-    treatment: "",
+    id: 0,
+    attributes:{
+      name: "",
+      description: "",
+      treatment: "",
+    }
   });
 
 
@@ -48,7 +51,7 @@ const AddDiseaseForm = (props:DiseaseManagementProps) => {
         name="name"
         variant="outlined"
         onChange={textChange}
-        value={newDisase.name}
+        value={newDisase.attributes.name}
       />
       <TextField
         label="Objawy"
@@ -57,7 +60,7 @@ const AddDiseaseForm = (props:DiseaseManagementProps) => {
         fullWidth
         rows={4}
         onChange={textChange}
-        value={newDisase.description}
+        value={newDisase.attributes.description}
       />
       <TextField
         label="Leczenie"
@@ -66,7 +69,7 @@ const AddDiseaseForm = (props:DiseaseManagementProps) => {
         multiline
         rows={4}
         onChange={textChange}
-        value={newDisase.treatment}
+        value={newDisase.attributes.treatment}
       />
       <Button
         variant="contained"

@@ -7,18 +7,23 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { useEffect, useState } from "react";
 
 import DiseaseListItem from "./diseaseListItem";
+import { DiseaseType } from "../../utils/types/basicTypes";
+import { getDiseases } from "../../utils/services/gets";
 
 const DiseaseList = () => {
   const theme = useTheme();
+  const [diseasesList, setDiseasesList] = useState<DiseaseType[]>([]);
 
-  const returnItems = () => {
-    const items = [];
-    for (let i = 0; i < 20; i++)
-      items.push(<DiseaseListItem key={i} color={i % 2 == 0} />);
-    return items;
-  };
+  useEffect(() => {
+    getDiseases().then((res) => {
+      setDiseasesList(res);
+    });
+    console.log(diseasesList);
+  }, []);
+
   return (
     <Box
       sx={{
@@ -33,7 +38,7 @@ const DiseaseList = () => {
         gap: "1rem",
         borderRadius: "1rem",
         boxShadow: theme.shadows[3],
-        minWidth:{xs:'100%', lg:'550px'},
+        minWidth: { xs: "100%", lg: "550px" },
       }}
     >
       <Box
@@ -54,9 +59,11 @@ const DiseaseList = () => {
           <TextField size="small" label="Wyszukaj" />
         </Box>
       </Box>
-      <Grid container spacing={0}
+      <Grid
+        container
+        spacing={0}
         sx={{
-          width: {xs:'100%', lg:'100%'},
+          width: { xs: "100%", lg: "100%" },
         }}
       >
         <Grid item xs={2}>
@@ -85,11 +92,15 @@ const DiseaseList = () => {
           flexDirection: "column",
           gap: "1rem",
           height: "85%",
-          maxHeight:{xs:'40vh', lg:'85%'},
+          maxHeight: { xs: "40vh", lg: "85%" },
           overflowY: "auto",
         }}
       >
-        {returnItems()}
+        {diseasesList.map((disease, i) => {
+          return (
+            <DiseaseListItem key={i} color={i % 2 == 0} disease={disease} />
+          );
+        })}
       </Box>
       <Box
         sx={{

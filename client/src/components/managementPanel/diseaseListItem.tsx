@@ -1,10 +1,12 @@
 import { Button, Grid, Typography, useTheme } from "@mui/material";
 
+import { DiseaseType } from "../../utils/types/basicTypes";
 import { navigateTo } from "../../utils/functions/navigators";
 import { useNavigate } from "react-router";
 
 type DiseaseListItemProps = {
   color: boolean;
+  disease:DiseaseType
 };
 
 const DiseaseListItem = (props: DiseaseListItemProps) => {
@@ -33,7 +35,7 @@ const DiseaseListItem = (props: DiseaseListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          Angina
+          {props.disease.attributes.name}
         </Typography>
       </Grid>
       <Grid item xs={6} lg={8}>
@@ -45,8 +47,7 @@ const DiseaseListItem = (props: DiseaseListItemProps) => {
           }}
           
         >
-          Duszenie, kaszel, katar, brak apetytu, gorączka, obrzęk szyji,
-          ślinotok, biegunka, wymioty, zapalenie jelit cos tam jeszcze
+          {props.disease.attributes.description}
         </Typography>
       </Grid>
       <Grid item xs={3} lg={2}>
@@ -56,7 +57,7 @@ const DiseaseListItem = (props: DiseaseListItemProps) => {
               ? theme.palette.primary.main
               : theme.palette.text.secondary,
           }}
-          onClick={() => navigateTo(navigate, `/admin/management/diseases/1` )}
+          onClick={() => navigateTo(navigate, `/admin/management/diseases/${props.disease.id}` )}
         >
           Przejdź
         </Button>
