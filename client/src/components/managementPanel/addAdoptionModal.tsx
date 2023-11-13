@@ -233,7 +233,7 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
                   type="number"
                   color="primary"
                   disabled={props.data && true}
-                  value={props.data?.number}
+                  value={props.data?.id}
                   //onChange={handleTextChange}
                 />
                 <Button
@@ -250,7 +250,7 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
                   label="Płeć"
                   name="sex"
                   color="primary"
-                  value={props.data?.sex}
+                  value={props.data?.attributes.sex}
                   // onChange={handleTextChange}
                 />
                 <TextField
@@ -259,7 +259,7 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
                   label="Data urodzenia"
                   name="birthDate"
                   color="primary"
-                  value={props.data?.birthDate}
+                  value={props.data?.attributes.birthDate}
                   //onChange={handleTextChange}
                 />
                 <TextField
@@ -268,7 +268,7 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
                   label="Rasa"
                   name="race"
                   color="primary"
-                  value={props.data?.race}
+                  value={props.data?.attributes.race}
                   //onChange={handleTextChange}
                 />
               </Box>
@@ -286,7 +286,7 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
                   label="Gatunek"
                   name="species"
                   color="primary"
-                  value={props.data?.species}
+                  value={props.data?.attributes.species}
                   //onChange={handleTextChange}
                 />
                 <TextField
@@ -295,7 +295,7 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
                   label="Waga"
                   name="weight"
                   color="primary"
-                  value={props.data?.weight}
+                  value={props.data?.attributes.weight}
                   // onChange={handleTextChange}
                 />
                 <TextField
@@ -304,7 +304,7 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
                   label="Wiek"
                   name="age"
                   color="primary"
-                  value={dayjs().diff(props.data?.birthDate, "year")}
+                  value={dayjs().diff(props.data?.attributes.birthDate, "year")}
                   //onChange={handleTextChange}
                 />
                 <TextField
@@ -313,7 +313,7 @@ const AddAdoptionModal = (props: EditPetModalProps) => {
                   label="Miejsce znalezienia"
                   name="findPlace"
                   color="primary"
-                  value={props.data?.findPlace}
+                  value={props.data?.attributes.findPlace}
                   //onChange={handleTextChange}
                 />
               </Box>
