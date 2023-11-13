@@ -75,7 +75,7 @@ const AddPetDiseaseModal = (props: EditPetModalProps) => {
       <Autocomplete
         disablePortal
         id="combo-box-demo"
-        options={diseasesData.map((option) => option.name)}
+        options={diseasesData.map((option) => option.attributes.name)}
         fullWidth
         renderInput={(params) => <TextField {...params} label="Nazwa choroby" />}
         />

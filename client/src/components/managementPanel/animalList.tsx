@@ -33,6 +33,7 @@ const AnimalList = () => {
     <Box
       sx={{
         backgroundColor: theme.palette.background.adminField,
+        flexGrow: 1,
         height: "100%",
         textAlign: "center",
         boxSizing: "border-box",
@@ -167,7 +168,7 @@ const AnimalList = () => {
           display: "flex",
           flexDirection: "column",
           gap: "1rem",
-          height: {xs:'60vh', md:'100%'},
+          height: {xs:'60vh', md:'95%'},
           width: {xs:'1000px', md:'100%'},
           overflowY:'auto',
         }}
