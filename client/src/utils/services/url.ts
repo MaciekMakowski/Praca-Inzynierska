@@ -1,1 +1,1 @@
-export const APIurl = 'http://localhost:1337/api/';
+export const APIurl = 'https://shelterapi.maciejmakowski.dev/api/';
