@@ -16,10 +16,10 @@
       "type": "string"
     },
     "description": {
-      "type": "blocks"
+      "type": "text"
     },
     "treatment": {
-      "type": "blocks"
+      "type": "text"
     }
   }
 }

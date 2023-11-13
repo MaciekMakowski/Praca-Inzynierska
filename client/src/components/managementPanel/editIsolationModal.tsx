@@ -13,7 +13,6 @@ import {
   useTheme,
 } from "@mui/material";
 import {
-  EditIsolationModalProps,
   IsolationType,
   PetDiseaseType,
 } from "../../utils/types/basicTypes";
@@ -25,6 +24,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import CloseIcon from "@mui/icons-material/Close";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { EditIsolationModalProps } from "../../utils/types/propsTypes";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { isolationStatusList } from "../../utils/mockups/adminMenu";
 

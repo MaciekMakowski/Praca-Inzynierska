@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 
 import CloseIcon from "@mui/icons-material/Close";
-import { EditPetModalProps } from "../../utils/types/basicTypes";
+import { EditPetModalProps } from "../../utils/types/propsTypes";
 
 const EditPetDescModal = (props:EditPetModalProps) => {
     const theme = useTheme();

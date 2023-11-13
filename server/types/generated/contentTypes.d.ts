@@ -776,8 +776,8 @@ export interface ApiDiseaseDisease extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    description: Attribute.Blocks;
-    treatment: Attribute.Blocks;
+    description: Attribute.Text;
+    treatment: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

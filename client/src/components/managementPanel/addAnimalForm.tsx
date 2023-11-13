@@ -1,4 +1,3 @@
-import { AnimalType, PetManagementProps } from "../../utils/types/basicTypes";
 import {
   Box,
   Button,
@@ -20,10 +19,12 @@ import {
 } from "../../utils/functions/handlers";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { AnimalType } from "../../utils/types/basicTypes";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { ErrorInput } from "../../utils/types/errorInput";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { PetManagementProps } from "../../utils/types/propsTypes";
 import { createAnimal } from "../../utils/services/posts";
 
 const AddAnimalForm = (props: PetManagementProps) => {

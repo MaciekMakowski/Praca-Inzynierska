@@ -11,7 +11,7 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import {
   DiseaseInfoProps,
-} from "../../utils/types/basicTypes";
+} from "../../utils/types/propsTypes";
 
 const InfoModal = (props: DiseaseInfoProps) => {
   const theme = useTheme();

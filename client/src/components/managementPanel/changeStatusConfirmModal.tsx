@@ -6,7 +6,7 @@ import {
     useTheme,
 } from "@mui/material";
 
-import { ConfirmModalProps } from "../../utils/types/basicTypes";
+import { ConfirmModalProps } from "../../utils/types/propsTypes";
 
 const ChangeStatusConfirmModal = (props:ConfirmModalProps) => {
     const theme = useTheme();

@@ -7,7 +7,7 @@ import {
 
 import AddAnimalForm from "./addAnimalForm";
 import CloseIcon from "@mui/icons-material/Close";
-import {EditPetModalProps} from "../../utils/types/basicTypes";
+import {EditPetModalProps} from "../../utils/types/propsTypes";
 
 const EditPetInfoModal = (props: EditPetModalProps) => {
     const theme = useTheme();

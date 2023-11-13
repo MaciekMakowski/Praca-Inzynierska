@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 
 import CloseIcon from "@mui/icons-material/Close";
-import { EditPetModalProps } from "../../utils/types/basicTypes";
+import { EditPetModalProps } from "../../utils/types/propsTypes";
 import dayjs from "dayjs";
 import { handleTextChange } from "../../utils/functions/handlers";
 import { useState } from "react";

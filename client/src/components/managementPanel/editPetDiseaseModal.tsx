@@ -14,7 +14,9 @@ import {
 } from "@mui/material";
 import {
   EditIsolationModalProps,
-  EditPetDiseaseModalProps,
+  EditPetDiseaseModalProps
+} from "../../utils/types/propsTypes";
+import {
   IsolationType,
   PetDiseaseType,
 } from "../../utils/types/basicTypes";
