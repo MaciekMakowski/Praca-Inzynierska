@@ -55,7 +55,6 @@ module.exports = ({ env }) => {
         user: env('DATABASE_USERNAME', 'strapi'),
         password: env('DATABASE_PASSWORD', 'strapi'),
         ssl: {
-          require: env.bool('DATABASE_SSL', false),
           ca: env('CA_CERT'),
         },
         schema: env('DATABASE_SCHEMA', 'public'),
