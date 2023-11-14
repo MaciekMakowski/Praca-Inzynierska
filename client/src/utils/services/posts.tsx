@@ -1,5 +1,6 @@
+import { AnimalType, DiseaseType } from "../types/basicTypes";
+
 import { APIurl } from "./url";
-import { AnimalType } from "../types/basicTypes";
 import axios from "axios";
 
 export const createAnimal = async (animal: AnimalType) => {
@@ -20,10 +21,28 @@ export const createAnimal = async (animal: AnimalType) => {
             }
         }
      );
-    if(response.status === 201) {
-        return console.log(response.data.data);
+    if(response.status === 200) {
+        return true
     }
     else {
-        return console.log(response);
+        return false
     }
 };
+
+export const createDisease = async (disease: DiseaseType) => {
+    const response = await axios.post(`${APIurl}diseases`,
+        {
+            "data":{
+                name: disease.attributes.name,
+                description: disease.attributes.description,
+                treatment: disease.attributes.treatment,
+            }
+        }
+     );
+    if(response.status === 200) {
+        return true
+    }
+    else {
+        return false
+    }
+}
