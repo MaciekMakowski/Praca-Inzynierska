@@ -25,7 +25,6 @@ const DiseaseDetails = () => {
     if(diseaseId)
     getDisease(diseaseId).then((res) => {
       setDisease(res);
-      console.log(diseaseId)
     });
   },[])
 

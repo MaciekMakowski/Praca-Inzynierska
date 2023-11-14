@@ -28,8 +28,11 @@ const DiseaseManagement = () => {
           flexDirection: { xs: "column", xl: "row" },
         }}
       >
-        <AddDiseaseForm setRefresh={setRefreshList} isNew={true}/>
-        <DiseaseList refreshList={refreshList} setRefreshList={setRefreshList}/>
+        <AddDiseaseForm setRefresh={setRefreshList} isNew={true} />
+        <DiseaseList
+          refreshList={refreshList}
+          setRefreshList={setRefreshList}
+        />
         <IllAnimalList />
       </Box>
     </>
