@@ -98,7 +98,7 @@ const PetManagement = () => {
                 }}
               >
                 <PetManagementInfo data={animalData} setRefresh={setRefresh}/>
-                <PetManagementDesc data={animalData} />
+                <PetManagementDesc data={animalData} setRefresh={setRefresh}/>
               </Box>
             </Box>
             <PetManagementImages />

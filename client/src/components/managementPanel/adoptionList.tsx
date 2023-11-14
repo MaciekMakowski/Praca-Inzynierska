@@ -10,9 +10,10 @@ import {
 
 import AddAdoptionModal from "./addAdoptionModal";
 import AdoptionListItem from "./adoptionListItem";
+import { ListProps } from "../../utils/types/propsTypes";
 import { useState } from "react";
 
-const AdoptionList = () => {
+const AdoptionList = (props:ListProps) => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
 
@@ -152,7 +153,7 @@ const AdoptionList = () => {
           <Pagination count={10} size="small" />
         </Typography>
       </Box>
-      <AddAdoptionModal open={open} setOpen={setOpen}/>
+      <AddAdoptionModal open={open} setOpen={setOpen} setRefresh={props.setRefreshList}/>
     </Box>
   );
 };

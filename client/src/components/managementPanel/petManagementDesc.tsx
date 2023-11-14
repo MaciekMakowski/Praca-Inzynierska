@@ -9,6 +9,7 @@ import shadows from "@mui/material/styles/shadows";
 
 type PetManagementDescProps = {
   data: AnimalType
+  setRefresh: React.Dispatch<React.SetStateAction<boolean>>
 };
 
 const PetManagementDesc = (props:PetManagementDescProps) => {
@@ -105,7 +106,7 @@ const PetManagementDesc = (props:PetManagementDescProps) => {
 
         </Typography>
       </Box>
-      <EditPetDescModal open={descOpen} setOpen={setDescOpen} data={props.data}/>
+      <EditPetDescModal open={descOpen} setOpen={setDescOpen} data={props.data} setRefresh={props.setRefresh}/>
     </Box>
   );
 };

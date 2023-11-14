@@ -1,9 +1,11 @@
 import { Box, Typography, useTheme } from "@mui/material";
 
 import AdoptionList from "../../../components/managementPanel/adoptionList";
+import { useState } from "react";
 
 const AdoptionsManagement = () => {
   const theme = useTheme();
+  const [refreshList, setRefreshList] = useState(false);
 
   return (
     <>
@@ -24,7 +26,7 @@ const AdoptionsManagement = () => {
           width: "100%",
         }}
       >
-        <AdoptionList />
+        <AdoptionList setRefreshList={setRefreshList} refreshList={refreshList}/>
       </Box>
     </>
   );
