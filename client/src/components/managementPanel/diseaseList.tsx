@@ -13,18 +13,38 @@ import DiseaseListItem from "./diseaseListItem";
 import { DiseaseType } from "../../utils/types/basicTypes";
 import { ListProps } from "../../utils/types/propsTypes";
 import { getDiseases } from "../../utils/services/gets";
+import { paginationRangeValue } from "../../utils/services/pagination";
 
 const DiseaseList = (props:ListProps) => {
   const theme = useTheme();
   const [diseasesList, setDiseasesList] = useState<DiseaseType[]>([]);
+  const [pageCount, setPageCount] = useState<number>(1)
+  const [page, setPage] = useState<number>(1)
+
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
 
   useEffect(() => {
     if(props.refreshList)
-    getDiseases().then((res) => {
-      setDiseasesList(res);
+      getDiseases(page, paginationRangeValue).then((res) => {
+      setDiseasesList([])
+      setDiseasesList(res.data);
+      setPageCount(res.meta.pagination.pageCount)
       props.setRefreshList(false);
     });
+    
   }, [props.refreshList]);
+
+  useEffect(() => {
+    if(!props.refreshList)
+    getDiseases(page, paginationRangeValue).then((res) => {
+      setDiseasesList([])
+      setDiseasesList(res.data);
+      setPageCount(res.meta.pagination.pageCount)
+      props.setRefreshList(false);
+    });
+  }, [page]);
 
   return (
     <Box
@@ -111,7 +131,7 @@ const DiseaseList = (props:ListProps) => {
         }}
       >
         <Typography variant="subtitle1" color={theme.palette.text.primary}>
-          <Pagination count={10} size="small" />
+          <Pagination count={pageCount} page={page} onChange={handleChange} size="small" />
         </Typography>
       </Box>
     </Box>

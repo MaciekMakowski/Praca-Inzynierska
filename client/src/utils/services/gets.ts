@@ -14,9 +14,9 @@ export const getAnimal = async (id: string) => {
     return data;
 }
 
-export const getDiseases = async () => {
-    const response = await axios(`${APIurl}diseases`);
-    const data = response.data.data;
+export const getDiseases = async (page:number, pagination:number) => {
+    const response = await axios(`${APIurl}diseases?pagination[page]=${page}&pagination[pageSize]=${pagination}`);
+    const data = response.data;
     return data;
 }
 
