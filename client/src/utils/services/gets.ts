@@ -1,9 +1,9 @@
 import { APIurl } from './url';
 import axios from 'axios';
 
-export const getAnimals = async () => {
-    const response = await axios(`${APIurl}animals`);
-    const data = response.data.data;
+export const getAnimals = async (page:number, pagination:number) => {
+    const response = await axios(`${APIurl}animals?pagination[page]=${page}&pagination[pageSize]=${pagination}`);
+    const data = response.data;
     return data;
 }
 

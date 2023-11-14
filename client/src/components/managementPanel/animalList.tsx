@@ -17,18 +17,26 @@ const AnimalList = () => {
   const theme = useTheme();
   const [filter, setFilter] = useState(0);
   const [animalList, setAnimalList] = useState<AnimalType[] | null>(null)
+  const [paginationRange, setPaginationRange] = useState<number>(12)
+  const [pageCount, setPageCount] = useState<number>(1)
+  const [page, setPage] = useState<number>(1)
 
   const handleChangeFilter = (value: number) => {
     if (value === filter) setFilter(0);
     if (value !== filter) setFilter(value);
   };
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
 
 
   useEffect(() => {
-      getAnimals().then((res) => {
-        setAnimalList(res);
+      getAnimals(page,paginationRange).then((res) => {
+        setAnimalList(null)
+        setAnimalList(res.data);
+        setPageCount(res.meta.pagination.pageCount)
       });
-  }, []);
+  }, [page]);
   return (
     <Box
       sx={{
@@ -188,7 +196,7 @@ const AnimalList = () => {
         }}
       >
         <Typography variant="subtitle1" color={theme.palette.text.primary}>
-          <Pagination count={10} size="small" />
+          <Pagination count={pageCount} page={page} onChange={handleChange} size="small" />
         </Typography>
       </Box>
     </Box>
