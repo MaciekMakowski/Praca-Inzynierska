@@ -3,7 +3,7 @@ import { setAsError, unsetAsError } from "./setters";
 import { ErrorInput } from "../types/errorInput";
 
 interface BaseAttributes {
-  [key: string]: string;
+  [key: string]: string | number | boolean;
 }
 
 interface FormAttributes<T extends BaseAttributes> {
@@ -18,7 +18,7 @@ export const validateForm = async <T extends BaseAttributes>(
     if (formData.hasOwnProperty(key)) {
       const value = formData[key];
 
-      if (value === "") {
+      if (value === "" || value === undefined || value === null || value === 0) {
         setAsError(key, foo);
         return false;
       } else {

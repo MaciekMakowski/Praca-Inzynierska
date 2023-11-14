@@ -6,8 +6,16 @@ export type PetManagementProps = {
 
   export type DiseaseManagementProps = {
     data?: DiseaseType;
+    setRefresh: React.Dispatch<React.SetStateAction<boolean>>
+    isNew: boolean;
+    setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   };
   
+export type ListProps = {
+  refreshList:boolean,
+  setRefreshList: React.Dispatch<React.SetStateAction<boolean>>
+}
+
   export type EditPetModalProps = {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -29,6 +37,7 @@ export type PetManagementProps = {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     data?: DiseaseType;
+    setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
   };
 
   export type DiseaseInfoProps = {

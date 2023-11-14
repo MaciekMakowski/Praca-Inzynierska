@@ -26,6 +26,7 @@ import { ErrorInput } from "../../utils/types/errorInput";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { PetManagementProps } from "../../utils/types/propsTypes";
 import { createAnimal } from "../../utils/services/posts";
+import { validateForm } from "../../utils/functions/validators";
 
 const AddAnimalForm = (props: PetManagementProps) => {
   const theme = useTheme();
@@ -70,57 +71,8 @@ const AddAnimalForm = (props: PetManagementProps) => {
     },
   });
 
-  const setAsError = (index: string) => {
-    setErrorList((prev: any) => ({
-      ...prev,
-      [index]: {
-        status: true,
-      },
-    }));
-  };
-  const unsetAsError = (index: string) => {
-    setErrorList((prev: any) => ({
-      ...prev,
-      [index]: {
-        status: false,
-      },
-    }));
-  };
-
-  const validateForm = async () => {
-    if (newAnimal.attributes.name === "") {
-      setAsError("name");
-      return false;
-    } else unsetAsError("name");
-    if (newAnimal.attributes.findPlace === "") {
-      setAsError("findPlace");
-      return false;
-    } else unsetAsError("findPlace");
-    if (newAnimal.attributes.race === "") {
-      setAsError("race");
-      return false;
-    } else unsetAsError("race");
-    if (newAnimal.attributes.species === "") {
-      setAsError("species");
-      return false;
-    } else unsetAsError("species");
-    if (newAnimal.attributes.weight === 0) {
-      setAsError("weight");
-      return false;
-    } else unsetAsError("weight");
-    if (newAnimal.attributes.sex === "") {
-      setAsError("sex");
-      return false;
-    } else unsetAsError("sex");
-    if (dayjs(newAnimal.attributes.birthDate).isAfter(dayjs())) {
-      setAsError("birthDate");
-      return false;
-    } else unsetAsError("birthDate");
-
-    return true;
-  };
   const sendForm = () => {
-    validateForm().then((res) => {
+    validateForm(newAnimal.attributes, setErrorList).then((res) => {
       if (res === true) {
         createAnimal(newAnimal);
         setNewAnimal({
