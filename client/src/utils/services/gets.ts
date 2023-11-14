@@ -10,7 +10,6 @@ export const getAnimals = async (page:number, pagination:number) => {
 export const getAnimal = async (id: string) => {
     const response = await axios(`${APIurl}animals/${id}`);
     const data = response.data.data;
-    console.log(data);
     return data;
 }
 

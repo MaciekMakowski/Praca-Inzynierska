@@ -1,21 +1,22 @@
-import { useState, ChangeEvent } from "react";
 import {
   Box,
+  Button,
+  FormControl,
+  InputLabel,
   MenuItem,
   Select,
+  SelectChangeEvent,
   TextField,
   Typography,
   useTheme,
-  InputLabel,
-  FormControl,
-  SelectChangeEvent,
-  Button,
 } from "@mui/material";
+import { ChangeEvent, useState } from "react";
+import dayjs, { Dayjs } from "dayjs";
+
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import dayjs, { Dayjs } from "dayjs";
 import { PersonType } from "../../utils/types/basicTypes";
 
 type AddPersonFormProps = {

@@ -18,10 +18,10 @@ export const createAnimal = async (animal: AnimalType) => {
                 isIsolated: animal.attributes.isIsolated,
                 toAdoption: animal.attributes.toAdoption,
                 adopted: animal.attributes.adopted,
+                description:animal.attributes.description,
             }
         }
      );
-    console.log(response)
     if(response.status === 200) {
         return true
     }
