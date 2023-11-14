@@ -1,23 +1,24 @@
 import { Box, Grid, IconButton, Typography, useTheme } from "@mui/material";
+import React, { useState } from "react";
 
 import { AnimalType } from "../../utils/types/basicTypes";
 import EditIcon from "@mui/icons-material/Edit";
 import EditPetInfoModal from "./editPetInfoModal";
 import shadows from "@mui/material/styles/shadows";
-import { useState } from "react";
 
 type PetManagementInfoProps = {
-  data: AnimalType
+  data: AnimalType;
+  setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const PetManagementInfo = (props:PetManagementInfoProps) => {
+const PetManagementInfo = (props: PetManagementInfoProps) => {
   const theme = useTheme();
   const [infoOpen, setInfoOpen] = useState(false);
   return (
     <Box
       sx={{
-        height: {xs:"100%", xl:"40%"},
-        weight: {xs:"100%", md:"50%", xl:"100%"},
+        height: { xs: "100%", xl: "40%" },
+        weight: { xs: "100%", md: "50%", xl: "100%" },
         display: "flex",
         flexDirection: "column",
         backgroundColor: theme.palette.background.adminField,
@@ -39,7 +40,7 @@ const PetManagementInfo = (props:PetManagementInfoProps) => {
           <EditIcon />
         </IconButton>
       </Box>
-      <Grid container spacing={0} direction={{xs:'column', md:'row'}}>
+      <Grid container spacing={0} direction={{ xs: "column", md: "row" }}>
         <Grid item xs={3}>
           <Box textAlign={"center"}>
             <Typography
@@ -148,12 +149,17 @@ const PetManagementInfo = (props:PetManagementInfoProps) => {
               Data urodzenia
             </Typography>
             <Typography variant="body1" color={theme.palette.text.primary}>
-             {props.data.attributes.birthDate}
+              {props.data.attributes.birthDate}
             </Typography>
           </Box>
         </Grid>
       </Grid>
-      <EditPetInfoModal open={infoOpen} setOpen={setInfoOpen} data={props.data}/>
+      <EditPetInfoModal
+        open={infoOpen}
+        setOpen={setInfoOpen}
+        data={props.data}
+        setRefresh={props.setRefresh}
+      />
     </Box>
   );
 };

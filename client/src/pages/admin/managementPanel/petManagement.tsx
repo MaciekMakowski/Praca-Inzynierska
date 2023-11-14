@@ -20,27 +20,34 @@ import { useParams } from "react-router";
 
 const PetManagement = () => {
   const [animalData, setAnimalData] = useState<AnimalType | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [adoptionOpen, setAdoptionOpen] = useState(false);
   const [addIsolationOpen, setAddIsolationOpen] = useState(false);
   const [endIsolationOpen, setEndIsolationOpen] = useState(false);
   const [addDiseaseOpen, setAddDiseaseOpen] = useState(false);
   const [endDiseaseOpen, setEndDiseaseOpen] = useState(false);
   const [changeStatusOpen, setChangeStatusOpen] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   const theme = useTheme();
   const {petId} = useParams();
+
+  useEffect(() => {
+    if(petId && refresh)
+    getAnimal(petId).then((res) => {
+      setAnimalData(res);
+      setRefresh(false)
+    });
+  }, [petId, refresh]);
 
   useEffect(() => {
     if(petId)
     getAnimal(petId).then((res) => {
       setAnimalData(res);
-      setIsLoading(false);
     });
   }, []);
   return (    
     <> 
-    {!isLoading ? 
-    animalData !== null ?
+    { 
+    animalData === null ? <>Loading...</> :
     <>
       <Box height={"10%"}>
         <Typography
@@ -90,7 +97,7 @@ const PetManagement = () => {
                   gap: "1rem",
                 }}
               >
-                <PetManagementInfo data={animalData} />
+                <PetManagementInfo data={animalData} setRefresh={setRefresh}/>
                 <PetManagementDesc data={animalData} />
               </Box>
             </Box>
@@ -208,7 +215,7 @@ const PetManagement = () => {
           petid={animalData.id}
         />
       </Box>
-      </> : <></> : <></>}
+      </>}
     </>
   );
 };

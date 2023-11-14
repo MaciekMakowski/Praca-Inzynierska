@@ -11,13 +11,15 @@ import { useEffect, useState } from "react";
 
 import AnimalListItem from "./animalListItem";
 import { AnimalType } from "../../utils/types/basicTypes";
+import { ListProps } from "../../utils/types/propsTypes";
 import { getAnimals } from "../../utils/services/gets";
+import { paginationRangeValue } from "../../utils/services/pagination";
 
-const AnimalList = () => {
+const AnimalList = (props:ListProps) => {
   const theme = useTheme();
   const [filter, setFilter] = useState(0);
-  const [animalList, setAnimalList] = useState<AnimalType[] | null>(null)
-  const [paginationRange, setPaginationRange] = useState<number>(12)
+  const [animalList, setAnimalList] = useState<AnimalType[]>([])
+  const [paginationRange, setPaginationRange] = useState<number>(paginationRangeValue)
   const [pageCount, setPageCount] = useState<number>(1)
   const [page, setPage] = useState<number>(1)
 
@@ -31,12 +33,23 @@ const AnimalList = () => {
 
 
   useEffect(() => {
+    if(!props.refreshList)
       getAnimals(page,paginationRange).then((res) => {
-        setAnimalList(null)
+        setAnimalList([])
         setAnimalList(res.data);
         setPageCount(res.meta.pagination.pageCount)
       });
   }, [page]);
+
+  useEffect(() => {
+    if(props.refreshList)
+      getAnimals(page, paginationRange).then((res) => {
+      setAnimalList([])
+      setAnimalList(res.data);
+      setPageCount(res.meta.pagination.pageCount)
+      props.setRefreshList(false);
+    });
+  },[props.refreshList])
   return (
     <Box
       sx={{

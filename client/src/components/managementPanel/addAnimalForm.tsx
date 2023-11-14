@@ -26,6 +26,7 @@ import { ErrorInput } from "../../utils/types/errorInput";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { PetManagementProps } from "../../utils/types/propsTypes";
 import { createAnimal } from "../../utils/services/posts";
+import { updateAnimal } from "../../utils/services/puts";
 import { validateForm } from "../../utils/functions/validators";
 
 const AddAnimalForm = (props: PetManagementProps) => {
@@ -40,7 +41,7 @@ const AddAnimalForm = (props: PetManagementProps) => {
       weight: 0,
       sex: "",
       birthDate: dayjs().format("YYYY-MM-DD"),
-      description: "",
+      description: "Tu dodaj opis",
       isIll: false,
       isIsolated: false,
       toAdoption: false,
@@ -72,26 +73,45 @@ const AddAnimalForm = (props: PetManagementProps) => {
   });
 
   const sendForm = () => {
+    console.log(errorList)
     validateForm(newAnimal.attributes, setErrorList).then((res) => {
+      console.log(res)
       if (res === true) {
-        createAnimal(newAnimal);
-        setNewAnimal({
-          id: 0,
-          attributes: {
-            name: "",
-            findPlace: "",
-            race: "",
-            species: "",
-            weight: 0,
-            sex: "",
-            birthDate: dayjs().format("YYYY-MM-DD"),
-            description: "",
-            isIll: false,
-            isIsolated: false,
-            toAdoption: false,
-            adopted: false,
-          },
+        if (props.isNew) {
+          createAnimal(newAnimal).then((res) => {
+            if(res){
+              setNewAnimal({
+                id: 0,
+                attributes: {
+                  name: "",
+                  findPlace: "",
+                  race: "",
+                  species: "",
+                  weight: 0,
+                  sex: "",
+                  birthDate: dayjs().format("YYYY-MM-DD"),
+                  description: "Tu dodaj opis",
+                  isIll: false,
+                  isIsolated: false,
+                  toAdoption: false,
+                  adopted: false,
+                },
+              });
+              props.setRefresh(true);
+            }else{
+              alert("Nie udało się dodać zwierzęcia");
+            }
         });
+      } else {
+        updateAnimal(newAnimal).then((res) => {
+          if(res){
+            props.setRefresh(true);
+            if(props.setOpen) props.setOpen(false);
+          }else{
+            alert("Nie udało się zaktualizować zwierzęcia");
+          }
+        });
+      }
       }
     });
   };

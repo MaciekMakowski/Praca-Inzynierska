@@ -2,6 +2,9 @@ import { AnimalType, DiseaseType, IsolationType, PetDiseaseType } from "./basicT
 
 export type PetManagementProps = {
     data?: AnimalType;
+    setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
+    isNew: boolean;
+    setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   };
 
   export type DiseaseManagementProps = {
@@ -20,6 +23,7 @@ export type ListProps = {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     data?: AnimalType;
+    setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
   };
   
   export type EditIsolationModalProps = {

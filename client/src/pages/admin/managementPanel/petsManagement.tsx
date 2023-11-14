@@ -2,9 +2,11 @@ import { Box, Typography, useTheme } from "@mui/material";
 
 import AddAnimalForm from "../../../components/managementPanel/addAnimalForm";
 import AnimalList from "../../../components/managementPanel/animalList";
+import { useState } from "react";
 
 const PetsManagement = () => {
   const theme = useTheme();
+  const [refreshList, setRefreshList] = useState<boolean>(false);
   return (
     <>
       <Box>
@@ -25,8 +27,8 @@ const PetsManagement = () => {
           flexDirection: { xs: "column", md: "row" },
         }}
       >
-        <AddAnimalForm />
-        <AnimalList />
+        <AddAnimalForm setRefresh={setRefreshList} isNew={true}/>
+        <AnimalList setRefreshList={setRefreshList} refreshList={refreshList}/>
         <Box
           sx={{
             width: "40%",
