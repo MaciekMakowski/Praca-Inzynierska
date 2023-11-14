@@ -198,16 +198,19 @@ const PetManagement = () => {
           setOpen={setAdoptionOpen}
           open={adoptionOpen}
           data={animalData}
+          setRefresh={setRefresh}
         />
         <AddIsolationModal
           setOpen={setAddIsolationOpen}
           open={addIsolationOpen}
           data={animalData}
+          setRefresh={setRefresh}
         />
         <AddPetDiseaseModal
           setOpen={setAddDiseaseOpen}
           open={addDiseaseOpen}
           data={animalData}
+          setRefresh={setRefresh}
         />
         <ChangeStatusConfirmModal
           setOpen={setChangeStatusOpen}
