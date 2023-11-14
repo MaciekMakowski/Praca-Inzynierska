@@ -11,18 +11,20 @@ import { useEffect, useState } from "react";
 
 import DiseaseListItem from "./diseaseListItem";
 import { DiseaseType } from "../../utils/types/basicTypes";
+import { ListProps } from "../../utils/types/propsTypes";
 import { getDiseases } from "../../utils/services/gets";
 
-const DiseaseList = () => {
+const DiseaseList = (props:ListProps) => {
   const theme = useTheme();
   const [diseasesList, setDiseasesList] = useState<DiseaseType[]>([]);
 
   useEffect(() => {
+    if(props.refreshList)
     getDiseases().then((res) => {
       setDiseasesList(res);
+      props.setRefreshList(false);
     });
-    console.log(diseasesList);
-  }, []);
+  }, [props.refreshList]);
 
   return (
     <Box

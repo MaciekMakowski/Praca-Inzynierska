@@ -3,10 +3,11 @@ import { Box, Typography, useTheme } from "@mui/material";
 import AddDiseaseForm from "../../../components/managementPanel/addDiseaseForm";
 import DiseaseList from "../../../components/managementPanel/diseaseList";
 import IllAnimalList from "../../../components/managementPanel/illAnimalList";
+import { useState } from "react";
 
 const DiseaseManagement = () => {
   const theme = useTheme();
-
+  const [refreshList, setRefreshList] = useState(true);
   return (
     <>
       <Box>
@@ -27,8 +28,8 @@ const DiseaseManagement = () => {
           flexDirection: { xs: "column", xl: "row" },
         }}
       >
-        <AddDiseaseForm />
-        <DiseaseList />
+        <AddDiseaseForm setRefresh={setRefreshList} isNew={true}/>
+        <DiseaseList refreshList={refreshList} setRefreshList={setRefreshList}/>
         <IllAnimalList />
       </Box>
     </>

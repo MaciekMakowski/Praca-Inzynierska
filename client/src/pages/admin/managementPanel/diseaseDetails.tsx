@@ -1,10 +1,8 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 
-import AddDiseaseForm from "../../../components/managementPanel/addDiseaseForm";
 import { DiseaseType } from "../../../utils/types/basicTypes";
 import EditDiseaseModal from "../../../components/managementPanel/editDiseaseModal";
-import { diseaseDataDetails } from "../../../utils/mockups/adminMenu";
 import { getDisease } from "../../../utils/services/gets";
 import { useParams } from "react-router";
 
@@ -12,7 +10,16 @@ const DiseaseDetails = () => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [disease, setDisease] = useState<DiseaseType | null>(null)
+  const [refresh, setRefresh] = useState(false)
   const {diseaseId} = useParams()
+
+  useEffect(() => {
+    if(diseaseId && refresh)
+    getDisease(diseaseId).then((res) => {
+      setDisease(res);
+      setRefresh(false)
+    });
+  }, [diseaseId, refresh]);
 
   useEffect(() => {
     if(diseaseId)
@@ -20,7 +27,7 @@ const DiseaseDetails = () => {
       setDisease(res);
       console.log(diseaseId)
     });
-  }, [diseaseId]);
+  },[])
 
   return (
     <>
@@ -82,7 +89,7 @@ const DiseaseDetails = () => {
          </Box>
        </Box>
      </Box>
-     <EditDiseaseModal open={open} setOpen={setOpen} data={disease}/>
+     <EditDiseaseModal open={open} setOpen={setOpen} data={disease} setRefresh={setRefresh}/>
    </>
      }
     </>

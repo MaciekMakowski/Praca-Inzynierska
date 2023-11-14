@@ -1,13 +1,18 @@
-import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
+import { Box, Button, TextField, Typography, setRef, useTheme } from "@mui/material";
+import { setAsError, unsetAsError } from "../../utils/functions/setters";
 import { useEffect, useState } from "react";
 
 import { DiseaseManagementProps } from "../../utils/types/propsTypes";
 import { DiseaseType } from "../../utils/types/basicTypes";
+import { ErrorInput } from "../../utils/types/errorInput";
+import { createDisease } from "../../utils/services/posts";
 import { handleTextChange } from "../../utils/functions/handlers";
+import { updateDisease } from "../../utils/services/puts";
+import { validateForm } from "../../utils/functions/validators";
 
 const AddDiseaseForm = (props:DiseaseManagementProps) => {
   const theme = useTheme();
-  const [newDisase, setNewDisease] = useState<DiseaseType>({
+  const [newDisease, setNewDisease] = useState<DiseaseType>({
     id: 0,
     attributes:{
       name: "",
@@ -15,11 +20,57 @@ const AddDiseaseForm = (props:DiseaseManagementProps) => {
       treatment: "",
     }
   });
+  const [errorList, setErrorList] = useState<ErrorInput>({
+    name: {
+      status: false,
+    },
+    description: {
+      status: false,
+    },
+    treatment: {
+      status: false,
+    },
+  });
 
 
   const textChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleTextChange(e, setNewDisease);
   }
+
+  const sendForm = () => {
+    validateForm(newDisease.attributes, setErrorList).then((res) => {
+      if (res === true) {
+        if(props.isNew){
+          createDisease(newDisease).then((res) => {
+            if (res) {
+              props.setRefresh(true);
+              setNewDisease({
+                id: 0,
+                attributes: {
+                  name: "",
+                  description: "",
+                  treatment: "",
+                },
+              });
+            }else{
+              alert("Nie udało się dodać choroby")
+            }
+          })
+        }
+        else{
+          updateDisease(newDisease).then((res) => {
+            if (res) {
+              props.setRefresh(true);
+              if(props.setOpen) props.setOpen(false);
+            }else{
+              alert("Nie udało się zaktualizować choroby")
+            }
+          })
+        }
+      }
+    });
+  };
+
   useEffect(() => {
     if(props.data){
       setNewDisease(props.data)
@@ -51,7 +102,8 @@ const AddDiseaseForm = (props:DiseaseManagementProps) => {
         name="name"
         variant="outlined"
         onChange={textChange}
-        value={newDisase.attributes.name}
+        value={newDisease.attributes.name}
+        error={errorList.name.status}
       />
       <TextField
         label="Objawy"
@@ -60,7 +112,8 @@ const AddDiseaseForm = (props:DiseaseManagementProps) => {
         fullWidth
         rows={4}
         onChange={textChange}
-        value={newDisase.attributes.description}
+        value={newDisease.attributes.description}
+        error={errorList.description.status}
       />
       <TextField
         label="Leczenie"
@@ -69,12 +122,13 @@ const AddDiseaseForm = (props:DiseaseManagementProps) => {
         multiline
         rows={4}
         onChange={textChange}
-        value={newDisase.attributes.treatment}
+        value={newDisease.attributes.treatment}
+        error={errorList.treatment.status}
       />
       <Button
         variant="contained"
         fullWidth
-        onClick={() => console.log(newDisase)}
+        onClick={() => sendForm()}
       >
         Dodaj
       </Button>

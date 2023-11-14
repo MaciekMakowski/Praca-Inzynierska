@@ -38,7 +38,7 @@ const EditDiseaseModal = (props: EditDiseaseProps) => {
             <CloseIcon />
           </IconButton>
         </Box>
-            <AddDiseaseForm  data={props.data}/>
+            <AddDiseaseForm  data={props.data} isNew={false} setRefresh={props.setRefresh} setOpen={props.setOpen}/>
         
         </Box>
       </Modal>
