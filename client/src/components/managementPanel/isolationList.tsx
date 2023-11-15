@@ -7,25 +7,38 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { useEffect, useState } from "react";
 
 import IsolationListItem from "./isolationListItem";
-import { useState } from "react";
+import { IsolationType } from "../../utils/types/basicTypes";
+import { getIsolations } from "../../utils/services/gets";
+import { paginationRangeValue } from "../../utils/services/pagination";
 
 const IsolationList = () => {
   const theme = useTheme();
   const [filter, setFilter] = useState(0);
+  const [page, setPage] = useState(1);
+  const [pageCount, setPageCount] = useState<number>(1);
+  const [isolationList, setIsolationList] = useState<IsolationType[]>([]);
 
   const handleChangeFilter = (value: number) => {
     if (value === filter) setFilter(0);
     if (value !== filter) setFilter(value);
   };
 
-  const returnItems = () => {
-    const items = [];
-    for (let i = 0; i < 20; i++)
-      items.push(<IsolationListItem key={i} color={i % 2 == 0} />);
-    return items;
+  const changePage = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
   };
+
+  useEffect(() => {
+    getIsolations(page, paginationRangeValue).then((res) => {
+      if (res) {
+        setIsolationList([]);
+        setIsolationList(res.data);
+        setPageCount(res.meta.pagination.pageCount);
+      }
+    });
+  }, [page]);
 
   return (
     <Box
@@ -40,7 +53,7 @@ const IsolationList = () => {
         gap: "1rem",
         borderRadius: "1rem",
         boxShadow: theme.shadows[3],
-        width: {xs:'none', md:'100%'},
+        width: { xs: "none", md: "100%" },
       }}
     >
       <Box
@@ -92,93 +105,99 @@ const IsolationList = () => {
           </Button>
         </Box>
       </Box>
-      <Box 
-        sx={{
-          overflowX:'auto',
-          overflowY:'clip'
-        }}
-      >
-      <Grid container spacing={0} 
-        sx={{
-          width: {xs:'800px', md:'100%'},
-          paddingRight:{xs:'0', md:'1rem'}
-        }}
-      >
-      <Grid item xs={1}>
-        <Typography
-          variant="body1"
-          textAlign={"center"}
-          color={theme.palette.text.primary}
-          fontWeight={600}
-        >
-          Numer
-        </Typography>
-      </Grid>
-      <Grid item xs={1}>
-        <Typography
-          variant="body1"
-          textAlign={"center"}
-          color={theme.palette.text.primary}
-          fontWeight={600}
-        >
-          Imię
-        </Typography>
-      </Grid>
-      <Grid item xs={2} md={1.5}>
-        <Typography
-          variant="body1"
-          textAlign={"center"}
-          color={theme.palette.text.primary}
-          fontWeight={600}
-        >
-          Data  rozpoczęcia
-        </Typography>
-      </Grid>
-      <Grid item xs={2} md={1.5}>
-        <Typography
-          variant="body1"
-          textAlign={"center"}
-          color={theme.palette.text.primary}
-          fontWeight={600}
-        >
-          Data zakończenia
-        </Typography>
-      </Grid>
-      <Grid item xs={2} md={4.5}>
-        <Typography
-          variant="body1"
-          textAlign={"center"}
-          color={theme.palette.text.primary}
-          fontWeight={600}
-        >
-          Powód
-        </Typography>
-      </Grid>
-      <Grid item xs={2} md={1.5}>
-        <Typography
-          variant="body1"
-          textAlign={"center"}
-          color={theme.palette.text.primary}
-          fontWeight={600}
-        >
-          Status
-        </Typography>
-      </Grid>
-      <Grid item xs={2} md={1}>
-      </Grid>
-      </Grid>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "1rem",
-          height: {xs:'60vh', md:'100%', lg:'100%'},
-          width: {xs:'800px', md:'100%'},
-          overflowY:'auto',
+          overflowX: "auto",
+          overflowY: "clip",
+          height: "100%",
         }}
       >
-        {returnItems()}
-      </Box>
+        <Grid
+          container
+          spacing={0}
+          sx={{
+            width: { xs: "800px", md: "100%" },
+            paddingRight: { xs: "0", md: "1rem" },
+          }}
+        >
+          <Grid item xs={1}>
+            <Typography
+              variant="body1"
+              textAlign={"center"}
+              color={theme.palette.text.primary}
+              fontWeight={600}
+            >
+              Numer
+            </Typography>
+          </Grid>
+          <Grid item xs={1}>
+            <Typography
+              variant="body1"
+              textAlign={"center"}
+              color={theme.palette.text.primary}
+              fontWeight={600}
+            >
+              Imię
+            </Typography>
+          </Grid>
+          <Grid item xs={2} md={1.5}>
+            <Typography
+              variant="body1"
+              textAlign={"center"}
+              color={theme.palette.text.primary}
+              fontWeight={600}
+            >
+              Data rozpoczęcia
+            </Typography>
+          </Grid>
+          <Grid item xs={2} md={1.5}>
+            <Typography
+              variant="body1"
+              textAlign={"center"}
+              color={theme.palette.text.primary}
+              fontWeight={600}
+            >
+              Data zakończenia
+            </Typography>
+          </Grid>
+          <Grid item xs={2} md={4.5}>
+            <Typography
+              variant="body1"
+              textAlign={"center"}
+              color={theme.palette.text.primary}
+              fontWeight={600}
+            >
+              Powód
+            </Typography>
+          </Grid>
+          <Grid item xs={2} md={1.5}>
+            <Typography
+              variant="body1"
+              textAlign={"center"}
+              color={theme.palette.text.primary}
+              fontWeight={600}
+            >
+              Status
+            </Typography>
+          </Grid>
+          <Grid item xs={2} md={1}></Grid>
+        </Grid>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "1rem",
+            height: { xs: "60vh", md: "100%", lg: "100%" },
+            width: { xs: "800px", md: "100%" },
+            overflowY: "auto",
+          }}
+        >
+          {isolationList.map((item, i) => {
+            return (
+              <IsolationListItem key={i} color={i % 2 == 0} isolation={item} />
+            );
+          })}
+        </Box>
       </Box>
       <Box
         sx={{
@@ -187,7 +206,12 @@ const IsolationList = () => {
         }}
       >
         <Typography variant="subtitle1" color={theme.palette.text.primary}>
-          <Pagination count={10} size="small" />
+          <Pagination
+            count={pageCount}
+            page={page}
+            onChange={changePage}
+            size="small"
+          />
         </Typography>
       </Box>
     </Box>

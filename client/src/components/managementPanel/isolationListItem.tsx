@@ -1,10 +1,12 @@
 import { Button, Grid, Typography, useTheme } from "@mui/material";
 
+import { IsolationType } from "../../utils/types/basicTypes";
 import { navigateTo } from "../../utils/functions/navigators";
 import { useNavigate } from "react-router";
 
 type IsolationListItemProps = {
   color: boolean;
+  isolation:IsolationType
 };
 
 const IsolationListItem = (props: IsolationListItemProps) => {
@@ -32,7 +34,7 @@ const IsolationListItem = (props: IsolationListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          #21342
+          {props.isolation.id}
         </Typography>
       </Grid>
       <Grid item xs={1}>
@@ -45,7 +47,7 @@ const IsolationListItem = (props: IsolationListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          Puszek
+          {props.isolation.attributes.animal.attributes.name}
         </Typography>
       </Grid>
       <Grid item xs={2} md={1.5}>
@@ -58,7 +60,7 @@ const IsolationListItem = (props: IsolationListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          23.09.2021
+          {props.isolation.attributes.startDate}
         </Typography>
       </Grid>
       <Grid item xs={2} md={1.5}>
@@ -71,7 +73,7 @@ const IsolationListItem = (props: IsolationListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          30.09.2021
+          {props.isolation.attributes.endDate}
         </Typography>
       </Grid>
       <Grid item xs={2} md={4.5}>
@@ -84,7 +86,7 @@ const IsolationListItem = (props: IsolationListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          Angina, brak apetytu
+          {props.isolation.attributes.reason}
         </Typography>
       </Grid>
       <Grid item xs={2} md={1.5}>
@@ -107,7 +109,7 @@ const IsolationListItem = (props: IsolationListItemProps) => {
               ? theme.palette.text.primary
               : theme.palette.text.secondary,
           }}
-          onClick={() => navigateTo(navigate, "/admin/management/isolation/1")}
+          onClick={() => navigateTo(navigate, `/admin/management/isolation/${props.isolation.id}`)}
         >
           Przejdź
         </Button>

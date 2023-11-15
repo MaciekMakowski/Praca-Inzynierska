@@ -26,13 +26,15 @@ const AddIsolationModal = (props: EditPetModalProps) => {
     startDate: "",
     endDate: "",
     reason: "",
-    petId: typeof props.data === "number" ? props.data : 0,
+    petId: props.data.id,
     status: "Zakończona",
   });
   const dateChange = (value: Dayjs | null) => {
     if (value === null) return;
     handleChangeDate(value.format('DD-MM-YYYY'), setNewIsolation, 'startDate')
   }
+
+  
 
   return (
     <Modal open={props.open} onClose={handleClose}>

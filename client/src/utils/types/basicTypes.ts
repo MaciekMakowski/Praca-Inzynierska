@@ -67,12 +67,15 @@ export type PersonType = {
 };
 
 export type IsolationType = {
-  number?: number;
-  reason: string;
-  startDate: string;
-  endDate: string;
-  petId: number;
-  status: string
+  id: number;
+  attributes:{
+    reason: string;
+    startDate: string;
+    endDate: string;
+    status: string;
+    animal:AnimalType;
+  }
+  
 };
 
 export type PetDiseaseType = {

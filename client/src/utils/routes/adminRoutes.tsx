@@ -74,7 +74,7 @@ const AdminRoutes = () => {
               element={<IsolationManagement />}
             />
             <Route
-              path="/management/isolation/:id"
+              path="/management/isolation/:isolationId"
               element={<IsolationDetails />}
             />
             <Route

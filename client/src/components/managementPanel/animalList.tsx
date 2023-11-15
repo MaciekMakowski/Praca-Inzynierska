@@ -19,7 +19,6 @@ const AnimalList = (props:ListProps) => {
   const theme = useTheme();
   const [filter, setFilter] = useState(0);
   const [animalList, setAnimalList] = useState<AnimalType[]>([])
-  const [paginationRange, setPaginationRange] = useState<number>(paginationRangeValue)
   const [pageCount, setPageCount] = useState<number>(1)
   const [page, setPage] = useState<number>(1)
 
@@ -27,14 +26,14 @@ const AnimalList = (props:ListProps) => {
     if (value === filter) setFilter(0);
     if (value !== filter) setFilter(value);
   };
-  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+  const changePage = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
   };
 
 
   useEffect(() => {
     if(!props.refreshList)
-      getAnimals(page,paginationRange).then((res) => {
+      getAnimals(page,paginationRangeValue).then((res) => {
         setAnimalList([])
         setAnimalList(res.data);
         setPageCount(res.meta.pagination.pageCount)
@@ -43,7 +42,7 @@ const AnimalList = (props:ListProps) => {
 
   useEffect(() => {
     if(props.refreshList)
-      getAnimals(page, paginationRange).then((res) => {
+      getAnimals(page, paginationRangeValue).then((res) => {
       setAnimalList([])
       setAnimalList(res.data);
       setPageCount(res.meta.pagination.pageCount)
@@ -211,7 +210,7 @@ const AnimalList = (props:ListProps) => {
         }}
       >
         <Typography variant="subtitle1" color={theme.palette.text.primary}>
-          <Pagination count={pageCount} page={page} onChange={handleChange} size="small" />
+          <Pagination count={pageCount} page={page} onChange={changePage} size="small" />
         </Typography>
       </Box>
     </Box>
