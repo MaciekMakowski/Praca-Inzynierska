@@ -26,6 +26,7 @@ export const updateAnimal = async (animal:AnimalType) => {
             species: animal.attributes.species,
             sex: animal.attributes.sex,
             findPlace: animal.attributes.findPlace,
+            description: animal.attributes.description,
             birthDate: animal.attributes.birthDate,
             weight: animal.attributes.weight,
             isIll: animal.attributes.isIll,
@@ -34,6 +35,7 @@ export const updateAnimal = async (animal:AnimalType) => {
             adopted: animal.attributes.adopted,
         }
     })
+
     if(response.status === 200){
         return true
     }else{
