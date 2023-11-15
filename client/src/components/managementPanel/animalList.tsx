@@ -119,7 +119,8 @@ const AnimalList = (props:ListProps) => {
       <Box 
         sx={{
           overflowX:'auto',
-          overflowY:'clip'
+          overflowY:'clip',
+          height:'100%',
         }}
       >
       <Grid container spacing={0}  
@@ -189,7 +190,8 @@ const AnimalList = (props:ListProps) => {
           display: "flex",
           flexDirection: "column",
           gap: "1rem",
-          height: {xs:'60vh', md:'95%'},
+          height: "95%",
+          maxHeight: { xs: "40vh", lg: "95%" },
           width: {xs:'1000px', md:'100%'},
           overflowY:'auto',
         }}
