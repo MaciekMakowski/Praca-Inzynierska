@@ -22,13 +22,7 @@ import { useState } from "react";
 const AddIsolationModal = (props: EditPetModalProps) => {
   const theme = useTheme();
   const handleClose = () => props.setOpen(false);
-  const [newIsolation, setNewIsolation] = useState<IsolationType>({
-    startDate: "",
-    endDate: "",
-    reason: "",
-    petId: props.data.id,
-    status: "Zakończona",
-  });
+  const [newIsolation, setNewIsolation] = useState<IsolationType>();
   const dateChange = (value: Dayjs | null) => {
     if (value === null) return;
     handleChangeDate(value.format('DD-MM-YYYY'), setNewIsolation, 'startDate')

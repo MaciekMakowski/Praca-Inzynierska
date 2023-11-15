@@ -8,13 +8,13 @@ import {
   useTheme,
 } from "@mui/material";
 
+import { AddAdoptionProps } from "../../utils/types/propsTypes";
 import CloseIcon from "@mui/icons-material/Close";
-import { EditPetModalProps } from "../../utils/types/propsTypes";
 import dayjs from "dayjs";
 import { handleTextChange } from "../../utils/functions/handlers";
 import { useState } from "react";
 
-const AddAdoptionModal = (props: EditPetModalProps) => {
+const AddAdoptionModal = (props: AddAdoptionProps) => {
   const theme = useTheme();
   const [userId,setUserId] = useState<string>("")
   const handleClose = () => props.setOpen(false);
