@@ -25,6 +25,13 @@ export type ListProps = {
     data: AnimalType;
     setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
   };
+
+  export type AddAdoptionProps = {
+    open: boolean;
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    data?: AnimalType;
+    setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
+  }
   
   export type EditIsolationModalProps = {
     open: boolean;
