@@ -1,5 +1,5 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 
 import AddAdoptionModal from "../../../components/managementPanel/addAdoptionModal";
 import AddHomeIcon from "@mui/icons-material/AddHome";
@@ -174,7 +174,7 @@ const PetManagement = () => {
               }}
             >
               <ManagementButton
-                name="Zablokuj adopcje"
+                name={animalData.attributes.toAdoption ? "Zablokuj adopcje" : "Odblokuj adopcje"}
                 ico={BlockIcon}
                 disabled={false}
                 foo={() => setChangeStatusOpen(true)}
@@ -212,11 +212,15 @@ const PetManagement = () => {
           data={animalData}
           setRefresh={setRefresh}
         />
-        <ChangeStatusConfirmModal
+          <ChangeStatusConfirmModal
           setOpen={setChangeStatusOpen}
           open={changeStatusOpen}
           petid={animalData.id}
+          animal={animalData}
+          setAnimal={setAnimalData}
+          setRefresh={setRefresh}
         />
+        
       </Box>
       </>}
     </>

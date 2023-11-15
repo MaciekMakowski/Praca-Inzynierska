@@ -35,7 +35,6 @@ export const updateAnimal = async (animal:AnimalType) => {
             adopted: animal.attributes.adopted,
         }
     })
-
     if(response.status === 200){
         return true
     }else{

@@ -63,4 +63,7 @@ export type ListProps = {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     petid: number;
+    animal:AnimalType;
+    setAnimal: React.Dispatch<React.SetStateAction<AnimalType | null>>;
+    setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
   };
