@@ -232,6 +232,7 @@ const AddAnimalForm = (props: PetManagementProps) => {
             format="YYYY-MM-DD"
             value={dayjs(newAnimal.attributes.birthDate)}
             label="Data urodzenia"
+            disableFuture
             onChange={(value: Dayjs | null) => dateChange(value)}
           />
         </DemoContainer>

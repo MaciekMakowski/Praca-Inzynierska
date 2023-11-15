@@ -30,6 +30,7 @@ export type ListProps = {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     data?: IsolationType;
+    setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
   };
 
   export type ModalProps = {

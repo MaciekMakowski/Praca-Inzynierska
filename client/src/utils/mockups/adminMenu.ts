@@ -94,13 +94,17 @@ export const isolationStatusList = [
     value: "inProgress",
   },
   {
-    name: "Zakończone",
+    name: "Zakończona",
     value: "finished",
   },
   {
-    name: "Anulowane",
+    name: "Anulowana",
     value: "canceled",
   },
+  {
+    name: "Oczekująca",
+    value: "waiting",
+  }
 ];
 
 export const resourceDetailsData: ResourceType = {
@@ -186,12 +190,15 @@ export const diseaseDataDetails: DiseaseType = {
 };
 
 export const isolationDataDetails: IsolationType = {
-  number: 1,
-  reason: "jakis opis",
-  startDate: "2021-10-10",
-  endDate: "2021-10-10",
-  petId: 23,
-  status: isolationStatusList[0].name,
+  id: 1,
+  attributes:{
+    reason: "jakis opis",
+    startDate: "2021-10-10",
+    endDate: "2021-10-10",
+    status: "W trakcie",
+    animal: puszekData,
+  }
+
 };
 
 export const GuestData = {

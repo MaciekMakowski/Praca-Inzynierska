@@ -11,13 +11,22 @@ const IsolationDetails = () => {
   const [open, setOpen] = useState(false);
   const [isolationDataDetails, setIsolationDataDetails] = useState<IsolationType>();
   const {isolationId} = useParams();
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
-    if(isolationId)
+    if(isolationId && !refresh)
     getIsolation(isolationId).then((res) => {
       setIsolationDataDetails(res);
     });
   },[isolationId])
+
+  useEffect(() => {
+    if(refresh && isolationId)
+    getIsolation(isolationId).then((res) => {
+      setIsolationDataDetails(res);
+      setRefresh(false);
+    });
+  },[refresh])
 
   return (
     <>
@@ -89,7 +98,7 @@ const IsolationDetails = () => {
           </Box>
         </Box>
       </Box>
-      <EditIsolationModal setOpen={setOpen} open={open} data={isolationDataDetails}/>
+      <EditIsolationModal setOpen={setOpen} open={open} data={isolationDataDetails} setRefresh={setRefresh}/>
       </>}
     </>
   );

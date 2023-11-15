@@ -1,10 +1,11 @@
 import { setAsError, unsetAsError } from "./setters";
 
+import { AnimalType } from "../types/basicTypes";
 import { ErrorInput } from "../types/errorInput";
 import dayjs from "dayjs";
 
 interface BaseAttributes {
-  [key: string]: string | number | boolean;
+  [key: string]: string | number | boolean | AnimalType;
 }
 
 interface FormAttributes<T extends BaseAttributes> {
