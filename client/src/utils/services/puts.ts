@@ -1,4 +1,4 @@
-import { AnimalType, DiseaseType, IsolationType } from "../types/basicTypes";
+import { AnimalType, DiseaseType, IsolationType, PetDiseaseType } from "../types/basicTypes";
 
 import { APIurl } from "./url";
 import axios from "axios";
@@ -51,6 +51,24 @@ export const uppdateIsolation = async (isolation:IsolationType) => {
             "reason": isolation.attributes.reason,
             "status": isolation.attributes.status,
             "animal": isolation.attributes.animal.id,
+        }
+    })
+    if(response.status === 200){
+        return true
+    }else{
+        return false
+    }
+}
+
+export const updatePetDisease = async (petDisease:PetDiseaseType) => {
+    const response = await axios.put(`${APIurl}pet-diseases/${petDisease.id}`, {
+        "data":{
+            "startDate": petDisease.attributes.startDate,
+            "endDate": petDisease.attributes.endDate,
+            "symptoms": petDisease.attributes.symptoms,
+            "status": petDisease.attributes.status,
+            "animal": petDisease.attributes.animal.id,
+            "disease": petDisease.attributes.disease.id
         }
     })
     if(response.status === 200){

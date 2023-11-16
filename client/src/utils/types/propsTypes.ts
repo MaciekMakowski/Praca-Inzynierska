@@ -66,7 +66,8 @@ export type ListProps = {
   export type EditPetDiseaseModalProps = {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    data?: PetDiseaseType;
+    data: PetDiseaseType;
+    setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
   }
   
   export type ConfirmModalProps = {

@@ -10,16 +10,18 @@ const PetDiseaseDetails = () => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [petDisease, setPetDisease] = useState<PetDiseaseType>();
+  const [refresh, setRefresh] = useState(true);
   const { petId } = useParams();
 
   useEffect(() => {
-    if(petId)
+    if(petId && refresh)
     getAnimalDisease(petId).then((res) => {
       if(res){
         setPetDisease(res);
+        setRefresh(false);
       }
     })
-  },[petId])
+  },[petId, refresh])
   return (
     <>
       {!petDisease ? <>Loading...</> : (
@@ -105,6 +107,7 @@ const PetDiseaseDetails = () => {
         open={open}
         setOpen={setOpen}
         data={petDisease}
+        setRefresh={setRefresh}
       />
         </>
       )}

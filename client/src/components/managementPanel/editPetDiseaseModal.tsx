@@ -16,8 +16,8 @@ import dayjs, { Dayjs } from "dayjs";
 import {
   handleChangeDate,
   handleSelectChange,
+  handleTextChange,
 } from "../../utils/functions/handlers";
-import { useEffect, useState } from "react";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import CloseIcon from "@mui/icons-material/Close";
@@ -26,37 +26,61 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import {
   EditPetDiseaseModalProps
 } from "../../utils/types/propsTypes";
+import { ErrorInput } from "../../utils/types/errorInput";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import {
   PetDiseaseType,
 } from "../../utils/types/basicTypes";
 import { isolationStatusList } from "../../utils/mockups/adminMenu";
+import { updatePetDisease } from "../../utils/services/puts";
+import { useState } from "react";
+import { validateForm } from "../../utils/functions/validators";
 
 const EditPetDiseaseModal = (props: EditPetDiseaseModalProps) => {
   const theme = useTheme();
   const handleClose = () => props.setOpen(false);
-  const [newPetDisease, setNewPetDisease] = useState<PetDiseaseType>({
-    petId: 0,
-    diseaseId: 0,
-    startDate: "",
-    endDate: "",
-    status: "",
-    symptoms: "",
+  const [newPetDisease, setNewPetDisease] = useState<PetDiseaseType>(props.data);
+  const [ErrorList, setErrorList] = useState<ErrorInput>({
+    symptoms:{
+      status: false,
+    },
+    startDate:{
+      status: false,
+    },
+    endDate:{
+      status: false,
+    },
+    status:{
+      status: false,
+    },
   });
+
   const dateChange = (value: Dayjs | null, fieldName: string) => {
     if (value === null) return;
-    handleChangeDate(value.format("DD-MM-YYYY"), setNewPetDisease, fieldName);
+    handleChangeDate(value.format("YYYY-MM-DD"), setNewPetDisease, fieldName);
   };
 
   const selectChange = (event: SelectChangeEvent) => {
     handleSelectChange(event, setNewPetDisease);
   };
 
-  useEffect(() => {
-    if (props.data) {
-      setNewPetDisease(props.data);
-    }
-  }, [props.data]);
+  const textChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    handleTextChange(event, setNewPetDisease);
+  }
+
+  const sendForm = () => {
+    validateForm(newPetDisease.attributes, setErrorList).then((res) => {
+      if(res){
+        updatePetDisease(newPetDisease).then((res) => {
+          if(res){
+            props.setOpen(false);
+            props.setRefresh(true);
+          }
+        })
+      }
+    })
+  }
+
 
   return (
     <Modal open={props.open} onClose={handleClose}>
@@ -96,9 +120,11 @@ const EditPetDiseaseModal = (props: EditPetDiseaseModalProps) => {
         <TextField
           label="Objawy"
           fullWidth
+          name="symptoms"
           multiline
           minRows={4}
-          value={newPetDisease.symptoms}
+          value={newPetDisease.attributes.symptoms}
+          onChange={textChange}
         ></TextField>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={["DatePicker"]}>
@@ -106,9 +132,9 @@ const EditPetDiseaseModal = (props: EditPetDiseaseModalProps) => {
               sx={{
                 flexGrow: 1,
               }}
-              format="DD-MM-YYYY"
+              format="YYYY-MM-DD"
               label="Data rozpoczęcia choroby"
-              value={dayjs(newPetDisease.startDate)}
+              value={dayjs(newPetDisease.attributes.startDate)}
               onChange={(value: Dayjs | null) => dateChange(value, "startDate")}
             />
           </DemoContainer>
@@ -119,9 +145,9 @@ const EditPetDiseaseModal = (props: EditPetDiseaseModalProps) => {
               sx={{
                 flexGrow: 1,
               }}
-              format="DD-MM-YYYY"
+              format="YYYY-MM-DD"
               label="Data zakończenia choroby"
-              value={dayjs(newPetDisease.endDate)}
+              value={dayjs(newPetDisease.attributes.endDate)}
               onChange={(value: Dayjs | null) => dateChange(value, "endDate")}
             />
           </DemoContainer>
@@ -135,7 +161,7 @@ const EditPetDiseaseModal = (props: EditPetDiseaseModalProps) => {
             sx={{
               color: theme.palette.text.primary,
             }}
-            value={newPetDisease.status}
+            value={newPetDisease.attributes.status}
             onChange={selectChange}
           >
             {isolationStatusList.map((status, index) => {
@@ -148,7 +174,7 @@ const EditPetDiseaseModal = (props: EditPetDiseaseModalProps) => {
           </Select>
         </FormControl>
 
-        <Button variant="contained">Zabisz</Button>
+        <Button variant="contained" onClick={() => sendForm()}>Zabisz</Button>
       </Box>
     </Modal>
   );
