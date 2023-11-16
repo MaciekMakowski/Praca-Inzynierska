@@ -80,6 +80,30 @@ export const getAnimalIsolations = async (id: string) => {
   }
 }
 
+export const getAnimalsDiseases = async (page: number, pagination: number) => {
+  const response = await axios(
+    `${APIurl}pet-diseases?populate=deep&pagination[page]=${page}&pagination[pageSize]=${pagination}`
+  );
+  if (response.status === 200) {
+    const newPetDiseases = response.data.data.map((disease: PetDiseasesResponse) => {
+      return createPetDisease(disease);
+    });
+    const clearResponse = {
+      data: newPetDiseases,
+      meta: response.data.meta,
+    }
+    return clearResponse;
+  }
+}
+
+export const getAnimalDisease = async (id: string) => {
+  const response = await axios(`${APIurl}pet-diseases/${id}?populate=deep`);
+  if (response.status === 200) {
+    const newPetDisease = createPetDisease(response.data.data);
+    return newPetDisease;
+  }
+}
+
 export const getAnimalDiseases = async (id: string) => {
   const response = await axios(`${APIurl}pet-diseases?filters[animal][id]=${id}&populate=deep`);
   if (response.status === 200) {
@@ -93,4 +117,3 @@ export const getAnimalDiseases = async (id: string) => {
     return clearResponse;
   }
 }
-

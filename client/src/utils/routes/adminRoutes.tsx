@@ -58,7 +58,7 @@ const AdminRoutes = () => {
               element={<PetManagement/>}
             />
             <Route
-              path="/management/animals/diseases/:id"
+              path="/management/animals/diseases/:petId"
               element={<PetDiseaseDetails />}
             />
             <Route
