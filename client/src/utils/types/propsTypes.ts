@@ -22,7 +22,7 @@ export type ListProps = {
   export type EditPetModalProps = {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    data: AnimalType;
+    animal: AnimalType;
     setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
   };
 

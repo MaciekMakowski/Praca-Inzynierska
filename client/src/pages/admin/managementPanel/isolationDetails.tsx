@@ -88,6 +88,14 @@ const IsolationDetails = () => {
             color={theme.palette.text.primary}
             fontWeight={600}
           >
+            Opis
+            <Typography variant="body1"> {isolationDataDetails.attributes.description}</Typography>
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            color={theme.palette.text.primary}
+            fontWeight={600}
+          >
             Status
             <Typography variant="body1"> {isolationDataDetails.attributes.status}</Typography>
           </Typography>

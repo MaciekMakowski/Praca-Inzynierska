@@ -74,6 +74,7 @@ export type IsolationType = {
     endDate: string;
     status: string;
     animal:AnimalType;
+    description: string;
   }
   
 };

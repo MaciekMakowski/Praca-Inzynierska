@@ -12,14 +12,6 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import {
-  EditIsolationModalProps,
-  EditPetDiseaseModalProps
-} from "../../utils/types/propsTypes";
-import {
-  IsolationType,
-  PetDiseaseType,
-} from "../../utils/types/basicTypes";
 import dayjs, { Dayjs } from "dayjs";
 import {
   handleChangeDate,
@@ -31,7 +23,13 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import CloseIcon from "@mui/icons-material/Close";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import {
+  EditPetDiseaseModalProps
+} from "../../utils/types/propsTypes";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import {
+  PetDiseaseType,
+} from "../../utils/types/basicTypes";
 import { isolationStatusList } from "../../utils/mockups/adminMenu";
 
 const EditPetDiseaseModal = (props: EditPetDiseaseModalProps) => {

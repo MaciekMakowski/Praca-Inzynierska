@@ -1,4 +1,4 @@
-import { AnimalType, DiseaseType } from "../types/basicTypes";
+import { AnimalType, DiseaseType, IsolationType } from "../types/basicTypes";
 
 import { APIurl } from "./url";
 import axios from "axios";
@@ -37,6 +37,28 @@ export const createDisease = async (disease: DiseaseType) => {
                 name: disease.attributes.name,
                 description: disease.attributes.description,
                 treatment: disease.attributes.treatment,
+            }
+        }
+     );
+    if(response.status === 200) {
+        return true
+    }
+    else {
+        return false
+    }
+}
+
+
+export const createIsolation = async (isolation: IsolationType) => {
+    const response = await axios.post(`${APIurl}isolations`,
+        {
+            "data":{
+                startDate: isolation.attributes.startDate,
+                endDate: isolation.attributes.endDate,
+                reason: isolation.attributes.reason,
+                description: isolation.attributes.description,
+                status: isolation.attributes.status,
+                animal: isolation.attributes.animal.id,
             }
         }
      );

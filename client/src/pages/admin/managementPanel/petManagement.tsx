@@ -203,13 +203,13 @@ const PetManagement = () => {
         <AddIsolationModal
           setOpen={setAddIsolationOpen}
           open={addIsolationOpen}
-          data={animalData}
+          animal={animalData}
           setRefresh={setRefresh}
         />
         <AddPetDiseaseModal
           setOpen={setAddDiseaseOpen}
           open={addDiseaseOpen}
-          data={animalData}
+          animal={animalData}
           setRefresh={setRefresh}
         />
           <ChangeStatusConfirmModal

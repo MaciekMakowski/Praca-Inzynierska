@@ -197,6 +197,7 @@ export const isolationDataDetails: IsolationType = {
     endDate: "2021-10-10",
     status: "W trakcie",
     animal: puszekData,
+    description: "jakis opis",
   }
 
 };

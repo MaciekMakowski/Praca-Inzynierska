@@ -7,6 +7,7 @@ export type IsolationResponse = {
         startDate:string,
         endDate:string,
         status:string,
+        description:string,
         animal:{
             data:AnimalType
         }

@@ -849,6 +849,7 @@ export interface ApiIsolationIsolation extends Schema.CollectionType {
     status: Attribute.Enumeration<
       ['Oczekuj\u0105ca', 'W trakcie', 'Zako\u0144czona', 'Anulowana']
     >;
+    description: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -10,6 +10,7 @@ export const createIsolation = (isolation: IsolationResponse) => {
           endDate: isolation.attributes.endDate,
           status: isolation.attributes.status,
           animal: isolation.attributes.animal.data,
+          description: isolation.attributes.description,
         },
       };
       return newIsolation;

@@ -7,28 +7,43 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import {
+  handleChangeDate,
+  handleTextChange,
+} from "../../utils/functions/handlers";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import CloseIcon from "@mui/icons-material/Close";
 import { DatePicker } from "@mui/x-date-pickers";
-import {Dayjs} from "dayjs";
+import { Dayjs } from "dayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { EditPetModalProps } from "../../utils/types/propsTypes";
 import { IsolationType } from "../../utils/types/basicTypes";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { handleChangeDate } from "../../utils/functions/handlers";
+import dayjs from "dayjs";
 import { useState } from "react";
 
 const AddIsolationModal = (props: EditPetModalProps) => {
   const theme = useTheme();
   const handleClose = () => props.setOpen(false);
-  const [newIsolation, setNewIsolation] = useState<IsolationType>();
+  const [newIsolation, setNewIsolation] = useState<IsolationType>({
+    id: 0,
+    attributes: {
+      startDate: "",
+      endDate: "",
+      reason: "",
+      status: "Oczekująca",
+      animal: props.animal,
+      description: "",
+    },
+  });
   const dateChange = (value: Dayjs | null) => {
     if (value === null) return;
-    handleChangeDate(value.format('DD-MM-YYYY'), setNewIsolation, 'startDate')
-  }
-
-  
+    handleChangeDate(value.format("YYYY-MM-DD"), setNewIsolation, "startDate");
+  };
+  const textChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleTextChange(e, setNewIsolation);
+  };
 
   return (
     <Modal open={props.open} onClose={handleClose}>
@@ -40,7 +55,7 @@ const AddIsolationModal = (props: EditPetModalProps) => {
           top: "50%",
           transform: "translate(-50%, -50%)",
           width: "30%",
-          minWidth: {xs:'90%', lg:"600px"},
+          minWidth: { xs: "90%", lg: "600px" },
           boxSizing: "border-box",
           padding: "1rem",
           display: "flex",
@@ -65,25 +80,30 @@ const AddIsolationModal = (props: EditPetModalProps) => {
             <CloseIcon />
           </IconButton>
         </Box>
-        <TextField label="Powód izolacji" name="reason" variant="outlined">
-          Wpisz powód izolacji
-        </TextField>
+        <TextField
+          label="Powód izolacji"
+          name="reason"
+          variant="outlined"
+          onChange={textChange}
+          value={newIsolation.attributes.reason}
+        ></TextField>
         <TextField
           multiline
           label="Opis"
-          name="desc"
+          name="description"
           variant="outlined"
+          value={newIsolation.attributes.description}
           rows={9}
-        >
-          Opisz stan zwierzęcia
-        </TextField>
+          onChange={textChange}
+        ></TextField>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={["DatePicker"]}>
             <DatePicker
               sx={{
                 flexGrow: 1,
               }}
-              format="DD-MM-YYYY"
+              value={dayjs(newIsolation.attributes.startDate)}
+              format="YYYY-MM-DD"
               label="Data rozpoczęcia izolacji"
               onChange={(value: Dayjs | null) => dateChange(value)}
             />
