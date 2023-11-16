@@ -185,14 +185,6 @@ export const diseasesData: DiseaseType[] = [
   },
 ];
 
-export const testDiseaseData: PetDiseaseType = {
-  diseaseId: 1,
-  petId: 23,
-  startDate: "2021-10-10",
-  endDate: "2021-10-10",
-  symptoms: "jakis opis",
-  status: "W trakcie",
-};
 
 export const diseaseDataDetails: DiseaseType = {
   id: 1,
@@ -201,6 +193,17 @@ export const diseaseDataDetails: DiseaseType = {
     description: "jakis opis",
     treatment: "jakis opis",
   },
+};
+export const testDiseaseData: PetDiseaseType = {
+  id: 1,
+  attributes:{
+    startDate: "2021-10-10",
+    endDate: "2021-10-10",
+    status: "W trakcie",
+    animal: puszekData,
+    disease: diseaseDataDetails,
+    symptoms: "jakis opis",
+  }
 };
 
 export const isolationDataDetails: IsolationType = {
