@@ -207,28 +207,6 @@ const PetManagement = () => {
                     disabled={false}
                     foo={() => setChangeStatusOpen(true)}
                   />
-                  <ManagementButton
-                    name="Status Izolacji"
-                    ico={BorderAllIcon}
-                    disabled={!animalData.attributes.isIsolated}
-                    foo={() =>
-                      navigateTo(
-                        navigate,
-                        `/admin/management/isolations/${animalData.id}`
-                      )
-                    }
-                  />
-                  <ManagementButton
-                    name="Status Choroby"
-                    ico={CoronavirusIcon}
-                    disabled={true}
-                    foo={() =>
-                      navigateTo(
-                        navigate,
-                        `/admin/management/diseases/${animalData.id}`
-                      )
-                    }
-                  />
                 </Box>
               </Box>
             </Box>

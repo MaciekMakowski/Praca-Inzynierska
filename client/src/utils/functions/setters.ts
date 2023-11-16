@@ -24,3 +24,11 @@ export const setAnimalAsIsolated = async (animal:AnimalType) => {
     }}
     return newAnimal
 }
+
+export const setAnimalAsNotIsolated = async (animal:AnimalType) => {
+  const newAnimal = {...animal, attributes:{
+      ...animal.attributes,
+      isIsolated: false
+  }}
+  return newAnimal
+}

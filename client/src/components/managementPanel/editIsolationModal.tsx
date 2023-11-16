@@ -18,6 +18,7 @@ import {
   handleSelectChange,
   handleTextChange,
 } from "../../utils/functions/handlers";
+import { updateAnimal, uppdateIsolation } from "../../utils/services/puts";
 import { useEffect, useState } from "react";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -29,7 +30,7 @@ import { ErrorInput } from "../../utils/types/errorInput";
 import { IsolationType } from "../../utils/types/basicTypes";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { isolationStatusList } from "../../utils/mockups/adminMenu";
-import { uppdateIsolation } from "../../utils/services/puts";
+import { setAnimalAsNotIsolated } from "../../utils/functions/setters";
 import { validateForm } from "../../utils/functions/validators";
 
 const EditIsolationModal = (props: EditIsolationModalProps) => {
@@ -64,17 +65,27 @@ const EditIsolationModal = (props: EditIsolationModalProps) => {
   const selectChange = (event: SelectChangeEvent) => {
     handleSelectChange(event, setNewIsolation);
   };
-
+  const update = (isolation:IsolationType) => {
+    uppdateIsolation(isolation).then((res) => {
+      if (res) {
+        props.setOpen(false);
+        props.setRefresh(true);
+      }
+    });
+  }
   const sendForm = () => {
     if (newIsolation)
       validateForm(newIsolation.attributes, setErrorList).then((res) => {
         if (res) {
-          uppdateIsolation(newIsolation).then((res) => {
-            if (res) {
-              props.setOpen(false);
-              props.setRefresh(true);
-            }
-          });
+          if(newIsolation.attributes.status === "Zakończona"){
+            setAnimalAsNotIsolated(newIsolation.attributes.animal).then((res) => {
+                updateAnimal(res).then((res) => {
+                  update(newIsolation)
+                })
+            });
+          }else{
+            update(newIsolation)
+          }
         }
       });
   };

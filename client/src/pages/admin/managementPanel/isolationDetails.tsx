@@ -100,9 +100,11 @@ const IsolationDetails = () => {
             <Typography variant="body1"> {isolationDataDetails.attributes.status}</Typography>
           </Typography>
           <Box>
-            <Button variant="contained" onClick={() => setOpen(true)}>
+            {isolationDataDetails.attributes.status !== "Zakończona" && (
+              <Button variant="contained" onClick={() => setOpen(true)}>
               Edytuj
             </Button>
+            )}
           </Box>
         </Box>
       </Box>
