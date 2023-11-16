@@ -101,3 +101,7 @@ export type ResourceType = {
   expirationDate?: string | null;
 };
 
+export type User = {
+  login:string,
+  password:string,
+}
