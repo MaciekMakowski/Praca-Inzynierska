@@ -7,25 +7,38 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { useEffect, useState } from "react";
 
 import IllAnimalListItem from "./illAnimalListItem";
-import { useState } from "react";
+import { PetDiseaseType } from "../../utils/types/basicTypes";
+import { getAnimalsDiseases } from "../../utils/services/gets";
+import { paginationRangeValue } from "../../utils/services/pagination";
 
 const IllAnimalList = () => {
   const theme = useTheme();
   const [filter, setFilter] = useState(0);
+  const [page,setPage] = useState(1);
+  const [pageCount, setPageCount] = useState(1);
+  const [illAnimals, setIllAnimals] = useState<PetDiseaseType[]>();
+
+  const changePage = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
 
   const handleChangeFilter = (value: number) => {
     if (value === filter) setFilter(0);
     if (value !== filter) setFilter(value);
   };
 
-  const returnItems = () => {
-    const items = [];
-    for (let i = 0; i < 20; i++)
-      items.push(<IllAnimalListItem key={i} color={i % 2 == 0} />);
-    return items;
-  };
+  useEffect(() => {
+    getAnimalsDiseases(page, paginationRangeValue).then((res) => {
+      if(res){
+        setIllAnimals(res.data);
+        setPageCount(res.meta.total_pages);
+      }
+    })
+  },[]);
+
   return (
     <Box
       sx={{
@@ -95,7 +108,8 @@ const IllAnimalList = () => {
       <Box 
         sx={{
           overflowX:'auto',
-          overflowY:'clip'
+          overflowY:'clip',
+          height:'100%'
         }}
       >
       <Grid container spacing={0}  
@@ -120,7 +134,7 @@ const IllAnimalList = () => {
             Imie
           </Typography>
         </Grid>
-        <Grid item xs={2.4}>
+        <Grid item xs={2}>
           <Typography
             variant="subtitle1"
             color={theme.palette.primary.main}
@@ -129,7 +143,7 @@ const IllAnimalList = () => {
             Gatunek
           </Typography>
         </Grid>
-        <Grid item xs={2.4}>
+        <Grid item xs={2}>
           <Typography
             variant="subtitle1"
             color={theme.palette.primary.main}
@@ -138,7 +152,7 @@ const IllAnimalList = () => {
             Wiek
           </Typography>
         </Grid>
-        <Grid item xs={2.4}></Grid>
+        <Grid item xs={3.2}></Grid>
       </Grid>
       <Box
         sx={{
@@ -150,7 +164,12 @@ const IllAnimalList = () => {
           overflowY:'auto',
         }}
       >
-        {returnItems()}
+        {illAnimals?.map((illAnimal, i) => {
+            return(
+              <IllAnimalListItem key={illAnimal.id} color={i%2 === 0} petDisease={illAnimal}/>
+            )
+        }
+        )}
       </Box>
       </Box>
       <Box
@@ -160,7 +179,7 @@ const IllAnimalList = () => {
         }}
       >
         <Typography variant="subtitle1" color={theme.palette.text.primary}>
-          <Pagination count={10} size="small" />
+          <Pagination count={pageCount} page={page} onChange={changePage} size="small" />
         </Typography>
       </Box>
     </Box>

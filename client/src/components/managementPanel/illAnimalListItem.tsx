@@ -1,10 +1,13 @@
 import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 
+import { PetDiseaseType } from "../../utils/types/basicTypes";
+import dayjs from "dayjs";
 import { navigateTo } from "../../utils/functions/navigators";
 import { useNavigate } from "react-router";
 
 type AnimalListItemProps = {
   color: boolean;
+  petDisease: PetDiseaseType;
 };
 
 const IllAnimalListItem = (props: AnimalListItemProps) => {
@@ -34,7 +37,7 @@ const IllAnimalListItem = (props: AnimalListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          123123
+          {props.petDisease.attributes.animal.id}
         </Typography>
       </Grid>
       <Grid item xs={2.4}>
@@ -46,7 +49,7 @@ const IllAnimalListItem = (props: AnimalListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          Puszek
+          {props.petDisease.attributes.animal.attributes.name}
         </Typography>
       </Grid>
       <Grid item xs={2}>
@@ -58,7 +61,7 @@ const IllAnimalListItem = (props: AnimalListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          Kot
+          {props.petDisease.attributes.animal.attributes.species}
         </Typography>
       </Grid>
       <Grid item xs={2}>
@@ -70,7 +73,7 @@ const IllAnimalListItem = (props: AnimalListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          16
+          {dayjs().diff(dayjs(props.petDisease.attributes.animal.attributes.birthDate),  "year") }
         </Typography>
       </Grid>
       <Grid item xs={3.2}>
@@ -80,7 +83,7 @@ const IllAnimalListItem = (props: AnimalListItemProps) => {
               ? theme.palette.primary.main
               : theme.palette.text.secondary,
           }}
-          onClick={() => navigateTo(navigate,`/admin/management/animals/diseases/5`)}
+          onClick={() => navigateTo(navigate,`/admin/management/animals/diseases/${props.petDisease.id}`)}
         >
           Przejdź
         </Button>
