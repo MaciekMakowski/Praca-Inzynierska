@@ -99,7 +99,7 @@ const IsolationListItem = (props: IsolationListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          Zakńczona
+          {props.isolation.attributes.status}
         </Typography>
       </Grid>
       <Grid item xs={2} md={1}>
