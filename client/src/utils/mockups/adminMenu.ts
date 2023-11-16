@@ -106,6 +106,20 @@ export const isolationStatusList = [
     value: "waiting",
   }
 ];
+export const diseaseStatusList = [
+  {
+    name: "W trakcie",
+    value: "inProgress",
+  },
+  {
+    name: "Zakończona",
+    value: "finished",
+  },
+  {
+    name: "Anulowana",
+    value: "canceled",
+  },
+];
 
 export const resourceDetailsData: ResourceType = {
   id: 1,

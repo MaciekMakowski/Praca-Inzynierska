@@ -31,7 +31,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import {
   PetDiseaseType,
 } from "../../utils/types/basicTypes";
-import { isolationStatusList } from "../../utils/mockups/adminMenu";
+import { diseaseStatusList } from "../../utils/mockups/adminMenu";
 import { updatePetDisease } from "../../utils/services/puts";
 import { useState } from "react";
 import { validateForm } from "../../utils/functions/validators";
@@ -164,7 +164,7 @@ const EditPetDiseaseModal = (props: EditPetDiseaseModalProps) => {
             value={newPetDisease.attributes.status}
             onChange={selectChange}
           >
-            {isolationStatusList.map((status, index) => {
+            {diseaseStatusList.map((status, index) => {
               return (
                 <MenuItem key={index} value={status.name}>
                   {status.name}
