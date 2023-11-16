@@ -20,8 +20,8 @@ import { validateForm } from "../../utils/functions/validators";
 const EditPetDescModal = (props:EditPetModalProps) => {
     const theme = useTheme();
     const handleClose = () => props.setOpen(false);
-    const desc = typeof props.data?.attributes.description === "string" ? props.data.attributes.description : "";
-    const [animal, setAnimal] = useState<AnimalType>(props.data)
+    const desc = typeof props.animal?.attributes.description === "string" ? props.animal.attributes.description : "";
+    const [animal, setAnimal] = useState<AnimalType>(props.animal)
 
 
      const textChange = (e:React.ChangeEvent<HTMLInputElement>) => {
