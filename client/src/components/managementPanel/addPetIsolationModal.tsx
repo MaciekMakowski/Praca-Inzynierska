@@ -18,32 +18,77 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { Dayjs } from "dayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { EditPetModalProps } from "../../utils/types/propsTypes";
+import { ErrorInput } from "../../utils/types/errorInput";
 import { IsolationType } from "../../utils/types/basicTypes";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { createIsolation } from "../../utils/services/posts";
 import dayjs from "dayjs";
+import { setAnimalAsIsolated } from "../../utils/functions/setters";
+import { updateAnimal } from "../../utils/services/puts";
 import { useState } from "react";
+import { validateForm } from "../../utils/functions/validators";
 
 const AddIsolationModal = (props: EditPetModalProps) => {
   const theme = useTheme();
   const handleClose = () => props.setOpen(false);
-  const [newIsolation, setNewIsolation] = useState<IsolationType>({
+  const emptyIsolation: IsolationType = {
     id: 0,
     attributes: {
-      startDate: "",
-      endDate: "",
+      startDate: dayjs().format("YYYY-MM-DD"),
+      endDate: dayjs().format("YYYY-MM-DD"),
       reason: "",
       status: "Oczekująca",
       animal: props.animal,
       description: "",
     },
-  });
-  const dateChange = (value: Dayjs | null) => {
+  }
+  const [newIsolation, setNewIsolation] = useState<IsolationType>(emptyIsolation);
+
+  const [ErrorList, setErrorList] = useState<ErrorInput>({
+    startDate:{
+      status: false,
+    },
+    endDate:{
+      status: false,
+    },
+    reason:{
+      status: false,
+    },
+    description:{
+      status: false,
+    },
+    animal:{
+      status: false,
+    },
+    status:{
+      status: false,
+    }
+
+  })
+
+
+  const dateChange = (value: Dayjs | null, field:string) => {
     if (value === null) return;
-    handleChangeDate(value.format("YYYY-MM-DD"), setNewIsolation, "startDate");
+    handleChangeDate(value.format("YYYY-MM-DD"), setNewIsolation, field);
   };
   const textChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleTextChange(e, setNewIsolation);
   };
+
+  const sendForm = () => {
+    validateForm(newIsolation.attributes, setErrorList).then((res:boolean) => {
+      if(res){
+        createIsolation(newIsolation).then((res:boolean) => {
+          setAnimalAsIsolated(props.animal).then((res) => {
+            updateAnimal(res)
+            props.setRefresh(true);
+            handleClose();
+            setNewIsolation(emptyIsolation)
+          })
+        });
+      }
+    })
+  }
 
   return (
     <Modal open={props.open} onClose={handleClose}>
@@ -86,6 +131,7 @@ const AddIsolationModal = (props: EditPetModalProps) => {
           variant="outlined"
           onChange={textChange}
           value={newIsolation.attributes.reason}
+          error={ErrorList.reason.status}
         ></TextField>
         <TextField
           multiline
@@ -95,6 +141,7 @@ const AddIsolationModal = (props: EditPetModalProps) => {
           value={newIsolation.attributes.description}
           rows={9}
           onChange={textChange}
+          error={ErrorList.description.status}
         ></TextField>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={["DatePicker"]}>
@@ -105,12 +152,25 @@ const AddIsolationModal = (props: EditPetModalProps) => {
               value={dayjs(newIsolation.attributes.startDate)}
               format="YYYY-MM-DD"
               label="Data rozpoczęcia izolacji"
-              onChange={(value: Dayjs | null) => dateChange(value)}
+              onChange={(value: Dayjs | null) => dateChange(value, "startDate")}
+            />
+          </DemoContainer>
+        </LocalizationProvider>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={["DatePicker"]}>
+            <DatePicker
+              sx={{
+                flexGrow: 1,
+              }}
+              value={dayjs(newIsolation.attributes.endDate)}
+              format="YYYY-MM-DD"
+              label="Data zakończenia izolacji"
+              onChange={(value: Dayjs | null) => dateChange(value, "endDate")}
             />
           </DemoContainer>
         </LocalizationProvider>
 
-        <Button variant="contained">Zabisz</Button>
+        <Button variant="contained" onClick={() => sendForm()}>Zabisz</Button>
       </Box>
     </Modal>
   );

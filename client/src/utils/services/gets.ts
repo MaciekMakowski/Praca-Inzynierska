@@ -63,3 +63,19 @@ export const getIsolation = async (id: string) => {
     return newIsolation;
     };
 };
+
+
+export const getAnimalIsolations = async (id: string) => {
+  const response = await axios(`${APIurl}isolations?filters[animal][id]=${id}&populate=deep`);
+  if (response.status === 200) {
+    const newIsolationList = response.data.data.map((isolation: IsolationResponse) => {
+      return createIsolation(isolation);
+    });
+    const clearResponse = {
+      data: newIsolationList,
+      meta: response.data.meta,
+    }
+    return clearResponse;
+  }
+}
+

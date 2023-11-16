@@ -31,13 +31,14 @@ const IsolationList = () => {
   };
 
   useEffect(() => {
-    getIsolations(page, paginationRangeValue).then((res) => {
+      getIsolations(page, paginationRangeValue).then((res) => {
       if (res) {
         setIsolationList([]);
         setIsolationList(res.data);
         setPageCount(res.meta.pagination.pageCount);
       }
     });
+    
   }, [page]);
 
   return (

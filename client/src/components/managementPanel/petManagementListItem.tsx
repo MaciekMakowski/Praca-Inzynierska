@@ -1,17 +1,20 @@
 import { Button, Grid, Typography, useTheme } from "@mui/material";
 
-import InfoModal from "./InfoModal";
-import { testDiseaseData } from "../../utils/mockups/adminMenu";
-import { useState } from "react";
+import { navigateTo } from "../../utils/functions/navigators";
+import { useNavigate } from "react-router";
 
 type PetManagementListItemProps = {
   color: boolean;
   type: "disease" | "isolation";
+  date:string,
+  title:string,
+  status:string,
+  id:number
 };
 
 const PetManagementListItem = (props: PetManagementListItemProps) => {
   const theme = useTheme();
-  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <Grid
@@ -35,7 +38,7 @@ const PetManagementListItem = (props: PetManagementListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          2022-04-24
+          {props.date}
         </Typography>
       </Grid>
       <Grid item xs={4}>
@@ -48,7 +51,7 @@ const PetManagementListItem = (props: PetManagementListItemProps) => {
           }
           textAlign={"center"}
         >
-          Angina
+          {props.title}
         </Typography>
       </Grid>
       <Grid item xs={2}>
@@ -61,7 +64,7 @@ const PetManagementListItem = (props: PetManagementListItemProps) => {
           }
           textAlign={"center"}
         >
-          Status
+          {props.status}
         </Typography>
       </Grid>
       <Grid item xs={3}>
@@ -71,32 +74,11 @@ const PetManagementListItem = (props: PetManagementListItemProps) => {
               ? theme.palette.primary.main
               : theme.palette.text.secondary,
           }}
-          onClick={() => setOpen(true)}
+          onClick={() => navigateTo(navigate, `/admin/management/isolation/${props.id}`)}
         >
           Przejdź
         </Button>
       </Grid>
-
-      {props.type === "disease" && (
-        <InfoModal
-          open={open}
-          setOpen={setOpen}
-          data={testDiseaseData}
-          reason="Nazwa choroby"
-          desc="Zalecane leczenie"
-          buttonText="Zakończ chorobę"
-        />
-      )}
-      {props.type === "isolation" && (
-        <InfoModal
-          open={open}
-          setOpen={setOpen}
-          data={testDiseaseData}
-          reason="Powód"
-          desc="Opis"
-          buttonText="Zakończ izolację"
-        />
-      )}
     </Grid>
   );
 };

@@ -80,12 +80,15 @@ export type IsolationType = {
 };
 
 export type PetDiseaseType = {
-  diseaseId: number;
-  petId: number;
-  startDate: string;
-  endDate: string | null;
-  symptoms: string;
-  status: string;
+  id:number,
+  attributes:{
+    diseaseId: number;
+    animal: AnimalType;
+    startDate: string;
+    endDate: string | null;
+    symptoms: string;
+    status: string;
+  }
 };
 
 export type ResourceType = {

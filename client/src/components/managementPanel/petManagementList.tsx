@@ -1,28 +1,27 @@
 import { Box, Typography, useTheme } from "@mui/material";
+import {
+  DiseaseType,
+  IsolationType,
+  PetDiseaseType,
+} from "../../utils/types/basicTypes";
 
 import PetManagementListItem from "./petManagementListItem";
 
 type PetManagementListProps = {
   title: string;
   type: "disease" | "isolation";
+  data: IsolationType[] | PetDiseaseType[];
 };
 
 const PetManagementList = (props: PetManagementListProps) => {
   const theme = useTheme();
 
-  const returnItems = () => {
-    const items = [];
-    for (let i = 0; i < 20; i++)
-      items.push(<PetManagementListItem key={i} color={i % 2 == 0} type={props.type}/>);
-    return items;
-  };
-
   return (
     <Box
       sx={{
         backgroundColor: theme.palette.background.adminField,
-        width: {xs:"100%", lg:"50%"},
-        height: {xs:"50vh", lg:"100%"},
+        width: { xs: "100%", lg: "50%" },
+        height: { xs: "50vh", lg: "100%" },
         textAlign: "center",
         boxSizing: "border-box",
         display: "flex",
@@ -45,7 +44,36 @@ const PetManagementList = (props: PetManagementListProps) => {
           overflowY: "auto",
         }}
       >
-        {returnItems()}
+        {props.data && (
+          props.data.map((item, i) => {
+            if ("reason" in item.attributes) {
+              return (
+                <PetManagementListItem
+                  key={i}
+                  color={i % 2 == 0}
+                  type={props.type}
+                  date={item.attributes.startDate}
+                  title={item.attributes.reason}
+                  status={item.attributes.status}
+                  id={item.id}
+                />
+              );
+            }
+            if ("symptoms" in item.attributes) {
+              return (
+                <PetManagementListItem
+                  key={i}
+                  color={i % 2 == 0}
+                  type={props.type}
+                  date={item.attributes.startDate}
+                  title={item.attributes.symptoms}
+                  status={item.attributes.status}
+                  id={item.id}
+                />
+              );
+            }
+          })
+        )}
       </Box>
     </Box>
   );
