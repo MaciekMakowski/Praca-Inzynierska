@@ -106,7 +106,7 @@ const PetManagementDesc = (props:PetManagementDescProps) => {
 
         </Typography>
       </Box>
-      <EditPetDescModal open={descOpen} setOpen={setDescOpen} data={props.data} setRefresh={props.setRefresh}/>
+      <EditPetDescModal open={descOpen} setOpen={setDescOpen} animal={props.data} setRefresh={props.setRefresh}/>
     </Box>
   );
 };

@@ -157,7 +157,7 @@ const PetManagementInfo = (props: PetManagementInfoProps) => {
       <EditPetInfoModal
         open={infoOpen}
         setOpen={setInfoOpen}
-        data={props.data}
+        animal={props.data}
         setRefresh={props.setRefresh}
       />
     </Box>

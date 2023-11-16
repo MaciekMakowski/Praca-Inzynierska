@@ -44,7 +44,7 @@ const EditPetInfoModal = (props: EditPetModalProps) => {
             <CloseIcon />
           </IconButton>
         </Box>
-            <AddAnimalForm  data={props.data} isNew={false} setRefresh={props.setRefresh} setOpen={props.setOpen}/>
+            <AddAnimalForm  data={props.animal} isNew={false} setRefresh={props.setRefresh} setOpen={props.setOpen}/>
         
         </Box>
       </Modal>
