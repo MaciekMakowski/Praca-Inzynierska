@@ -31,15 +31,8 @@ const PetManagement = () => {
   const navigate = useNavigate();
   const { petId } = useParams();
 
-  useEffect(() => {
-    if (petId && refresh)
-      getAnimal(petId).then((res) => {
-        setAnimalData(res);
-        setRefresh(false);
-      });
-  }, [petId, refresh]);
 
-  useEffect(() => {
+  const getAll = () => {
     if (petId) {
       getAnimal(petId).then((res) => {
         if(res){
@@ -52,6 +45,14 @@ const PetManagement = () => {
         }
       });
     }
+  }
+
+  useEffect(() => {
+    getAll();
+  }, [petId, refresh]);
+
+  useEffect(() => {
+    getAll();
   }, []);
   return (
     <>
@@ -142,6 +143,7 @@ const PetManagement = () => {
                   title="Historia Izolacji"
                   type="isolation"
                   data={animalIsolations}
+                  refresh={refresh}
                 />
                 {/* <PetManagementList
                   title="Historia Chorób"

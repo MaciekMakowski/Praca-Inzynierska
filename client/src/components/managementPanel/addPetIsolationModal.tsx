@@ -79,12 +79,9 @@ const AddIsolationModal = (props: EditPetModalProps) => {
     validateForm(newIsolation.attributes, setErrorList).then((res:boolean) => {
       if(res){
         createIsolation(newIsolation).then((res:boolean) => {
-          setAnimalAsIsolated(props.animal).then((res) => {
-            updateAnimal(res)
             props.setRefresh(true);
             handleClose();
             setNewIsolation(emptyIsolation)
-          })
         });
       }
     })

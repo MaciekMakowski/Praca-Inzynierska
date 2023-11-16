@@ -50,7 +50,7 @@ export const createDisease = async (disease: DiseaseType) => {
 
 
 export const createIsolation = async (isolation: IsolationType) => {
-    const response = await axios.post(`${APIurl}isolations`,
+    const response = await axios.post(`${APIurl}isolations/addIsolation`,
         {
             "data":{
                 startDate: isolation.attributes.startDate,

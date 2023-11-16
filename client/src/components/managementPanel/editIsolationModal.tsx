@@ -77,15 +77,7 @@ const EditIsolationModal = (props: EditIsolationModalProps) => {
     if (newIsolation)
       validateForm(newIsolation.attributes, setErrorList).then((res) => {
         if (res) {
-          if(newIsolation.attributes.status === "Zakończona" || newIsolation.attributes.status === "Anulowana"){
-            setAnimalAsNotIsolated(newIsolation.attributes.animal).then((res) => {
-                updateAnimal(res).then((res) => {
-                  update(newIsolation)
-                })
-            });
-          }else{
             update(newIsolation)
-          }
         }
       });
   };
