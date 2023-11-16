@@ -82,10 +82,10 @@ export type IsolationType = {
 export type PetDiseaseType = {
   id:number,
   attributes:{
-    diseaseId: number;
+    disease: DiseaseType;
     animal: AnimalType;
     startDate: string;
-    endDate: string | null;
+    endDate: string;
     symptoms: string;
     status: string;
   }

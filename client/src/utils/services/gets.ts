@@ -1,8 +1,9 @@
+import { IsolationResponse, PetDiseasesResponse } from "../types/responseTypes";
+import { createIsolation, createPetDisease } from "./formatters";
+
 import { APIurl } from "./url";
-import { IsolationResponse } from "../types/responseTypes";
 import { IsolationType } from "../types/basicTypes";
 import axios from "axios";
-import { createIsolation } from "./formatters";
 
 export const getAnimals = async (page: number, pagination: number) => {
   const response = await axios(
@@ -73,6 +74,20 @@ export const getAnimalIsolations = async (id: string) => {
     });
     const clearResponse = {
       data: newIsolationList,
+      meta: response.data.meta,
+    }
+    return clearResponse;
+  }
+}
+
+export const getAnimalDiseases = async (id: string) => {
+  const response = await axios(`${APIurl}pet-diseases?filters[animal][id]=${id}&populate=deep`);
+  if (response.status === 200) {
+    const newPetDiseases = response.data.data.map((disease: PetDiseasesResponse) => {
+      return createPetDisease(disease);
+    });
+    const clearResponse = {
+      data: newPetDiseases,
       meta: response.data.meta,
     }
     return clearResponse;

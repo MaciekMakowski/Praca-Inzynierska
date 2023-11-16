@@ -74,7 +74,11 @@ const PetManagementListItem = (props: PetManagementListItemProps) => {
               ? theme.palette.primary.main
               : theme.palette.text.secondary,
           }}
-          onClick={() => navigateTo(navigate, `/admin/management/isolation/${props.id}`)}
+          onClick={
+            props.type === "isolation" ? 
+            () => navigateTo(navigate, `/admin/management/isolation/${props.id}`) : 
+            () => navigateTo(navigate, `/admin/management/petDisease/${props.id}`)
+          }
         >
           Przejdź
         </Button>

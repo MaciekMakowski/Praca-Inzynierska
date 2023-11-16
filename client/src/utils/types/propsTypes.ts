@@ -19,13 +19,15 @@ export type ListProps = {
   setRefreshList: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-  export type EditPetModalProps = {
+  export type EditPetModalProps = Omit<PetDiseaseModalProps, "diseases">
+  
+  export type PetDiseaseModalProps =  {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     animal: AnimalType;
     setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
-  };
-
+    diseases: DiseaseType[];
+  }
   export type AddAdoptionProps = {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;

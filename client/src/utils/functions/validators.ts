@@ -1,11 +1,11 @@
+import { AnimalType, DiseaseType } from "../types/basicTypes";
 import { setAsError, unsetAsError } from "./setters";
 
-import { AnimalType } from "../types/basicTypes";
 import { ErrorInput } from "../types/errorInput";
 import dayjs from "dayjs";
 
 interface BaseAttributes {
-  [key: string]: string | number | boolean | AnimalType;
+  [key: string]: string | number | boolean | AnimalType | DiseaseType;
 }
 
 interface FormAttributes<T extends BaseAttributes> {

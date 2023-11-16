@@ -1,6 +1,6 @@
-import { AnimalType, IsolationType } from "../../../utils/types/basicTypes";
+import { AnimalType, DiseaseType, IsolationType, PetDiseaseType } from "../../../utils/types/basicTypes";
 import { Box, Typography, useTheme } from "@mui/material";
-import { getAnimal, getAnimalIsolations } from "../../../utils/services/gets";
+import { getAnimal, getAnimalDiseases, getAnimalIsolations, getDiseases } from "../../../utils/services/gets";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 
@@ -17,16 +17,17 @@ import PetManagementDesc from "../../../components/managementPanel/petManagement
 import PetManagementImages from "../../../components/managementPanel/petManagementImages";
 import PetManagementInfo from "../../../components/managementPanel/petManagementInfo";
 import PetManagementList from "../../../components/managementPanel/petManagementList";
-import { navigateTo } from "../../../utils/functions/navigators";
 
 const PetManagement = () => {
   const [animalData, setAnimalData] = useState<AnimalType | null>(null);
   const [animalIsolations, setAnimalIsolations] = useState<IsolationType[]>([]);
+  const [animalDiseases, setAnimalDiseases] = useState<PetDiseaseType[]>([]); 
+  const [diseaesList, setDiseasesList] = useState<DiseaseType[]>([]);
   const [adoptionOpen, setAdoptionOpen] = useState(false);
   const [addIsolationOpen, setAddIsolationOpen] = useState(false);
   const [addDiseaseOpen, setAddDiseaseOpen] = useState(false);
   const [changeStatusOpen, setChangeStatusOpen] = useState(false);
-  const [refresh, setRefresh] = useState(false);
+  const [refresh, setRefresh] = useState(true);
   const theme = useTheme();
   const navigate = useNavigate();
   const { petId } = useParams();
@@ -44,11 +45,23 @@ const PetManagement = () => {
           setAnimalIsolations(res.data);
         }
       });
+      getAnimalDiseases(petId).then((res) => {
+        if(res){
+          setAnimalDiseases(res.data);
+        }
+      })
+      getDiseases(0,0).then((res) => {
+        if(res){
+          setDiseasesList(res.data);
+        }
+      })
     }
   }
 
   useEffect(() => {
+    if(refresh)
     getAll();
+    setRefresh(false);
   }, [petId, refresh]);
 
   useEffect(() => {
@@ -145,11 +158,12 @@ const PetManagement = () => {
                   data={animalIsolations}
                   refresh={refresh}
                 />
-                {/* <PetManagementList
+                <PetManagementList
                   title="Historia Chorób"
                   type="disease"
-                  data={animalIsolations}
-                /> */}
+                  data={animalDiseases}
+                  refresh={refresh}
+                />
               </Box>
               <Box
                 sx={{
@@ -187,7 +201,7 @@ const PetManagement = () => {
                   <ManagementButton
                     name="Dodaj Chorobę"
                     ico={CoronavirusIcon}
-                    disabled={false}
+                    disabled={animalData.attributes.isIll}
                     foo={() => setAddDiseaseOpen(true)}
                   />
                 </Box>
@@ -229,6 +243,7 @@ const PetManagement = () => {
               open={addDiseaseOpen}
               animal={animalData}
               setRefresh={setRefresh}
+              diseases={diseaesList}
             />
             <ChangeStatusConfirmModal
               setOpen={setChangeStatusOpen}
