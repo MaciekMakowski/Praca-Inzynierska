@@ -1,4 +1,3 @@
-import { APIurl, LoginURL } from "./url";
 import {
   AnimalType,
   DiseaseType,
@@ -6,6 +5,7 @@ import {
   PetDiseaseType,
 } from "../types/basicTypes";
 
+import { APIurl } from "./url";
 import Cookies from "js-cookie";
 import axios from "axios";
 
