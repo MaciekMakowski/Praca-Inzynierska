@@ -6,8 +6,9 @@ import Cookies from "js-cookie";
 import { IsolationType } from "../types/basicTypes";
 import axios from "axios";
 
-const authToken = Cookies.get("authToken");
 export const getAnimals = async (page: number, pagination: number) => {
+  const authToken = Cookies.get("token");
+  console.log(authToken)
   const response = await axios(
     `${APIurl}animals?pagination[page]=${page}&pagination[pageSize]=${pagination}`,
     {
@@ -23,6 +24,7 @@ export const getAnimals = async (page: number, pagination: number) => {
 };
 
 export const getAnimal = async (id: string) => {
+  const authToken = Cookies.get("token");
   const response = await axios(`${APIurl}animals/${id}`, {
     headers: {
       authorization: `Bearer ${authToken}`,
@@ -35,6 +37,7 @@ export const getAnimal = async (id: string) => {
 };
 
 export const getDiseases = async (page: number, pagination: number) => {
+  const authToken = Cookies.get("token");
   const response = await axios(
     `${APIurl}diseases?pagination[page]=${page}&pagination[pageSize]=${pagination}`,
     {
@@ -50,6 +53,7 @@ export const getDiseases = async (page: number, pagination: number) => {
 };
 
 export const getDisease = async (id: string) => {
+  const authToken = Cookies.get("token");
   const response = await axios(`${APIurl}diseases/${id}`, {
     headers: {
       authorization: `Bearer ${authToken}`,
@@ -62,6 +66,7 @@ export const getDisease = async (id: string) => {
 };
 
 export const getIsolations = async (page: number, pagination: number) => {
+  const authToken = Cookies.get("token");
   const response = await axios(
     `${APIurl}isolations?populate=deep&pagination[page]=${page}&pagination[pageSize]=${pagination}`,
     {
@@ -85,6 +90,7 @@ export const getIsolations = async (page: number, pagination: number) => {
 };
 
 export const getIsolation = async (id: string) => {
+  const authToken = Cookies.get("token");
   const response = await axios(`${APIurl}isolations/${id}?populate=deep`, {
     headers: {
       authorization: `Bearer ${authToken}`,
@@ -97,6 +103,7 @@ export const getIsolation = async (id: string) => {
 };
 
 export const getAnimalIsolations = async (id: string) => {
+  const authToken = Cookies.get("token");
   const response = await axios(
     `${APIurl}isolations?filters[animal][id]=${id}&populate=deep`,
     {
@@ -120,6 +127,7 @@ export const getAnimalIsolations = async (id: string) => {
 };
 
 export const getAnimalsDiseases = async (page: number, pagination: number) => {
+  const authToken = Cookies.get("token");
   const response = await axios(
     `${APIurl}pet-diseases?populate=deep&pagination[page]=${page}&pagination[pageSize]=${pagination}`,
     {
@@ -143,6 +151,7 @@ export const getAnimalsDiseases = async (page: number, pagination: number) => {
 };
 
 export const getAnimalDisease = async (id: string) => {
+  const authToken = Cookies.get("token");
   const response = await axios(`${APIurl}pet-diseases/${id}?populate=deep`, {
     headers: {
       authorization: `Bearer ${authToken}`,
@@ -155,6 +164,7 @@ export const getAnimalDisease = async (id: string) => {
 };
 
 export const getAnimalDiseases = async (id: string) => {
+  const authToken = Cookies.get("token");
   const response = await axios(
     `${APIurl}pet-diseases?filters[animal][id]=${id}&populate=deep`,
     {

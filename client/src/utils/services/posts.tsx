@@ -90,7 +90,6 @@ export const createAnimalDisease = async (animalDisease: PetDiseaseType) => {
       animal: animalDisease.attributes.animal.id,
     },
   });
-  console.log(response);
   if (response.status === 200) {
     return true;
   } else {
@@ -99,7 +98,7 @@ export const createAnimalDisease = async (animalDisease: PetDiseaseType) => {
 };
 
 export const LogIn = async (login: string, password: string) => {
-  const response = await axios.post(LoginURL, {
+  const response = await axios.post(`${APIurl}auth/local`, {
     identifier: login,
     password: password,
   });

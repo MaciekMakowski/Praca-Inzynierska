@@ -25,18 +25,17 @@ export type ChartDataType = {
 };
 
 export type DiseaseType = {
-  id:number;
-  attributes:{
+  id: number;
+  attributes: {
     name: string;
     description: string;
     treatment: string;
-  }
-
+  };
 };
 
 export type AnimalType = {
   id: number;
-  attributes:{
+  attributes: {
     name: string;
     findPlace: string;
     race: string;
@@ -47,9 +46,9 @@ export type AnimalType = {
     description: string;
     isIll: boolean;
     isIsolated: boolean;
-    toAdoption:boolean;
+    toAdoption: boolean;
     adopted: boolean;
-  } 
+  };
 };
 
 export type PersonType = {
@@ -68,27 +67,26 @@ export type PersonType = {
 
 export type IsolationType = {
   id: number;
-  attributes:{
+  attributes: {
     reason: string;
     startDate: string;
     endDate: string;
     status: string;
-    animal:AnimalType;
+    animal: AnimalType;
     description: string;
-  }
-  
+  };
 };
 
 export type PetDiseaseType = {
-  id:number,
-  attributes:{
+  id: number;
+  attributes: {
     disease: DiseaseType;
     animal: AnimalType;
     startDate: string;
     endDate: string;
     symptoms: string;
     status: string;
-  }
+  };
 };
 
 export type ResourceType = {
@@ -102,6 +100,8 @@ export type ResourceType = {
 };
 
 export type User = {
-  login:string,
-  password:string,
-}
+  attributes: {
+    login: string;
+    password: string;
+  };
+};

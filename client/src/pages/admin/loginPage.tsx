@@ -7,6 +7,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { useEffect, useState } from "react";
 
 import Cookies from "js-cookie";
 import { ErrorInput } from "../../utils/types/errorInput";
@@ -14,14 +15,18 @@ import { LogIn } from "../../utils/services/posts";
 import { User } from "../../utils/types/basicTypes";
 import back from "../../img/home/back.png";
 import { handleTextChange } from "../../utils/functions/handlers";
-import { useState } from "react";
+import { navigateTo } from "../../utils/functions/navigators";
+import { useNavigate } from "react-router";
 import { validateForm } from "../../utils/functions/validators";
 
 const LoginPage = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
   const [user, setUser] = useState<User>({
-    login: "",
-    password: "",
+    attributes:{
+        login: "",
+        password: "",
+    }
   });
   const [ErrorList, setErrorList] = useState<ErrorInput>({
     login: {
@@ -37,14 +42,20 @@ const LoginPage = () => {
   };
 
   const login = () => {
-    validateForm(user, setErrorList).then((res) => {
+    validateForm(user.attributes, setErrorList).then((res) => {
       if (res) {
-        LogIn(user.login, user.password).then((res) => {
+        LogIn(user.attributes.login, user.attributes.password).then((res) => {
           if (res) {
+            Cookies.remove("token", {
+                path: "/",
+            })
             Cookies.set("token", res, {
-              httpOnly: true,
-              secure: process.env.NODE_ENV === "production",
+              sameSite:'none',
+              secure: true,
+              expires: 2,
+              path: "/",
             });
+            navigateTo(navigate, "/admin/panel")
           } else {
             alert("Coś poszło nie tak");
           }
@@ -111,7 +122,7 @@ const LoginPage = () => {
           <Checkbox sx={{ color: theme.palette.primary.main }} />
           <Typography variant="button">Pamiętaj login</Typography>
         </Box>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" onClick={() => login()}>
           Zaloguj
         </Button>
         <Typography variant="caption">Zapomniałeś hasła?</Typography>

@@ -7,6 +7,7 @@ import {
 } from "../../../utils/mockups/diagData";
 
 import CalendarChart from "../../../components/charts/LineChart";
+import Cookies from "js-cookie";
 import LineChart from "../../../components/charts/LineChart";
 import PanelInfoSquare from "../../../components/PanelInfoSquare";
 import PieChart from "../../../components/charts/pieChart";
