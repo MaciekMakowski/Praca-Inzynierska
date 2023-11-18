@@ -46,15 +46,6 @@ const LoginPage = () => {
       if (res) {
         LogIn(user.attributes.login, user.attributes.password).then((res) => {
           if (res) {
-            Cookies.remove("token", {
-                path: "/",
-            })
-            Cookies.set("token", res, {
-              sameSite:'none',
-              secure: true,
-              expires: 2,
-              path: "/",
-            });
             navigateTo(navigate, "/admin/panel")
           } else {
             alert("Coś poszło nie tak");

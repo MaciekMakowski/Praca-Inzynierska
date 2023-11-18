@@ -9,8 +9,8 @@ import { APIurl } from "./url";
 import Cookies from "js-cookie";
 import axios from "axios";
 
-const authToken = Cookies.get("authToken");
 export const updateDisease = async (disease: DiseaseType) => {
+  const authToken = Cookies.get("token");
   const response = await axios.put(`${APIurl}diseases/${disease.id}`, {
     headers: {
       authorization: `Bearer ${authToken}`,
@@ -29,6 +29,7 @@ export const updateDisease = async (disease: DiseaseType) => {
 };
 
 export const updateAnimal = async (animal: AnimalType) => {
+  const authToken = Cookies.get("token");
   const response = await axios.put(`${APIurl}animals/${animal.id}`, {
     headers: {
       authorization: `Bearer ${authToken}`,
@@ -56,6 +57,7 @@ export const updateAnimal = async (animal: AnimalType) => {
 };
 
 export const uppdateIsolation = async (isolation: IsolationType) => {
+  const authToken = Cookies.get("token");
   const response = await axios.put(`${APIurl}isolations/${isolation.id}`, {
     headers: {
       authorization: `Bearer ${authToken}`,
@@ -76,6 +78,7 @@ export const uppdateIsolation = async (isolation: IsolationType) => {
 };
 
 export const updatePetDisease = async (petDisease: PetDiseaseType) => {
+  const authToken = Cookies.get("token");
   const response = await axios.put(`${APIurl}pet-diseases/${petDisease.id}`, {
     headers: {
       authorization: `Bearer ${authToken}`,

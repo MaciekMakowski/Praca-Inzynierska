@@ -6,7 +6,7 @@ const LoginRoutes = () => {
   const location = useLocation();
   return (
     <Routes location={location} key={location.pathname}>
-      <Route path="/" element={<LoginPage />} />
+      <Route path="/*" element={<LoginPage />} />
     </Routes>
   );
 };

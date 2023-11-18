@@ -9,8 +9,8 @@ import { APIurl } from "./url";
 import Cookies from "js-cookie";
 import axios from "axios";
 
-const authToken = Cookies.get("token");
 export const createAnimal = async (animal: AnimalType) => {
+  const authToken = Cookies.get("token");
   const response = await axios.post(`${APIurl}animals`, {
     headers: {
       authorization: `Bearer ${authToken}`,
@@ -38,6 +38,7 @@ export const createAnimal = async (animal: AnimalType) => {
 };
 
 export const createDisease = async (disease: DiseaseType) => {
+  const authToken = Cookies.get("token");
   const response = await axios.post(`${APIurl}diseases`, {
     headers: {
       authorization: `Bearer ${authToken}`,
@@ -56,6 +57,7 @@ export const createDisease = async (disease: DiseaseType) => {
 };
 
 export const createIsolation = async (isolation: IsolationType) => {
+  const authToken = Cookies.get("token");
   const response = await axios.post(`${APIurl}isolations/addIsolation`, {
     headers: {
       authorization: `Bearer ${authToken}`,
@@ -77,6 +79,7 @@ export const createIsolation = async (isolation: IsolationType) => {
 };
 
 export const createAnimalDisease = async (animalDisease: PetDiseaseType) => {
+  const authToken = Cookies.get("token");
   const response = await axios.post(`${APIurl}pet-diseases`, {
     headers: {
       authorization: `Bearer ${authToken}`,
@@ -102,8 +105,27 @@ export const LogIn = async (login: string, password: string) => {
     identifier: login,
     password: password,
   });
+
   if (response.status === 200) {
-    return response.data.jwt;
+    Cookies.remove("token", {
+      path: "/",
+    });
+    Cookies.set("token", response.data.jwt, {
+      sameSite: "none",
+      secure: true,
+      expires: 2,
+      path: "/",
+    });
+    Cookies.remove("id", {
+      path: "/",
+    });
+    Cookies.set("id", response.data.user.id, {
+      sameSite: "none",
+      secure: true,
+      expires: 2,
+      path: "/",
+    });
+    return true
   } else {
     return false;
   }

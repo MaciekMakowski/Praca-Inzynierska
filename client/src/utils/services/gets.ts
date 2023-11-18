@@ -8,7 +8,6 @@ import axios from "axios";
 
 export const getAnimals = async (page: number, pagination: number) => {
   const authToken = Cookies.get("token");
-  console.log(authToken)
   const response = await axios(
     `${APIurl}animals?pagination[page]=${page}&pagination[pageSize]=${pagination}`,
     {

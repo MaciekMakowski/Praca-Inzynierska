@@ -1,6 +1,7 @@
-import { AppBar, Box, Divider, Drawer, IconButton, List, Toolbar, Typography, useTheme } from "@mui/material";
+import { AppBar, Box, Button, Divider, Drawer, IconButton, List, Toolbar, Typography, useTheme } from "@mui/material";
 
 import AdminMenuList from "./adminMenuList";
+import { LogOut } from "../utils/services/check";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router";
 import { useState } from "react";
@@ -10,6 +11,11 @@ const AdminMenu = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const drawerWidth = 240;
+
+  const handleLogout = () => {
+    LogOut()
+    navigate('/admin')
+  }
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -49,9 +55,16 @@ const AdminMenu = () => {
         flexDirection: "column",
         gap: "1rem",
         display: { xs: "none", lg: "flex" },
+        justifyContent: "space-between",
       }}
     >
       <AdminMenuList primary={false}/>
+      <Button variant="text" sx={{
+        color: theme.palette.primary.contrastText,
+      }}
+      onClick={() => handleLogout()}>
+              Wyloguj
+      </Button>
     </Box>
     <AppBar component="nav" color={"secondary"} sx={{display:{xs:'block', lg:'none'}}}>
         <Toolbar>
