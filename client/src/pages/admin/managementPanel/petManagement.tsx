@@ -171,7 +171,7 @@ const PetManagement = () => {
                   textAlign: "center",
                   boxSizing: "border-box",
                   display: "flex",
-                  flexDirection: "column",
+                  flexDirection: {xs:"column", sm:"row", xl:"column"},
                   padding: "1rem",
                   gap: "1rem",
                   borderRadius: "1rem",
@@ -180,8 +180,8 @@ const PetManagement = () => {
                 <Box
                   sx={{
                     display: "flex",
-                    justifyContent: "space-between",
-                    width: "100%",
+                    justifyContent: "space-around",
+                    width: {xs:'100%',},
                     gap: "1rem",
                   }}
                 >
@@ -197,17 +197,11 @@ const PetManagement = () => {
                     disabled={animalData.attributes.isIsolated}
                     foo={() => setAddIsolationOpen(true)}
                   />
-                  <ManagementButton
-                    name="Dodaj Chorobę"
-                    ico={CoronavirusIcon}
-                    disabled={animalData.attributes.isIll}
-                    foo={() => setAddDiseaseOpen(true)}
-                  />
                 </Box>
                 <Box
                   sx={{
                     display: "flex",
-                    justifyContent: "space-between",
+                    justifyContent: "space-around",
                     width: "100%",
                     gap: "1rem",
                   }}
@@ -221,6 +215,12 @@ const PetManagement = () => {
                     ico={BlockIcon}
                     disabled={false}
                     foo={() => setChangeStatusOpen(true)}
+                  />
+                  <ManagementButton
+                    name="Dodaj Chorobę"
+                    ico={CoronavirusIcon}
+                    disabled={animalData.attributes.isIll}
+                    foo={() => setAddDiseaseOpen(true)}
                   />
                 </Box>
               </Box>
