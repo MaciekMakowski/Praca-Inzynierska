@@ -128,7 +128,7 @@ const AnimalList = (props:ListProps) => {
           paddingRight:{xs:'0', lg:'1rem'},
           
         }}>
-        <Grid item xs={1.5}>
+        <Grid item xs={1}>
           <Typography
             variant="subtitle1"
             color={theme.palette.primary.main}
@@ -146,7 +146,7 @@ const AnimalList = (props:ListProps) => {
             Imie
           </Typography>
         </Grid>
-        <Grid item xs={1.5}>
+        <Grid item xs={1}>
           <Typography
             variant="subtitle1"
             color={theme.palette.primary.main}
@@ -155,16 +155,16 @@ const AnimalList = (props:ListProps) => {
             Gatunek
           </Typography>
         </Grid>
-        <Grid item xs={1}>
+        <Grid item xs={1.5}>
           <Typography
             variant="subtitle1"
             color={theme.palette.primary.main}
             fontWeight={600}
           >
-            Wiek
+            Data urodzenia
           </Typography>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={2.5}>
           <Typography
             variant="subtitle1"
             color={theme.palette.primary.main}
@@ -190,7 +190,7 @@ const AnimalList = (props:ListProps) => {
           flexDirection: "column",
           gap: "1rem",
           height: "95%",
-          maxHeight: { xs: "40vh", lg: "95%" },
+          maxHeight: { xs: "40vh", md: "95%" },
           width: {xs:'1000px', md:'100%'},
           overflowY:'auto',
         }}

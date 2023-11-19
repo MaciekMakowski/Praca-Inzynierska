@@ -27,7 +27,7 @@ const AnimalListItem = (props: AnimalListItemProps) => {
         backgroundColor: props.color ? "" : theme.palette.background.light,
       }}
     >
-      <Grid item xs={1.5}>
+      <Grid item xs={1}>
         <Typography
           variant="subtitle1"
           color={
@@ -53,7 +53,7 @@ const AnimalListItem = (props: AnimalListItemProps) => {
           {props.animal.attributes.name}
         </Typography>
       </Grid>
-      <Grid item xs={1.5}>
+      <Grid item xs={1}>
         <Typography
           variant="subtitle1"
           color={
@@ -66,7 +66,7 @@ const AnimalListItem = (props: AnimalListItemProps) => {
           {props.animal.attributes.species}
         </Typography>
       </Grid>
-      <Grid item xs={1}>
+      <Grid item xs={1.5}>
         <Typography
           variant="subtitle1"
           color={
@@ -79,7 +79,7 @@ const AnimalListItem = (props: AnimalListItemProps) => {
           {props.animal.attributes.birthDate}
         </Typography>
       </Grid>
-      <Grid item xs={2}>
+      <Grid item xs={2.5}>
         <Typography
           variant="subtitle1"
           color={
