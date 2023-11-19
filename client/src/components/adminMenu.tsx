@@ -30,8 +30,7 @@ const AdminMenu = () => {
         gap={2}
       >
         <Box
-          width={"3rem"}
-          height={"3rem"}
+          height={"2rem"}
         />
         <Typography variant="h6">Schronisko.pl</Typography>
       </Box>
@@ -39,6 +38,12 @@ const AdminMenu = () => {
       <List>
         <AdminMenuList primary={true}/>
       </List>
+      <Button variant="text" sx={{
+        color: theme.palette.primary.main,
+      }}
+      onClick={() => handleLogout()}>
+              Wyloguj
+      </Button>
     </Box>
   );
 
@@ -56,6 +61,7 @@ const AdminMenu = () => {
         gap: "1rem",
         display: { xs: "none", lg: "flex" },
         justifyContent: "space-between",
+        overflowY: "auto",
       }}
     >
       <AdminMenuList primary={false}/>
