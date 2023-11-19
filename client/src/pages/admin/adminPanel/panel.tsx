@@ -57,11 +57,6 @@ const Panel = () => {
           flexWrap: {xs:'wrap', lg:'nowrap'},
         }}
       >
-        <PanelInfoSquare title="Zakończone izolacje" data={fakeData} />
-        <PanelInfoSquare title="Zakończone Choroby" data={fakeData} />
-        <PanelInfoSquare title="Zasoby bliskie zużycia" data={fakeData} />
-        <PanelInfoSquare title="Pracownicy na dziś" data={fakeData} />
-        <PanelInfoSquare title="Wolontariusze na dziś" data={fakeData} />
       </Box>
       <Box
         sx={{

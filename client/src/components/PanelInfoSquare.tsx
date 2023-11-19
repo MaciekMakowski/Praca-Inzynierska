@@ -15,8 +15,7 @@ const PanelInfoSquare = (props: PanelInfoSquareProps) => {
   return (
     <Box
       sx={{
-        minWidth: "250px",
-        width: "250px",
+        width: {md:"25%",lg:"250px"},
         height: "fit-content",
         backgroundColor: theme.palette.background.adminField,
         marginLeft: { xs: "1rem", xl: "0rem" },
