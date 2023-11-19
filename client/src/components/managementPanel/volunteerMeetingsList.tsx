@@ -39,7 +39,7 @@ const VolunteerMeetingsList = () => {
         gap: "1rem",
         borderRadius: "1rem",
         boxShadow: theme.shadows[3],
-        width:{xs:'100%', lg:'30%'},
+        width:{xs:'100%', lg:'45%'},
       }}
     >
       <Box

@@ -89,7 +89,7 @@ const PersonDetails = () => {
             height: "85%",
             display: "flex",
             gap: "1rem",
-            flexDirection: { xs: "column", md: "row" },
+            flexDirection: { xs: "column", lg: "row" },
           }}
         >
           <GuestVisitHistory />
@@ -97,6 +97,7 @@ const PersonDetails = () => {
           <Box
             sx={{
               display: "flex",
+              flexDirection: {xs:'row',lg:"column"},
               justifyContent: "space-around",
               gap: "1rem",
             }}
