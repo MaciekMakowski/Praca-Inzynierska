@@ -37,14 +37,26 @@ export const getAnimal = async (id: string) => {
 
 export const getDiseases = async (page: number, pagination: number) => {
   const authToken = Cookies.get("token");
-  const response = await axios(
-    `${APIurl}diseases?pagination[page]=${page}&pagination[pageSize]=${pagination}`,
-    {
-      headers: {
-        authorization: `Bearer ${authToken}`,
-      },
-    }
-  );
+  let response;
+  if(page > 0 && pagination > 0){
+    response = await axios(
+      `${APIurl}diseases?pagination[page]=${page}&pagination[pageSize]=${pagination}`,
+      {
+        headers: {
+          authorization: `Bearer ${authToken}`,
+        },
+      }
+    );
+  }else{
+    response = await axios(
+      `${APIurl}diseases`,
+      {
+        headers: {
+          authorization: `Bearer ${authToken}`,
+        },
+      }
+    );
+  }
   if (response.status === 200) {
     const data = response.data;
     return data;

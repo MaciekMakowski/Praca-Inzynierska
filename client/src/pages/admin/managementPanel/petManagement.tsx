@@ -29,7 +29,6 @@ const PetManagement = () => {
   const [changeStatusOpen, setChangeStatusOpen] = useState(false);
   const [refresh, setRefresh] = useState(true);
   const theme = useTheme();
-  const navigate = useNavigate();
   const { petId } = useParams();
 
 

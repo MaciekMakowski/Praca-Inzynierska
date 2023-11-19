@@ -26,6 +26,7 @@ import { validateForm } from "../../utils/functions/validators";
 const AddPetDiseaseModal = (props: PetDiseaseModalProps) => {
   const theme = useTheme();
   const handleClose = () => props.setOpen(false);
+  console.log(props.diseases)
 
   const [newDisease, setNewDisease] = useState<PetDiseaseType>({
     id: 0,
@@ -34,7 +35,7 @@ const AddPetDiseaseModal = (props: PetDiseaseModalProps) => {
       endDate: dayjs().format("YYYY-MM-DD"),
       status: "W trakcie",
       animal: props.animal,
-      disease:props.diseases[0],
+      disease:props.diseases[3],
       symptoms: "",
     },
   });
@@ -91,10 +92,6 @@ const AddPetDiseaseModal = (props: PetDiseaseModalProps) => {
     })
   }
 
-  useEffect(() => {
-    console.log(newDisease)
-  }, [newDisease]);
-
   return (
     <Modal open={props.open} onClose={handleClose}>
       <Box
@@ -136,7 +133,6 @@ const AddPetDiseaseModal = (props: PetDiseaseModalProps) => {
         options={props.diseases.map((option) => option.attributes.name)}
         fullWidth
         renderInput={(params) => <TextField {...params} label="Nazwa choroby" />}
-        defaultValue={newDisease.attributes.disease && newDisease.attributes.disease.attributes.name}
         onChange={selectChange}
         />
         <TextField

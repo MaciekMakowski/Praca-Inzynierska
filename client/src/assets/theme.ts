@@ -1,6 +1,5 @@
 import {ThemeOptions} from "@mui/material";
 
-
 declare module '@mui/material/styles' {
     interface TypeBackground{
         secondary:string,

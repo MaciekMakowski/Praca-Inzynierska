@@ -18,7 +18,6 @@ module.exports = createCoreController('api::pet-disease.pet-disease', ({ strapi 
             "api::pet-disease.pet-disease",
             { data: petDiseaseData, populate: ["animal", "disease"] }
           );
-          console.log(petDisease);
           const populatePetDisease = await strapi.entityService.update(
             "api::pet-disease.pet-disease",
             petDisease.id,
@@ -34,7 +33,6 @@ module.exports = createCoreController('api::pet-disease.pet-disease', ({ strapi 
           // Zwróć nową izolację
           return populatePetDisease;
         } catch (error) {
-            console.log(error);
           // Obsłuż błędy, jeśli istnieją
           ctx.response.status = 500; // lub inny kod błędu
           return { error: "Wystąpił błąd podczas dodawania choroby zwierzęcia." };
@@ -63,7 +61,6 @@ module.exports = createCoreController('api::pet-disease.pet-disease', ({ strapi 
 
       }catch(error){
         ctx.response.status = 500; // lub inny kod błędu
-        console.log(error);
         return { error: "Wystąpił błąd podczas dodawania izolacji." };
       }
     }
