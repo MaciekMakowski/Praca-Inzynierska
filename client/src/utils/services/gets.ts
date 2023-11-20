@@ -211,3 +211,12 @@ export const getPeople = async (type:string, page: number, pagination: number) =
     return clearResponse;
   }
 }
+
+export const getPerson = async (type:string, id: string) => {
+  const response = await axios.get(`${APIurl}${type}s/${id}?populate=deep`)
+  console.log(response)
+  if(response.status === 200){
+    const newPerson = createPerson(response.data.data);
+    return newPerson;
+  }
+}

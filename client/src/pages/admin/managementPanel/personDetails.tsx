@@ -1,37 +1,48 @@
 import { Box, Grid, Typography, useTheme } from "@mui/material";
+import { useEffect, useState } from "react";
 
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import GuestVisitHistory from "../../../components/managementPanel/guestVisitHistory";
 import ManagementButton from "../../../components/managementPanel/managementButton";
 import PersonOffIcon from "@mui/icons-material/PersonOff";
+import { PersonType } from "../../../utils/types/basicTypes";
 import VolunteerMeetingsList from "../../../components/managementPanel/volunteerMeetingsList";
+import { getPerson } from "../../../utils/services/gets";
 import shadows from "@mui/material/styles/shadows";
 import { useParams } from "react-router";
-
-type PersonDetails = {
-  [key: string]: string;
-};
-
-const personData: PersonDetails = {
-  Imię: "Jan",
-  Nazwisko: "Kowalski",
-  Pesel: "12345678901",
-  "Data urodzenia": "01.01.2000",
-  Płeć: "Mężczyzna",
-  "Numer telefonu": "123456789",
-  "Adres email": "adam@nowak.pl",
-  Miasto: "Olsztyn",
-  "Kod pocztowy": "10-123",
-  Adres: "ul. Nowa 1",
-};
 
 const PersonDetails = () => {
   const theme = useTheme();
   const { type, id } = useParams();
+  const [refresh, setRefresh] = useState(false);
+  const [personData, setPersonData] = useState<PersonType>();
+
+  const getAll = () => {
+    if (id && type) {
+      getPerson(type,id).then((res) => {
+        if(res){
+          setPersonData(res);
+        }
+      });
+    }
+  }
+
+  useEffect(() => {
+    if(refresh)
+    getAll();
+    setRefresh(false);
+  }, [id, refresh]);
+
+  useEffect(() => {
+    getAll();
+  }, []);
+
 
   return (
     <>
+    {personData ? (
+      <>
       <Box height={"10%"}>
         <Typography
           variant="h4"
@@ -63,26 +74,166 @@ const PersonDetails = () => {
             flexDirection: { xs: "column", md: "row" },
           }}
         >
-          {Object.keys(personData).map((key) => {
-            return (
-              <Box>
+          <Box>
                 <Typography
                   variant="body1"
                   fontWeight={600}
                   color={theme.palette.text.primary}
                 >
-                  {key}
+                  Imię
                 </Typography>
                 <Typography
                   variant="body1"
                   textAlign={{ xs: "start", md: "center" }}
                   color={theme.palette.text.primary}
                 >
-                  {personData[key]}
+                  {personData.attributes.name}
                 </Typography>
               </Box>
-            );
-          })}
+              <Box>
+                <Typography
+                  variant="body1"
+                  fontWeight={600}
+                  color={theme.palette.text.primary}
+                >
+                  Nazwisko
+                </Typography>
+                <Typography
+                  variant="body1"
+                  textAlign={{ xs: "start", md: "center" }}
+                  color={theme.palette.text.primary}
+                >
+                  {personData.attributes.name}
+                </Typography>
+              </Box>
+              <Box>
+                <Typography
+                  variant="body1"
+                  fontWeight={600}
+                  color={theme.palette.text.primary}
+                >
+                  Płeć
+                </Typography>
+                <Typography
+                  variant="body1"
+                  textAlign={{ xs: "start", md: "center" }}
+                  color={theme.palette.text.primary}
+                >
+                  {personData.attributes.sex}
+                </Typography>
+              </Box>
+              <Box>
+                <Typography
+                  variant="body1"
+                  fontWeight={600}
+                  color={theme.palette.text.primary}
+                >
+                  Data urodzin
+                </Typography>
+                <Typography
+                  variant="body1"
+                  textAlign={{ xs: "start", md: "center" }}
+                  color={theme.palette.text.primary}
+                >
+                  {personData.attributes.birthDate}
+                </Typography>
+              </Box>
+              <Box>
+                <Typography
+                  variant="body1"
+                  fontWeight={600}
+                  color={theme.palette.text.primary}
+                >
+                  Number telefonu
+                </Typography>
+                <Typography
+                  variant="body1"
+                  textAlign={{ xs: "start", md: "center" }}
+                  color={theme.palette.text.primary}
+                >
+                  {personData.attributes.phoneNumber}
+                </Typography>
+              </Box>
+              <Box>
+                <Typography
+                  variant="body1"
+                  fontWeight={600}
+                  color={theme.palette.text.primary}
+                >
+                  Email
+                </Typography>
+                <Typography
+                  variant="body1"
+                  textAlign={{ xs: "start", md: "center" }}
+                  color={theme.palette.text.primary}
+                >
+                  {personData.attributes.email}
+                </Typography>
+              </Box>
+              <Box>
+                <Typography
+                  variant="body1"
+                  fontWeight={600}
+                  color={theme.palette.text.primary}
+                >
+                  PESEL
+                </Typography>
+                <Typography
+                  variant="body1"
+                  textAlign={{ xs: "start", md: "center" }}
+                  color={theme.palette.text.primary}
+                >
+                  {personData.attributes.pesel}
+                </Typography>
+              </Box>
+              <Box>
+                <Typography
+                  variant="body1"
+                  fontWeight={600}
+                  color={theme.palette.text.primary}
+                >
+                  Miasto
+                </Typography>
+                <Typography
+                  variant="body1"
+                  textAlign={{ xs: "start", md: "center" }}
+                  color={theme.palette.text.primary}
+                >
+                  {personData.attributes.city}
+                </Typography>
+              </Box>
+              <Box>
+                <Typography
+                  variant="body1"
+                  fontWeight={600}
+                  color={theme.palette.text.primary}
+                >
+                  Kod pocztowy
+                </Typography>
+                <Typography
+                  variant="body1"
+                  textAlign={{ xs: "start", md: "center" }}
+                  color={theme.palette.text.primary}
+                >
+                  {personData.attributes.postCode}
+                </Typography>
+              </Box>
+              <Box>
+                <Typography
+                  variant="body1"
+                  fontWeight={600}
+                  color={theme.palette.text.primary}
+                >
+                  Adres
+                </Typography>
+                <Typography
+                  variant="body1"
+                  textAlign={{ xs: "start", md: "center" }}
+                  color={theme.palette.text.primary}
+                >
+                  {personData.attributes.address}
+                </Typography>
+              </Box>
         </Box>
         <Box
           sx={{
@@ -125,6 +276,8 @@ const PersonDetails = () => {
           </Box>
         </Box>
       </Box>
+      </>
+    ) : <>Loading...</>}
     </>
   );
 };
