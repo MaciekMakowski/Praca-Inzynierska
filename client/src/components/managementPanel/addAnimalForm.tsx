@@ -74,7 +74,7 @@ const AddAnimalForm = (props: PetManagementProps) => {
 
   const sendForm = () => {
     validateForm(newAnimal.attributes, setErrorList).then((res) => {
-      if (res === true) {
+      if (res) {
         if (props.isNew) {
           createAnimal(newAnimal).then((res) => {
             if(res){

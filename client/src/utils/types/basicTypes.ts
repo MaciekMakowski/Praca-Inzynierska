@@ -52,17 +52,19 @@ export type AnimalType = {
 };
 
 export type PersonType = {
-  number: number;
-  name: string;
-  lastName: string;
-  birthDate: string;
-  sex: string;
-  phoneNumber: number;
-  email: string;
-  city: string;
-  postCode: string;
-  address: string;
-  pesel: number;
+  id: number;
+  attributes: {
+    name: string;
+    lastName: string;
+    birthDate: string;
+    sex: string;
+    phoneNumber: number;
+    email: string;
+    city: string;
+    postCode: string;
+    address: string;
+    pesel: number;
+  };
 };
 
 export type IsolationType = {

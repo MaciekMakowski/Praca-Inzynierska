@@ -2,6 +2,7 @@ import {
   AnimalType,
   DiseaseType,
   IsolationType,
+  PersonType,
   PetDiseaseType,
 } from "../types/basicTypes";
 
@@ -100,6 +101,36 @@ export const createAnimalDisease = async (animalDisease: PetDiseaseType) => {
   }
 };
 
+export const createPerson = async (person: PersonType, type: string) => {
+  const authToken = Cookies.get("token");
+  const response = await axios.post(`${APIurl}${type}`, {
+    headers: {
+      authorization: `Bearer ${authToken}`,
+    },
+    data: {
+      personData: {
+        name: person.attributes.name,
+        lastName: person.attributes.lastName,
+        pesel: person.attributes.pesel,
+        birthDate: person.attributes.birthDate,
+        sex: person.attributes.sex,
+        phoneNumber: person.attributes.phoneNumber,
+        email: person.attributes.email,
+        address: {
+          city: person.attributes.city,
+          postCode: person.attributes.postCode,
+          address: person.attributes.address,
+        },
+      },
+    },
+  });
+  if (response.status === 200) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 export const LogIn = async (login: string, password: string) => {
   const response = await axios.post(`${APIurl}auth/local`, {
     identifier: login,
@@ -125,7 +156,7 @@ export const LogIn = async (login: string, password: string) => {
       expires: 2,
       path: "/",
     });
-    return true
+    return true;
   } else {
     return false;
   }

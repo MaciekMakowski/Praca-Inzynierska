@@ -1,9 +1,11 @@
 import { Button, Grid, Typography, useTheme } from "@mui/material";
 
+import { PersonType } from "../../utils/types/basicTypes";
 import { navigateTo } from "../../utils/functions/navigators";
 import { useNavigate } from "react-router";
 
 type PersonsListItemProps = {
+  person:PersonType
   color: boolean;
   type: string;
 };
@@ -34,7 +36,7 @@ const PersonsListItem = (props: PersonsListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          #1234
+          {props.person.id}
         </Typography>
       </Grid>
       <Grid item xs={1}>
@@ -46,7 +48,7 @@ const PersonsListItem = (props: PersonsListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          Adam
+          {props.person.attributes.name}
         </Typography>
       </Grid>
       <Grid item xs={1.5}>
@@ -58,7 +60,7 @@ const PersonsListItem = (props: PersonsListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          Nowak
+          {props.person.attributes.lastName}
         </Typography>
       </Grid>
       <Grid item xs={1.5}>
@@ -70,7 +72,7 @@ const PersonsListItem = (props: PersonsListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          21-04-1999
+          {props.person.attributes.birthDate}
         </Typography>
       </Grid>
       <Grid item xs={1.5}>
@@ -82,7 +84,7 @@ const PersonsListItem = (props: PersonsListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          453-234-234
+          {props.person.attributes.phoneNumber}
         </Typography>
       </Grid>
       <Grid item xs={1}>
@@ -94,7 +96,7 @@ const PersonsListItem = (props: PersonsListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          Olsztyn
+          {props.person.attributes.city}
         </Typography>
       </Grid>
       <Grid item xs={1}>
@@ -106,7 +108,7 @@ const PersonsListItem = (props: PersonsListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          10-041
+          {props.person.attributes.postCode}
         </Typography>
       </Grid>
       <Grid item xs={2}>
@@ -118,7 +120,7 @@ const PersonsListItem = (props: PersonsListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          Słoneczna 12a/5
+          {props.person.attributes.address}
         </Typography>
       </Grid>
       <Grid item xs={1.5}>
@@ -130,7 +132,7 @@ const PersonsListItem = (props: PersonsListItemProps) => {
                 : theme.palette.text.secondary,
             },
           }}
-          onClick={() => navigateTo(navigate, `/admin/management/personDetails/${props.type}/1`)}
+          onClick={() => navigateTo(navigate, `/admin/management/personDetails/${props.type}/${props.person.id}`)}
         >
           Przejdź
         </Button>

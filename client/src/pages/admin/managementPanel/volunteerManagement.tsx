@@ -2,9 +2,11 @@ import { Box, Typography, useTheme } from "@mui/material";
 
 import AddPersonForm from "../../../components/managementPanel/addPersonForm";
 import PersonList from "../../../components/managementPanel/personsList";
+import { useState } from "react";
 
 const VolunteerManagement = () => {
   const theme = useTheme();
+  const [refresh, setRefresh] = useState<boolean>(false);
 
   return (
     <>
@@ -28,8 +30,8 @@ const VolunteerManagement = () => {
           alignItems:"center"
         }}
       >
-        <AddPersonForm title="Dodaj wolontariusza" />
-        <PersonList type="volunteer"/>
+        <AddPersonForm title="Dodaj wolontariusza" type="volunteers" setRefresh={setRefresh} isNew />
+        <PersonList type="volunteer" refresh={refresh} setRefresh={setRefresh}/>
       </Box>
     </>
   );

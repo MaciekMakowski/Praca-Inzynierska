@@ -2,9 +2,11 @@ import { Box, Typography, useTheme } from "@mui/material";
 
 import AddPersonForm from "../../../components/managementPanel/addPersonForm";
 import PersonsList from "../../../components/managementPanel/personsList";
+import { useState } from "react";
 
 const GuestManagement = () => {
   const theme = useTheme();
+  const [refresh,setRefresh] = useState<boolean>(false);
 
   return (
     <>
@@ -27,8 +29,8 @@ const GuestManagement = () => {
           alignItems: "center",
         }}
       >
-        <AddPersonForm title="Dodaj gościa" />
-        <PersonsList type="guest" />
+        <AddPersonForm title="Dodaj gościa" type="guests" setRefresh={setRefresh} isNew />
+        <PersonsList type="guest" refresh={refresh} setRefresh={setRefresh} />
       </Box>
     </>
   );

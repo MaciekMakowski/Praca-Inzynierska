@@ -1,31 +1,52 @@
-import { AnimalType, DiseaseType } from "./basicTypes"
+import { AnimalType, DiseaseType } from "./basicTypes";
 
 export type IsolationResponse = {
-    id:number,
-    attributes:{
-        reason:string,
-        startDate:string,
-        endDate:string,
-        status:string,
-        description:string,
-        animal:{
-            data:AnimalType
-        }
-    }
-}
+  id: number;
+  attributes: {
+    reason: string;
+    startDate: string;
+    endDate: string;
+    status: string;
+    description: string;
+    animal: {
+      data: AnimalType;
+    };
+  };
+};
 
 export type PetDiseasesResponse = {
-    id:number,
-    attributes:{
-        symptoms:string,
-        startDate:string,
-        endDate:string,
-        status:string,
-        animal:{
-            data:AnimalType
-        }
-        disease:{
-            data:DiseaseType
-        }
-    }
-}
+  id: number;
+  attributes: {
+    symptoms: string;
+    startDate: string;
+    endDate: string;
+    status: string;
+    animal: {
+      data: AnimalType;
+    };
+    disease: {
+      data: DiseaseType;
+    };
+  };
+};
+
+export type PersonsResponse = {
+  id: number;
+  attributes:{
+    personData: {
+    name: string;
+    lastName: string;
+    birthDate: string;
+    sex: string;
+    phoneNumber: number;
+    email: string;
+    pesel: number;
+    address: {
+      city: string;
+      postCode: string;
+      address: string;
+      pesel: number;
+    };
+  };
+  }
+};

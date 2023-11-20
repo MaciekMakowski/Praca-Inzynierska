@@ -1,5 +1,5 @@
-import { IsolationResponse, PetDiseasesResponse } from "../types/responseTypes";
-import { createIsolation, createPetDisease } from "./formatters";
+import { IsolationResponse, PersonsResponse, PetDiseasesResponse } from "../types/responseTypes";
+import { createIsolation, createPerson, createPetDisease } from "./formatters";
 
 import { APIurl } from "./url";
 import Cookies from "js-cookie";
@@ -197,3 +197,17 @@ export const getAnimalDiseases = async (id: string) => {
     return clearResponse;
   }
 };
+
+export const getPeople = async (type:string, page: number, pagination: number) => {
+  const response = await axios.get(`${APIurl}${type}s?pagination[page]=${page}&pagination[pageSize]=${pagination}&populate=deep`)
+  if(response.status === 200){
+    const newPersons = response.data.data.map((person:PersonsResponse) => {
+      return createPerson(person);
+    })
+    const clearResponse = {
+      data: newPersons,
+      meta: response.data.meta,
+    };
+    return clearResponse;
+  }
+}
