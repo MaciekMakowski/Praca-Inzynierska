@@ -1,3 +1,4 @@
+import { AnimalType, PersonType } from "../../utils/types/basicTypes";
 import {
   Box,
   Button,
@@ -7,21 +8,62 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { useEffect, useState } from "react";
 
 import { AddAdoptionProps } from "../../utils/types/propsTypes";
 import CloseIcon from "@mui/icons-material/Close";
+import { createAdoption } from "../../utils/services/posts";
 import dayjs from "dayjs";
+import { getPerson } from "../../utils/services/gets";
 import { handleTextChange } from "../../utils/functions/handlers";
-import { useState } from "react";
 
+const emptyPerson: PersonType = {
+  id: 0,
+  attributes: {
+    name: "",
+    lastName: "",
+    birthDate: dayjs().format("YYYY-MM-DD"),
+    sex: "",
+    phoneNumber: 0,
+    email: "",
+    city: "",
+    postCode: "",
+    address: "",
+    pesel: 0,
+  },
+};
 const AddAdoptionModal = (props: AddAdoptionProps) => {
   const theme = useTheme();
-  const [userId,setUserId] = useState<string>("")
   const handleClose = () => props.setOpen(false);
+  const [person, setPerson] = useState<PersonType>(emptyPerson);
+  const [animal, setAnimal] = useState<AnimalType>();
 
   const textChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    handleTextChange(event, setUserId)
-  }
+    setPerson({ ...person, id: parseInt(event.target.value) });
+  };
+
+  const findPerson = () => {
+    if (person) {
+      getPerson("guest", person.id.toString()).then((res) => {
+        if (res) setPerson(res);
+      });
+    }
+  };
+
+  const sendForm = () => {
+    if (person && animal) {
+      createAdoption(animal.id, person.id).then((res) => {
+        if (res) {
+          handleClose();
+          setPerson(emptyPerson);
+        }
+      });
+    }
+  };
+
+  useEffect(() => {
+    setAnimal(props.data);
+  }, [props.data]);
 
   return (
     <Modal open={props.open} onClose={handleClose}>
@@ -34,7 +76,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
           left: "50%",
           top: "50%",
           transform: "translate(-50%, -50%)",
-          width: {xs:"90%", xl:"60%"},
+          width: { xs: "90%", xl: "60%" },
           boxSizing: "border-box",
           padding: "1rem",
           display: "flex",
@@ -69,7 +111,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              justifyContent:"flex-end"
+              justifyContent: "flex-end",
             }}
           >
             <Typography variant="h6" color={theme.palette.text.primary}>
@@ -87,15 +129,16 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   display: "flex",
                   flexDirection: "column",
                   gap: "1rem",
-                  width: {xs:"100%", md:"50%"},
+                  width: { xs: "100%", md: "50%" },
                 }}
               >
                 <TextField
                   variant="outlined"
                   label="Numer"
-                  name="number"
+                  name="id"
                   type="number"
                   color="primary"
+                  value={person?.id}
                   onChange={textChange}
                 />
                 <Button
@@ -106,6 +149,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   sx={{
                     height: "100%",
                   }}
+                  onClick={() => findPerson()}
                 >
                   Szukaj
                 </Button>
@@ -115,6 +159,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   label="Imię"
                   name="name"
                   color="primary"
+                  value={person?.attributes.name}
                 />
                 <TextField
                   disabled
@@ -122,6 +167,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   label="Nazwisko"
                   name="lastName"
                   color="primary"
+                  value={person?.attributes.lastName}
                 />
                 <TextField
                   disabled
@@ -129,6 +175,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   label="Płeć"
                   name="sex"
                   color="primary"
+                  value={person?.attributes.sex}
                 />
                 <TextField
                   disabled
@@ -143,14 +190,15 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   label="Data urodzenia"
                   name="birthDate"
                   color="primary"
+                  value={person?.attributes.birthDate}
                 />
-                </Box>
+              </Box>
               <Box
                 sx={{
                   display: "flex",
                   flexDirection: "column",
                   gap: "1rem",
-                  width: {xs:"100%", md:"50%"},
+                  width: { xs: "100%", md: "50%" },
                 }}
               >
                 <TextField
@@ -160,7 +208,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   name="phoneNumber"
                   type="number"
                   color="primary"
-                  //onChange={handleTextChange}
+                  value={person?.attributes.phoneNumber}
                 />
                 <TextField
                   disabled
@@ -168,7 +216,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   label="E-mail"
                   name="email"
                   color="primary"
-                  // onChange={handleTextChange}
+                  value={person?.attributes.email}
                 />
                 <TextField
                   disabled
@@ -176,7 +224,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   label="Miasto"
                   name="city"
                   color="primary"
-                  //onChange={handleTextChange}
+                  value={person?.attributes.city}
                 />
                 <TextField
                   disabled
@@ -184,7 +232,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   label="Kod pocztowy"
                   name="postCode"
                   color="primary"
-                  //onChange={handleTextChange}
+                  value={person?.attributes.postCode}
                 />
                 <TextField
                   disabled
@@ -195,7 +243,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   sx={{
                     marginTop: "5px",
                   }}
-                  //onChange={handleTextChange}
+                  value={person?.attributes.address}
                 />
               </Box>
             </Box>
@@ -204,7 +252,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              justifyContent:"flex-start",
+              justifyContent: "flex-start",
               marginLeft: "1rem",
             }}
           >
@@ -223,7 +271,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   display: "flex",
                   flexDirection: "column",
                   gap: "1rem",
-                  width: {xs:"100%", md:"50%"},
+                  width: { xs: "100%", md: "50%" },
                 }}
               >
                 <TextField
@@ -232,8 +280,8 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   name="number"
                   type="number"
                   color="primary"
-                  disabled={props.data && true}
-                  value={props.data?.id}
+                  disabled={animal && true}
+                  value={animal?.id}
                   //onChange={handleTextChange}
                 />
                 <Button
@@ -250,7 +298,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   label="Płeć"
                   name="sex"
                   color="primary"
-                  value={props.data?.attributes.sex}
+                  value={animal?.attributes.sex}
                   // onChange={handleTextChange}
                 />
                 <TextField
@@ -259,7 +307,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   label="Data urodzenia"
                   name="birthDate"
                   color="primary"
-                  value={props.data?.attributes.birthDate}
+                  value={animal?.attributes.birthDate}
                   //onChange={handleTextChange}
                 />
                 <TextField
@@ -268,7 +316,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   label="Rasa"
                   name="race"
                   color="primary"
-                  value={props.data?.attributes.race}
+                  value={animal?.attributes.race}
                   //onChange={handleTextChange}
                 />
               </Box>
@@ -277,7 +325,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   display: "flex",
                   flexDirection: "column",
                   gap: "1rem",
-                  width: {xs:"100%", md:"50%"},
+                  width: { xs: "100%", md: "50%" },
                 }}
               >
                 <TextField
@@ -286,7 +334,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   label="Gatunek"
                   name="species"
                   color="primary"
-                  value={props.data?.attributes.species}
+                  value={animal?.attributes.species}
                   //onChange={handleTextChange}
                 />
                 <TextField
@@ -295,7 +343,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   label="Waga"
                   name="weight"
                   color="primary"
-                  value={props.data?.attributes.weight}
+                  value={animal?.attributes.weight}
                   // onChange={handleTextChange}
                 />
                 <TextField
@@ -304,7 +352,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   label="Wiek"
                   name="age"
                   color="primary"
-                  value={dayjs().diff(props.data?.attributes.birthDate, "year")}
+                  value={dayjs().diff(animal?.attributes.birthDate, "year")}
                   //onChange={handleTextChange}
                 />
                 <TextField
@@ -313,7 +361,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
                   label="Miejsce znalezienia"
                   name="findPlace"
                   color="primary"
-                  value={props.data?.attributes.findPlace}
+                  value={animal?.attributes.findPlace}
                   //onChange={handleTextChange}
                 />
               </Box>
@@ -332,8 +380,9 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
             sx={{
               width: "fit-content",
             }}
+            onClick={() => sendForm()}
           >
-            Dodaj
+            Rozpocznij adopcję
           </Button>
         </Box>
       </Box>

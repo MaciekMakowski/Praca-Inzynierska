@@ -131,6 +131,23 @@ export const createPerson = async (person: PersonType, type: string) => {
   }
 };
 
+
+export const createAdoption = async (animalId: number, personId: number) => {
+  const response = await axios.post(`${APIurl}adoptions`, {
+    data:{
+      animal: animalId,
+      guest: personId,
+      date: new Date(),
+      status:"Oczekująca"
+    }
+  })
+  if(response.status === 200){
+    return true;
+  }else{
+    return false;
+  }
+};
+
 export const LogIn = async (login: string, password: string) => {
   const response = await axios.post(`${APIurl}auth/local`, {
     identifier: login,

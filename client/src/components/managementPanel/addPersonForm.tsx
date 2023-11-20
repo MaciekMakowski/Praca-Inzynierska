@@ -35,7 +35,7 @@ const emptyPerson: PersonType = {
     attributes: {
       name: "",
     lastName: "",
-    birthDate: "",
+    birthDate: dayjs().format("YYYY-MM-DD"),
     sex: "",
     phoneNumber: 0,
     email: "",
@@ -162,6 +162,7 @@ const AddPersonForm = (props: AddPersonFormProps) => {
         <DemoContainer components={["DatePicker"]}>
           <DatePicker
             sx={{ width: "100%" }}
+            format="YYYY-MM-DD"
             label="Data urodzenia"
             value={dayjs(newPerson.attributes.birthDate)}
             onChange={(value: Dayjs | null) => dateChange(value, "birthDate")}

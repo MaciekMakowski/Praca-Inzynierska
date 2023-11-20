@@ -188,7 +188,7 @@ const PetManagement = () => {
                   <ManagementButton
                     name="Rozpocznij Adopcję"
                     ico={AddHomeIcon}
-                    disabled={animalData.attributes.adopted ? true : false}
+                    disabled={animalData.attributes.toAdoption ? animalData.attributes.adopted ? true : false : true}
                     foo={() => setAdoptionOpen(true)}
                   />
                   <ManagementButton
