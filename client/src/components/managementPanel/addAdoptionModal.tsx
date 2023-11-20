@@ -56,6 +56,7 @@ const AddAdoptionModal = (props: AddAdoptionProps) => {
         if (res) {
           handleClose();
           setPerson(emptyPerson);
+          props.setRefresh(true)
         }
       });
     }
