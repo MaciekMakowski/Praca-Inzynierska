@@ -1,9 +1,11 @@
 import { Button, Grid, Typography, useTheme } from "@mui/material";
 
+import { AdoptionType } from "../../utils/types/basicTypes";
 import { navigateTo } from "../../utils/functions/navigators";
 import { useNavigate } from "react-router";
 
 type AdoptionListItemProps = {
+  adoption:AdoptionType;
   color: boolean;
 };
 
@@ -32,7 +34,7 @@ const AdoptionListItem = (props: AdoptionListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          #1234123
+          {props.adoption.id}
         </Typography>
       </Grid>
       <Grid item xs={2.5}>
@@ -44,7 +46,7 @@ const AdoptionListItem = (props: AdoptionListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          Adam Krzynówek
+          {props.adoption.attributes.guest.attributes.name} {props.adoption.attributes.guest.attributes.lastName}
         </Typography>
       </Grid>
       <Grid item xs={1.5}>
@@ -56,7 +58,7 @@ const AdoptionListItem = (props: AdoptionListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          Reksio
+          {props.adoption.attributes.animal.attributes.name}
         </Typography>
       </Grid>
       <Grid item xs={2}>
@@ -68,7 +70,7 @@ const AdoptionListItem = (props: AdoptionListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          Józef Alfons
+          {props.adoption.attributes.guest.attributes.name}
         </Typography>
       </Grid>
       <Grid item xs={2}>
@@ -80,7 +82,7 @@ const AdoptionListItem = (props: AdoptionListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          24-03-2021
+          {props.adoption.attributes.date}
         </Typography>
       </Grid>
       <Grid item xs={1.5}>
@@ -92,7 +94,7 @@ const AdoptionListItem = (props: AdoptionListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          Nowa
+          {props.adoption.attributes.status}
         </Typography>
       </Grid>
       <Grid item xs={1.5}>

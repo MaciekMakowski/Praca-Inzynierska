@@ -703,6 +703,7 @@ export interface ApiAdoptionAdoption extends Schema.CollectionType {
     status: Attribute.Enumeration<
       ['Oczekuj\u0105ca', 'W trakcie', 'Anulowana', 'Zako\u0144czona']
     >;
+    adoptionDate: Attribute.Date;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

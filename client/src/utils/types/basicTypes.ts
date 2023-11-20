@@ -107,3 +107,14 @@ export type User = {
     password: string;
   };
 };
+
+export type AdoptionType = {
+  id: number;
+  attributes: {
+    status: string;
+    date: string;
+    adoptionDate: string;
+    animal: AnimalType;
+    guest: PersonType;
+  };
+};

@@ -1,5 +1,5 @@
-import { IsolationResponse, PersonsResponse, PetDiseasesResponse } from "../types/responseTypes";
-import { IsolationType, PersonType, PetDiseaseType } from "../types/basicTypes";
+import { AdoptionResponse, IsolationResponse, PersonsResponse, PetDiseasesResponse } from "../types/responseTypes";
+import { AdoptionType, IsolationType, PersonType, PetDiseaseType } from "../types/basicTypes";
 
 export const createIsolation = (isolation: IsolationResponse) => {
     const newIsolation: IsolationType = {
@@ -49,4 +49,19 @@ export const createPerson = (person:PersonsResponse) => {
     }
   }
   return newPerson;
+}
+
+
+export const createAdoption = (adoption: AdoptionResponse) => {
+  const newAdoption:AdoptionType = {
+    id: adoption.id,
+    attributes: {
+      status: adoption.attributes.status,
+      date: adoption.attributes.date,
+      adoptionDate: adoption.attributes.adoptionDate,
+      animal: adoption.attributes.animal.data,
+      guest: createPerson(adoption.attributes.guest.data),
+    }
+  }
+  return newAdoption;
 }

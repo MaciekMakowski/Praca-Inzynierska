@@ -50,3 +50,19 @@ export type PersonsResponse = {
   };
   }
 };
+
+export type AdoptionResponse = {
+  id: number;
+  attributes: {
+    status: string;
+    date: string;
+    adoptionDate: string;
+    animal: {
+      data: AnimalType;
+    };
+    guest: {
+      data: PersonsResponse;
+    };
+  };
+};
+
