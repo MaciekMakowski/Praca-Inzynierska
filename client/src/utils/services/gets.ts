@@ -199,7 +199,13 @@ export const getAnimalDiseases = async (id: string) => {
 };
 
 export const getPeople = async (type:string, page: number, pagination: number) => {
-  const response = await axios.get(`${APIurl}${type}s?pagination[page]=${page}&pagination[pageSize]=${pagination}&populate=deep`)
+  const authToken = Cookies.get("token");
+  const response = await axios.get(`${APIurl}${type}s?pagination[page]=${page}&pagination[pageSize]=${pagination}&populate=deep`,
+  {
+    headers: {
+      authorization: `Bearer ${authToken}`,
+    },
+  })
   if(response.status === 200){
     const newPersons = response.data.data.map((person:PersonsResponse) => {
       return createPerson(person);
@@ -213,7 +219,13 @@ export const getPeople = async (type:string, page: number, pagination: number) =
 }
 
 export const getPerson = async (type:string, id: string) => {
-  const response = await axios.get(`${APIurl}${type}s/${id}?populate=deep`)
+  const authToken = Cookies.get("token");
+  const response = await axios.get(`${APIurl}${type}s/${id}?populate=deep`,
+  {
+    headers: {
+      authorization: `Bearer ${authToken}`,
+    },
+  })
   console.log(response)
   if(response.status === 200){
     const newPerson = createPerson(response.data.data);
@@ -222,7 +234,13 @@ export const getPerson = async (type:string, id: string) => {
 }
 
 export const getAdoptions = async (page:number, pagination:number) => {
-  const response = await axios.get(`${APIurl}adoptions?pagination[page]=${page}&pagination[pageSize]=${pagination}&populate=deep`)
+  const authToken = Cookies.get("token");
+  const response = await axios.get(`${APIurl}adoptions?pagination[page]=${page}&pagination[pageSize]=${pagination}&populate=deep`,
+  {
+    headers: {
+      authorization: `Bearer ${authToken}`,
+    },
+  })
 
   if(response.status === 200){
     const newAdoptions = response.data.data.map((adoption:AdoptionResponse) => {

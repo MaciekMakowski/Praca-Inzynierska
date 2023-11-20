@@ -133,13 +133,18 @@ export const createPerson = async (person: PersonType, type: string) => {
 
 
 export const createAdoption = async (animalId: number, personId: number) => {
+  const authToken = Cookies.get("token");
   const response = await axios.post(`${APIurl}adoptions`, {
+    headers: {
+      authorization: `Bearer ${authToken}`,
+    },
     data:{
       animal: animalId,
       guest: personId,
       date: new Date(),
       status:"Oczekująca"
     }
+    
   })
   if(response.status === 200){
     return true;
