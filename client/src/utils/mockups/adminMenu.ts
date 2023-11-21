@@ -147,6 +147,7 @@ export const puszekData: AnimalType = {
     isIsolated: false,
     toAdoption: false,
     adopted: false,
+    images:null
   },
 };
 
