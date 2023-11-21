@@ -12,7 +12,7 @@ import { APIurl } from "../../utils/services/url";
 import { ChangeEvent } from "react";
 import Cookies from "js-cookie";
 import shadows from "@mui/material/styles/shadows";
-import { updateAnimalImages } from "../../utils/services/puts";
+import { updateAnimalImages } from "../../utils/services/posts";
 import { useState } from "react";
 
 type PetManagementImagesProps = {
