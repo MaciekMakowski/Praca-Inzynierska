@@ -3,6 +3,7 @@ import { IconButton, ImageListItem } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DeleteImageModal from "./deleteImageModal";
 import { Image } from "../../utils/types/basicTypes";
+import { ImageUrl } from "../../utils/services/url";
 import { useState } from "react";
 
 type ImageComponentProps = {
@@ -32,7 +33,7 @@ const ImageComponent = (props: ImageComponentProps) => {
         <DeleteIcon />
       </IconButton>
       <img
-        src={`http://localhost:1337${props.image.url}`}
+        src={`${ImageUrl}${props.image.url}`}
         loading="lazy"
         alt={props.image.alternativeText}
       />
