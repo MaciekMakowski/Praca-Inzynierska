@@ -44,16 +44,36 @@ export const createAnimal = async (animal: AnimalType) => {
 };
 
 export const updateAnimalImages = async (
-  imgs: FormData
+  formData: FormData
 ) => {
   const authToken = Cookies.get("token");
   const response = await axios.post(
     `${APIurl}upload`,
-    imgs,
+    formData,
     {
       headers: {
         Authorization: `Bearer ${authToken}`,
         "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  console.log(response)
+  if (response.status === 200) {
+    return true;
+  } else {
+    return false;
+  }
+};
+export const deleteImageFromAnimal = async (
+  formData: FormData,
+  imageId:number
+) => {
+  const authToken = Cookies.get("token");
+  const response = await axios.delete(
+    `${APIurl}upload/files/${imageId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
       },
     }
   );

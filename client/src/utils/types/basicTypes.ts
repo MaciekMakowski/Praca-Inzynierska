@@ -122,6 +122,7 @@ export type AdoptionType = {
 
 
 export type Image = {
+  id: number;
   url: string;
   alternativeText: string;
 }

@@ -1,4 +1,3 @@
-import { AnimalType, Image } from "../../utils/types/basicTypes";
 import {
   Box,
   Button,
@@ -7,17 +6,18 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { ChangeEvent, Dispatch } from "react";
 
-import { APIurl } from "../../utils/services/url";
-import { ChangeEvent } from "react";
-import Cookies from "js-cookie";
+import { Image } from "../../utils/types/basicTypes";
+import ImageComponent from "./imageComponent";
 import shadows from "@mui/material/styles/shadows";
 import { updateAnimalImages } from "../../utils/services/posts";
 import { useState } from "react";
 
 type PetManagementImagesProps = {
-  images: Image[];
+  images: Image[] | null;
   animalId: number;
+  setRefresh: Dispatch<React.SetStateAction<boolean>>;
 };
 
 const PetManagementImages = (props: PetManagementImagesProps) => {
@@ -39,7 +39,12 @@ const PetManagementImages = (props: PetManagementImagesProps) => {
       formData.append('refId', `${props.animalId}`);
       formData.append('field', `images`);
       console.log(formData)
-      updateAnimalImages(formData)
+      updateAnimalImages(formData).then((res) => {
+        if(res){
+          props.setRefresh(true);
+        }
+      });
+      
     } else {
       console.error('Nie wybrano plików.');
     }
@@ -73,18 +78,7 @@ const PetManagementImages = (props: PetManagementImagesProps) => {
         variant="quilted"
       >
         {props.images?.map((image, i) => (
-          <ImageListItem
-            sx={{
-              width: "200px",
-            }}
-            key={i}
-          >
-            <img
-              src={`http://localhost:1337${image.url}`}
-              loading="lazy"
-              alt={image.alternativeText}
-            />
-          </ImageListItem>
+          <ImageComponent image={image} key={i} setRefresh={props.setRefresh}/>
         ))}
 
         <Button

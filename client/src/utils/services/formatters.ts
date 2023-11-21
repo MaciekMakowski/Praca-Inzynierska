@@ -100,6 +100,7 @@ export const createAnimal = (animal: AnimalResponse) => {
 
 const createImage = (image: ImageResponse) => {
   const newImage:Image = {
+      id: image.id,
       url: image.attributes.url,
       alternativeText: image.attributes.alternativeText,
     }

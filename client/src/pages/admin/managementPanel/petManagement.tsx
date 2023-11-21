@@ -37,6 +37,7 @@ const PetManagement = () => {
       getAnimal(petId).then((res) => {
         if(res){
             setAnimalData(res);
+            console.log(res)
         }
       });
       getAnimalIsolations(petId).then((res) => {
@@ -130,7 +131,7 @@ const PetManagement = () => {
                     />
                   </Box>
                 </Box>
-                <PetManagementImages animalId={animalData.id} images={animalData.attributes.images}/>
+                <PetManagementImages animalId={animalData.id} images={animalData.attributes.images} setRefresh={setRefresh}/>
               </Box>
             </Box>
             <Box
