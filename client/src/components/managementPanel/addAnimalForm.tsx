@@ -46,6 +46,7 @@ const AddAnimalForm = (props: PetManagementProps) => {
       isIsolated: false,
       toAdoption: false,
       adopted: false,
+      images: null,
     },
   });
   const [errorList, setErrorList] = useState<ErrorInput>({
@@ -93,6 +94,7 @@ const AddAnimalForm = (props: PetManagementProps) => {
                   isIsolated: false,
                   toAdoption: false,
                   adopted: false,
+                  images: null,
                 },
               });
               props.setRefresh(true);
