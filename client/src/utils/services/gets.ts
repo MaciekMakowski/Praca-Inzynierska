@@ -226,7 +226,6 @@ export const getPerson = async (type:string, id: string) => {
       authorization: `Bearer ${authToken}`,
     },
   })
-  console.log(response)
   if(response.status === 200){
     const newPerson = createPerson(response.data.data);
     return newPerson;
