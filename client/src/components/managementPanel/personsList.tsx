@@ -39,7 +39,6 @@ const PersonsList = (props: PersonListProps) => {
           setPageCount(res.meta.pagination.pageCount);
         }
       });
-      console.log(personsList)
   }, [page]);
 
   useEffect(() => {

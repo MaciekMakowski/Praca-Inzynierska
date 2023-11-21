@@ -26,7 +26,6 @@ import { validateForm } from "../../utils/functions/validators";
 const AddPetDiseaseModal = (props: PetDiseaseModalProps) => {
   const theme = useTheme();
   const handleClose = () => props.setOpen(false);
-  console.log(props.diseases)
 
   const [newDisease, setNewDisease] = useState<PetDiseaseType>({
     id: 0,
