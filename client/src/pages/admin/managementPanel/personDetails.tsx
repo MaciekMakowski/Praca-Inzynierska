@@ -103,7 +103,7 @@ const PersonDetails = () => {
                   textAlign={{ xs: "start", md: "center" }}
                   color={theme.palette.text.primary}
                 >
-                  {personData.attributes.name}
+                  {personData.attributes.lastName}
                 </Typography>
               </Box>
               <Box>

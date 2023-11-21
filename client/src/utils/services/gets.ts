@@ -1,5 +1,5 @@
 import { AdoptionResponse, IsolationResponse, PersonsResponse, PetDiseasesResponse } from "../types/responseTypes";
-import { createAdoption, createIsolation, createPerson, createPetDisease } from "./formatters";
+import { createAdoption, createAnimal, createIsolation, createPerson, createPetDisease } from "./formatters";
 
 import { APIurl } from "./url";
 import Cookies from "js-cookie";
@@ -24,13 +24,13 @@ export const getAnimals = async (page: number, pagination: number) => {
 
 export const getAnimal = async (id: string) => {
   const authToken = Cookies.get("token");
-  const response = await axios(`${APIurl}animals/${id}`, {
+  const response = await axios(`${APIurl}animals/${id}?populate=deep`, {
     headers: {
       authorization: `Bearer ${authToken}`,
     },
   });
   if (response.status === 200) {
-    const data = response.data.data;
+    const data = createAnimal(response.data.data);
     return data;
   }
 };

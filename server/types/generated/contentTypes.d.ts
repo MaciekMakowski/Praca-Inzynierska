@@ -746,6 +746,7 @@ export interface ApiAnimalAnimal extends Schema.CollectionType {
     toAdoption: Attribute.Boolean;
     adopted: Attribute.Boolean;
     description: Attribute.RichText;
+    images: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

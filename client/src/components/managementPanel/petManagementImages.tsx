@@ -1,13 +1,54 @@
-import { Box, Button, ImageList, Typography, useTheme } from "@mui/material";
+import { AnimalType, Image } from "../../utils/types/basicTypes";
+import {
+  Box,
+  Button,
+  ImageList,
+  ImageListItem,
+  Typography,
+  useTheme,
+} from "@mui/material";
 
+import { APIurl } from "../../utils/services/url";
+import { ChangeEvent } from "react";
+import Cookies from "js-cookie";
 import shadows from "@mui/material/styles/shadows";
+import { updateAnimalImages } from "../../utils/services/puts";
+import { useState } from "react";
 
-const PetManagementImages = () => {
+type PetManagementImagesProps = {
+  images: Image[];
+  animalId: number;
+};
+
+const PetManagementImages = (props: PetManagementImagesProps) => {
   const theme = useTheme();
+  const [newImages, setNewImages] = useState<FileList | null>(null);
+
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      setNewImages(event.target.files);
+    }
+  };
+  const handleUpload = () => {
+    if (newImages && newImages.length > 0) {
+      const formData = new FormData();
+      for (let i = 0; i < newImages.length; i++) {
+        formData.append(`files`, newImages[i]);
+      }
+      formData.append('ref', `api::animal.animal`);
+      formData.append('refId', `${props.animalId}`);
+      formData.append('field', `images`);
+      console.log(formData)
+      updateAnimalImages(formData)
+    } else {
+      console.error('Nie wybrano plików.');
+    }
+  };
+
   return (
     <Box
       sx={{
-        width: {xs:"100%", xl:"50%"},
+        width: { xs: "100%", xl: "50%" },
         height: "100%",
         display: "flex",
         flexDirection: "column",
@@ -27,7 +68,25 @@ const PetManagementImages = () => {
           height: "100%",
           m: 0,
         }}
+        cols={4}
+        rowHeight={100}
+        variant="quilted"
       >
+        {props.images?.map((image, i) => (
+          <ImageListItem
+            sx={{
+              width: "200px",
+            }}
+            key={i}
+          >
+            <img
+              src={`http://localhost:1337${image.url}`}
+              loading="lazy"
+              alt={image.alternativeText}
+            />
+          </ImageListItem>
+        ))}
+
         <Button
           sx={{
             width: "200px",
@@ -41,10 +100,27 @@ const PetManagementImages = () => {
           }}
           component="label"
         >
-          <input type="file" accept="image/*"  style={{display:'none'}} ></input>
-          <Typography variant="h3" color={theme.palette.text.primary}>+</Typography>
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            style={{ display: "none" }}
+            onChange={handleFileChange}
+          />
+          <Typography variant="h3" color={theme.palette.text.primary}>
+            +
+          </Typography>
         </Button>
+
       </ImageList>
+      <Button
+          variant="contained"
+          color="primary"
+          onClick={handleUpload}
+          sx={{ marginTop: '1rem' }}
+        >
+          Prześlij zdjęcia
+        </Button>
     </Box>
   );
 };

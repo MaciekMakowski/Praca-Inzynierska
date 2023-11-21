@@ -1,5 +1,5 @@
-import { AdoptionResponse, IsolationResponse, PersonsResponse, PetDiseasesResponse } from "../types/responseTypes";
-import { AdoptionType, IsolationType, PersonType, PetDiseaseType } from "../types/basicTypes";
+import { AdoptionResponse, AnimalResponse, ImageResponse, IsolationResponse, PersonsResponse, PetDiseasesResponse } from "../types/responseTypes";
+import { AdoptionType, AnimalType, Image, IsolationType, PersonType, PetDiseaseType } from "../types/basicTypes";
 
 export const createIsolation = (isolation: IsolationResponse) => {
     const newIsolation: IsolationType = {
@@ -64,4 +64,44 @@ export const createAdoption = (adoption: AdoptionResponse) => {
     }
   }
   return newAdoption;
+}
+
+export const createAnimal = (animal: AnimalResponse) => {
+  let newImages: Image[] | null = null;
+  if(
+    animal.attributes.images.data !== null
+  ){
+    newImages = animal.attributes.images.data.map((image:ImageResponse) => {
+      return(
+        createImage(image)
+      )
+    })
+  }
+  const newAnimal: AnimalType = {
+    id: animal.id,
+    attributes:{
+      name: animal.attributes.name,
+      findPlace: animal.attributes.findPlace,
+      race:animal.attributes.race,
+      weight: animal.attributes.weight,
+      species: animal.attributes.species,
+      birthDate: animal.attributes.birthDate,
+      sex: animal.attributes.sex,
+      description: animal.attributes.description,
+      isIll: animal.attributes.isIll,
+      isIsolated: animal.attributes.isIsolated,
+      toAdoption: animal.attributes.toAdoption,
+      adopted: animal.attributes.adopted,
+      images: newImages
+    }
+  }
+  return newAnimal
+}
+
+const createImage = (image: ImageResponse) => {
+  const newImage:Image = {
+      url: image.attributes.url,
+      alternativeText: image.attributes.alternativeText,
+    }
+  return newImage;
 }

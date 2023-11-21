@@ -54,6 +54,13 @@
     },
     "description": {
       "type": "richtext"
+    },
+    "images": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }

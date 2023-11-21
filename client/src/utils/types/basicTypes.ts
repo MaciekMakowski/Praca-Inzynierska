@@ -48,6 +48,7 @@ export type AnimalType = {
     isIsolated: boolean;
     toAdoption: boolean;
     adopted: boolean;
+    images: Image[] | null;
   };
 };
 
@@ -118,3 +119,9 @@ export type AdoptionType = {
     guest: PersonType;
   };
 };
+
+
+export type Image = {
+  url: string;
+  alternativeText: string;
+}

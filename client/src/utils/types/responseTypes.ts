@@ -32,23 +32,23 @@ export type PetDiseasesResponse = {
 
 export type PersonsResponse = {
   id: number;
-  attributes:{
+  attributes: {
     personData: {
-    name: string;
-    lastName: string;
-    birthDate: string;
-    sex: string;
-    phoneNumber: number;
-    email: string;
-    pesel: number;
-    address: {
-      city: string;
-      postCode: string;
-      address: string;
+      name: string;
+      lastName: string;
+      birthDate: string;
+      sex: string;
+      phoneNumber: number;
+      email: string;
       pesel: number;
+      address: {
+        city: string;
+        postCode: string;
+        address: string;
+        pesel: number;
+      };
     };
   };
-  }
 };
 
 export type AdoptionResponse = {
@@ -63,6 +63,24 @@ export type AdoptionResponse = {
     guest: {
       data: PersonsResponse;
     };
+  };
+};
+
+export type AnimalResponse = {
+  id: number;
+  attributes: Omit<AnimalType["attributes"], "images"> 
+  & 
+  { images: {
+    data: ImageResponse[];
+  }
+  };
+};
+
+export type ImageResponse = {
+  id: number;
+  attributes: {
+    url: string;
+    alternativeText: string;
   };
 };
 

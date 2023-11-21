@@ -43,6 +43,28 @@ export const createAnimal = async (animal: AnimalType) => {
   }
 };
 
+export const updateAnimalImages = async (
+  imgs: FormData
+) => {
+  const authToken = Cookies.get("token");
+  const response = await axios.post(
+    `${APIurl}upload`,
+    imgs,
+    {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  console.log(response)
+  if (response.status === 200) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 export const createDisease = async (disease: DiseaseType) => {
   const authToken = Cookies.get("token");
   const response = await axios.post(
