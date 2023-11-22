@@ -1,4 +1,9 @@
-import { AnimalType, DiseaseType } from "./basicTypes";
+import {
+  AnimalType,
+  DiseaseType,
+  IsolationType,
+  PetDiseaseType,
+} from "./basicTypes";
 
 export type IsolationResponse = {
   id: number;
@@ -68,11 +73,10 @@ export type AdoptionResponse = {
 
 export type AnimalResponse = {
   id: number;
-  attributes: Omit<AnimalType["attributes"], "images"> 
-  & 
-  { images: {
-    data: ImageResponse[];
-  }
+  attributes: Omit<AnimalType["attributes"], "images"> & {
+    images: {
+      data: ImageResponse[];
+    };
   };
 };
 
@@ -84,3 +88,17 @@ export type ImageResponse = {
   };
 };
 
+export type AnimalInfoResponse = {
+    animal: {
+      data:AnimalResponse
+    };
+    diseases: {
+      data: DiseaseType[];
+    };
+    isolations: {
+      data: IsolationResponse[];
+    };
+    petDiseases: {
+      data: PetDiseasesResponse[];
+    };
+};

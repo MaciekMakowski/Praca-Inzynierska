@@ -11,7 +11,6 @@ type PetManagementListProps = {
   title: string;
   type: "disease" | "isolation";
   data: IsolationType[] | PetDiseaseType[];
-  refresh: boolean;
 };
 
 const PetManagementList = (props: PetManagementListProps) => {

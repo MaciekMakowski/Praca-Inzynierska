@@ -1,6 +1,6 @@
-import { AnimalType, DiseaseType, IsolationType, PetDiseaseType } from "../../../utils/types/basicTypes";
+import { AnimalInfoType, AnimalType, DiseaseType, IsolationType, PetDiseaseType } from "../../../utils/types/basicTypes";
 import { Box, Typography, useTheme } from "@mui/material";
-import { getAnimal, getAnimalDiseases, getAnimalIsolations, getDiseases } from "../../../utils/services/gets";
+import { getAnimal, getAnimalDiseases, getAnimalInfo, getAnimalIsolations, getDiseases } from "../../../utils/services/gets";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 
@@ -19,10 +19,7 @@ import PetManagementInfo from "../../../components/managementPanel/petManagement
 import PetManagementList from "../../../components/managementPanel/petManagementList";
 
 const PetManagement = () => {
-  const [animalData, setAnimalData] = useState<AnimalType | null>(null);
-  const [animalIsolations, setAnimalIsolations] = useState<IsolationType[]>([]);
-  const [animalDiseases, setAnimalDiseases] = useState<PetDiseaseType[]>([]); 
-  const [diseaesList, setDiseasesList] = useState<DiseaseType[]>([]);
+  const [animalInfoData, setAnimalInfoData] = useState<AnimalInfoType | null>(null);
   const [adoptionOpen, setAdoptionOpen] = useState(false);
   const [addIsolationOpen, setAddIsolationOpen] = useState(false);
   const [addDiseaseOpen, setAddDiseaseOpen] = useState(false);
@@ -34,42 +31,22 @@ const PetManagement = () => {
 
   const getAll = () => {
     if (petId) {
-      getAnimal(petId).then((res) => {
-        if(res){
-            setAnimalData(res);
-            console.log(res)
-        }
+      getAnimalInfo(petId).then((res) => {
+        if(res)
+        setAnimalInfoData(res);
       });
-      getAnimalIsolations(petId).then((res) => {
-        if (res) {
-          setAnimalIsolations(res.data);
-        }
-      });
-      getAnimalDiseases(petId).then((res) => {
-        if(res){
-          setAnimalDiseases(res.data);
-        }
-      })
-      getDiseases(0,0).then((res) => {
-        if(res){
-          setDiseasesList(res.data);
-        }
-      })
     }
   }
 
   useEffect(() => {
-    if(refresh)
-    getAll();
-    setRefresh(false);
+    if(refresh){
+      getAll();
+      setRefresh(false);
+    }
   }, [petId, refresh]);
-
-  useEffect(() => {
-    getAll();
-  }, []);
   return (
     <>
-      {animalData === null ? (
+      {animalInfoData === null ? (
         <>Loading...</>
       ) : (
         <>
@@ -80,7 +57,7 @@ const PetManagement = () => {
               color={theme.palette.text.primary}
               textAlign={"center"}
             >
-              Profil zwierzęcia: {animalData?.attributes.name}
+              Profil zwierzęcia: {animalInfoData.animal.attributes.name}
             </Typography>
           </Box>
           <Box
@@ -122,16 +99,16 @@ const PetManagement = () => {
                     }}
                   >
                     <PetManagementInfo
-                      data={animalData}
+                      data={animalInfoData.animal}
                       setRefresh={setRefresh}
                     />
                     <PetManagementDesc
-                      data={animalData}
+                      data={animalInfoData.animal}
                       setRefresh={setRefresh}
                     />
                   </Box>
                 </Box>
-                <PetManagementImages animalId={animalData.id} images={animalData.attributes.images} setRefresh={setRefresh}/>
+                <PetManagementImages animalId={animalInfoData.animal.id} images={animalInfoData.animal.attributes.images} setRefresh={setRefresh}/>
               </Box>
             </Box>
             <Box
@@ -155,14 +132,12 @@ const PetManagement = () => {
                 <PetManagementList
                   title="Historia Izolacji"
                   type="isolation"
-                  data={animalIsolations}
-                  refresh={refresh}
+                  data={animalInfoData.isolations}
                 />
                 <PetManagementList
                   title="Historia Chorób"
                   type="disease"
-                  data={animalDiseases}
-                  refresh={refresh}
+                  data={animalInfoData.isolations}
                 />
               </Box>
               <Box
@@ -189,13 +164,13 @@ const PetManagement = () => {
                   <ManagementButton
                     name="Rozpocznij Adopcję"
                     ico={AddHomeIcon}
-                    disabled={animalData.attributes.toAdoption ? animalData.attributes.adopted ? true : false : true}
+                    disabled={animalInfoData.animal.attributes.toAdoption ? animalInfoData.animal.attributes.adopted ? true : false : true}
                     foo={() => setAdoptionOpen(true)}
                   />
                   <ManagementButton
                     name="Dodaj Izolacje"
                     ico={BorderAllIcon}
-                    disabled={animalData.attributes.isIsolated}
+                    disabled={animalInfoData.animal.attributes.isIsolated}
                     foo={() => setAddIsolationOpen(true)}
                   />
                 </Box>
@@ -209,7 +184,7 @@ const PetManagement = () => {
                 >
                   <ManagementButton
                     name={
-                      animalData.attributes.toAdoption
+                      animalInfoData.animal.attributes.toAdoption
                         ? "Zablokuj adopcje"
                         : "Odblokuj adopcje"
                     }
@@ -220,7 +195,7 @@ const PetManagement = () => {
                   <ManagementButton
                     name="Dodaj Chorobę"
                     ico={CoronavirusIcon}
-                    disabled={animalData.attributes.isIll}
+                    disabled={animalInfoData.animal.attributes.isIll}
                     foo={() => setAddDiseaseOpen(true)}
                   />
                 </Box>
@@ -229,28 +204,28 @@ const PetManagement = () => {
             <AddAdoptionModal
               setOpen={setAdoptionOpen}
               open={adoptionOpen}
-              data={animalData}
+              data={animalInfoData.animal}
               setRefresh={setRefresh}
             />
             <AddIsolationModal
               setOpen={setAddIsolationOpen}
               open={addIsolationOpen}
-              animal={animalData}
+              animal={animalInfoData.animal}
               setRefresh={setRefresh}
             />
             <AddPetDiseaseModal
               setOpen={setAddDiseaseOpen}
               open={addDiseaseOpen}
-              animal={animalData}
+              animal={animalInfoData.animal}
               setRefresh={setRefresh}
-              diseases={diseaesList}
+              diseases={animalInfoData.diseases}
             />
             <ChangeStatusConfirmModal
               setOpen={setChangeStatusOpen}
               open={changeStatusOpen}
-              petid={animalData.id}
-              animal={animalData}
-              setAnimal={setAnimalData}
+              petid={animalInfoData.animal.id}
+              animal={animalInfoData.animal}
+              setAnimal={setAnimalInfoData}
               setRefresh={setRefresh}
             />
           </Box>

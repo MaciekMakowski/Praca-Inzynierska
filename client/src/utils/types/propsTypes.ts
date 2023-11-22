@@ -1,4 +1,4 @@
-import { AnimalType, DiseaseType, IsolationType, PetDiseaseType } from "./basicTypes";
+import { AnimalInfoType, AnimalType, DiseaseType, IsolationType, PetDiseaseType } from "./basicTypes";
 
 export type PetManagementProps = {
     data?: AnimalType;
@@ -80,6 +80,6 @@ export type ListProps = {
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     petid: number;
     animal:AnimalType;
-    setAnimal: React.Dispatch<React.SetStateAction<AnimalType | null>>;
+    setAnimal: React.Dispatch<React.SetStateAction<AnimalInfoType | null>>;
     setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
   };

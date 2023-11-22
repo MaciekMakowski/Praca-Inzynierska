@@ -1,5 +1,5 @@
-import { AdoptionResponse, AnimalResponse, ImageResponse, IsolationResponse, PersonsResponse, PetDiseasesResponse } from "../types/responseTypes";
-import { AdoptionType, AnimalType, Image, IsolationType, PersonType, PetDiseaseType } from "../types/basicTypes";
+import { AdoptionResponse, AnimalInfoResponse, AnimalResponse, ImageResponse, IsolationResponse, PersonsResponse, PetDiseasesResponse } from "../types/responseTypes";
+import { AdoptionType, AnimalInfoType, AnimalType, Image, IsolationType, PersonType, PetDiseaseType } from "../types/basicTypes";
 
 export const createIsolation = (isolation: IsolationResponse) => {
     const newIsolation: IsolationType = {
@@ -105,4 +105,22 @@ const createImage = (image: ImageResponse) => {
       alternativeText: image.attributes.alternativeText,
     }
   return newImage;
+}
+
+export const createAnimalInfo = (animalInfo: AnimalInfoResponse) => {
+  const newAnimalInfo: AnimalInfoType = {
+    animal: createAnimal(animalInfo.animal.data),
+    diseases: animalInfo.diseases.data,
+    isolations: animalInfo.isolations.data.map((isolation:IsolationResponse) => {
+      return(
+        createIsolation(isolation)
+      )
+    }),
+    petDiseases: animalInfo.petDiseases.data.map((petDisease:PetDiseasesResponse) => {
+      return(
+        createPetDisease(petDisease)
+      )
+    }),
+  }
+  return newAnimalInfo
 }

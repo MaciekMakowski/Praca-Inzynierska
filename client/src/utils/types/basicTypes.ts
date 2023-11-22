@@ -126,3 +126,10 @@ export type Image = {
   url: string;
   alternativeText: string;
 }
+
+export type AnimalInfoType = {
+    animal: AnimalType;
+    diseases: DiseaseType[];
+    isolations: IsolationType[];
+    petDiseases: PetDiseaseType[];
+}
