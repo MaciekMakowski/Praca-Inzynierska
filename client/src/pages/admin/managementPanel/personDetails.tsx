@@ -1,8 +1,11 @@
 import { Box, Grid, Typography, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 
+import EditPersonModal from "../../../components/managementPanel/editPersonModal";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import EventNoteIcon from "@mui/icons-material/EventNote";
+import { Face } from "@mui/icons-material";
+import FaceRetouchingNaturalIcon from '@mui/icons-material/FaceRetouchingNatural';
 import GuestVisitHistory from "../../../components/managementPanel/guestVisitHistory";
 import ManagementButton from "../../../components/managementPanel/managementButton";
 import PersonOffIcon from "@mui/icons-material/PersonOff";
@@ -17,6 +20,7 @@ const PersonDetails = () => {
   const { type, id } = useParams();
   const [refresh, setRefresh] = useState(false);
   const [personData, setPersonData] = useState<PersonType>();
+  const [editPerson, setEditPerson] = useState(false);
 
   const getAll = () => {
     if (id && type) {
@@ -41,7 +45,7 @@ const PersonDetails = () => {
 
   return (
     <>
-    {personData ? (
+    {personData && (type === "volunteer" || type === "guest") ? (
       <>
       <Box height={"10%"}>
         <Typography
@@ -265,6 +269,12 @@ const PersonDetails = () => {
               disabled
               foo={() => null}
             />
+            <ManagementButton
+              name="Edytuj informacje"
+              ico={FaceRetouchingNaturalIcon}
+              disabled={false}
+              foo={() => setEditPerson(true)}
+            />
             {type == "guest" ? null : (
               <ManagementButton
                 name="Zapisz na spotkanie"
@@ -276,6 +286,7 @@ const PersonDetails = () => {
           </Box>
         </Box>
       </Box>
+      <EditPersonModal open={editPerson} setOpen={setEditPerson} person={personData} type={type} setRefresh={setRefresh}/>
       </>
     ) : <>Loading...</>}
     </>

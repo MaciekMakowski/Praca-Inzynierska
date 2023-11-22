@@ -2,7 +2,8 @@ import {
   AnimalType,
   DiseaseType,
   IsolationType,
-  PetDiseaseType,
+  PersonType,
+  PetDiseaseType
 } from "../types/basicTypes";
 
 import { APIurl } from "./url";
@@ -118,3 +119,36 @@ export const updatePetDisease = async (petDisease: PetDiseaseType) => {
     return false;
   }
 };
+
+
+export const updatePerson = async (person: PersonType, type:string) => {
+  const authToken = Cookies.get("token");
+  const response = await axios.put(`${APIurl}${type}/${person.id}`, {
+    data: {
+      personData: {
+        name: person.attributes.name,
+        lastName: person.attributes.lastName,
+        pesel: person.attributes.pesel,
+        birthDate: person.attributes.birthDate,
+        sex: person.attributes.sex,
+        phoneNumber: person.attributes.phoneNumber,
+        email: person.attributes.email,
+        address: {
+          city: person.attributes.city,
+          postCode: person.attributes.postCode,
+          address: person.attributes.address,
+        },
+      },
+    },
+  },
+  {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  })
+  if(response.status === 200){
+    return true
+  } else {
+    return false
+  }
+}

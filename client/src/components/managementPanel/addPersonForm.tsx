@@ -21,13 +21,16 @@ import { ErrorInput } from "../../utils/types/errorInput";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { PersonType } from "../../utils/types/basicTypes";
 import { createPerson } from "../../utils/services/posts";
+import { updatePerson } from "../../utils/services/puts";
 import { validateForm } from "../../utils/functions/validators";
 
 type AddPersonFormProps = {
   title: string;
   isNew: boolean;
   type: "volunteers" | "guests";
+  peronData?: PersonType;
   setRefresh: Dispatch<SetStateAction<boolean>>;
+  setOpen?: Dispatch<SetStateAction<boolean>>;
 };
 
 const emptyPerson: PersonType = {
@@ -48,7 +51,7 @@ const emptyPerson: PersonType = {
 
 const AddPersonForm = (props: AddPersonFormProps) => {
   const theme = useTheme();
-  const [newPerson, setNewPerson] = useState<PersonType>(emptyPerson);
+  const [newPerson, setNewPerson] = useState<PersonType>(props.peronData ? props.peronData : emptyPerson);
 
   const [ErrorList, setErrorList] = useState<ErrorInput>({
     name:{
@@ -93,7 +96,15 @@ const AddPersonForm = (props: AddPersonFormProps) => {
               props.setRefresh(true)
             }
           })
-
+        }else{
+          updatePerson(newPerson, props.type).then((res) => {
+            if(res){
+              props.setRefresh(true)
+              if(props.setOpen){
+                props.setOpen(false)
+              }
+            }
+          })
         }
       }
     })
@@ -115,7 +126,7 @@ const AddPersonForm = (props: AddPersonFormProps) => {
     <Box
       sx={{
         backgroundColor: theme.palette.background.adminField,
-        width: "350px",
+        width: props.isNew ?  "350px" : "100%",
         height: "fit-content",
         textAlign: "center",
         boxSizing: "border-box",
