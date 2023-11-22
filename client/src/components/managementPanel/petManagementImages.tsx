@@ -38,7 +38,6 @@ const PetManagementImages = (props: PetManagementImagesProps) => {
       formData.append('ref', `api::animal.animal`);
       formData.append('refId', `${props.animalId}`);
       formData.append('field', `images`);
-      console.log(formData)
       updateAnimalImages(formData).then((res) => {
         if(res){
           props.setRefresh(true);

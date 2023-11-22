@@ -42,7 +42,6 @@ export const getAnimalInfo = async (id: string) => {
       authorization: `Bearer ${authToken}`,
     },
   });
-  console.log(response.data)
   if(response.status === 200){
     const data:AnimalInfoType = createAnimalInfo(response.data);
     return data;
