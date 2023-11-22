@@ -137,7 +137,7 @@ const PetManagement = () => {
                 <PetManagementList
                   title="Historia Chorób"
                   type="disease"
-                  data={animalInfoData.isolations}
+                  data={animalInfoData.petDiseases}
                 />
               </Box>
               <Box
