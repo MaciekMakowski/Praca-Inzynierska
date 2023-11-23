@@ -1,15 +1,28 @@
 import {
   Box,
   Container,
+  Pagination,
   Typography,
   useTheme,
 } from "@mui/material";
 
+import { AnimalType } from "../utils/types/basicTypes";
 import AnimalsFilter from "../components/charts/animalsFilter";
+import AnimialTile from "../components/animalTile";
 import back from "../img/home/back.png";
+import { paginationRangeValue } from "../utils/services/pagination";
+import shadows from "@mui/material/styles/shadows";
+import { useState } from "react";
 
 const OurAnimals = () => {
   const theme = useTheme();
+  const [pageCount, setPageCount] = useState<number>(1);
+  const [page, setPage] = useState<number>(1);
+  const [animalList, setAnimalList] = useState<AnimalType[] | null>(null);
+  const changePage = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
+
   return (
     <>
       <Container
@@ -27,6 +40,7 @@ const OurAnimals = () => {
             sx={{
               display: "flex",
               flexDirection: "column",
+              gap: "1rem",
             }}
           >
             <Typography
@@ -38,7 +52,42 @@ const OurAnimals = () => {
               Nasi podopieczni
             </Typography>
             <AnimalsFilter />
-            
+            <Box
+              sx={{
+                backgroundColor: theme.palette.background.adminField,
+                padding: "1rem",
+                boxShadow: shadows[3],
+                display: "flex",
+                flexDirection: "column",
+                gap: "1rem",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                }}
+              >
+                <AnimialTile />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "end",
+                }}
+              >
+                <Typography
+                  variant="subtitle1"
+                  color={theme.palette.text.primary}
+                >
+                  <Pagination
+                    count={pageCount}
+                    page={page}
+                    onChange={changePage}
+                    size="small"
+                  />
+                </Typography>
+              </Box>
+            </Box>
           </Box>
         </Box>
       </Container>
