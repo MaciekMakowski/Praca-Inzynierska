@@ -15,12 +15,12 @@ import { ListProps } from "../../utils/types/propsTypes";
 import { getAnimals } from "../../utils/services/gets";
 import { paginationRangeValue } from "../../utils/services/pagination";
 
-const AnimalList = (props:ListProps) => {
+const AnimalList = (props: ListProps) => {
   const theme = useTheme();
   const [filter, setFilter] = useState(0);
-  const [animalList, setAnimalList] = useState<AnimalType[]>([])
-  const [pageCount, setPageCount] = useState<number>(1)
-  const [page, setPage] = useState<number>(1)
+  const [animalList, setAnimalList] = useState<AnimalType[]>([]);
+  const [pageCount, setPageCount] = useState<number>(1);
+  const [page, setPage] = useState<number>(1);
 
   const handleChangeFilter = (value: number) => {
     if (value === filter) setFilter(0);
@@ -30,25 +30,28 @@ const AnimalList = (props:ListProps) => {
     setPage(value);
   };
 
-
   useEffect(() => {
-    if(!props.refreshList)
-      getAnimals(page,paginationRangeValue).then((res) => {
-        setAnimalList([])
-        setAnimalList(res.data);
-        setPageCount(res.meta.pagination.pageCount)
+    if (!props.refreshList)
+      getAnimals(page, paginationRangeValue).then((res) => {
+        if (res) {
+          setAnimalList([]);
+          setAnimalList(res.data);
+          setPageCount(res.meta.pagination.pageCount);
+        }
       });
   }, [page]);
 
   useEffect(() => {
-    if(props.refreshList)
+    if (props.refreshList)
       getAnimals(page, paginationRangeValue).then((res) => {
-      setAnimalList([])
-      setAnimalList(res.data);
-      setPageCount(res.meta.pagination.pageCount)
-      props.setRefreshList(false);
-    });
-  },[props.refreshList])
+        if (res) {
+          setAnimalList([]);
+          setAnimalList(res.data);
+          setPageCount(res.meta.pagination.pageCount);
+          props.setRefreshList(false);
+        }
+      });
+  }, [props.refreshList]);
   return (
     <Box
       sx={{
@@ -63,7 +66,7 @@ const AnimalList = (props:ListProps) => {
         gap: "1rem",
         borderRadius: "1rem",
         boxShadow: theme.shadows[3],
-        minWidth:{xs:'100%', md:'75%'},
+        minWidth: { xs: "100%", md: "75%" },
       }}
     >
       <Box
@@ -115,93 +118,94 @@ const AnimalList = (props:ListProps) => {
           </Button>
         </Box>
       </Box>
-      <Box 
-        sx={{
-          overflowX:'auto',
-          overflowY:'clip',
-          height:'100%',
-        }}
-      >
-      <Grid container spacing={0}  
-        sx={{
-          width: {xs:'1000px', md:'100%'},
-          paddingRight:{xs:'0', lg:'1rem'},
-          
-        }}>
-        <Grid item xs={1}>
-          <Typography
-            variant="subtitle1"
-            color={theme.palette.primary.main}
-            fontWeight={600}
-          >
-            #Numer
-          </Typography>
-        </Grid>
-        <Grid item xs={1.5}>
-          <Typography
-            variant="subtitle1"
-            color={theme.palette.primary.main}
-            fontWeight={600}
-          >
-            Imie
-          </Typography>
-        </Grid>
-        <Grid item xs={1}>
-          <Typography
-            variant="subtitle1"
-            color={theme.palette.primary.main}
-            fontWeight={600}
-          >
-            Gatunek
-          </Typography>
-        </Grid>
-        <Grid item xs={1.5}>
-          <Typography
-            variant="subtitle1"
-            color={theme.palette.primary.main}
-            fontWeight={600}
-          >
-            Data urodzenia
-          </Typography>
-        </Grid>
-        <Grid item xs={2.5}>
-          <Typography
-            variant="subtitle1"
-            color={theme.palette.primary.main}
-            fontWeight={600}
-          >
-            Miejsce znalezienia
-          </Typography>
-        </Grid>
-        <Grid item xs={2.5}>
-          <Typography
-            variant="subtitle1"
-            color={theme.palette.primary.main}
-            fontWeight={600}
-          >
-            Rasa
-          </Typography>
-        </Grid>
-        <Grid item xs={2}></Grid>
-      </Grid>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "1rem",
-          height: "95%",
-          maxHeight: { xs: "40vh", md: "95%" },
-          width: {xs:'1000px', md:'100%'},
-          overflowY:'auto',
+          overflowX: "auto",
+          overflowY: "clip",
+          height: "100%",
         }}
       >
-        {
-        animalList?.map((animal, i) => {
-          return <AnimalListItem key={i} color={i % 2 == 0} animal={animal}/>
-        })
-        }
-    
-      </Box>
+        <Grid
+          container
+          spacing={0}
+          sx={{
+            width: { xs: "1000px", md: "100%" },
+            paddingRight: { xs: "0", lg: "1rem" },
+          }}
+        >
+          <Grid item xs={1}>
+            <Typography
+              variant="subtitle1"
+              color={theme.palette.primary.main}
+              fontWeight={600}
+            >
+              #Numer
+            </Typography>
+          </Grid>
+          <Grid item xs={1.5}>
+            <Typography
+              variant="subtitle1"
+              color={theme.palette.primary.main}
+              fontWeight={600}
+            >
+              Imie
+            </Typography>
+          </Grid>
+          <Grid item xs={1}>
+            <Typography
+              variant="subtitle1"
+              color={theme.palette.primary.main}
+              fontWeight={600}
+            >
+              Gatunek
+            </Typography>
+          </Grid>
+          <Grid item xs={1.5}>
+            <Typography
+              variant="subtitle1"
+              color={theme.palette.primary.main}
+              fontWeight={600}
+            >
+              Data urodzenia
+            </Typography>
+          </Grid>
+          <Grid item xs={2.5}>
+            <Typography
+              variant="subtitle1"
+              color={theme.palette.primary.main}
+              fontWeight={600}
+            >
+              Miejsce znalezienia
+            </Typography>
+          </Grid>
+          <Grid item xs={2.5}>
+            <Typography
+              variant="subtitle1"
+              color={theme.palette.primary.main}
+              fontWeight={600}
+            >
+              Rasa
+            </Typography>
+          </Grid>
+          <Grid item xs={2}></Grid>
+        </Grid>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "1rem",
+            height: "95%",
+            maxHeight: { xs: "40vh", md: "95%" },
+            width: { xs: "1000px", md: "100%" },
+            overflowY: "auto",
+          }}
+        >
+          {animalList?.map((animal, i) => {
+            return (
+              <AnimalListItem key={i} color={i % 2 == 0} animal={animal} />
+            );
+          })}
+        </Box>
       </Box>
       <Box
         sx={{
@@ -210,7 +214,12 @@ const AnimalList = (props:ListProps) => {
         }}
       >
         <Typography variant="subtitle1" color={theme.palette.text.primary}>
-          <Pagination count={pageCount} page={page} onChange={changePage} size="small" />
+          <Pagination
+            count={pageCount}
+            page={page}
+            onChange={changePage}
+            size="small"
+          />
         </Typography>
       </Box>
     </Box>
