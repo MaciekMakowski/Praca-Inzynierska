@@ -7,6 +7,7 @@ import Footer from "../../components/footer";
 import Home from "../../pages/home";
 import Navbar from "../../components/navbar";
 import Needs from "../../pages/ourNeeds";
+import OurAnimals from "../../pages/OurAnimals";
 
 const UserRoutes = () => {
   const location = useLocation();
@@ -20,6 +21,7 @@ const UserRoutes = () => {
           <Route path="/needs" element={<Needs />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/adoption" element={<Adoption />} />
+          <Route path="/ourAnimals" element={<OurAnimals />} />
         </Routes>
       </Box>
       <Footer />
