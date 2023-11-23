@@ -5,14 +5,15 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { useEffect, useState } from "react";
 
 import { AnimalType } from "../utils/types/basicTypes";
 import AnimalsFilter from "../components/animalsFilter";
 import AnimialTile from "../components/animalTile";
 import back from "../img/home/back.png";
-import { paginationRangeValue } from "../utils/services/pagination";
+import { getAnimals } from "../utils/services/gets";
+import { paginationRangeForAnimals } from "../utils/services/pagination";
 import shadows from "@mui/material/styles/shadows";
-import { useState } from "react";
 
 const OurAnimals = () => {
   const theme = useTheme();
@@ -22,6 +23,15 @@ const OurAnimals = () => {
   const changePage = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
   };
+
+  useEffect(() => {
+    getAnimals(page, paginationRangeForAnimals).then((res) => {
+        if(res){
+            setAnimalList(res.data);
+            setPageCount(res.meta.pagination.pageCount);
+        }
+    });
+  }, [page]);
 
   return (
     <>
@@ -70,22 +80,12 @@ const OurAnimals = () => {
                   justifyContent: "center",
                 }}
               >
-                <AnimialTile />
-                <AnimialTile />
-                <AnimialTile />
-                <AnimialTile />
-                <AnimialTile />
-                <AnimialTile />
-                <AnimialTile />
-                <AnimialTile />
-                <AnimialTile />
-                <AnimialTile />
-                <AnimialTile />
-                <AnimialTile />
-                <AnimialTile />
-                <AnimialTile />
-                <AnimialTile />
-                <AnimialTile />
+                {animalList?.map((animal,i) => {
+                    return(
+                        <AnimialTile key={i} animal={animal}/>
+                    )
+                    }
+                )}
               </Box>
               <Box
                 sx={{

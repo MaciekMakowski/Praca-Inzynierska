@@ -1,4 +1,4 @@
-import { AdoptionResponse, IsolationResponse, PersonsResponse, PetDiseasesResponse } from "../types/responseTypes";
+import { AdoptionResponse, AnimalResponse, IsolationResponse, PersonsResponse, PetDiseasesResponse } from "../types/responseTypes";
 import { AnimalInfoType, IsolationType } from "../types/basicTypes";
 import { createAdoption, createAnimal, createAnimalInfo, createIsolation, createPerson, createPetDisease } from "./formatters";
 
@@ -9,7 +9,7 @@ import axios from "axios";
 export const getAnimals = async (page: number, pagination: number) => {
   const authToken = Cookies.get("token");
   const response = await axios(
-    `${APIurl}animals?pagination[page]=${page}&pagination[pageSize]=${pagination}`,
+    `${APIurl}animals?pagination[page]=${page}&pagination[pageSize]=${pagination}&populate=deep`,
     {
       headers: {
         authorization: `Bearer ${authToken}`,
@@ -17,8 +17,18 @@ export const getAnimals = async (page: number, pagination: number) => {
     }
   );
   if (response.status === 200) {
-    const data = response.data;
-    return data;
+    const newAnimalList = response.data.data.map(
+      (animal: AnimalResponse) => {
+        return createAnimal(animal);
+      }
+    );
+    const clearResponse = {
+      data: newAnimalList,
+      meta: response.data.meta,
+    };
+    return clearResponse;
+  }else{
+    return false
   }
 };
 
