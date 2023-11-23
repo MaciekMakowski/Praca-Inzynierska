@@ -1,6 +1,19 @@
-import { AdoptionResponse, AnimalResponse, IsolationResponse, PersonsResponse, PetDiseasesResponse } from "../types/responseTypes";
+import {
+  AdoptionResponse,
+  AnimalResponse,
+  IsolationResponse,
+  PersonsResponse,
+  PetDiseasesResponse,
+} from "../types/responseTypes";
 import { AnimalInfoType, IsolationType } from "../types/basicTypes";
-import { createAdoption, createAnimal, createAnimalInfo, createIsolation, createPerson, createPetDisease } from "./formatters";
+import {
+  createAdoption,
+  createAnimal,
+  createAnimalInfo,
+  createIsolation,
+  createPerson,
+  createPetDisease,
+} from "./formatters";
 
 import { APIurl } from "./url";
 import Cookies from "js-cookie";
@@ -9,26 +22,19 @@ import axios from "axios";
 export const getAnimals = async (page: number, pagination: number) => {
   const authToken = Cookies.get("token");
   const response = await axios(
-    `${APIurl}animals?pagination[page]=${page}&pagination[pageSize]=${pagination}&populate=deep`,
-    {
-      headers: {
-        authorization: `Bearer ${authToken}`,
-      },
-    }
+    `${APIurl}animals?pagination[page]=${page}&pagination[pageSize]=${pagination}&populate=deep`
   );
   if (response.status === 200) {
-    const newAnimalList = response.data.data.map(
-      (animal: AnimalResponse) => {
-        return createAnimal(animal);
-      }
-    );
+    const newAnimalList = response.data.data.map((animal: AnimalResponse) => {
+      return createAnimal(animal);
+    });
     const clearResponse = {
       data: newAnimalList,
       meta: response.data.meta,
     };
     return clearResponse;
-  }else{
-    return false
+  } else {
+    return false;
   }
 };
 
@@ -52,17 +58,16 @@ export const getAnimalInfo = async (id: string) => {
       authorization: `Bearer ${authToken}`,
     },
   });
-  if(response.status === 200){
-    const data:AnimalInfoType = createAnimalInfo(response.data);
+  if (response.status === 200) {
+    const data: AnimalInfoType = createAnimalInfo(response.data);
     return data;
   }
-    
-}
+};
 
 export const getDiseases = async (page: number, pagination: number) => {
   const authToken = Cookies.get("token");
   let response;
-  if(page > 0 && pagination > 0){
+  if (page > 0 && pagination > 0) {
     response = await axios(
       `${APIurl}diseases?pagination[page]=${page}&pagination[pageSize]=${pagination}`,
       {
@@ -71,15 +76,12 @@ export const getDiseases = async (page: number, pagination: number) => {
         },
       }
     );
-  }else{
-    response = await axios(
-      `${APIurl}diseases`,
-      {
-        headers: {
-          authorization: `Bearer ${authToken}`,
-        },
-      }
-    );
+  } else {
+    response = await axios(`${APIurl}diseases`, {
+      headers: {
+        authorization: `Bearer ${authToken}`,
+      },
+    });
   }
   if (response.status === 200) {
     const data = response.data;
@@ -222,57 +224,66 @@ export const getAnimalDiseases = async (id: string) => {
   }
 };
 
-export const getPeople = async (type:string, page: number, pagination: number) => {
+export const getPeople = async (
+  type: string,
+  page: number,
+  pagination: number
+) => {
   const authToken = Cookies.get("token");
-  const response = await axios.get(`${APIurl}${type}s?pagination[page]=${page}&pagination[pageSize]=${pagination}&populate=deep`,
-  {
-    headers: {
-      authorization: `Bearer ${authToken}`,
-    },
-  })
-  if(response.status === 200){
-    const newPersons = response.data.data.map((person:PersonsResponse) => {
+  const response = await axios.get(
+    `${APIurl}${type}s?pagination[page]=${page}&pagination[pageSize]=${pagination}&populate=deep`,
+    {
+      headers: {
+        authorization: `Bearer ${authToken}`,
+      },
+    }
+  );
+  if (response.status === 200) {
+    const newPersons = response.data.data.map((person: PersonsResponse) => {
       return createPerson(person);
-    })
+    });
     const clearResponse = {
       data: newPersons,
       meta: response.data.meta,
     };
     return clearResponse;
   }
-}
+};
 
-export const getPerson = async (type:string, id: string) => {
+export const getPerson = async (type: string, id: string) => {
   const authToken = Cookies.get("token");
-  const response = await axios.get(`${APIurl}${type}s/${id}?populate=deep`,
-  {
+  const response = await axios.get(`${APIurl}${type}s/${id}?populate=deep`, {
     headers: {
       authorization: `Bearer ${authToken}`,
     },
-  })
-  if(response.status === 200){
+  });
+  if (response.status === 200) {
     const newPerson = createPerson(response.data.data);
     return newPerson;
   }
-}
+};
 
-export const getAdoptions = async (page:number, pagination:number) => {
+export const getAdoptions = async (page: number, pagination: number) => {
   const authToken = Cookies.get("token");
-  const response = await axios.get(`${APIurl}adoptions?pagination[page]=${page}&pagination[pageSize]=${pagination}&populate=deep`,
-  {
-    headers: {
-      authorization: `Bearer ${authToken}`,
-    },
-  })
+  const response = await axios.get(
+    `${APIurl}adoptions?pagination[page]=${page}&pagination[pageSize]=${pagination}&populate=deep`,
+    {
+      headers: {
+        authorization: `Bearer ${authToken}`,
+      },
+    }
+  );
 
-  if(response.status === 200){
-    const newAdoptions = response.data.data.map((adoption:AdoptionResponse) => {
-      return createAdoption(adoption)
-    })
+  if (response.status === 200) {
+    const newAdoptions = response.data.data.map(
+      (adoption: AdoptionResponse) => {
+        return createAdoption(adoption);
+      }
+    );
     const clearResponse = {
       data: newAdoptions,
       meta: response.data.meta,
     };
-    return clearResponse
+    return clearResponse;
   }
-}
+};
