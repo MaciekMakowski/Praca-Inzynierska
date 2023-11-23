@@ -24,15 +24,16 @@ const AnimalsFilter = () => {
           padding: "1rem",
           boxShadow: shadows[3],
           display: "flex",
-          flexDirection: "column",
+          flexDirection: { xs: "column", sm: "row", lg: "column" },
           gap: "1rem",
+          justifyContent: "center",
         }}
       >
         <Box
           sx={{
             display: "flex",
             gap: "1rem",
-            flexDirection: { xs: "column", xl: "row" },
+            flexDirection: { xs: "column", lg: "row" },
           }}
         >
           <TextField
@@ -41,7 +42,7 @@ const AnimalsFilter = () => {
             variant="outlined"
             size="small"
             sx={{
-              width: "200px",
+              width: {xs:"100%", lg:"200px"},
             }}
           />
           <FormControl>
@@ -52,7 +53,7 @@ const AnimalsFilter = () => {
               variant="outlined"
               sx={{
                 color: theme.palette.text.primary,
-                width: "200px",
+                width: {xs:"100%", lg:"200px"},
               }}
               defaultValue={"Płeć"}
               size="small"
@@ -69,7 +70,7 @@ const AnimalsFilter = () => {
               variant="outlined"
               sx={{
                 color: theme.palette.text.primary,
-                width: "200px",
+                width: {xs:"100%", lg:"200px"},
               }}
               defaultValue={"Status"}
               size="small"
@@ -88,7 +89,7 @@ const AnimalsFilter = () => {
               variant="outlined"
               sx={{
                 color: theme.palette.text.primary,
-                width: "200px",
+                width: {xs:"100%", lg:"200px"},
               }}
               defaultValue={"waga"}
               size="small"
@@ -105,72 +106,80 @@ const AnimalsFilter = () => {
           sx={{
             display: "flex",
             gap: "1rem",
-            flexDirection: { xs: "column", xl: "row" },
+            flexDirection: { xs: "column", lg: "row" },
           }}
         >
-          <FormControl>
-            <InputLabel>Wiek</InputLabel>
-            <Select
-              label="wiek"
-              name="age"
-              variant="outlined"
-              sx={{
-                color: theme.palette.text.primary,
-                width: "200px",
-              }}
-              defaultValue={"wiek"}
-              size="small"
-            >
-              <MenuItem value={"1"}>Do 1 roku</MenuItem>
-              <MenuItem value={"3"}>Do 3 lat</MenuItem>
-              <MenuItem value={"5"}>Do 5 lat</MenuItem>
-              <MenuItem value={"9"}>Do 9 lat</MenuItem>
-              <MenuItem value={"10"}>Ponad 9 lat</MenuItem>
-              <MenuItem value={"0"}>Wiek jest mi obojętny</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl>
-            <InputLabel>Rodzaj</InputLabel>
-            <Select
-              label="Rodzaj"
-              name="species"
-              variant="outlined"
-              sx={{
-                color: theme.palette.text.primary,
-                width: "200px",
-              }}
-              defaultValue={"Rodzaj"}
-              size="small"
-            >
-              <MenuItem value={"Kot"}>Kot</MenuItem>
-              <MenuItem value={"Pis"}>Pies</MenuItem>
-            </Select>
-          </FormControl>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              slotProps={{ textField: { size: "small" } }}
-              sx={{
-                width: "200px",
-              }}
-              format="YYYY-MM-DD"
-              label="Data od"
-              disableFuture
-            />
-          </LocalizationProvider>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              slotProps={{ textField: { size: "small" } }}
-              sx={{
-                width: "200px",
-              }}
-              format="YYYY-MM-DD"
-              label="Data do"
-              disableFuture
-            />
-          </LocalizationProvider>
+          <Box
+            sx={{
+              display: "flex",
+              gap: "1rem",
+              flexDirection: { xs: "column", lg: "row" },
+            }}
+          >
+            <FormControl>
+              <InputLabel>Wiek</InputLabel>
+              <Select
+                label="wiek"
+                name="age"
+                variant="outlined"
+                sx={{
+                  color: theme.palette.text.primary,
+                  width: {xs:"100%", lg:"200px"},
+                }}
+                defaultValue={"wiek"}
+                size="small"
+              >
+                <MenuItem value={"1"}>Do 1 roku</MenuItem>
+                <MenuItem value={"3"}>Do 3 lat</MenuItem>
+                <MenuItem value={"5"}>Do 5 lat</MenuItem>
+                <MenuItem value={"9"}>Do 9 lat</MenuItem>
+                <MenuItem value={"10"}>Ponad 9 lat</MenuItem>
+                <MenuItem value={"0"}>Wiek jest mi obojętny</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl>
+              <InputLabel>Rodzaj</InputLabel>
+              <Select
+                label="Rodzaj"
+                name="species"
+                variant="outlined"
+                sx={{
+                  color: theme.palette.text.primary,
+                  width: {xs:"100%", lg:"200px"},
+                }}
+                defaultValue={"Rodzaj"}
+                size="small"
+              >
+                <MenuItem value={"Kot"}>Kot</MenuItem>
+                <MenuItem value={"Pis"}>Pies</MenuItem>
+              </Select>
+            </FormControl>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                slotProps={{ textField: { size: "small" } }}
+                sx={{
+                  width: {xs:"100%", lg:"200px"},
+                }}
+                format="YYYY-MM-DD"
+                label="Data od"
+                disableFuture
+              />
+            </LocalizationProvider>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                slotProps={{ textField: { size: "small" } }}
+                sx={{
+                  width: {xs:"100%", lg:"200px"},
+                }}
+                format="YYYY-MM-DD"
+                label="Data do"
+                disableFuture
+              />
+            </LocalizationProvider>
+          </Box>
           <Button
             sx={{
-              width: "180px",
+              width: {xs:"100%", lg:'180px'},
             }}
             variant="contained"
             size="small"

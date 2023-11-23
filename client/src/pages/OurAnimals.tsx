@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 
 import { AnimalType } from "../utils/types/basicTypes";
-import AnimalsFilter from "../components/charts/animalsFilter";
+import AnimalsFilter from "../components/animalsFilter";
 import AnimialTile from "../components/animalTile";
 import back from "../img/home/back.png";
 import { paginationRangeValue } from "../utils/services/pagination";
@@ -65,8 +65,26 @@ const OurAnimals = () => {
               <Box
                 sx={{
                   display: "flex",
+                  gap: "1rem",
+                  flexWrap: "wrap",
+                  justifyContent: "center",
                 }}
               >
+                <AnimialTile />
+                <AnimialTile />
+                <AnimialTile />
+                <AnimialTile />
+                <AnimialTile />
+                <AnimialTile />
+                <AnimialTile />
+                <AnimialTile />
+                <AnimialTile />
+                <AnimialTile />
+                <AnimialTile />
+                <AnimialTile />
+                <AnimialTile />
+                <AnimialTile />
+                <AnimialTile />
                 <AnimialTile />
               </Box>
               <Box
