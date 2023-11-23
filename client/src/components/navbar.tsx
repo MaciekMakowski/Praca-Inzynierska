@@ -26,7 +26,7 @@ const pages = [
   },
   {
     name: "Nasze zwierzęta",
-    link: "/",
+    link: "/ourAnimals",
   },
   {
     name: "Nasze potrzeby",
