@@ -1,6 +1,7 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import Adoption from "../../pages/adoption";
+import AnimalPage from "../../pages/animalPage";
 import { Box } from "@mui/material";
 import Contact from "../../pages/contact";
 import Footer from "../../components/footer";
@@ -22,6 +23,7 @@ const UserRoutes = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/adoption" element={<Adoption />} />
           <Route path="/ourAnimals" element={<OurAnimals />} />
+          <Route path="/ourAnimals/:id" element={<AnimalPage />} />
         </Routes>
       </Box>
       <Footer />

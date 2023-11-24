@@ -47,6 +47,7 @@ const AddAnimalForm = (props: PetManagementProps) => {
       toAdoption: false,
       adopted: false,
       images: null,
+      dateOfAdmission: dayjs().format("YYYY-MM-DD"),
     },
   });
   const [errorList, setErrorList] = useState<ErrorInput>({
@@ -94,6 +95,7 @@ const AddAnimalForm = (props: PetManagementProps) => {
                   isIsolated: false,
                   toAdoption: false,
                   adopted: false,
+                  dateOfAdmission: dayjs().format("YYYY-MM-DD"),
                   images: null,
                 },
               });

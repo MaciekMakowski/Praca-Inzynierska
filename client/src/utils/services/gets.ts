@@ -40,11 +40,7 @@ export const getAnimals = async (page: number, pagination: number) => {
 
 export const getAnimal = async (id: string) => {
   const authToken = Cookies.get("token");
-  const response = await axios(`${APIurl}animals/${id}?populate=deep`, {
-    headers: {
-      authorization: `Bearer ${authToken}`,
-    },
-  });
+  const response = await axios(`${APIurl}animals/${id}?populate=deep`);
   if (response.status === 200) {
     const data = createAnimal(response.data.data);
     return data;

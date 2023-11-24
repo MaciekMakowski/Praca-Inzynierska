@@ -92,6 +92,7 @@ export const createAnimal = (animal: AnimalResponse) => {
       isIsolated: animal.attributes.isIsolated,
       toAdoption: animal.attributes.toAdoption,
       adopted: animal.attributes.adopted,
+      dateOfAdmission: animal.attributes.dateOfAdmission,
       images: newImages
     }
   }

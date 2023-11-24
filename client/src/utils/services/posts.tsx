@@ -27,6 +27,7 @@ export const createAnimal = async (animal: AnimalType) => {
         isIsolated: animal.attributes.isIsolated,
         toAdoption: animal.attributes.toAdoption,
         adopted: animal.attributes.adopted,
+        dateOfAdmission: animal.attributes.dateOfAdmission,
         description: animal.attributes.description,
       },
     },

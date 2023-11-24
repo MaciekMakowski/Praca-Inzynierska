@@ -4,6 +4,8 @@ import { AnimalType } from "../utils/types/basicTypes";
 import { ImageUrl } from "../utils/services/url";
 import dayjs from "dayjs";
 import dogAbout1 from "../img/home/dogAbout1.png";
+import { navigateTo } from "../utils/functions/navigators";
+import { useNavigate } from "react-router";
 import { useState } from "react";
 
 type AnimalTileProps = {
@@ -11,6 +13,7 @@ type AnimalTileProps = {
 };
 const AnimialTile = (props: AnimalTileProps) => {
   const theme = useTheme();
+  const navigate = useNavigate();
   const [size, setSize] = useState(1);
 
   const returnAge = () => {
@@ -47,6 +50,7 @@ const AnimialTile = (props: AnimalTileProps) => {
           color: theme.palette.text.primary,
         },
       }}
+      onClick={() => navigateTo(navigate, `/ourAnimals/${props.animal.id}`)}
     >
       <Box
         sx={{

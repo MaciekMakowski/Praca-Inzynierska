@@ -48,6 +48,7 @@ export type AnimalType = {
     isIsolated: boolean;
     toAdoption: boolean;
     adopted: boolean;
+    dateOfAdmission: string;
     images: Image[] | null;
   };
 };
