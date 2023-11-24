@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Container,
   ImageList,
   ImageListItem,
@@ -59,12 +60,16 @@ const AnimalPage = () => {
             >
               <Typography variant="h4">{animal.attributes.name}</Typography>
               <Typography variant="body1">#{animal.id}</Typography>
+              <Button sx={{
+                width:{xs:'100%', lg:'fit-content'},
+            }} variant="contained">Adoptuj mnie</Button>
             </Box>
             <Box
               sx={{
                 boxSizing: "border-box",
                 padding: "1rem",
                 display: "flex",
+                flexDirection: {xs:'column', md:"row"},
                 width: "100%",
                 gap: "1rem",
                 backgroundColor: theme.palette.background.adminField,
@@ -76,7 +81,7 @@ const AnimalPage = () => {
                     return (
                       <ImageListItem
                         sx={{
-                          width: "300px",
+                          width: {xs:'100%', md:"300px"},
                         }}
                       >
                         <img
@@ -94,6 +99,7 @@ const AnimalPage = () => {
                 sx={{
                   display: "flex",
                   flexDirection: "column",
+                  alignItems:{xs:'center', md:"start"},
                   gap: "0.5rem",
                 }}
               >
@@ -119,6 +125,7 @@ const AnimalPage = () => {
                   sx={{
                     gap: "0.5rem",
                     alignItems: "center",
+                    textAlign: {xs:"center", md:"start"},
                   }}
                 >
                   Data urodzenia:
@@ -162,6 +169,7 @@ const AnimalPage = () => {
                   sx={{
                     gap: "0.5rem",
                     alignItems: "center",
+                    textAlign: {xs:"center", md:"start"},
                   }}
                 >
                   Miejsce znalezienia:
@@ -175,6 +183,7 @@ const AnimalPage = () => {
                   sx={{
                     gap: "0.5rem",
                     alignItems: "center",
+                    textAlign: {xs:"center", md:"start"},
                   }}
                 >
                   Data przyjęcia:
@@ -188,7 +197,7 @@ const AnimalPage = () => {
                   display: "flex",
                   flexDirection: "column",
                   gap: "1rem",
-                  width: "50%",
+                  width: {xs:"100%", md:"50%"},
                 }}
               >
                 <Box>
