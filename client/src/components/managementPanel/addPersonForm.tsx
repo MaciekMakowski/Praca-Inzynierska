@@ -12,7 +12,11 @@ import {
 } from "@mui/material";
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
-import { handleChangeDate, handleSelectChange, handleTextChange } from "../../utils/functions/handlers";
+import {
+  handleChangeDate,
+  handleSelectChange,
+  handleTextChange,
+} from "../../utils/functions/handlers";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers";
@@ -21,24 +25,30 @@ import { ErrorInput } from "../../utils/types/errorInput";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { PersonType } from "../../utils/types/basicTypes";
 import { createPerson } from "../../utils/services/posts";
+import { isObject } from "chart.js/dist/helpers/helpers.core";
 import { updatePerson } from "../../utils/services/puts";
 import { validateForm } from "../../utils/functions/validators";
 
-type AddPersonFormProps = {
+type PersonForm = {
   title: string;
   isNew: boolean;
   type: "volunteers" | "guests";
-  buttonText:string,
+  buttonText: string;
   peronData?: PersonType;
-  setRefresh?: Dispatch<SetStateAction<boolean>>;
+  setRefresh: Dispatch<SetStateAction<boolean>>;
   setOpen?: Dispatch<SetStateAction<boolean>>;
-  adoption?: boolean;
 };
+
+type AdoptionForm = Omit<PersonForm, "isNew" | "setRefresh" | "personData"> & {
+  animalId: string;
+};
+
+type AddPersonFormProps = PersonForm | AdoptionForm;
 
 const emptyPerson: PersonType = {
   id: 0,
-    attributes: {
-      name: "",
+  attributes: {
+    name: "",
     lastName: "",
     birthDate: dayjs().format("YYYY-MM-DD"),
     sex: "",
@@ -48,93 +58,92 @@ const emptyPerson: PersonType = {
     postCode: "",
     address: "",
     pesel: 0,
-    }
-}
+  },
+};
 
 const AddPersonForm = (props: AddPersonFormProps) => {
   const theme = useTheme();
-  const [newPerson, setNewPerson] = useState<PersonType>(props.peronData ? props.peronData : emptyPerson);
+  const [newPerson, setNewPerson] = useState<PersonType>(
+    props.peronData ? props.peronData : emptyPerson
+  );
 
   const [ErrorList, setErrorList] = useState<ErrorInput>({
-    name:{
+    name: {
       status: false,
     },
-    lastName:{
+    lastName: {
       status: false,
     },
-    birthDate:{
+    birthDate: {
       status: false,
     },
-    sex:{
+    sex: {
       status: false,
     },
-    phoneNumber:{
+    phoneNumber: {
       status: false,
     },
-    email:{
+    email: {
       status: false,
     },
-    city:{
+    city: {
       status: false,
     },
-    postCode:{
+    postCode: {
       status: false,
     },
-    address:{
+    address: {
       status: false,
     },
-    pesel:{
+    pesel: {
       status: false,
-    }
-});
+    },
+  });
 
   const sendForm = () => {
-    if(!props.adoption){
+    if ("isNew" in props) {
       validateForm(newPerson.attributes, setErrorList).then((res) => {
-        if(res){
-          if(props.isNew){
+        if (res) {
+          if (props.isNew) {
             createPerson(newPerson, props.type).then((res) => {
-              if(res){
-                setNewPerson(emptyPerson)
-                if(props.setRefresh)
-                props.setRefresh(true)
+              if (res) {
+                setNewPerson(emptyPerson);
+                if (props.setRefresh) props.setRefresh(true);
               }
-            })
-          }else{
+            });
+          } else {
             updatePerson(newPerson, props.type).then((res) => {
-              if(res){
-                if(props.setRefresh)
-                props.setRefresh(true)
-                if(props.setOpen){
-                  props.setOpen(false)
+              if (res) {
+                if (props.setRefresh) props.setRefresh(true);
+                if (props.setOpen) {
+                  props.setOpen(false);
                 }
               }
-            })
+            });
           }
         }
-      })
-    }else{
-      
+      });
+    } else {
     }
-  }
+  };
 
   const textChange = (e: ChangeEvent<HTMLInputElement>) => {
-    handleTextChange(e, setNewPerson); 
-  }
-  const dateChange = (value: Dayjs | null, filed:string) => {
+    handleTextChange(e, setNewPerson);
+  };
+  const dateChange = (value: Dayjs | null, filed: string) => {
     if (value === null) return;
     handleChangeDate(value.format("YYYY-MM-DD"), setNewPerson, filed);
-  }
+  };
 
   const selectChange = (e: SelectChangeEvent) => {
     handleSelectChange(e, setNewPerson);
-  }
+  };
 
   return (
     <Box
       sx={{
         backgroundColor: theme.palette.background.adminField,
-        width: props.isNew ?  "350px" : "100%",
+        width: "isNew" in props ? (props.isNew ? "350px" : "100%") : "100%",
         height: "fit-content",
         textAlign: "center",
         boxSizing: "border-box",
