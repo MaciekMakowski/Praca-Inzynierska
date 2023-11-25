@@ -30,7 +30,7 @@ const VolunteerManagement = () => {
           alignItems:"center"
         }}
       >
-        <AddPersonForm title="Dodaj wolontariusza" type="volunteers" setRefresh={setRefresh} isNew />
+        <AddPersonForm title="Dodaj wolontariusza" type="volunteers" setRefresh={setRefresh} isNew buttonText="dodaj"/>
         <PersonList type="volunteer" refresh={refresh} setRefresh={setRefresh}/>
       </Box>
     </>

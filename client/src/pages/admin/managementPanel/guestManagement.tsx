@@ -29,7 +29,7 @@ const GuestManagement = () => {
           alignItems: "center",
         }}
       >
-        <AddPersonForm title="Dodaj gościa" type="guests" setRefresh={setRefresh} isNew />
+        <AddPersonForm title="Dodaj gościa" type="guests" setRefresh={setRefresh} isNew  buttonText="Dodaj"/>
         <PersonsList type="guest" refresh={refresh} setRefresh={setRefresh} />
       </Box>
     </>

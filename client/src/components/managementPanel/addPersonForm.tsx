@@ -28,8 +28,9 @@ type AddPersonFormProps = {
   title: string;
   isNew: boolean;
   type: "volunteers" | "guests";
+  buttonText:string,
   peronData?: PersonType;
-  setRefresh: Dispatch<SetStateAction<boolean>>;
+  setRefresh?: Dispatch<SetStateAction<boolean>>;
   setOpen?: Dispatch<SetStateAction<boolean>>;
 };
 
@@ -93,12 +94,14 @@ const AddPersonForm = (props: AddPersonFormProps) => {
           createPerson(newPerson, props.type).then((res) => {
             if(res){
               setNewPerson(emptyPerson)
+              if(props.setRefresh)
               props.setRefresh(true)
             }
           })
         }else{
           updatePerson(newPerson, props.type).then((res) => {
             if(res){
+              if(props.setRefresh)
               props.setRefresh(true)
               if(props.setOpen){
                 props.setOpen(false)
@@ -245,7 +248,7 @@ const AddPersonForm = (props: AddPersonFormProps) => {
         error={ErrorList.address.status}
       />
       <Button variant="contained" onClick={() => sendForm()}>
-        Dodaj
+        {props.buttonText}
       </Button>
     </Box>
   );

@@ -69,6 +69,7 @@ const EditPersonModal = (props: EditPersonModalProps) => {
           setRefresh={props.setRefresh}
           type={`${props.type}s`}
           setOpen={props.setOpen}
+          buttonText="Zaktualizuj"
         />
       </Box>
     </Modal>
