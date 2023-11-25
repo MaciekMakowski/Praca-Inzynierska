@@ -8,17 +8,19 @@ import {
   useTheme,
 } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { AnimalType } from "../utils/types/basicTypes";
 import { ImageUrl } from "../utils/services/url";
 import Markdown from "react-markdown";
 import back from "../img/home/back.png";
 import { getAnimal } from "../utils/services/gets";
-import { useParams } from "react-router-dom";
+import { navigateTo } from "../utils/functions/navigators";
 
 const AnimalPage = () => {
   const { id } = useParams<{ id: string }>();
   const [animal, setAnimal] = useState<AnimalType | null>(null);
+  const navigate = useNavigate();
   const theme = useTheme();
 
   useEffect(() => {
@@ -60,16 +62,24 @@ const AnimalPage = () => {
             >
               <Typography variant="h4">{animal.attributes.name}</Typography>
               <Typography variant="body1">#{animal.id}</Typography>
-              <Button sx={{
-                width:{xs:'100%', lg:'fit-content'},
-            }} variant="contained">Adoptuj mnie</Button>
+              <Button
+                sx={{
+                  width: { xs: "100%", lg: "fit-content" },
+                }}
+                variant="contained"
+                onClick={() =>
+                  navigateTo(navigate, `/ourAnimals/adoption/${id}`)
+                }
+              >
+                Adoptuj mnie
+              </Button>
             </Box>
             <Box
               sx={{
                 boxSizing: "border-box",
                 padding: "1rem",
                 display: "flex",
-                flexDirection: {xs:'column', md:"row"},
+                flexDirection: { xs: "column", md: "row" },
                 width: "100%",
                 gap: "1rem",
                 backgroundColor: theme.palette.background.adminField,
@@ -81,7 +91,7 @@ const AnimalPage = () => {
                     return (
                       <ImageListItem
                         sx={{
-                          width: {xs:'100%', md:"300px"},
+                          width: { xs: "100%", md: "300px" },
                         }}
                       >
                         <img
@@ -99,7 +109,7 @@ const AnimalPage = () => {
                 sx={{
                   display: "flex",
                   flexDirection: "column",
-                  alignItems:{xs:'center', md:"start"},
+                  alignItems: { xs: "center", md: "start" },
                   gap: "0.5rem",
                 }}
               >
@@ -125,7 +135,7 @@ const AnimalPage = () => {
                   sx={{
                     gap: "0.5rem",
                     alignItems: "center",
-                    textAlign: {xs:"center", md:"start"},
+                    textAlign: { xs: "center", md: "start" },
                   }}
                 >
                   Data urodzenia:
@@ -169,7 +179,7 @@ const AnimalPage = () => {
                   sx={{
                     gap: "0.5rem",
                     alignItems: "center",
-                    textAlign: {xs:"center", md:"start"},
+                    textAlign: { xs: "center", md: "start" },
                   }}
                 >
                   Miejsce znalezienia:
@@ -183,7 +193,7 @@ const AnimalPage = () => {
                   sx={{
                     gap: "0.5rem",
                     alignItems: "center",
-                    textAlign: {xs:"center", md:"start"},
+                    textAlign: { xs: "center", md: "start" },
                   }}
                 >
                   Data przyjęcia:
@@ -197,16 +207,13 @@ const AnimalPage = () => {
                   display: "flex",
                   flexDirection: "column",
                   gap: "1rem",
-                  width: {xs:"100%", md:"50%"},
+                  width: { xs: "100%", md: "50%" },
                 }}
               >
                 <Box>
                   <Typography variant="h5">Opis</Typography>
                   <Typography variant="body1">
-                    <Markdown>
-                        {animal.attributes.description}
-                    </Markdown>
-                    
+                    <Markdown>{animal.attributes.description}</Markdown>
                   </Typography>
                 </Box>
               </Box>

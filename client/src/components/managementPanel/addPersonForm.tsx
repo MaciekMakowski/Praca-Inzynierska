@@ -32,6 +32,7 @@ type AddPersonFormProps = {
   peronData?: PersonType;
   setRefresh?: Dispatch<SetStateAction<boolean>>;
   setOpen?: Dispatch<SetStateAction<boolean>>;
+  adoption?: boolean;
 };
 
 const emptyPerson: PersonType = {
@@ -88,29 +89,33 @@ const AddPersonForm = (props: AddPersonFormProps) => {
 });
 
   const sendForm = () => {
-    validateForm(newPerson.attributes, setErrorList).then((res) => {
-      if(res){
-        if(props.isNew){
-          createPerson(newPerson, props.type).then((res) => {
-            if(res){
-              setNewPerson(emptyPerson)
-              if(props.setRefresh)
-              props.setRefresh(true)
-            }
-          })
-        }else{
-          updatePerson(newPerson, props.type).then((res) => {
-            if(res){
-              if(props.setRefresh)
-              props.setRefresh(true)
-              if(props.setOpen){
-                props.setOpen(false)
+    if(!props.adoption){
+      validateForm(newPerson.attributes, setErrorList).then((res) => {
+        if(res){
+          if(props.isNew){
+            createPerson(newPerson, props.type).then((res) => {
+              if(res){
+                setNewPerson(emptyPerson)
+                if(props.setRefresh)
+                props.setRefresh(true)
               }
-            }
-          })
+            })
+          }else{
+            updatePerson(newPerson, props.type).then((res) => {
+              if(res){
+                if(props.setRefresh)
+                props.setRefresh(true)
+                if(props.setOpen){
+                  props.setOpen(false)
+                }
+              }
+            })
+          }
         }
-      }
-    })
+      })
+    }else{
+      
+    }
   }
 
   const textChange = (e: ChangeEvent<HTMLInputElement>) => {

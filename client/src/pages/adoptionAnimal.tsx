@@ -60,6 +60,7 @@ const AdoptionAnimal = () => {
                   gap: "1rem",
                 }}
               >
+                <Typography variant="h6">Wniosek o adpocje: </Typography>
                 <Typography variant="h4">{animal.attributes.name}</Typography>
                 <Typography variant="body1">#{animal.id}</Typography>
               </Box>
@@ -201,7 +202,7 @@ const AdoptionAnimal = () => {
                   }}
                 >
                   <Box>
-                    <AddPersonForm title="Podaj swoje dane" isNew={false} type="guests" buttonText="Złóż wniosek"/>
+                    <AddPersonForm title="Podaj swoje dane" isNew={false} type="guests" buttonText="Złóż wniosek" adoption/>
                   </Box>
                 </Box>
               </Box>
