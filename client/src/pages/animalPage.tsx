@@ -62,7 +62,8 @@ const AnimalPage = () => {
             >
               <Typography variant="h4">{animal.attributes.name}</Typography>
               <Typography variant="body1">#{animal.id}</Typography>
-              <Button
+              {animal.attributes.toAdoption && (
+                <Button
                 sx={{
                   width: { xs: "100%", lg: "fit-content" },
                 }}
@@ -73,6 +74,8 @@ const AnimalPage = () => {
               >
                 Adoptuj mnie
               </Button>
+              )}
+              
             </Box>
             <Box
               sx={{
