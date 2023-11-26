@@ -12,7 +12,6 @@ import { useEffect, useState } from "react";
 import AddPersonForm from "../components/managementPanel/addPersonForm";
 import { AnimalType } from "../utils/types/basicTypes";
 import { ImageUrl } from "../utils/services/url";
-import Markdown from "react-markdown";
 import back from "../img/home/back.png";
 import { getAnimal } from "../utils/services/gets";
 import { useParams } from "react-router-dom";
@@ -20,7 +19,6 @@ import { useParams } from "react-router-dom";
 const AdoptionAnimal = () => {
   const { id } = useParams<{ id: string }>();
   const [animal, setAnimal] = useState<AnimalType | null>(null);
-  const [refresh, setRefresh] = useState<boolean>(false);
   const theme = useTheme();
 
   useEffect(() => {
@@ -205,7 +203,6 @@ const AdoptionAnimal = () => {
                   {id && (
                     <AddPersonForm
                       title="Podaj swoje dane"
-                      isNew={false}
                       type="guests"
                       buttonText="Złóż wniosek"
                       animalId={id}

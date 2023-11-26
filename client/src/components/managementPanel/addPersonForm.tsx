@@ -11,6 +11,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import { createAdoptionByGuest, createPerson } from "../../utils/services/posts";
 import dayjs, { Dayjs } from "dayjs";
 import {
   handleChangeDate,
@@ -24,9 +25,9 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { ErrorInput } from "../../utils/types/errorInput";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { PersonType } from "../../utils/types/basicTypes";
-import { createPerson } from "../../utils/services/posts";
-import { isObject } from "chart.js/dist/helpers/helpers.core";
+import { navigateTo } from "../../utils/functions/navigators";
 import { updatePerson } from "../../utils/services/puts";
+import { useNavigate } from "react-router";
 import { validateForm } from "../../utils/functions/validators";
 
 type PersonForm = {
@@ -66,6 +67,7 @@ const AddPersonForm = (props: AddPersonFormProps) => {
   const [newPerson, setNewPerson] = useState<PersonType>(
     props.peronData ? props.peronData : emptyPerson
   );
+  const navigate = useNavigate();
 
   const [ErrorList, setErrorList] = useState<ErrorInput>({
     name: {
@@ -124,6 +126,14 @@ const AddPersonForm = (props: AddPersonFormProps) => {
         }
       });
     } else {
+      validateForm(newPerson.attributes, setErrorList).then((res) => {
+        if(res){
+          createAdoptionByGuest(props.animalId, newPerson).then((res) => {{
+            setNewPerson(emptyPerson);
+            navigateTo(navigate, "/formSended")
+          }});
+        }
+      })
     }
   };
 

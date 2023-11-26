@@ -44,20 +44,14 @@ export const createAnimal = async (animal: AnimalType) => {
   }
 };
 
-export const updateAnimalImages = async (
-  formData: FormData
-) => {
+export const updateAnimalImages = async (formData: FormData) => {
   const authToken = Cookies.get("token");
-  const response = await axios.post(
-    `${APIurl}upload`,
-    formData,
-    {
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-        "Content-Type": "multipart/form-data",
-      },
-    }
-  );
+  const response = await axios.post(`${APIurl}upload`, formData, {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
   if (response.status === 200) {
     return true;
   } else {
@@ -66,17 +60,14 @@ export const updateAnimalImages = async (
 };
 export const deleteImageFromAnimal = async (
   formData: FormData,
-  imageId:number
+  imageId: number
 ) => {
   const authToken = Cookies.get("token");
-  const response = await axios.delete(
-    `${APIurl}upload/files/${imageId}`,
-    {
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-      },
-    }
-  );
+  const response = await axios.delete(`${APIurl}upload/files/${imageId}`, {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  });
   if (response.status === 200) {
     return true;
   } else {
@@ -222,12 +213,47 @@ export const createAdoption = async (animalId: number, personId: number) => {
   }
 };
 
+export const createAdoptionByGuest = async (
+  animalId: string,
+  person: PersonType
+) => {
+  const response = await axios.post(
+    `${APIurl}adoptions/createAdoptionByGuest`,
+    {
+      data: {
+        animal: animalId,
+        guest: {
+          id: person.id,
+          attributes: {
+            name: person.attributes.name,
+            lastName: person.attributes.lastName,
+            pesel: person.attributes.pesel,
+            sex: person.attributes.sex,
+            birthDate: person.attributes.birthDate,
+            phoneNumber: person.attributes.phoneNumber,
+            email: person.attributes.email,
+            city: person.attributes.city,
+            postCode: person.attributes.postCode,
+            address: person.attributes.address,
+          }
+        },
+        date: new Date(),
+        status: "Oczekująca",
+      },
+    }
+  );
+  if (response.status === 200) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 export const LogIn = async (login: string, password: string) => {
   const response = await axios.post(`${APIurl}auth/local`, {
     identifier: login,
     password: password,
   });
-
 
   if (response.status === 200) {
     Cookies.remove("token", {
