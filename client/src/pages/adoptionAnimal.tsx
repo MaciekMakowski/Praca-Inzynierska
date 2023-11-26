@@ -8,23 +8,33 @@ import {
   useTheme,
 } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import AddPersonForm from "../components/managementPanel/addPersonForm";
 import { AnimalType } from "../utils/types/basicTypes";
 import { ImageUrl } from "../utils/services/url";
 import back from "../img/home/back.png";
 import { getAnimal } from "../utils/services/gets";
-import { useParams } from "react-router-dom";
+import { navigateTo } from "../utils/functions/navigators";
 
 const AdoptionAnimal = () => {
   const { id } = useParams<{ id: string }>();
   const [animal, setAnimal] = useState<AnimalType | null>(null);
   const theme = useTheme();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
       getAnimal(id).then((res) => {
-        if (res) setAnimal(res);
+        if (res) {
+          if (res.attributes.toAdoption) {
+            setAnimal(res);
+          } else {
+            navigateTo(navigate, "/ourAnimals");
+          }
+        }else{
+          navigateTo(navigate, "/ourAnimals");
+        }
       });
     }
   }, [id]);
