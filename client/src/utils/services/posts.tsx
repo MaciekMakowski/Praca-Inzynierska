@@ -12,7 +12,8 @@ import axios from "axios";
 
 export const createAnimal = async (animal: AnimalType) => {
   const authToken = Cookies.get("token");
-  const response = await axios.post(
+  try{
+    const response = await axios.post(
     `${APIurl}animals`,
     {
       data: {
@@ -42,11 +43,15 @@ export const createAnimal = async (animal: AnimalType) => {
   } else {
     return false;
   }
+  }catch(error){
+    console.log(error)
+  }
 };
 
 export const updateAnimalImages = async (formData: FormData) => {
   const authToken = Cookies.get("token");
-  const response = await axios.post(`${APIurl}upload`, formData, {
+  try{
+    const response = await axios.post(`${APIurl}upload`, formData, {
     headers: {
       Authorization: `Bearer ${authToken}`,
       "Content-Type": "multipart/form-data",
@@ -57,13 +62,18 @@ export const updateAnimalImages = async (formData: FormData) => {
   } else {
     return false;
   }
+  }catch(error){
+    console.log(error)
+  }
+  
 };
 export const deleteImageFromAnimal = async (
   formData: FormData,
   imageId: number
 ) => {
   const authToken = Cookies.get("token");
-  const response = await axios.delete(`${APIurl}upload/files/${imageId}`, {
+  try{
+    const response = await axios.delete(`${APIurl}upload/files/${imageId}`, {
     headers: {
       Authorization: `Bearer ${authToken}`,
     },
@@ -73,11 +83,16 @@ export const deleteImageFromAnimal = async (
   } else {
     return false;
   }
+  }catch(error){
+    console.log(error)
+  }
+  
 };
 
 export const createDisease = async (disease: DiseaseType) => {
   const authToken = Cookies.get("token");
-  const response = await axios.post(
+  try{
+      const response = await axios.post(
     `${APIurl}diseases`,
     {
       data: {
@@ -97,11 +112,16 @@ export const createDisease = async (disease: DiseaseType) => {
   } else {
     return false;
   }
+  }catch(error){
+    console.log(error)
+  }
+
 };
 
 export const createIsolation = async (isolation: IsolationType) => {
   const authToken = Cookies.get("token");
-  const response = await axios.post(
+  try{
+    const response = await axios.post(
     `${APIurl}isolations/addIsolation`,
     {
       data: {
@@ -124,11 +144,16 @@ export const createIsolation = async (isolation: IsolationType) => {
   } else {
     return false;
   }
+  }catch(error){
+    console.log(error)
+  }
+  
 };
 
 export const createAnimalDisease = async (animalDisease: PetDiseaseType) => {
   const authToken = Cookies.get("token");
-  const response = await axios.post(
+  try{
+    const response = await axios.post(
     `${APIurl}pet-diseases`,
     {
       data: {
@@ -151,11 +176,16 @@ export const createAnimalDisease = async (animalDisease: PetDiseaseType) => {
   } else {
     return false;
   }
+  }catch(error){
+    console.log(error)
+  }
+  
 };
 
 export const createPerson = async (person: PersonType, type: string) => {
   const authToken = Cookies.get("token");
-  const response = await axios.post(
+  try{
+    const response = await axios.post(
     `${APIurl}${type}`,
     {
       data: {
@@ -186,11 +216,16 @@ export const createPerson = async (person: PersonType, type: string) => {
   } else {
     return false;
   }
+  }catch(error){
+    console.log(error)
+  }
+  
 };
 
 export const createAdoption = async (animalId: number, personId: number) => {
   const authToken = Cookies.get("token");
-  const response = await axios.post(
+  try{
+    const response = await axios.post(
     `${APIurl}adoptions`,
     {
       data: {
@@ -211,13 +246,18 @@ export const createAdoption = async (animalId: number, personId: number) => {
   } else {
     return false;
   }
+  }catch(error){
+    console.log(error)
+  }
+  
 };
 
 export const createAdoptionByGuest = async (
   animalId: string,
   person: PersonType
 ) => {
-  const response = await axios.post(
+  try{
+    const response = await axios.post(
     `${APIurl}adoptions/createAdoptionByGuest`,
     {
       data: {
@@ -251,10 +291,15 @@ export const createAdoptionByGuest = async (
   } else {
     return false;
   }
+  }catch(error){
+    console.log(error)
+  }
+  
 };
 
 export const LogIn = async (login: string, password: string) => {
-  const response = await axios.post(`${APIurl}auth/local`, {
+  try{
+    const response = await axios.post(`${APIurl}auth/local`, {
     identifier: login,
     password: password,
   });
@@ -282,4 +327,8 @@ export const LogIn = async (login: string, password: string) => {
   } else {
     return false;
   }
+  }catch(error){
+    console.log(error)
+  }
+  
 };

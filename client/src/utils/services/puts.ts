@@ -12,7 +12,8 @@ import axios from "axios";
 
 export const updateDisease = async (disease: DiseaseType) => {
   const authToken = Cookies.get("token");
-  const response = await axios.put(
+  try{
+    const response = await axios.put(
     `${APIurl}diseases/${disease.id}`,
     {
       data: {
@@ -32,11 +33,16 @@ export const updateDisease = async (disease: DiseaseType) => {
   } else {
     return false;
   }
+  }catch(err){
+    console.log(err)
+  }
+  
 };
 
 export const updateAnimal = async (animal: AnimalType) => {
   const authToken = Cookies.get("token");
-  const response = await axios.put(
+  try{
+    const response = await axios.put(
     `${APIurl}animals/${animal.id}`,
     {
       data: {
@@ -65,11 +71,16 @@ export const updateAnimal = async (animal: AnimalType) => {
   } else {
     return false;
   }
+  }catch(err){
+    console.log(err)
+  }
+  
 };
 
 export const uppdateIsolation = async (isolation: IsolationType) => {
   const authToken = Cookies.get("token");
-  const response = await axios.put(
+  try{
+      const response = await axios.put(
     `${APIurl}isolations/${isolation.id}`,
     {
       data: {
@@ -91,11 +102,16 @@ export const uppdateIsolation = async (isolation: IsolationType) => {
   } else {
     return false;
   }
+  }catch(err){
+    console.log(err)
+  }
+
 };
 
 export const updatePetDisease = async (petDisease: PetDiseaseType) => {
   const authToken = Cookies.get("token");
-  const response = await axios.put(
+  try{
+    const response = await axios.put(
     `${APIurl}pet-diseases/${petDisease.id}`,
     {
       data: {
@@ -118,12 +134,17 @@ export const updatePetDisease = async (petDisease: PetDiseaseType) => {
   } else {
     return false;
   }
+  }catch(err){
+    console.log(err)
+  }
+  
 };
 
 
 export const updatePerson = async (person: PersonType, type:string) => {
   const authToken = Cookies.get("token");
-  const response = await axios.put(`${APIurl}${type}/${person.id}`, {
+  try{
+    const response = await axios.put(`${APIurl}${type}/${person.id}`, {
     data: {
       personData: {
         name: person.attributes.name,
@@ -151,4 +172,8 @@ export const updatePerson = async (person: PersonType, type:string) => {
   } else {
     return false
   }
+  }catch(err){
+    console.log(err)
+  }
+  
 }
