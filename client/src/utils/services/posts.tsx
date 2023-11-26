@@ -141,11 +141,10 @@ export const createIsolation = async (isolation: IsolationType) => {
   );
   if (response.status === 200) {
     return true;
-  } else {
-    return false;
   }
+  return false;
   }catch(error){
-    console.log(error)
+    return false;
   }
   
 };
@@ -177,7 +176,7 @@ export const createAnimalDisease = async (animalDisease: PetDiseaseType) => {
     return false;
   }
   }catch(error){
-    console.log(error)
+    return false;
   }
   
 };
