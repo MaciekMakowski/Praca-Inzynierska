@@ -78,7 +78,7 @@ module.exports = createCoreController(
         const populateAdoption = await strapi.entityService.update(
           "api::adoption.adoption",
           adoption.id,
-          { data: { publishedAt: adoptionData.date } }
+          { data: { publishedAt: adoptionData.date }, populate: ["animal", "guest"] }
         );
         // Pobierz identyfikator zwierzęcia z relacji
         const animal = adoptionData.animal;

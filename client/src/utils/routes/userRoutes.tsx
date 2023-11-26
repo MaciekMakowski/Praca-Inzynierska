@@ -27,7 +27,7 @@ const UserRoutes = () => {
           <Route path="/ourAnimals" element={<OurAnimals />} />
           <Route path="/ourAnimals/:id" element={<AnimalPage />} />
           <Route path="/ourAnimals/adoption/:id" element={<AdoptionAnimal />} />
-          <Route path="/formSended" element={<AdoptionFormSended/>} />
+          <Route path="/formSended/:name/:animal/:id" element={<AdoptionFormSended/>} />
         </Routes>
       </Box>
       <Footer />

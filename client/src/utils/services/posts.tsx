@@ -242,8 +242,12 @@ export const createAdoptionByGuest = async (
       },
     }
   );
+  console.log(response)
   if (response.status === 200) {
-    return true;
+    return {
+      animal: response.data.animal.name,
+      id: response.data.id,
+    }
   } else {
     return false;
   }

@@ -11,7 +11,10 @@ import {
   useTheme,
 } from "@mui/material";
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
-import { createAdoptionByGuest, createPerson } from "../../utils/services/posts";
+import {
+  createAdoptionByGuest,
+  createPerson,
+} from "../../utils/services/posts";
 import dayjs, { Dayjs } from "dayjs";
 import {
   handleChangeDate,
@@ -127,13 +130,20 @@ const AddPersonForm = (props: AddPersonFormProps) => {
       });
     } else {
       validateForm(newPerson.attributes, setErrorList).then((res) => {
-        if(res){
-          createAdoptionByGuest(props.animalId, newPerson).then((res) => {{
-            setNewPerson(emptyPerson);
-            navigateTo(navigate, "/formSended")
-          }});
+        if (res) {
+          createAdoptionByGuest(props.animalId, newPerson).then((res) => {
+            {
+              if (res) {
+                setNewPerson(emptyPerson);
+                navigateTo(
+                  navigate,
+                  `/formSended/${newPerson.attributes.name}/${res.animal}/${res.id}`
+                );
+              }
+            }
+          });
         }
-      })
+      });
     }
   };
 
