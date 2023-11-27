@@ -336,3 +336,21 @@ export const getAdoptions = async (page: number, pagination: number) => {
     console.log(err);
   }
 };
+
+
+export const getResourcesTypes = async () => {
+  const authToken = Cookies.get("token");
+  try{
+    const response = await axios(`${APIurl}resources-types`, {
+      headers: {
+        authorization: `Bearer ${authToken}`,
+      },
+    });
+    if (response.status === 200) {
+      const data = response.data.data;
+      return data;
+    }
+  }catch(err){
+    console.log(err)
+  }
+}

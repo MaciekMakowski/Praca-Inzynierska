@@ -1,16 +1,20 @@
 import { Box, Grid, Typography, useTheme } from "@mui/material";
+import { useEffect, useState } from "react";
 
 import ResourceTypeListItem from "./resourcesTypeListItem";
+import { ResourceTypeType } from "../../../utils/types/basicTypes";
+import { getResourcesTypes } from "../../../utils/services/gets";
 
 const ResourcesTypeList = () => {
   const theme = useTheme();
+  const [resourcesTypes, setResourcesTypes] = useState([]);
 
-  const returnItems = () => {
-    const items = [];
-    for (let i = 0; i < 20; i++)
-      items.push(<ResourceTypeListItem key={i} color={i % 2 == 0} />);
-    return items;
-  };
+  useEffect(() => {
+      getResourcesTypes().then((res) => {
+        if (res) {
+          setResourcesTypes(res);
+        }})
+  }, []);
 
   return (
     <Box
@@ -59,7 +63,11 @@ const ResourcesTypeList = () => {
           overflowY: "auto",
         }}
       >
-        {returnItems()}
+        {resourcesTypes.map((resourceType: ResourceTypeType, i) => {
+          return(
+            <ResourceTypeListItem key={i} color={i % 2 == 0} data={resourceType}/>
+          )
+        })}
       </Box>
     </Box>
   );

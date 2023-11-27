@@ -1,7 +1,10 @@
 import { Grid, Typography, useTheme } from "@mui/material";
 
+import { ResourceTypeType } from "../../../utils/types/basicTypes";
+
 type ResourceTypeListItemProps = {
   color: boolean;
+  data:ResourceTypeType
 };
 
 const ResourceTypeListItem = (props: ResourceTypeListItemProps) => {
@@ -29,7 +32,7 @@ const ResourceTypeListItem = (props: ResourceTypeListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          1
+          {props.data.id}
         </Typography>
       </Grid>
       <Grid item xs={8} lg={9}>
@@ -41,7 +44,7 @@ const ResourceTypeListItem = (props: ResourceTypeListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          Jedzenie
+          {props.data.attributes.name}
         </Typography>
       </Grid>
     </Grid>

@@ -6,16 +6,55 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  SelectChangeEvent,
   TextField,
   Typography,
   useTheme,
 } from "@mui/material";
+import { handleSelectChange, handleTextChange } from "../../../utils/functions/handlers";
 
+import { ChangeEvent } from "react";
+import { ErrorInput } from "../../../utils/types/errorInput";
 import { useState } from "react";
+import { validateDate } from "@mui/x-date-pickers/internals";
+import { validateForm } from "../../../utils/functions/validators";
+
+const emptyResource = {
+  id: 0,
+  attributes: {
+    name: "",
+    category: ""
+  },
+};
 
 const AddOrDelResourceTypeForm = () => {
   const theme = useTheme();
   const [selected, setSelected] = useState(false);
+  const [newResource, setNewResource] = useState(emptyResource);
+  const [errorList, setErrorList] = useState<ErrorInput>({
+    name:{
+      status: false,
+    },
+    category:{
+      status: false,
+    }
+  });
+
+  const textChange= (e:ChangeEvent<HTMLInputElement>) => {
+    handleTextChange(e, setNewResource)
+  }
+  const selectChange = (e:SelectChangeEvent) => {
+    handleSelectChange(e, setNewResource)
+  }
+
+  const sendForm = () => {
+    validateForm(newResource.attributes, setErrorList).then((res) => {
+      if(res){
+        
+      }
+    });
+  }
+
 
   return (
     <Box
@@ -57,7 +96,7 @@ const AddOrDelResourceTypeForm = () => {
             label="Nazwa"
             name="name"
             color="primary"
-            //onChange={handleTextChange}
+            onChange={textChange}
           />
           <FormControl>
         <InputLabel>Kategoria główna</InputLabel>
@@ -68,9 +107,7 @@ const AddOrDelResourceTypeForm = () => {
           sx={{
             color: theme.palette.text.primary,
           }}
-          defaultValue=''
-          // value={newAnimal.species}
-          // onChange={handleSelectChange}
+          onChange={selectChange}
         >
           <MenuItem value={4}>Brak</MenuItem>
           <MenuItem value={1}>Jedzenie</MenuItem>

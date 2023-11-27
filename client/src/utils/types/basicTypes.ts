@@ -134,3 +134,17 @@ export type AnimalInfoType = {
     isolations: IsolationType[];
     petDiseases: PetDiseaseType[];
 }
+
+export type ResourceTypeType = {
+  id:number,
+  attributes: {
+    name: string;
+    subtypes: ResourceSubtypeType[];
+  }
+}
+export type ResourceSubtypeType = {
+  id:number,
+  attributes: {
+    name: string;
+  }
+}
