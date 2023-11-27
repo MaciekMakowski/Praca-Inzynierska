@@ -95,12 +95,14 @@ export type PetDiseaseType = {
 
 export type ResourceType = {
   id: number;
-  name: string;
-  type: string;
-  subtype: string;
-  quantity: number;
-  unit: string;
-  expirationDate?: string | null;
+  attributes: {
+    name: string;
+    type:number;
+    subtype: number;
+    quantity: number;
+    unit: string;
+    expirationDate?: string | null;
+  };
 };
 
 export type User = {

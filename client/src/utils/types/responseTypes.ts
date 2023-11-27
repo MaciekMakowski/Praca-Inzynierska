@@ -102,3 +102,22 @@ export type AnimalInfoResponse = {
       data: PetDiseasesResponse[];
     };
 };
+
+
+export type ResourceTypeResponse ={
+  id: number;
+  attributes: {
+    name: string;
+    resource_subtypes:{
+      data: ResourceSubtypeResponse[];
+    }
+    
+  };
+};
+
+export type ResourceSubtypeResponse = {
+  id: number;
+  attributes: {
+    name: string;
+  };
+};

@@ -1,13 +1,22 @@
 import { Box, Typography, useTheme } from "@mui/material";
+import { useEffect, useState } from "react";
 
 import AddOrDelResourceTypeForm from "../../../components/managementPanel/forms/addOrDelResourceTypeForm";
 import AddResourceForm from "../../../components/managementPanel/forms/addResourceForm";
 import ResourcesList from "../../../components/managementPanel/lists/resourcesList";
 import ResourcesTypeList from "../../../components/managementPanel/lists/resourcesTypeList";
+import { getResourcesTypes } from "../../../utils/services/gets";
 
 const ResourcesManagement = () => {
   const theme = useTheme();
+  const [resourcesTypes, setResourcesTypes] = useState([]);
 
+  useEffect(() => {
+      getResourcesTypes().then((res) => {
+        if (res) {
+          setResourcesTypes(res);
+        }})
+  }, []);
   return (
     <>
       <Box>
@@ -36,7 +45,7 @@ const ResourcesManagement = () => {
             gap: "1rem",
           }}
         >
-          <AddResourceForm />
+          <AddResourceForm resourceTypes={resourcesTypes}/>
         </Box>
         <Box
           sx={{
@@ -45,7 +54,7 @@ const ResourcesManagement = () => {
             gap: "1rem",
           }}
         >
-          <ResourcesTypeList />
+          <ResourcesTypeList resourceTypes={resourcesTypes}/>
           <AddOrDelResourceTypeForm />
         </Box>
         <ResourcesList />

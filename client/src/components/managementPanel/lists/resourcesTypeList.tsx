@@ -5,16 +5,12 @@ import ResourceTypeListItem from "./resourcesTypeListItem";
 import { ResourceTypeType } from "../../../utils/types/basicTypes";
 import { getResourcesTypes } from "../../../utils/services/gets";
 
-const ResourcesTypeList = () => {
-  const theme = useTheme();
-  const [resourcesTypes, setResourcesTypes] = useState([]);
+type ResourcesTypeListProps = {
+  resourceTypes: ResourceTypeType[];
+}
 
-  useEffect(() => {
-      getResourcesTypes().then((res) => {
-        if (res) {
-          setResourcesTypes(res);
-        }})
-  }, []);
+const ResourcesTypeList = (props:ResourcesTypeListProps) => {
+  const theme = useTheme();
 
   return (
     <Box
@@ -63,7 +59,7 @@ const ResourcesTypeList = () => {
           overflowY: "auto",
         }}
       >
-        {resourcesTypes.map((resourceType: ResourceTypeType, i) => {
+        {props.resourceTypes.map((resourceType: ResourceTypeType, i) => {
           return(
             <ResourceTypeListItem key={i} color={i % 2 == 0} data={resourceType}/>
           )

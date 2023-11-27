@@ -4,6 +4,7 @@ import {
   IsolationResponse,
   PersonsResponse,
   PetDiseasesResponse,
+  ResourceTypeResponse,
 } from "../types/responseTypes";
 import { AnimalInfoType, IsolationType } from "../types/basicTypes";
 import {
@@ -18,6 +19,7 @@ import {
 import { APIurl } from "./url";
 import Cookies from "js-cookie";
 import axios from "axios";
+import { createResourceType } from "./formatters";
 
 export const getAnimals = async (page: number, pagination: number) => {
   const authToken = Cookies.get("token");
@@ -341,13 +343,15 @@ export const getAdoptions = async (page: number, pagination: number) => {
 export const getResourcesTypes = async () => {
   const authToken = Cookies.get("token");
   try{
-    const response = await axios(`${APIurl}resources-types`, {
+    const response = await axios(`${APIurl}resources-types?populate=deep`, {
       headers: {
         authorization: `Bearer ${authToken}`,
       },
     });
     if (response.status === 200) {
-      const data = response.data.data;
+      const data = response.data.data.map((resourceType: ResourceTypeResponse) => {
+        return createResourceType(resourceType);
+      })
       return data;
     }
   }catch(err){
