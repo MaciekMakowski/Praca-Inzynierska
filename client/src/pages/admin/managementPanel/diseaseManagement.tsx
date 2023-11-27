@@ -1,8 +1,8 @@
 import { Box, Typography, useTheme } from "@mui/material";
 
-import AddDiseaseForm from "../../../components/managementPanel/addDiseaseForm";
-import DiseaseList from "../../../components/managementPanel/diseaseList";
-import IllAnimalList from "../../../components/managementPanel/illAnimalList";
+import AddDiseaseForm from "../../../components/managementPanel/forms/addDiseaseForm";
+import DiseaseList from "../../../components/managementPanel/lists/diseaseList";
+import IllAnimalList from "../../../components/managementPanel/lists/illAnimalList";
 import { useState } from "react";
 
 const DiseaseManagement = () => {

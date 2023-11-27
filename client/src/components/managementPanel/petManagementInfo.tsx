@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 import { AnimalType } from "../../utils/types/basicTypes";
 import EditIcon from "@mui/icons-material/Edit";
-import EditPetInfoModal from "./editPetInfoModal";
+import EditPetInfoModal from "./modals/editPetInfoModal";
 import shadows from "@mui/material/styles/shadows";
 
 type PetManagementInfoProps = {

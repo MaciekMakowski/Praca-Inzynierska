@@ -1,6 +1,6 @@
 import { Box, Typography, useTheme } from "@mui/material";
 
-import MeetingList from "../../../components/managementPanel/mettingList";
+import MeetingList from "../../../components/managementPanel/lists/meetingList";
 
 const MeetingManagement = () => {
     const theme = useTheme();

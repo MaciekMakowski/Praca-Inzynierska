@@ -1,7 +1,7 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 
-import EditIsolationModal from "../../../components/managementPanel/editIsolationModal";
+import EditIsolationModal from "../../../components/managementPanel/modals/editIsolationModal";
 import { IsolationType } from "../../../utils/types/basicTypes";
 import { getIsolation } from "../../../utils/services/gets";
 import { useParams } from "react-router";

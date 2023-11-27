@@ -4,19 +4,19 @@ import { getAnimal, getAnimalDiseases, getAnimalInfo, getAnimalIsolations, getDi
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 
-import AddAdoptionModal from "../../../components/managementPanel/addAdoptionModal";
+import AddAdoptionModal from "../../../components/managementPanel/modals/addAdoptionModal";
 import AddHomeIcon from "@mui/icons-material/AddHome";
-import AddIsolationModal from "../../../components/managementPanel/addPetIsolationModal";
-import AddPetDiseaseModal from "../../../components/managementPanel/addPetDiseaseModal";
+import AddIsolationModal from "../../../components/managementPanel/modals/addPetIsolationModal";
+import AddPetDiseaseModal from "../../../components/managementPanel/modals/addPetDiseaseModal";
 import BlockIcon from "@mui/icons-material/Block";
 import BorderAllIcon from "@mui/icons-material/BorderAll";
-import ChangeStatusConfirmModal from "../../../components/managementPanel/changeStatusConfirmModal";
+import ChangeStatusConfirmModal from "../../../components/managementPanel/modals/changeStatusConfirmModal";
 import CoronavirusIcon from "@mui/icons-material/Coronavirus";
 import ManagementButton from "../../../components/managementPanel/managementButton";
 import PetManagementDesc from "../../../components/managementPanel/petManagementDesc";
 import PetManagementImages from "../../../components/managementPanel/petManagementImages";
 import PetManagementInfo from "../../../components/managementPanel/petManagementInfo";
-import PetManagementList from "../../../components/managementPanel/petManagementList";
+import PetManagementList from "../../../components/managementPanel/lists/petManagementList";
 
 const PetManagement = () => {
   const [animalInfoData, setAnimalInfoData] = useState<AnimalInfoType | null>(null);

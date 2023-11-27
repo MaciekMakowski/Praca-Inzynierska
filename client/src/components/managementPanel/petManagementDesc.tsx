@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import { AnimalType } from "../../utils/types/basicTypes";
 import EditIcon from "@mui/icons-material/Edit";
-import EditPetDescModal from "./editPetDescModal";
+import EditPetDescModal from "./modals/editPetDescModal";
 import ReactMarkdown from "react-markdown";
 import shadows from "@mui/material/styles/shadows";
 

@@ -1,7 +1,7 @@
 import { Box, Typography, useTheme } from "@mui/material";
 
-import AddPersonForm from "../../../components/managementPanel/addPersonForm";
-import PersonsList from "../../../components/managementPanel/personsList";
+import AddPersonForm from "../../../components/managementPanel/forms/addPersonForm";
+import PersonsList from "../../../components/managementPanel/lists/personsList";
 import { useState } from "react";
 
 const GuestManagement = () => {

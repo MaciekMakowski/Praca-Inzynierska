@@ -1,16 +1,16 @@
 import { Box, Grid, Typography, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 
-import EditPersonModal from "../../../components/managementPanel/editPersonModal";
+import EditPersonModal from "../../../components/managementPanel/modals/editPersonModal";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import { Face } from "@mui/icons-material";
 import FaceRetouchingNaturalIcon from '@mui/icons-material/FaceRetouchingNatural';
-import GuestVisitHistory from "../../../components/managementPanel/guestVisitHistory";
+import GuestVisitHistory from "../../../components/managementPanel/lists/guestVisitHistory";
 import ManagementButton from "../../../components/managementPanel/managementButton";
 import PersonOffIcon from "@mui/icons-material/PersonOff";
 import { PersonType } from "../../../utils/types/basicTypes";
-import VolunteerMeetingsList from "../../../components/managementPanel/volunteerMeetingsList";
+import VolunteerMeetingsList from "../../../components/managementPanel/lists/volunteerMeetingsList";
 import { getPerson } from "../../../utils/services/gets";
 import shadows from "@mui/material/styles/shadows";
 import { useParams } from "react-router";

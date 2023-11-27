@@ -2,7 +2,7 @@ import { Box, Button, Typography, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 
 import { DiseaseType } from "../../../utils/types/basicTypes";
-import EditDiseaseModal from "../../../components/managementPanel/editDiseaseModal";
+import EditDiseaseModal from "../../../components/managementPanel/modals/editDiseaseModal";
 import { getDisease } from "../../../utils/services/gets";
 import { useParams } from "react-router";
 

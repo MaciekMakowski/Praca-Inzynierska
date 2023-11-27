@@ -1,7 +1,7 @@
 import { IconButton, ImageListItem } from "@mui/material";
 
 import DeleteIcon from "@mui/icons-material/Delete";
-import DeleteImageModal from "./deleteImageModal";
+import DeleteImageModal from "./modals/deleteImageModal";
 import { Image } from "../../utils/types/basicTypes";
 import { ImageUrl } from "../../utils/services/url";
 import { useState } from "react";

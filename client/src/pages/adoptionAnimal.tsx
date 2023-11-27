@@ -10,7 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import AddPersonForm from "../components/managementPanel/addPersonForm";
+import AddPersonForm from "../components/managementPanel/forms/addPersonForm";
 import { AnimalType } from "../utils/types/basicTypes";
 import { ImageUrl } from "../utils/services/url";
 import back from "../img/home/back.png";

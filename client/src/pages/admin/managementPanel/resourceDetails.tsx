@@ -1,6 +1,6 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
 
-import EditResourceModal from "../../../components/managementPanel/editResourceModal";
+import EditResourceModal from "../../../components/managementPanel/modals/editResourceModal";
 import { resourceDetailsData } from "../../../utils/mockups/adminMenu";
 import { useState } from "react";
 

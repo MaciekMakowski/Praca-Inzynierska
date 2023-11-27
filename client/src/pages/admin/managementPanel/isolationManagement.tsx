@@ -1,6 +1,6 @@
 import { Box, Typography, useTheme } from "@mui/material";
 
-import IsolationList from "../../../components/managementPanel/isolationList";
+import IsolationList from "../../../components/managementPanel/lists/isolationList";
 
 const IsolationManagement = () => {
   const theme = useTheme();

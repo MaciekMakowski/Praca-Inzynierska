@@ -1,9 +1,9 @@
 import { Box, Typography, useTheme } from "@mui/material";
 
-import AddOrDelResourceTypeForm from "../../../components/managementPanel/addOrDelResourceTypeForm";
-import AddResourceForm from "../../../components/managementPanel/addResourceForm";
-import ResourcesList from "../../../components/managementPanel/resourcesList";
-import ResourcesTypeList from "../../../components/managementPanel/resourcesTypeList";
+import AddOrDelResourceTypeForm from "../../../components/managementPanel/forms/addOrDelResourceTypeForm";
+import AddResourceForm from "../../../components/managementPanel/forms/addResourceForm";
+import ResourcesList from "../../../components/managementPanel/lists/resourcesList";
+import ResourcesTypeList from "../../../components/managementPanel/lists/resourcesTypeList";
 
 const ResourcesManagement = () => {
   const theme = useTheme();

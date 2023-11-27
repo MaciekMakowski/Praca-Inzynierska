@@ -1,7 +1,7 @@
 import { Box, Typography, useTheme } from "@mui/material";
 
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import ChangeMeetingStatusModal from "../../../components/managementPanel/changeMeetingStatusModal";
+import ChangeMeetingStatusModal from "../../../components/managementPanel/modals/changeMeetingStatusModal";
 import { GuestData } from "../../../utils/mockups/adminMenu";
 import ManagementButton from "../../../components/managementPanel/managementButton";
 import MeetingDetailsPerson from "../../../components/managementPanel/meetingDetailsPerson";

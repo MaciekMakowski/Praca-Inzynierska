@@ -1,6 +1,6 @@
 import { Box, Typography, useTheme } from "@mui/material";
 
-import AdoptionList from "../../../components/managementPanel/adoptionList";
+import AdoptionList from "../../../components/managementPanel/lists/adoptionList";
 import { useState } from "react";
 
 const AdoptionsManagement = () => {
