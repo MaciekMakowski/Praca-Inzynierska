@@ -11,12 +11,12 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import {
   handleSelectChange,
   handleTextChange,
 } from "../../../utils/functions/handlers";
 
-import { ChangeEvent } from "react";
 import { ErrorInput } from "../../../utils/types/errorInput";
 import { createResourceType } from "../../../utils/services/posts";
 import { useState } from "react";
@@ -31,7 +31,11 @@ const emptyResource = {
   },
 };
 
-const AddOrDelResourceTypeForm = () => {
+type AddOrDelResourceTypeFormProps = {
+  setRefresh: Dispatch<SetStateAction<boolean>>;
+};
+
+const AddOrDelResourceTypeForm = (props:AddOrDelResourceTypeFormProps) => {
   const theme = useTheme();
   const [selected, setSelected] = useState(false);
   const [newResource, setNewResource] = useState(emptyResource);
@@ -57,9 +61,9 @@ const AddOrDelResourceTypeForm = () => {
         createResourceType(newResource, newResource.attributes.category).then(
           (res) => {
             if (res) {
-              console.log("Udało się");
-            } else {
-              console.log("Nie udało się");
+              props.setRefresh(true);
+              setNewResource(emptyResource);
+              setSelected(false);
             }
           }
         );

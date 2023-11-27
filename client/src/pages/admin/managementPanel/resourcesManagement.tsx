@@ -10,13 +10,14 @@ import { getResourcesTypes } from "../../../utils/services/gets";
 const ResourcesManagement = () => {
   const theme = useTheme();
   const [resourcesTypes, setResourcesTypes] = useState([]);
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
       getResourcesTypes().then((res) => {
         if (res) {
           setResourcesTypes(res);
         }})
-  }, []);
+  }, [refresh]);
   return (
     <>
       <Box>
@@ -55,7 +56,7 @@ const ResourcesManagement = () => {
           }}
         >
           <ResourcesTypeList resourceTypes={resourcesTypes}/>
-          <AddOrDelResourceTypeForm />
+          <AddOrDelResourceTypeForm setRefresh={setRefresh}/>
         </Box>
         <ResourcesList />
       </Box>
