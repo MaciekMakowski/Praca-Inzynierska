@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import EditPersonModal from "../../../components/managementPanel/modals/editPersonModal";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import EventNoteIcon from "@mui/icons-material/EventNote";
-import { Face } from "@mui/icons-material";
 import FaceRetouchingNaturalIcon from '@mui/icons-material/FaceRetouchingNatural';
 import GuestVisitHistory from "../../../components/managementPanel/lists/guestVisitHistory";
 import ManagementButton from "../../../components/managementPanel/managementButton";

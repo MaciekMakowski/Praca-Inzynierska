@@ -27,19 +27,32 @@ import { navigateTo } from "../functions/navigators";
 
 const AdminRoutes = () => {
   const location = useLocation();
-  const [isLogged, setIsLogged] = useState<boolean>(false);
+  const storageState = sessionStorage.getItem("isLogged");
+  const [isLogged, setIsLogged] = useState<boolean>(storageState ? true : false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    checkIfUserIsLoggedIn().then((res) => {
-      if(res){
+    const checkLoginStatus = async () => {
+      try {
+        const res = await checkIfUserIsLoggedIn();
         setIsLogged(res);
+        sessionStorage.setItem("isLogged", "true");
+        if (!res) {
+          navigateTo(navigate, "/admin");
+          sessionStorage.removeItem("isLogged");
+        }
+      } catch (error) {
+        console.error("Error checking login status:", error);
       }
-      if (!res) {
-        navigateTo(navigate, "/admin");
-      }
-    });
-  }, [location]);
+    };
+
+    checkLoginStatus();
+  }, [location, navigate]);
+
+  if (isLogged === null) {
+    return <>Loading..</>;
+  }
+
   return (
     <>
       {isLogged ? (

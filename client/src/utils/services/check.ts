@@ -22,4 +22,5 @@ export const checkIfUserIsLoggedIn = async () => {
 export const LogOut = () => {
     Cookies.remove('token');
     Cookies.remove('id');
+    sessionStorage.removeItem("isLogged");
 }
