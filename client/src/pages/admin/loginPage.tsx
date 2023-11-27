@@ -55,6 +55,12 @@ const LoginPage = () => {
     });
   };
 
+  useEffect(() => {
+    if (Cookies.get("token") && Cookies.get("id")) {
+      navigateTo(navigate, "/admin/panel")
+    }
+  }, []);
+
   return (
     <Container
       sx={{
