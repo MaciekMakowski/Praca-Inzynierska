@@ -11,10 +11,14 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { handleSelectChange, handleTextChange } from "../../../utils/functions/handlers";
+import {
+  handleSelectChange,
+  handleTextChange,
+} from "../../../utils/functions/handlers";
 
 import { ChangeEvent } from "react";
 import { ErrorInput } from "../../../utils/types/errorInput";
+import { createResourceType } from "../../../utils/services/posts";
 import { useState } from "react";
 import { validateDate } from "@mui/x-date-pickers/internals";
 import { validateForm } from "../../../utils/functions/validators";
@@ -23,7 +27,7 @@ const emptyResource = {
   id: 0,
   attributes: {
     name: "",
-    category: ""
+    category: 0,
   },
 };
 
@@ -32,29 +36,36 @@ const AddOrDelResourceTypeForm = () => {
   const [selected, setSelected] = useState(false);
   const [newResource, setNewResource] = useState(emptyResource);
   const [errorList, setErrorList] = useState<ErrorInput>({
-    name:{
+    name: {
       status: false,
     },
-    category:{
+    category: {
       status: false,
-    }
+    },
   });
 
-  const textChange= (e:ChangeEvent<HTMLInputElement>) => {
-    handleTextChange(e, setNewResource)
-  }
-  const selectChange = (e:SelectChangeEvent) => {
-    handleSelectChange(e, setNewResource)
-  }
+  const textChange = (e: ChangeEvent<HTMLInputElement>) => {
+    handleTextChange(e, setNewResource);
+  };
+  const selectChange = (e: SelectChangeEvent) => {
+    handleSelectChange(e, setNewResource);
+  };
 
   const sendForm = () => {
     validateForm(newResource.attributes, setErrorList).then((res) => {
-      if(res){
-        
+      if (res) {
+        createResourceType(newResource, newResource.attributes.category).then(
+          (res) => {
+            if (res) {
+              console.log("Udało się");
+            } else {
+              console.log("Nie udało się");
+            }
+          }
+        );
       }
     });
-  }
-
+  };
 
   return (
     <Box
@@ -97,26 +108,33 @@ const AddOrDelResourceTypeForm = () => {
             name="name"
             color="primary"
             onChange={textChange}
+            error={errorList.name.status}
           />
           <FormControl>
-        <InputLabel>Kategoria główna</InputLabel>
-        <Select
-          label="Kategoria główna"
-          name="type"
-          variant="outlined"
-          sx={{
-            color: theme.palette.text.primary,
-          }}
-          onChange={selectChange}
-        >
-          <MenuItem value={4}>Brak</MenuItem>
-          <MenuItem value={1}>Jedzenie</MenuItem>
-          <MenuItem value={2}>Higiena</MenuItem>
-          <MenuItem value={3}>Zabawka</MenuItem>
-          <MenuItem value={3}>Koce</MenuItem>
-        </Select>
-      </FormControl>
-          <Button variant="contained" color="primary">
+            <InputLabel>Kategoria główna</InputLabel>
+            <Select
+              label="Kategoria główna"
+              name="category"
+              variant="outlined"
+              error={errorList.category.status}
+              sx={{
+                color: theme.palette.text.primary,
+              }}
+              defaultValue={"Brak"}
+              onChange={selectChange}
+            >
+              <MenuItem value={-1}>Brak</MenuItem>
+              <MenuItem value={1}>Jedzenie</MenuItem>
+              <MenuItem value={2}>Higiena</MenuItem>
+              <MenuItem value={3}>Zabawka</MenuItem>
+              <MenuItem value={4}>Koce</MenuItem>
+            </Select>
+          </FormControl>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => sendForm()}
+          >
             Dodaj
           </Button>
         </>
@@ -127,19 +145,19 @@ const AddOrDelResourceTypeForm = () => {
             <InputLabel>Rodzaj</InputLabel>
             <Select
               label="Rodzaj"
-              name="type"
+              name="category"
               variant="outlined"
               sx={{
                 color: theme.palette.text.primary,
               }}
-              defaultValue="Rodzaj"
+              defaultValue={0}
               // value={newAnimal.species}
               // onChange={handleSelectChange}
             >
               <MenuItem value={1}>Jedzenie</MenuItem>
               <MenuItem value={2}>Higiena</MenuItem>
               <MenuItem value={3}>Zabawka</MenuItem>
-              <MenuItem value={3}>Koce</MenuItem>
+              <MenuItem value={4}>Koce</MenuItem>
             </Select>
           </FormControl>
           <Button variant="contained" color="warning">

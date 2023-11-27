@@ -4,6 +4,8 @@ import {
   IsolationType,
   PersonType,
   PetDiseaseType,
+  ResourceSubtypeType,
+  ResourceTypeType,
 } from "../types/basicTypes";
 
 import { APIurl } from "./url";
@@ -295,6 +297,34 @@ export const createAdoptionByGuest = async (
   }
   
 };
+
+export const createResourceType = async (resource: ResourceSubtypeType, category: number) => {
+  const authToken = Cookies.get("token");
+  try{
+    const response = await axios.post(
+    `${APIurl}resources-types`,
+    {
+      data: {
+        name: resource.attributes.name,
+        categoryId: category,
+      },
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    }
+  );
+  if (response.status === 200) {
+    return true;
+  } else {
+    return false;
+  }
+  }catch(error){
+    console.log(error)
+  }
+}
+
 
 export const LogIn = async (login: string, password: string) => {
   try{
