@@ -108,7 +108,7 @@ const ResourceDetails = () => {
           </Box>
         </Box>
       </Box>
-      <EditResourceModal open={open} setOpen={setOpen} data={resourceDetailsData}/>
+      <EditResourceModal open={open} setOpen={setOpen} data={resourceDetailsData} resourceTypes={resourcesTypes}/>
     </>}
     </>
   );
