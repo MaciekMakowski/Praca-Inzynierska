@@ -97,8 +97,8 @@ export type ResourceType = {
   id: number;
   attributes: {
     name: string;
-    type:number;
-    subtype: number;
+    type:ResourceTypeType | null;
+    subtype: ResourceSubtypeType | null;
     quantity: number;
     unit: string;
     expirationDate?: string | null;

@@ -1,12 +1,22 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
+import { useEffect, useState } from "react";
 
 import EditResourceModal from "../../../components/managementPanel/modals/editResourceModal";
+import { getResourcesTypes } from "../../../utils/services/gets";
 import { resourceDetailsData } from "../../../utils/mockups/adminMenu";
-import { useState } from "react";
 
 const ResourceDetails = () => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
+  const [resourcesTypes, setResourcesTypes] = useState([]);
+
+  useEffect(() => {
+      getResourcesTypes().then((res) => {
+        if (res) {
+          setResourcesTypes(res);
+        }})
+  }, []);
+
   return (
     <>
       <Typography

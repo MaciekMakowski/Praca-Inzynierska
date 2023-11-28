@@ -45,8 +45,8 @@ const AddResourceForm = (props: AddResourceFormProps) => {
     id: 0,
     attributes: {
       name: "",
-      type: 0,
-      subtype: 0,
+      type: null,
+      subtype: null,
       quantity: 0,
       unit: "",
       expirationDate: null,
@@ -57,9 +57,21 @@ const AddResourceForm = (props: AddResourceFormProps) => {
     setChecked(event.target.checked);
   };
 
-  const selectChange = (event: SelectChangeEvent) => {
-    handleSelectChange(event, setNewResource);
-  };
+  const selectChange = (e: SelectChangeEvent) => {
+    handleSelectChange(e, setNewResource);
+  }
+
+  const selectChangeType = (e: SelectChangeEvent) => {
+    const resourceType = props.resourceTypes.find((resType) => resType.attributes.name === e.target.value)
+    if(resourceType)
+    setNewResource({
+      ...newResource,
+      attributes:{
+        ...newResource.attributes,
+        [e.target.name]: resourceType
+      }
+    })
+  }
   const textChange = (event: ChangeEvent<HTMLInputElement>) => {
     handleTextChange(event, setNewResource);
   };
@@ -146,11 +158,11 @@ const AddResourceForm = (props: AddResourceFormProps) => {
             color: theme.palette.text.primary,
           }}
           defaultValue=""
-          onChange={selectChange}
+          onChange={selectChangeType}
         >
           {props.resourceTypes.map((res) => {
             return (
-              <MenuItem key={res.id} value={res.id}>
+              <MenuItem key={res.id} value={res.attributes.name}>
                 {res.attributes.name}
               </MenuItem>
             );
@@ -167,12 +179,12 @@ const AddResourceForm = (props: AddResourceFormProps) => {
             color: theme.palette.text.primary,
           }}
           defaultValue=""
-          onChange={selectChange}
+          onChange={selectChangeType}
         >
           {props.resourceTypes
-            .find((item) => item.id === newResource.attributes.type)
+            .find((item) => item.id === newResource.attributes.type?.id)
             ?.attributes.subtypes.map((subtype) => (
-              <MenuItem key={subtype.id} value={subtype.id}>
+              <MenuItem key={subtype.id} value={subtype.attributes.name}>
                 {subtype.attributes.name}
               </MenuItem>
             ))}
