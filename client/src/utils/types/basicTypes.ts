@@ -97,8 +97,8 @@ export type ResourceType = {
   id: number;
   attributes: {
     name: string;
-    type:ResourceTypeType | null;
-    subtype: ResourceSubtypeType | null;
+    type:string;
+    subtype: string;
     quantity: number;
     unit: string;
     expirationDate?: string | null;
@@ -141,7 +141,7 @@ export type ResourceTypeType = {
   id:number,
   attributes: {
     name: string;
-    subtypes: ResourceSubtypeType[];
+    subtypes: ResourceSubtypeType[] | null;
   }
 }
 export type ResourceSubtypeType = {

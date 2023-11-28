@@ -1,10 +1,12 @@
 import { Button, Grid, Typography, useTheme } from "@mui/material";
 
+import { ResourceType } from "../../../utils/types/basicTypes";
 import { navigateTo } from "../../../utils/functions/navigators";
 import { useNavigate } from "react-router";
 
 type ResourceListItemProps = {
   color: boolean;
+  resource:ResourceType;
 };
 
 const ResourceListItem = (props: ResourceListItemProps) => {
@@ -33,7 +35,7 @@ const ResourceListItem = (props: ResourceListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          1231
+          {props.resource.id}
         </Typography>
       </Grid>
       <Grid item xs={1.5}>
@@ -45,7 +47,7 @@ const ResourceListItem = (props: ResourceListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          Karma Whiskas
+          {props.resource.attributes.name}
         </Typography>
       </Grid>
       <Grid item xs={1.5}>
@@ -57,7 +59,7 @@ const ResourceListItem = (props: ResourceListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          Jedzenie
+          {props.resource.attributes.type}
         </Typography>
       </Grid>
       <Grid item xs={1.5}>
@@ -69,7 +71,7 @@ const ResourceListItem = (props: ResourceListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          14
+          {props.resource.attributes.quantity}
         </Typography>
       </Grid>
       <Grid item xs={1.5}>
@@ -81,7 +83,7 @@ const ResourceListItem = (props: ResourceListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          KG
+          {props.resource.attributes.unit}
         </Typography>
       </Grid>
       <Grid item xs={2.5}>
@@ -93,7 +95,7 @@ const ResourceListItem = (props: ResourceListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          20-10-2027
+          {props.resource.attributes.expirationDate}
         </Typography>
       </Grid>
       <Grid item xs={2}>
@@ -103,7 +105,7 @@ const ResourceListItem = (props: ResourceListItemProps) => {
               ? theme.palette.primary.main
               : theme.palette.text.secondary,
           }}
-          onClick={() => navigateTo(navigate, "/admin/management/resources/1")}
+          onClick={() => navigateTo(navigate, `/admin/management/resources/${props.resource.id}`)}
         >
           Przejdź
         </Button>

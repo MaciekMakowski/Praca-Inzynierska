@@ -141,7 +141,7 @@ const AddOrDelResourceTypeForm = (props:AddOrDelResourceTypeFormProps) => {
               sx={{
                 color: theme.palette.text.primary,
               }}
-              defaultValue={"Brak"}
+              defaultValue={'-1'}
               onChange={selectChange}
             >
               <MenuItem value={-1}>Brak</MenuItem>

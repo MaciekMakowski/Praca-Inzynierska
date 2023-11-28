@@ -1,5 +1,5 @@
-import { AdoptionResponse, AnimalInfoResponse, AnimalResponse, ImageResponse, IsolationResponse, PersonsResponse, PetDiseasesResponse, ResourceSubtypeResponse, ResourceTypeResponse } from "../types/responseTypes";
-import { AdoptionType, AnimalInfoType, AnimalType, Image, IsolationType, PersonType, PetDiseaseType } from "../types/basicTypes";
+import { AdoptionResponse, AnimalInfoResponse, AnimalResponse, ImageResponse, IsolationResponse, PersonsResponse, PetDiseasesResponse, ResourceResponse, ResourceSubtypeResponse, ResourceTypeResponse } from "../types/responseTypes";
+import { AdoptionType, AnimalInfoType, AnimalType, Image, IsolationType, PersonType, PetDiseaseType, ResourceType, ResourceTypeType } from "../types/basicTypes";
 
 export const createIsolation = (isolation: IsolationResponse) => {
     const newIsolation: IsolationType = {
@@ -128,7 +128,7 @@ export const createAnimalInfo = (animalInfo: AnimalInfoResponse) => {
 
 
 export const createResourceType = (resourceType: ResourceTypeResponse) => {
-    const newResourceType = {
+    const newResourceType:ResourceTypeType = {
       id: resourceType.id,
       attributes: {
         name: resourceType.attributes.name,
@@ -144,3 +144,18 @@ export const createResourceType = (resourceType: ResourceTypeResponse) => {
     }
     return newResourceType
 }
+
+export const createResource = (resourceResponse: ResourceResponse) => {
+  const newResource:ResourceType = {
+    id: resourceResponse.id,
+    attributes: {
+      name: resourceResponse.attributes.name,
+      quantity: resourceResponse.attributes.quantity,
+      unit: resourceResponse.attributes.unit,
+      expirationDate: resourceResponse.attributes.expirationDate,
+      type: resourceResponse.attributes.resources_type.data.attributes.name,
+      subtype: resourceResponse.attributes.resource_subtype.data.attributes.name,
+      }
+    }
+    return newResource
+  }

@@ -1,25 +1,40 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
+import { getResource, getResourcesTypes } from "../../../utils/services/gets";
 import { useEffect, useState } from "react";
 
 import EditResourceModal from "../../../components/managementPanel/modals/editResourceModal";
-import { getResourcesTypes } from "../../../utils/services/gets";
-import { resourceDetailsData } from "../../../utils/mockups/adminMenu";
+import { ResourceType } from "../../../utils/types/basicTypes";
+import { useParams } from "react-router";
 
 const ResourceDetails = () => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
+  const {id} = useParams();
   const [resourcesTypes, setResourcesTypes] = useState([]);
+  const [resourceDetailsData, setResourceDetailsData] = useState<ResourceType | null>();
+
+  
 
   useEffect(() => {
+    if(id){
       getResourcesTypes().then((res) => {
         if (res) {
           setResourcesTypes(res);
         }})
-  }, []);
+      getResource(+id).then((res) => {
+        if (res) {
+          setResourceDetailsData(res);
+        }
+      })
+    }
+      
+  }, [id]);
 
   return (
     <>
-      <Typography
+    {!resourceDetailsData ? <>Loading...</> : 
+    <>
+    <Typography
         variant="h4"
         fontWeight={600}
         color={theme.palette.text.primary}
@@ -44,7 +59,7 @@ const ResourceDetails = () => {
             fontWeight={600}
           >
             Nazwa zasobu
-            <Typography variant="body1"> {resourceDetailsData.name}</Typography>
+            <Typography variant="body1"> {resourceDetailsData.attributes.name}</Typography>
           </Typography>
           <Typography
             variant="subtitle1"
@@ -52,7 +67,7 @@ const ResourceDetails = () => {
             fontWeight={600}
           >
             Rodzaj zasobu
-            <Typography variant="body1"> {resourceDetailsData.type}</Typography>
+            <Typography variant="body1"> {resourceDetailsData.attributes.type}</Typography>
           </Typography>
           <Typography
             variant="subtitle1"
@@ -60,7 +75,7 @@ const ResourceDetails = () => {
             fontWeight={600}
           >
             Podkategoria
-            <Typography variant="body1"> {resourceDetailsData.subtype}</Typography>
+            <Typography variant="body1"> {resourceDetailsData.attributes.subtype}</Typography>
           </Typography>
           <Typography
             variant="subtitle1"
@@ -68,7 +83,7 @@ const ResourceDetails = () => {
             fontWeight={600}
           >
             Ilość
-            <Typography variant="body1"> {resourceDetailsData.quantity}</Typography>
+            <Typography variant="body1"> {resourceDetailsData.attributes.quantity}</Typography>
           </Typography>
           <Typography
             variant="subtitle1"
@@ -76,7 +91,7 @@ const ResourceDetails = () => {
             fontWeight={600}
           >
             Jednostka
-            <Typography variant="body1"> {resourceDetailsData.unit}</Typography>
+            <Typography variant="body1"> {resourceDetailsData.attributes.unit}</Typography>
           </Typography>
           <Typography
             variant="subtitle1"
@@ -84,7 +99,7 @@ const ResourceDetails = () => {
             fontWeight={600}
           >
             Data ważności
-            <Typography variant="body1"> {resourceDetailsData.expirationDate}</Typography>
+            <Typography variant="body1"> {resourceDetailsData.attributes.expirationDate}</Typography>
           </Typography>
           <Box>
             <Button variant="contained" onClick={() => setOpen(true)}>
@@ -94,6 +109,7 @@ const ResourceDetails = () => {
         </Box>
       </Box>
       <EditResourceModal open={open} setOpen={setOpen} data={resourceDetailsData}/>
+    </>}
     </>
   );
 };

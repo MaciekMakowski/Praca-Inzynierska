@@ -121,3 +121,19 @@ export type ResourceSubtypeResponse = {
     name: string;
   };
 };
+
+export type ResourceResponse = {
+  id: number;
+  attributes: {
+    name: string;
+    quantity: number;
+    unit:string;
+    expirationDate: string | null;
+    resources_type: {
+      data: ResourceTypeResponse;
+    };
+    resource_subtype: {
+      data: ResourceSubtypeResponse;
+    };
+  };
+};

@@ -13,17 +13,34 @@ import {
 } from "@mui/material";
 
 import ResourceListItem from "./resourceListItem";
+import { ResourceType } from "../../../utils/types/basicTypes";
+import { getResources } from "../../../utils/services/gets";
+import { paginationRangeValue } from "../../../utils/services/pagination";
+import { useEffect } from "react";
+import { useState } from "react";
 
-const ResourcesList = () => {
+type ResourcesListProps = {
+  refresh: boolean;
+}
+
+const ResourcesList = (props:ResourcesListProps) => {
   const theme = useTheme();
+  const [page, setPage] = useState(1);
+  const [pageCount, setPageCount] = useState(1);
+  const [resources, setResources] = useState<ResourceType[]>([]);
 
-  const returnItems = () => {
-    const items = [];
-    for (let i = 0; i < 20; i++)
-      items.push(<ResourceListItem key={i} color={i % 2 == 0} />);
-    return items;
+  const changePage = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
   };
 
+  useEffect(() => {
+    getResources(page, paginationRangeValue).then((res) => {
+      if (res) {
+        setResources(res.data);
+        setPageCount(res.meta.pageCount);
+      }
+    })
+  }, [props.refresh]);
   return (
     <Box
       sx={{
@@ -83,7 +100,8 @@ const ResourcesList = () => {
       <Box
         sx={{
           overflowX:'auto',
-          overflowY:'clip'
+          overflowY:'clip',
+          height:'100%'
         }}
       >
       <Grid width="100%" container spacing={0}
@@ -158,7 +176,11 @@ const ResourcesList = () => {
           overflowY:'auto',
         }}
       >
-        {returnItems()}
+        {resources.map((resource,i ) => {
+          return(
+            <ResourceListItem key={resource.id} color={ i % 2 === 0} resource={resource} />
+          )
+        })}
       </Box>
       </Box>
       <Box
@@ -168,7 +190,7 @@ const ResourcesList = () => {
         }}
       >
         <Typography variant="subtitle1" color={theme.palette.text.primary}>
-          <Pagination count={10} size="small" />
+          <Pagination count={pageCount} page={page} onChange={changePage} size="small" />
         </Typography>
       </Box>
     </Box>
