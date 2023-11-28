@@ -18,7 +18,9 @@ import {
 } from "../../../utils/functions/handlers";
 
 import { ErrorInput } from "../../../utils/types/errorInput";
+import { ResourceSubtypeType } from "../../../utils/types/basicTypes";
 import { createResourceType } from "../../../utils/services/posts";
+import { deleteResourceType } from "../../../utils/services/deletes";
 import { useState } from "react";
 import { validateDate } from "@mui/x-date-pickers/internals";
 import { validateForm } from "../../../utils/functions/validators";
@@ -33,6 +35,7 @@ const emptyResource = {
 
 type AddOrDelResourceTypeFormProps = {
   setRefresh: Dispatch<SetStateAction<boolean>>;
+  resourceTypes: ResourceSubtypeType[];
 };
 
 const AddOrDelResourceTypeForm = (props:AddOrDelResourceTypeFormProps) => {
@@ -55,6 +58,10 @@ const AddOrDelResourceTypeForm = (props:AddOrDelResourceTypeFormProps) => {
     handleSelectChange(e, setNewResource);
   };
 
+  const selectChangeType = (e: SelectChangeEvent) => {
+    setNewResource((prev) => ({...prev, id: parseInt(e.target.value as string)}))
+  }
+
   const sendForm = () => {
     validateForm(newResource.attributes, setErrorList).then((res) => {
       if (res) {
@@ -69,6 +76,16 @@ const AddOrDelResourceTypeForm = (props:AddOrDelResourceTypeFormProps) => {
         );
       }
     });
+  };
+
+  const deleteType = () => {
+    deleteResourceType(newResource.id).then((res) => {
+      if (res) {
+        props.setRefresh(true);
+        setNewResource(emptyResource);
+        setSelected(false);
+      }
+    })
   };
 
   return (
@@ -128,10 +145,12 @@ const AddOrDelResourceTypeForm = (props:AddOrDelResourceTypeFormProps) => {
               onChange={selectChange}
             >
               <MenuItem value={-1}>Brak</MenuItem>
-              <MenuItem value={1}>Jedzenie</MenuItem>
-              <MenuItem value={2}>Higiena</MenuItem>
-              <MenuItem value={3}>Zabawka</MenuItem>
-              <MenuItem value={4}>Koce</MenuItem>
+              {props.resourceTypes.map((type) => {
+                return(
+                  <MenuItem key={type.id} value={type.id}>{type.attributes.name}</MenuItem>
+                )
+              })}
+              
             </Select>
           </FormControl>
           <Button
@@ -154,17 +173,16 @@ const AddOrDelResourceTypeForm = (props:AddOrDelResourceTypeFormProps) => {
               sx={{
                 color: theme.palette.text.primary,
               }}
-              defaultValue={0}
-              // value={newAnimal.species}
-              // onChange={handleSelectChange}
+              onChange={selectChangeType}
             >
-              <MenuItem value={1}>Jedzenie</MenuItem>
-              <MenuItem value={2}>Higiena</MenuItem>
-              <MenuItem value={3}>Zabawka</MenuItem>
-              <MenuItem value={4}>Koce</MenuItem>
+              {props.resourceTypes.map((type) => {
+                return(
+                  <MenuItem key={type.id} value={type.id}>{type.attributes.name}</MenuItem>
+                )
+              })}
             </Select>
           </FormControl>
-          <Button variant="contained" color="warning">
+          <Button variant="contained" color="warning" onClick={() => deleteType()}>
             Usuń
           </Button>
         </>

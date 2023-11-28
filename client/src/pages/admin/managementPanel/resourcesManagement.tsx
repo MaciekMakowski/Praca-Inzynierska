@@ -56,7 +56,7 @@ const ResourcesManagement = () => {
           }}
         >
           <ResourcesTypeList resourceTypes={resourcesTypes}/>
-          <AddOrDelResourceTypeForm setRefresh={setRefresh}/>
+          <AddOrDelResourceTypeForm setRefresh={setRefresh} resourceTypes={resourcesTypes}/>
         </Box>
         <ResourcesList />
       </Box>
