@@ -3,14 +3,15 @@ import {
   Modal,
   useTheme,
 } from "@mui/material";
+import { ResourceType, ResourceTypeType } from "../../../utils/types/basicTypes";
 
 import AddResourceForm from "../forms/addResourceForm";
-import { ResourceType } from "../../../utils/types/basicTypes";
 
 type EditResourceModalProps = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   data: ResourceType;
+  resourceTypes: ResourceTypeType[];
 };
 
 const EditResourceModal = (props:EditResourceModalProps) => {
@@ -45,7 +46,7 @@ const EditResourceModal = (props:EditResourceModalProps) => {
             gap: "1rem",
           }}
         >
-          <AddResourceForm data={props.data} />
+          <AddResourceForm data={props.data} resourceTypes={props.resourceTypes}/>
           </Box>
       </Box>
     </Modal>
