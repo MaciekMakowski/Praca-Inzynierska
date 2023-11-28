@@ -45,8 +45,8 @@ const AddResourceForm = (props: AddResourceFormProps) => {
     id: 0,
     attributes: {
       name: "",
-      type: null,
-      subtype: null,
+      type: "",
+      subtype: "",
       quantity: 0,
       unit: "",
       expirationDate: null,
@@ -59,19 +59,21 @@ const AddResourceForm = (props: AddResourceFormProps) => {
 
   const selectChange = (e: SelectChangeEvent) => {
     handleSelectChange(e, setNewResource);
-  }
+  };
 
   const selectChangeType = (e: SelectChangeEvent) => {
-    const resourceType = props.resourceTypes.find((resType) => resType.attributes.name === e.target.value)
-    if(resourceType)
-    setNewResource({
-      ...newResource,
-      attributes:{
-        ...newResource.attributes,
-        [e.target.name]: resourceType
-      }
-    })
-  }
+    const resourceType = props.resourceTypes.find(
+      (resType) => resType.attributes.name === e.target.value
+    );
+    if (resourceType)
+      setNewResource({
+        ...newResource,
+        attributes: {
+          ...newResource.attributes,
+          [e.target.name]: resourceType,
+        },
+      });
+  };
   const textChange = (event: ChangeEvent<HTMLInputElement>) => {
     handleTextChange(event, setNewResource);
   };
@@ -181,13 +183,16 @@ const AddResourceForm = (props: AddResourceFormProps) => {
           defaultValue=""
           onChange={selectChangeType}
         >
-          {props.resourceTypes
-            .find((item) => item.id === newResource.attributes.type?.id)
-            ?.attributes.subtypes.map((subtype) => (
-              <MenuItem key={subtype.id} value={subtype.attributes.name}>
-                {subtype.attributes.name}
-              </MenuItem>
-            ))}
+          {props.resourceTypes &&
+            props.resourceTypes
+              .find(
+                (item) => item.attributes.name === newResource.attributes.type
+              )
+              ?.attributes.subtypes?.map((subtype) => (
+                <MenuItem key={subtype.id} value={subtype.attributes.name}>
+                  {subtype.attributes.name}
+                </MenuItem>
+              ))}
         </Select>
       </FormControl>
       {checked && (
