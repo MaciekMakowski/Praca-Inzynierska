@@ -46,7 +46,7 @@ const ResourcesManagement = () => {
             gap: "1rem",
           }}
         >
-          <AddResourceForm resourceTypes={resourcesTypes}/>
+          <AddResourceForm resourceTypes={resourcesTypes} title="Dodaj zasób"/>
         </Box>
         <Box
           sx={{

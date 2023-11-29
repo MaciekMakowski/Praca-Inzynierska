@@ -46,7 +46,7 @@ const EditResourceModal = (props:EditResourceModalProps) => {
             gap: "1rem",
           }}
         >
-          <AddResourceForm data={props.data} resourceTypes={props.resourceTypes}/>
+          <AddResourceForm data={props.data} resourceTypes={props.resourceTypes} title="Edytuj zasób"/>
           </Box>
       </Box>
     </Modal>

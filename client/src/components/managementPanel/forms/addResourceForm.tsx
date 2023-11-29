@@ -34,6 +34,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { handleChangeDate } from "../../../utils/functions/handlers";
 
 type AddResourceFormProps = {
+  title: string;
   data?: ResourceType;
   resourceTypes: ResourceTypeType[];
 };
@@ -110,7 +111,7 @@ const AddResourceForm = (props: AddResourceFormProps) => {
       }}
     >
       <Typography variant="h5" color={theme.palette.text.primary}>
-        Dodaj zasób
+        {props.title}
       </Typography>
       <TextField
         variant="outlined"
@@ -183,7 +184,8 @@ const AddResourceForm = (props: AddResourceFormProps) => {
           defaultValue=""
           onChange={selectChangeType}
         >
-          {props.resourceTypes &&
+          {newResource.attributes.type.id != 0 ?
+          props.resourceTypes &&
             props.resourceTypes
               .find(
                 (item) => item.id === newResource.attributes.type.id
@@ -192,7 +194,11 @@ const AddResourceForm = (props: AddResourceFormProps) => {
                 <MenuItem key={subtype.id} value={subtype.attributes.name}>
                   {subtype.attributes.name}
                 </MenuItem>
-              ))}
+              )):
+              <MenuItem value="" disabled>
+                Wybierz rodzaj
+              </MenuItem>
+            }
         </Select>
       </FormControl>
       {checked && (
@@ -202,8 +208,7 @@ const AddResourceForm = (props: AddResourceFormProps) => {
               sx={{
                 flexGrow: 1,
               }}
-              format="DD-MM-YYYY"
-              value={dayjs(newResource.attributes.expirationDate)}
+              format="YYYY-MM-DD"
               label="Data przydatności"
               onChange={(value: Dayjs | null) => dateChange(value)}
             />
@@ -222,7 +227,7 @@ const AddResourceForm = (props: AddResourceFormProps) => {
         </Typography>
       </Box>
       <Button variant="contained" color="primary">
-        Dodaj
+        {props.title}
       </Button>
     </Box>
   );
