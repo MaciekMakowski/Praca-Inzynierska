@@ -69,5 +69,21 @@ module.exports = createCoreController(
         return { error: "Wystąpił błąd podczas dodawania izolacji." };
       }
     },
-  })
+    async delete(ctx) {
+      const resourceTypeId = ctx.request.params;
+      const date = new Date();
+      try{
+        const resourceType = strapi.entityService.findOne("api::resources-type.resources-type", resourceTypeId.id, {populate:['resource_subtypes']} );
+        (await resourceType).resource_subtypes.map(async subtype => {
+          await strapi.entityService.delete("api::resource-subtype.resource-subtype", subtype.id)
+        })
+        await strapi.entityService.delete("api::resources-type.resources-type", resourceTypeId.id);
+        return true;
+  
+      }catch(error){
+        ctx.response.status = 500;
+        return { error: "Wystąpił błąd podczas usuwania typu zasobu." };
+      }
+    }
+  }),
 );
