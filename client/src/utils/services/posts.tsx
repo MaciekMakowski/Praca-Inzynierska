@@ -5,7 +5,7 @@ import {
   PersonType,
   PetDiseaseType,
   ResourceSubtypeType,
-  ResourceTypeType,
+  ResourceType,
 } from "../types/basicTypes";
 
 import { APIurl } from "./url";
@@ -307,6 +307,38 @@ export const createResourceType = async (resource: ResourceSubtypeType, category
       data: {
         name: resource.attributes.name,
         categoryId: category,
+      },
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    }
+  );
+  if (response.status === 200) {
+    return true;
+  } else {
+    return false;
+  }
+  }catch(error){
+    console.log(error)
+  }
+}
+
+
+export const createResource = async (resource: ResourceType) => {
+  const authToken = Cookies.get("token");
+  try{
+    const response = await axios.post(
+    `${APIurl}resources`,
+    {
+      data: {
+        name: resource.attributes.name,
+        type: resource.attributes.type.id,
+        subtype: resource.attributes.subtype && resource.attributes.subtype.id,
+        quantity: resource.attributes.quantity,
+        unit: resource.attributes.unit,
+        expirationDate: resource.attributes.expirationDate,
       },
     },
     {

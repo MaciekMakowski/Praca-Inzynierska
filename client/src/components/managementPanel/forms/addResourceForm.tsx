@@ -30,8 +30,11 @@ import {
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { ErrorInput } from "../../../utils/types/errorInput";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { createResource } from "../../../utils/services/posts";
 import { handleChangeDate } from "../../../utils/functions/handlers";
+import { validateForm } from "../../../utils/functions/validators";
 
 type AddResourceFormProps = {
   title: string;
@@ -39,18 +42,41 @@ type AddResourceFormProps = {
   resourceTypes: ResourceTypeType[];
 };
 
+const emptyResource: ResourceType = {
+  id: 0,
+  attributes: {
+    name: "",
+    type: { id: 0, attributes: { name: "", subtypes: [] } },
+    subtype: { id: 0, attributes: { name: "" } },
+    quantity: 0,
+    unit: "",
+    expirationDate: null,
+  },
+}
+
 const AddResourceForm = (props: AddResourceFormProps) => {
   const theme = useTheme();
   const [checked, setChecked] = useState(false);
-  const [newResource, setNewResource] = useState<ResourceType>({
-    id: 0,
-    attributes: {
-      name: "",
-      type: { id: 0, attributes: { name: "", subtypes: [] } },
-      subtype: "",
-      quantity: 0,
-      unit: "",
-      expirationDate: null,
+  const [newResource, setNewResource] = useState<ResourceType>(emptyResource);
+  
+  const [ErrorList, setErrorList] = useState<ErrorInput>({
+    name: {
+      status: false,
+    },
+    type: {
+      status: false,
+    },
+    subtype: {
+      status: false,
+    },
+    quantity: {
+      status: false,
+    },
+    unit: {
+      status: false,
+    },
+    expirationDate: {
+      status: false,
     },
   });
 
@@ -87,6 +113,16 @@ const AddResourceForm = (props: AddResourceFormProps) => {
       "expirationDate"
     );
   };
+
+  const sendForm = () => {
+    validateForm(newResource.attributes, setErrorList).then((res) => {
+      if(res){
+        createResource(newResource).then((res) => {
+          setNewResource(emptyResource)
+        })
+      }
+    })
+  }
 
   useEffect(() => {
     if (!props.data) return;
