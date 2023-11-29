@@ -153,7 +153,7 @@ export const createResource = (resourceResponse: ResourceResponse) => {
       quantity: resourceResponse.attributes.quantity,
       unit: resourceResponse.attributes.unit,
       expirationDate: resourceResponse.attributes.expirationDate,
-      type: resourceResponse.attributes.resources_type.data.attributes.name,
+      type: createResourceType(resourceResponse.attributes.resources_type.data),
       subtype: resourceResponse.attributes.resource_subtype.data.attributes.name,
       }
     }

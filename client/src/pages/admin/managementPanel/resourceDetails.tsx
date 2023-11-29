@@ -67,7 +67,7 @@ const ResourceDetails = () => {
             fontWeight={600}
           >
             Rodzaj zasobu
-            <Typography variant="body1"> {resourceDetailsData.attributes.type}</Typography>
+            <Typography variant="body1"> {resourceDetailsData.attributes.type.attributes.name}</Typography>
           </Typography>
           <Typography
             variant="subtitle1"

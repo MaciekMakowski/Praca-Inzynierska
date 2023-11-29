@@ -59,7 +59,7 @@ const ResourceListItem = (props: ResourceListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          {props.resource.attributes.type}
+          {props.resource.attributes.type.attributes.name}
         </Typography>
       </Grid>
       <Grid item xs={1.5}>

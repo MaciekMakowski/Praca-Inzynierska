@@ -97,7 +97,7 @@ export type ResourceType = {
   id: number;
   attributes: {
     name: string;
-    type:string;
+    type:ResourceTypeType ;
     subtype: string;
     quantity: number;
     unit: string;

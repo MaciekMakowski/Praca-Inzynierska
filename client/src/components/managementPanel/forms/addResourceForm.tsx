@@ -45,7 +45,7 @@ const AddResourceForm = (props: AddResourceFormProps) => {
     id: 0,
     attributes: {
       name: "",
-      type: "",
+      type: { id: 0, attributes: { name: "", subtypes: [] } },
       subtype: "",
       quantity: 0,
       unit: "",
@@ -186,7 +186,7 @@ const AddResourceForm = (props: AddResourceFormProps) => {
           {props.resourceTypes &&
             props.resourceTypes
               .find(
-                (item) => item.attributes.name === newResource.attributes.type
+                (item) => item.id === newResource.attributes.type.id
               )
               ?.attributes.subtypes?.map((subtype) => (
                 <MenuItem key={subtype.id} value={subtype.attributes.name}>
