@@ -121,18 +121,6 @@ export const diseaseStatusList = [
   },
 ];
 
-export const resourceDetailsData: ResourceType = {
-  id: 1,
-  attributes: {
-    name: "Whiskas",
-    quantity: 10,
-    subtype: "Karma sucha dla kota",
-    type: "Jedzenie",
-    unit: "Kilogramy",
-    expirationDate: "2021-10-10",
-  },
-};
-
 export const puszekData: AnimalType = {
   id: 23,
   attributes: {
