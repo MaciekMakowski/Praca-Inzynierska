@@ -160,7 +160,7 @@ const AddResourceForm = (props: AddResourceFormProps) => {
       <TextField
         variant="outlined"
         label="Ilość"
-        name="findPlace"
+        name="quantity"
         color="primary"
         onChange={textChange}
         value={newResource.attributes.quantity}
@@ -262,7 +262,7 @@ const AddResourceForm = (props: AddResourceFormProps) => {
           Posiada datę przydatności
         </Typography>
       </Box>
-      <Button variant="contained" color="primary">
+      <Button variant="contained" color="primary" onClick={() => sendForm()}>
         {props.title}
       </Button>
     </Box>
