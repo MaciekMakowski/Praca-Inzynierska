@@ -1,11 +1,11 @@
-import { AnimalType, DiseaseType, Image } from "../types/basicTypes";
+import { AnimalType, DiseaseType, Image, ResourceSubtypeType } from "../types/basicTypes";
 import { setAsError, unsetAsError } from "./setters";
 
 import { ErrorInput } from "../types/errorInput";
 import dayjs from "dayjs";
 
 interface BaseAttributes {
-  [key: string]: string | number | boolean | AnimalType | DiseaseType | Image[] | null;
+  [key: string]: string | number | boolean | AnimalType | DiseaseType | Image[] | ResourceSubtypeType | null;
 }
 
 interface FormAttributes<T extends BaseAttributes> {

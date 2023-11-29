@@ -154,7 +154,7 @@ export const createResource = (resourceResponse: ResourceResponse) => {
       unit: resourceResponse.attributes.unit,
       expirationDate: resourceResponse.attributes.expirationDate,
       type: createResourceType(resourceResponse.attributes.resources_type.data),
-      subtype: resourceResponse.attributes.resource_subtype.data.attributes.name,
+      subtype: resourceResponse.attributes.resource_subtype.data,
       }
     }
     return newResource

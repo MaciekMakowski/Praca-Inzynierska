@@ -69,14 +69,16 @@ const ResourceDetails = () => {
             Rodzaj zasobu
             <Typography variant="body1"> {resourceDetailsData.attributes.type.attributes.name}</Typography>
           </Typography>
-          <Typography
-            variant="subtitle1"
-            color={theme.palette.text.primary}
-            fontWeight={600}
-          >
-            Podkategoria
-            <Typography variant="body1"> {resourceDetailsData.attributes.subtype}</Typography>
-          </Typography>
+          {resourceDetailsData.attributes.subtype ? (
+              <Typography
+              variant="subtitle1"
+              color={theme.palette.text.primary}
+              fontWeight={600}
+            >
+              Podkategoria
+              <Typography variant="body1"> {resourceDetailsData.attributes.subtype.attributes.name}</Typography>
+            </Typography> ): null
+          }
           <Typography
             variant="subtitle1"
             color={theme.palette.text.primary}
