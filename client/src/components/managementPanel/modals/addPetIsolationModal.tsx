@@ -167,7 +167,7 @@ const AddIsolationModal = (props: EditPetModalProps) => {
           </DemoContainer>
         </LocalizationProvider>
 
-        <Button variant="contained" onClick={() => sendForm()}>Zabisz</Button>
+        <Button variant="contained" onClick={() => sendForm()}>Zapisz</Button>
       </Box>
     </Modal>
   );

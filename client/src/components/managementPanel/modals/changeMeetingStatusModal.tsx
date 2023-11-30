@@ -62,7 +62,7 @@ const ChangeMeetingStatusModal = (props: any) => {
           <MenuItem value={"val2"}>Zakończona</MenuItem>
           <MenuItem value={"val3"}>Anulowana</MenuItem>
         </Select>
-        <Button variant="contained">Zabisz</Button>
+        <Button variant="contained">Zapisz</Button>
       </Box>
     </Modal>
   );

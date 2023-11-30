@@ -174,7 +174,7 @@ const EditPetDiseaseModal = (props: EditPetDiseaseModalProps) => {
           </Select>
         </FormControl>
 
-        <Button variant="contained" onClick={() => sendForm()}>Zabisz</Button>
+        <Button variant="contained" onClick={() => sendForm()}>Zapisz</Button>
       </Box>
     </Modal>
   );

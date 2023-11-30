@@ -96,7 +96,7 @@ const EditPetDescModal = (props:EditPetModalProps) => {
 
            </TextField>
           
-          <Button variant="contained" onClick={() => sendForm()}>Zabisz</Button>
+          <Button variant="contained" onClick={() => sendForm()}>Zapisz</Button>
         </Box>
       </Modal>
     );

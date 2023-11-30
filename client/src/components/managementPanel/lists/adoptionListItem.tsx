@@ -104,7 +104,7 @@ const AdoptionListItem = (props: AdoptionListItemProps) => {
               ? theme.palette.text.primary
               : theme.palette.text.secondary,
           }}
-          onClick={() => navigateTo(navigate,`/admin/management/adoptions/${props.adoption.id}}`)}
+          onClick={() => navigateTo(navigate,`/admin/management/adoptions/${props.adoption.id}`)}
         >
           Przejdź
         </Button>
