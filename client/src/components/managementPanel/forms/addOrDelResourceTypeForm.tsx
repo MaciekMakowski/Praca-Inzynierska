@@ -18,11 +18,11 @@ import {
 } from "../../../utils/functions/handlers";
 
 import { ErrorInput } from "../../../utils/types/errorInput";
-import { ResourceSubtypeType } from "../../../utils/types/basicTypes";
+import { ResourceTypeType } from "../../../utils/types/basicTypes";
 import { createResourceType } from "../../../utils/services/posts";
+import { deleteResourceSubtype } from "../../../utils/services/deletes";
 import { deleteResourceType } from "../../../utils/services/deletes";
 import { useState } from "react";
-import { validateDate } from "@mui/x-date-pickers/internals";
 import { validateForm } from "../../../utils/functions/validators";
 
 const emptyResource = {
@@ -35,13 +35,14 @@ const emptyResource = {
 
 type AddOrDelResourceTypeFormProps = {
   setRefresh: Dispatch<SetStateAction<boolean>>;
-  resourceTypes: ResourceSubtypeType[];
+  resourceTypes: ResourceTypeType[];
 };
 
-const AddOrDelResourceTypeForm = (props:AddOrDelResourceTypeFormProps) => {
+const AddOrDelResourceTypeForm = (props: AddOrDelResourceTypeFormProps) => {
   const theme = useTheme();
-  const [selected, setSelected] = useState(false);
+  const [selected, setSelected] = useState<"add" | "type" | "subtype">("add");
   const [newResource, setNewResource] = useState(emptyResource);
+  const [subtype, setSubtype] = useState<number>(0);
   const [errorList, setErrorList] = useState<ErrorInput>({
     name: {
       status: false,
@@ -59,8 +60,15 @@ const AddOrDelResourceTypeForm = (props:AddOrDelResourceTypeFormProps) => {
   };
 
   const selectChangeType = (e: SelectChangeEvent) => {
-    setNewResource((prev) => ({...prev, id: parseInt(e.target.value as string)}))
-  }
+    setNewResource((prev) => ({
+      ...prev,
+      id: parseInt(e.target.value),
+    }));
+  };
+  const selectChangeSubType = (e: SelectChangeEvent) => {
+    setSubtype(parseInt(e.target.value));
+  };
+  
 
   const sendForm = () => {
     validateForm(newResource.attributes, setErrorList).then((res) => {
@@ -70,7 +78,7 @@ const AddOrDelResourceTypeForm = (props:AddOrDelResourceTypeFormProps) => {
             if (res) {
               props.setRefresh(true);
               setNewResource(emptyResource);
-              setSelected(false);
+              setSelected("add");
             }
           }
         );
@@ -83,9 +91,18 @@ const AddOrDelResourceTypeForm = (props:AddOrDelResourceTypeFormProps) => {
       if (res) {
         props.setRefresh(true);
         setNewResource(emptyResource);
-        setSelected(false);
+        setSelected("add");
       }
-    })
+    });
+  };
+  const deleteSubtype = () => {
+    deleteResourceSubtype(subtype).then((res) => {
+      if (res) {
+        props.setRefresh(true);
+        setNewResource(emptyResource);
+        setSelected("add");
+      }
+    });
   };
 
   return (
@@ -114,14 +131,17 @@ const AddOrDelResourceTypeForm = (props:AddOrDelResourceTypeFormProps) => {
           gap: "1rem",
         }}
       >
-        <Button variant="text" onClick={() => setSelected(false)}>
+        <Button variant="text" onClick={() => setSelected("add")}>
           Dodaj
         </Button>
-        <Button variant="text" onClick={() => setSelected(true)}>
-          Usuń
+        <Button variant="text" onClick={() => setSelected("type")}>
+          Rodzaje
+        </Button>
+        <Button variant="text" onClick={() => setSelected("subtype")}>
+          Kategorie
         </Button>
       </Box>
-      {!selected && (
+      {selected === "add" && (
         <>
           <TextField
             variant="outlined"
@@ -141,16 +161,17 @@ const AddOrDelResourceTypeForm = (props:AddOrDelResourceTypeFormProps) => {
               sx={{
                 color: theme.palette.text.primary,
               }}
-              defaultValue={'-1'}
+              defaultValue={"-1"}
               onChange={selectChange}
             >
               <MenuItem value={-1}>Brak</MenuItem>
               {props.resourceTypes.map((type) => {
-                return(
-                  <MenuItem key={type.id} value={type.id}>{type.attributes.name}</MenuItem>
-                )
+                return (
+                  <MenuItem key={type.id} value={type.id}>
+                    {type.attributes.name}
+                  </MenuItem>
+                );
               })}
-              
             </Select>
           </FormControl>
           <Button
@@ -162,7 +183,7 @@ const AddOrDelResourceTypeForm = (props:AddOrDelResourceTypeFormProps) => {
           </Button>
         </>
       )}
-      {selected && (
+      {selected === "type" && (
         <>
           <FormControl>
             <InputLabel>Rodzaj</InputLabel>
@@ -174,15 +195,76 @@ const AddOrDelResourceTypeForm = (props:AddOrDelResourceTypeFormProps) => {
                 color: theme.palette.text.primary,
               }}
               onChange={selectChangeType}
+              defaultValue=""
             >
               {props.resourceTypes.map((type) => {
-                return(
-                  <MenuItem key={type.id} value={type.id}>{type.attributes.name}</MenuItem>
-                )
+                return (
+                  <MenuItem key={type.id} value={type.id}>
+                    {type.attributes.name}
+                  </MenuItem>
+                );
               })}
             </Select>
           </FormControl>
-          <Button variant="contained" color="warning" onClick={() => deleteType()}>
+          <Button
+            variant="contained"
+            color="warning"
+            onClick={() => deleteType()}
+          >
+            Usuń
+          </Button>
+        </>
+      )}
+      {selected === "subtype" && (
+        <>
+          <FormControl>
+            <InputLabel>Rodzaj</InputLabel>
+            <Select
+              label="Rodzaj"
+              name="type"
+              variant="outlined"
+              sx={{
+                color: theme.palette.text.primary,
+              }}
+              onChange={selectChangeType}
+              defaultValue=""
+            >
+              {props.resourceTypes.map((type) => {
+                return (
+                  <MenuItem key={type.id} value={type.id}>
+                    {type.attributes.name}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+          <FormControl>
+            <InputLabel>Kategoria</InputLabel>
+            <Select
+              label="Rodzaj"
+              name="category"
+              variant="outlined"
+              sx={{
+                color: theme.palette.text.primary,
+              }}
+              onChange={selectChangeSubType}
+              defaultValue=""
+            >
+              {props.resourceTypes &&
+                props.resourceTypes
+                  .find((type) => type.id === newResource.id)
+                  ?.attributes.subtypes?.map((subtype) => (
+                    <MenuItem key={subtype.id} value={subtype.id}>
+                      {subtype.attributes.name}
+                    </MenuItem>
+                  ))}
+            </Select>
+          </FormControl>
+          <Button
+            variant="contained"
+            color="warning"
+            onClick={() => deleteSubtype()}
+          >
             Usuń
           </Button>
         </>
