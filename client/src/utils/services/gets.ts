@@ -403,3 +403,23 @@ export const getResource = async (id:number) => {
     console.log(err)
   }
 };
+
+
+export const getAdoption = async (id: string) => {
+  const authToken = Cookies.get("token");
+  try{
+    const response = await axios.get(`${APIurl}adoptions/${id}?populate=deep`, {
+      headers: {
+        authorization: `Bearer ${authToken}`,
+      },
+    });
+    if (response.status === 200) {
+      const data = createAdoption(response.data.data)
+      return data;
+    }else{
+      return false;
+    }
+  }catch(err){
+    console.log(err)
+  }
+}

@@ -120,7 +120,7 @@ const AdminRoutes = () => {
                   element={<AdoptionsManagement />}
                 />
                 <Route
-                  path="/management/adoptions/:id"
+                  path="/management/adoptions/:adoptionId"
                   element={<AdoptionDetails />}
                 />
 
