@@ -33,6 +33,7 @@ import {
 } from "../../../utils/mockups/selects";
 import { createResource } from "../../../utils/services/posts";
 import { handleChangeDate } from "../../../utils/functions/handlers";
+import { updateResource } from "../../../utils/services/puts";
 import { validateForm } from "../../../utils/functions/validators";
 
 type AddResourceFormProps = {
@@ -40,6 +41,8 @@ type AddResourceFormProps = {
   data?: ResourceType;
   resourceTypes: ResourceTypeType[];
   setRefresh?: Dispatch<SetStateAction<boolean>>;
+  setOpen?: Dispatch<SetStateAction<boolean>>;
+  isNew: boolean;
 };
 
 const emptyResource: ResourceType = {
@@ -102,7 +105,7 @@ const AddResourceForm = (props: AddResourceFormProps) => {
       });
   };
     const selectChangeSubtype = (e: SelectChangeEvent) => {
-    const subtype = newResource.attributes.type.attributes.subtypes?.find((subtype) => subtype.id === +e.target.value)
+    const subtype = newResource.attributes.type.attributes.subtypes?.find((subtype) => subtype.attributes.name === e.target.value)
     if (subtype)
       setNewResource({
         ...newResource,
@@ -119,14 +122,15 @@ const AddResourceForm = (props: AddResourceFormProps) => {
   const dateChange = (value: Dayjs | null) => {
     if (value === null) return;
     handleChangeDate(
-      value.format("DD-MM-YYYY"),
+      value.format("YYYY-MM-DD"),
       setNewResource,
       "expirationDate"
     );
   };
 
   const sendForm = () => {
-    validateForm(newResource.attributes, setErrorList).then((res) => {
+    if(props.isNew){
+      validateForm(newResource.attributes, setErrorList).then((res) => {
       if(res){
         createResource(newResource).then((res) => {
           if(res)
@@ -136,6 +140,19 @@ const AddResourceForm = (props: AddResourceFormProps) => {
         })
       }
     })
+    }else{
+      validateForm(newResource.attributes, setErrorList).then((res) => {
+      if(res){
+        updateResource(newResource).then((res) => {
+          if(res)
+          props.setRefresh && props.setRefresh(true)
+          props.setOpen && props.setOpen(false)
+          
+        })
+      }
+    })
+    }
+    
   }
 
   useEffect(() => {
@@ -214,6 +231,7 @@ const AddResourceForm = (props: AddResourceFormProps) => {
           sx={{
             color: theme.palette.text.primary,
           }}
+          value={newResource.attributes.type.attributes.name}
           defaultValue=""
           onChange={selectChangeType}
         >
@@ -235,6 +253,7 @@ const AddResourceForm = (props: AddResourceFormProps) => {
           sx={{
             color: theme.palette.text.primary,
           }}
+          value={newResource.attributes.subtype?.attributes.name}
           defaultValue=""
           onChange={selectChangeSubtype}
         >
@@ -245,7 +264,7 @@ const AddResourceForm = (props: AddResourceFormProps) => {
                 (item) => item.id === newResource.attributes.type.id
               )
               ?.attributes.subtypes?.map((subtype) => (
-                <MenuItem key={subtype.id} value={subtype.id}>
+                <MenuItem key={subtype.id} value={subtype.attributes.name}>
                   {subtype.attributes.name}
                 </MenuItem>
               )):

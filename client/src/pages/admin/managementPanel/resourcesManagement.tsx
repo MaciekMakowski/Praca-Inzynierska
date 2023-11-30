@@ -46,7 +46,7 @@ const ResourcesManagement = () => {
             gap: "1rem",
           }}
         >
-          <AddResourceForm resourceTypes={resourcesTypes} title="Dodaj zasób" setRefresh={setRefresh}/>
+          <AddResourceForm resourceTypes={resourcesTypes} title="Dodaj zasób" setRefresh={setRefresh} isNew/>
         </Box>
         <Box
           sx={{

@@ -188,7 +188,7 @@ const IsolationList = () => {
             display: "flex",
             flexDirection: "column",
             gap: "1rem",
-            height: { xs: "60vh", md: "100%", lg: "100%" },
+            height: { xs: "60vh", md: "100%", lg: "95%" },
             width: { xs: "800px", md: "100%" },
             overflowY: "auto",
           }}
