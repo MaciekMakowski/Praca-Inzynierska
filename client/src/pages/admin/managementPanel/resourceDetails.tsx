@@ -12,6 +12,7 @@ const ResourceDetails = () => {
   const {id} = useParams();
   const [resourcesTypes, setResourcesTypes] = useState([]);
   const [resourceDetailsData, setResourceDetailsData] = useState<ResourceType | null>();
+  const [refresh, setRefresh] = useState(false);
 
   
 
@@ -28,7 +29,7 @@ const ResourceDetails = () => {
       })
     }
       
-  }, [id]);
+  }, [id, refresh]);
 
   return (
     <>
@@ -110,7 +111,7 @@ const ResourceDetails = () => {
           </Box>
         </Box>
       </Box>
-      <EditResourceModal open={open} setOpen={setOpen} data={resourceDetailsData} resourceTypes={resourcesTypes}/>
+      <EditResourceModal open={open} setOpen={setOpen} data={resourceDetailsData} resourceTypes={resourcesTypes} setRefresh={setRefresh}/>
     </>}
     </>
   );

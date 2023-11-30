@@ -29,7 +29,7 @@ const emptyResource = {
   id: 0,
   attributes: {
     name: "",
-    category: 0,
+    category: -1,
   },
 };
 
@@ -76,9 +76,9 @@ const AddOrDelResourceTypeForm = (props: AddOrDelResourceTypeFormProps) => {
         createResourceType(newResource, newResource.attributes.category).then(
           (res) => {
             if (res) {
-              props.setRefresh(true);
               setNewResource(emptyResource);
               setSelected("add");
+              props.setRefresh(true);
             }
           }
         );
@@ -148,6 +148,7 @@ const AddOrDelResourceTypeForm = (props: AddOrDelResourceTypeFormProps) => {
             label="Nazwa"
             name="name"
             color="primary"
+            value={newResource.attributes.name}
             onChange={textChange}
             error={errorList.name.status}
           />
@@ -162,6 +163,7 @@ const AddOrDelResourceTypeForm = (props: AddOrDelResourceTypeFormProps) => {
                 color: theme.palette.text.primary,
               }}
               defaultValue={"-1"}
+              value={newResource.attributes.category.toString()}
               onChange={selectChange}
             >
               <MenuItem value={-1}>Brak</MenuItem>

@@ -328,14 +328,15 @@ export const createResourceType = async (resource: ResourceSubtypeType, category
 
 export const createResource = async (resource: ResourceType) => {
   const authToken = Cookies.get("token");
+  console.log(resource)
   try{
     const response = await axios.post(
     `${APIurl}resources`,
     {
       data: {
         name: resource.attributes.name,
-        type: resource.attributes.type.id,
-        subtype: resource.attributes.subtype && resource.attributes.subtype.id,
+        resources_type: resource.attributes.type.id,
+        resource_subtype: resource.attributes.subtype && resource.attributes.subtype.id,
         quantity: resource.attributes.quantity,
         unit: resource.attributes.unit,
         expirationDate: resource.attributes.expirationDate,
@@ -347,6 +348,7 @@ export const createResource = async (resource: ResourceType) => {
       },
     }
   );
+  console.log(response)
   if (response.status === 200) {
     return true;
   } else {

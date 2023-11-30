@@ -12,6 +12,7 @@ type EditResourceModalProps = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   data: ResourceType;
   resourceTypes: ResourceTypeType[];
+  setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const EditResourceModal = (props:EditResourceModalProps) => {

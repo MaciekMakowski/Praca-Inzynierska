@@ -11,12 +11,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import {
-  CategoryList,
-  SubcategoryList,
-  UnitList,
-} from "../../../utils/mockups/selects";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, Dispatch, useEffect, useState } from "react";
 import {
   ResourceType,
   ResourceTypeType,
@@ -32,6 +27,10 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { ErrorInput } from "../../../utils/types/errorInput";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { SetStateAction } from "react";
+import {
+  UnitList,
+} from "../../../utils/mockups/selects";
 import { createResource } from "../../../utils/services/posts";
 import { handleChangeDate } from "../../../utils/functions/handlers";
 import { validateForm } from "../../../utils/functions/validators";
@@ -40,6 +39,7 @@ type AddResourceFormProps = {
   title: string;
   data?: ResourceType;
   resourceTypes: ResourceTypeType[];
+  setRefresh?: Dispatch<SetStateAction<boolean>>;
 };
 
 const emptyResource: ResourceType = {
@@ -101,6 +101,17 @@ const AddResourceForm = (props: AddResourceFormProps) => {
         },
       });
   };
+    const selectChangeSubtype = (e: SelectChangeEvent) => {
+    const subtype = newResource.attributes.type.attributes.subtypes?.find((subtype) => subtype.id === +e.target.value)
+    if (subtype)
+      setNewResource({
+        ...newResource,
+        attributes: {
+          ...newResource.attributes,
+          [e.target.name]: subtype,
+        },
+      });
+  };
   const textChange = (event: ChangeEvent<HTMLInputElement>) => {
     handleTextChange(event, setNewResource);
   };
@@ -118,7 +129,10 @@ const AddResourceForm = (props: AddResourceFormProps) => {
     validateForm(newResource.attributes, setErrorList).then((res) => {
       if(res){
         createResource(newResource).then((res) => {
+          if(res)
           setNewResource(emptyResource)
+          if(props.setRefresh)
+          props.setRefresh(true)
         })
       }
     })
@@ -129,6 +143,10 @@ const AddResourceForm = (props: AddResourceFormProps) => {
     setNewResource(props.data);
     setChecked(props.data.attributes.expirationDate !== null);
   }, [props.data]);
+
+  useEffect(() => {
+    console.log(newResource)
+  }, [newResource]);
 
   return (
     <Box
@@ -218,7 +236,7 @@ const AddResourceForm = (props: AddResourceFormProps) => {
             color: theme.palette.text.primary,
           }}
           defaultValue=""
-          onChange={selectChangeType}
+          onChange={selectChangeSubtype}
         >
           {newResource.attributes.type.id != 0 ?
           props.resourceTypes &&
@@ -227,7 +245,7 @@ const AddResourceForm = (props: AddResourceFormProps) => {
                 (item) => item.id === newResource.attributes.type.id
               )
               ?.attributes.subtypes?.map((subtype) => (
-                <MenuItem key={subtype.id} value={subtype.attributes.name}>
+                <MenuItem key={subtype.id} value={subtype.id}>
                   {subtype.attributes.name}
                 </MenuItem>
               )):
