@@ -96,11 +96,14 @@ const PetDiseaseDetails = () => {
             Status
             <Typography variant="body1"> {petDisease.attributes.status}</Typography>
           </Typography>
-          <Box>
+          {petDisease.attributes.status !== "Zakończona" ? (
+            <Box>
             <Button variant="contained" onClick={() => setOpen(true)}>
               Edytuj
             </Button>
           </Box>
+          ): null}
+          
         </Box>
       </Box>
       <EditPetDiseaseModal
