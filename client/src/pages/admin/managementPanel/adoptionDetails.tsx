@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 
 import { AdoptionType } from "../../../utils/types/basicTypes";
+import CancelIcon from '@mui/icons-material/Cancel';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import ManagementButton from "../../../components/managementPanel/managementButton";
 import { getAdoption } from "../../../utils/services/gets";
 import { navigateTo } from "../../../utils/functions/navigators";
 import shadows from "@mui/material/styles/shadows";
@@ -125,6 +128,16 @@ const AdoptionDetails = () => {
                   {adoption.attributes.status}
                 </span>
               </Typography>
+            </Box>
+            <Box 
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "1rem",
+              }}
+            >
+            <ManagementButton name={"Zaakaceptuj adopcje"} ico={CheckCircleOutlineIcon} foo={() => null} disabled={adoption.attributes.status !== "Oczekująca"}/>
+            <ManagementButton name={"Odrzuć adopcje"} ico={CancelIcon} foo={() => null} disabled={adoption.attributes.status !== "Oczekująca"}/>
             </Box>
           </Box>
         </>
