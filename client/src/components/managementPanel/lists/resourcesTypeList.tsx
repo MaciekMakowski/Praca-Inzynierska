@@ -30,7 +30,7 @@ const ResourcesTypeList = (props:ResourcesTypeListProps) => {
       }}
     >
       <Grid width="99%" container spacing={0}>
-        <Grid item xs={4} lg={3}>
+        <Grid item xs={3} lg={2}>
           <Typography
             variant="subtitle1"
             color={theme.palette.primary.main}
@@ -39,7 +39,7 @@ const ResourcesTypeList = (props:ResourcesTypeListProps) => {
             Numer
           </Typography>
         </Grid>
-        <Grid item xs={8} lg={9}>
+        <Grid item xs={9} lg={10}>
           <Typography
             variant="subtitle1"
             color={theme.palette.primary.main}
