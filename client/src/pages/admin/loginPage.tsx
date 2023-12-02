@@ -108,6 +108,7 @@ const LoginPage = () => {
           name="password"
           onChange={textChange}
           error={ErrorList.password.status}
+          onKeyDown={(e) => {e.key === "Enter" && login()}}
         />
         <Box
           sx={{
