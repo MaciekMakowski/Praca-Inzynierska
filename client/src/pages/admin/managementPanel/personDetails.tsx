@@ -1,6 +1,7 @@
 import { Box, Grid, Typography, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 
+import AddVisitModal from "../../../components/managementPanel/modals/addVisitModal";
 import EditPersonModal from "../../../components/managementPanel/modals/editPersonModal";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import EventNoteIcon from "@mui/icons-material/EventNote";
@@ -20,6 +21,7 @@ const PersonDetails = () => {
   const [refresh, setRefresh] = useState(false);
   const [personData, setPersonData] = useState<PersonType>();
   const [editPerson, setEditPerson] = useState(false);
+  const [addVisit, setAddVisit] = useState(false);
 
   const getAll = () => {
     if (id && type) {
@@ -265,7 +267,7 @@ const PersonDetails = () => {
                     name="Zarejestruj wejście"
                     ico={EventNoteIcon}
                     disabled={false}
-                    foo={() => null}
+                    foo={() => setAddVisit(true)}
                   />
                   <ManagementButton
                     name="Zarejestruj wyjście"
@@ -306,6 +308,13 @@ const PersonDetails = () => {
             person={personData}
             type={type}
             setRefresh={setRefresh}
+          />
+          <AddVisitModal
+            open={addVisit}
+            setOpen={setAddVisit}
+            type={type}
+            setRefresh={setRefresh}
+            person={personData}
           />
         </>
       ) : (

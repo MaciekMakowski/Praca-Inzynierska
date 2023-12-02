@@ -150,3 +150,14 @@ export type ResourceSubtypeType = {
     name: string;
   }
 }
+
+
+export type VisitType = {
+  id: number;
+  attributes: {
+    date: string;
+    enterTime: string;
+    exitTime: string;
+    person: PersonType | null;
+  };
+};
