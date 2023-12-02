@@ -829,6 +829,42 @@ export interface ApiGuestGuest extends Schema.CollectionType {
   };
 }
 
+export interface ApiGuestVisitGuestVisit extends Schema.CollectionType {
+  collectionName: 'guest_visits';
+  info: {
+    singularName: 'guest-visit';
+    pluralName: 'guest-visits';
+    displayName: 'Guest_visit';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    guest: Attribute.Relation<
+      'api::guest-visit.guest-visit',
+      'oneToOne',
+      'api::guest.guest'
+    >;
+    visit: Attribute.Component<'visit.vsit'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::guest-visit.guest-visit',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::guest-visit.guest-visit',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiIsolationIsolation extends Schema.CollectionType {
   collectionName: 'isolations';
   info: {
@@ -1104,6 +1140,41 @@ export interface ApiVolunteerVolunteer extends Schema.CollectionType {
   };
 }
 
+export interface ApiVolunteerVisitVolunteerVisit extends Schema.CollectionType {
+  collectionName: 'volunteer_visits';
+  info: {
+    singularName: 'volunteer-visit';
+    pluralName: 'volunteer-visits';
+    displayName: 'Volunteer_visit';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    volunteer: Attribute.Relation<
+      'api::volunteer-visit.volunteer-visit',
+      'oneToOne',
+      'api::volunteer.volunteer'
+    >;
+    visit: Attribute.Component<'visit.vsit'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::volunteer-visit.volunteer-visit',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::volunteer-visit.volunteer-visit',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1124,6 +1195,7 @@ declare module '@strapi/types' {
       'api::animal.animal': ApiAnimalAnimal;
       'api::disease.disease': ApiDiseaseDisease;
       'api::guest.guest': ApiGuestGuest;
+      'api::guest-visit.guest-visit': ApiGuestVisitGuestVisit;
       'api::isolation.isolation': ApiIsolationIsolation;
       'api::meeting.meeting': ApiMeetingMeeting;
       'api::pet-disease.pet-disease': ApiPetDiseasePetDisease;
@@ -1131,6 +1203,7 @@ declare module '@strapi/types' {
       'api::resource-subtype.resource-subtype': ApiResourceSubtypeResourceSubtype;
       'api::resources-type.resources-type': ApiResourcesTypeResourcesType;
       'api::volunteer.volunteer': ApiVolunteerVolunteer;
+      'api::volunteer-visit.volunteer-visit': ApiVolunteerVisitVolunteerVisit;
     }
   }
 }

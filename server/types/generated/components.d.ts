@@ -32,11 +32,25 @@ export interface PersonsPerson extends Schema.Component {
   };
 }
 
+export interface VisitVsit extends Schema.Component {
+  collectionName: 'components_visit_vsits';
+  info: {
+    displayName: 'Vsit';
+    icon: 'house';
+  };
+  attributes: {
+    date: Attribute.Date;
+    enterTime: Attribute.Time;
+    exitTime: Attribute.Time;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'persons.address': PersonsAddress;
       'persons.person': PersonsPerson;
+      'visit.vsit': VisitVsit;
     }
   }
 }

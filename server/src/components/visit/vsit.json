@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_visit_vsits",
+  "info": {
+    "displayName": "Vsit",
+    "icon": "house"
+  },
+  "options": {},
+  "attributes": {
+    "date": {
+      "type": "date"
+    },
+    "enterTime": {
+      "type": "time"
+    },
+    "exitTime": {
+      "type": "time"
+    }
+  }
+}

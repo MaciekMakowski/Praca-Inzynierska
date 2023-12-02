@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "volunteer_visits",
+  "info": {
+    "singularName": "volunteer-visit",
+    "pluralName": "volunteer-visits",
+    "displayName": "Volunteer_visit"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "volunteer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::volunteer.volunteer"
+    },
+    "visit": {
+      "type": "component",
+      "repeatable": false,
+      "component": "visit.vsit"
+    }
+  }
+}

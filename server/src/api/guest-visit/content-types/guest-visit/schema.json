@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "guest_visits",
+  "info": {
+    "singularName": "guest-visit",
+    "pluralName": "guest-visits",
+    "displayName": "Guest_visit",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "guest": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::guest.guest"
+    },
+    "visit": {
+      "type": "component",
+      "repeatable": false,
+      "component": "visit.vsit"
+    }
+  }
+}
