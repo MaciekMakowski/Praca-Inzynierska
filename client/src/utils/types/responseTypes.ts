@@ -3,6 +3,7 @@ import {
   DiseaseType,
   IsolationType,
   PetDiseaseType,
+  VisitType,
 } from "./basicTypes";
 
 export type IsolationResponse = {
@@ -137,3 +138,17 @@ export type ResourceResponse = {
     };
   };
 };
+
+export type VisitResponse = {
+  id: number;
+  attributes: {
+    guest:{
+      data: PersonsResponse;
+    };
+    visit:{
+      date: string;
+      enterTime: string;
+      exitTime: string;
+    }
+  };
+}

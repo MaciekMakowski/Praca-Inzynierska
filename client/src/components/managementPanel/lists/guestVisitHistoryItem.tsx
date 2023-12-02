@@ -1,6 +1,14 @@
 import { Grid, Typography, useTheme } from "@mui/material";
 
-const GuestVisitHistoryItem = (props: any) => {
+import { VisitType } from "../../../utils/types/basicTypes";
+import dayjs from "dayjs";
+
+type GuestVisitHistoryItemProps = {
+    color: boolean;
+    visit: VisitType;
+}
+
+const GuestVisitHistoryItem = (props: GuestVisitHistoryItemProps) => {
     const theme = useTheme();
 
     return(
@@ -27,7 +35,7 @@ const GuestVisitHistoryItem = (props: any) => {
           }
           textAlign={"center"}
         >
-          20-03-2021
+          {props.visit.attributes.date}
         </Typography>
       </Grid>
       <Grid item xs={4}>
@@ -40,7 +48,7 @@ const GuestVisitHistoryItem = (props: any) => {
           }
           textAlign={"center"}
         >
-          14:20
+          {props.visit.attributes.enterTime.slice(0, 5)}
         </Typography>
       </Grid>
       <Grid item xs={4}>
@@ -53,7 +61,7 @@ const GuestVisitHistoryItem = (props: any) => {
           }
           textAlign={"center"}
         >
-          16:20
+          {props.visit.attributes.exitTime.slice(0, 5)}
         </Typography>
       </Grid>
         

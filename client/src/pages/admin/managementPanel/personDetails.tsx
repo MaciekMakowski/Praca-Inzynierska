@@ -22,6 +22,7 @@ const PersonDetails = () => {
   const [personData, setPersonData] = useState<PersonType>();
   const [editPerson, setEditPerson] = useState(false);
   const [addVisit, setAddVisit] = useState(false);
+  const [refreshVisits, setRefreshVisits] = useState(false);
 
   const getAll = () => {
     if (id && type) {
@@ -246,7 +247,7 @@ const PersonDetails = () => {
                 flexDirection: { xs: "column", lg: "row" },
               }}
             >
-              <GuestVisitHistory />
+              <GuestVisitHistory id={personData.id} type={type} refresh={refreshVisits}/>
               {type == "guest" ? null : <VolunteerMeetingsList />}
               <Box
                 sx={{

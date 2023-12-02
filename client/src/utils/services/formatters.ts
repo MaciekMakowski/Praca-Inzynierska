@@ -1,5 +1,5 @@
-import { AdoptionResponse, AnimalInfoResponse, AnimalResponse, ImageResponse, IsolationResponse, PersonsResponse, PetDiseasesResponse, ResourceResponse, ResourceSubtypeResponse, ResourceTypeResponse } from "../types/responseTypes";
-import { AdoptionType, AnimalInfoType, AnimalType, Image, IsolationType, PersonType, PetDiseaseType, ResourceType, ResourceTypeType } from "../types/basicTypes";
+import { AdoptionResponse, AnimalInfoResponse, AnimalResponse, ImageResponse, IsolationResponse, PersonsResponse, PetDiseasesResponse, ResourceResponse, ResourceSubtypeResponse, ResourceTypeResponse, VisitResponse } from "../types/responseTypes";
+import { AdoptionType, AnimalInfoType, AnimalType, Image, IsolationType, PersonType, PetDiseaseType, ResourceType, ResourceTypeType, VisitType } from "../types/basicTypes";
 
 export const createIsolation = (isolation: IsolationResponse) => {
     const newIsolation: IsolationType = {
@@ -158,4 +158,18 @@ export const createResource = (resourceResponse: ResourceResponse) => {
       }
     }
     return newResource
+  }
+
+
+  export const createVisit = (visitResponse: VisitResponse) => {
+    const newVisit:VisitType = {
+      id: visitResponse.id,
+      attributes: {
+        person: createPerson(visitResponse.attributes.guest.data),
+        enterTime: visitResponse.attributes.visit.enterTime,
+        exitTime: visitResponse.attributes.visit.exitTime,
+        date: visitResponse.attributes.visit.date,
+      }
+    }
+    return newVisit
   }

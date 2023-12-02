@@ -6,6 +6,7 @@ import {
   PetDiseasesResponse,
   ResourceResponse,
   ResourceTypeResponse,
+  VisitResponse,
 } from "../types/responseTypes";
 import { AnimalInfoType, IsolationType } from "../types/basicTypes";
 import {
@@ -16,6 +17,7 @@ import {
   createPerson,
   createPetDisease,
   createResource,
+  createVisit,
 } from "./formatters";
 
 import { APIurl } from "./url";
@@ -416,6 +418,27 @@ export const getAdoption = async (id: string) => {
     if (response.status === 200) {
       const data = createAdoption(response.data.data)
       return data;
+    }else{
+      return false;
+    }
+  }catch(err){
+    console.log(err)
+  }
+}
+
+export const getPersonVisits = async (id: number, type:"guest" | "volunteer") => {
+  const authToken = Cookies.get("token");
+  try{
+    const response = await axios.get(`${APIurl}${type}-visits/?filters[guest][id]=${id}&populate=deep`, {
+      headers: {
+        authorization: `Bearer ${authToken}`,
+      },
+    });
+    if (response.status === 200) {
+      const data = response.data.data.map((visit: VisitResponse) => {
+        return createVisit(visit)
+      })
+      return data
     }else{
       return false;
     }

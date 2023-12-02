@@ -1,29 +1,37 @@
 import { Box, Button, Grid, Pagination, Typography, useTheme } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
+import { useEffect, useState } from "react";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import GuestVisitHistoryItem from "./guestVisitHistoryItem";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { VisitType } from "../../../utils/types/basicTypes";
+import { getPersonVisits } from "../../../utils/services/gets";
 import { handleChangeDate } from "../../../utils/functions/handlers";
-import { useState } from "react";
 
-const GuestVisitHistory = () => {
+type GuestVisitHistoryProps = {
+  id: number;
+  type: "volunteer" | "guest";
+  refresh: boolean;
+};
+
+const GuestVisitHistory = (props:GuestVisitHistoryProps) => {
   const theme = useTheme();
-
+  const [visits, setVisits] = useState<VisitType[]>([])
   const [filter, setFilter] = useState("");
   const dateChange = (value: Dayjs | null) => {
     if (value === null) return;
     handleChangeDate(value.format("DD-MM-YYYY"), setFilter, "birthDate");
   };
 
-  const returnItems = () => {
-    const items = [];
-    for (let i = 0; i < 20; i++)
-      items.push(<GuestVisitHistoryItem key={i} color={i % 2 == 0} />);
-    return items;
-  };
+  useEffect(() => {
+    getPersonVisits(props.id,props.type).then((res) => {
+      if(res)
+      setVisits(res);
+    });
+  }, [props.refresh]);
 
   return (
     <Box
@@ -117,7 +125,11 @@ const GuestVisitHistory = () => {
             overflowY: "auto",
           }}
         >
-          {returnItems()}
+          {visits.map((visit, i) => {
+            return(
+              <GuestVisitHistoryItem key={i} color={i % 2 == 0} visit={visit} />
+            )
+          })}
         </Box>
         <Box
         sx={{
