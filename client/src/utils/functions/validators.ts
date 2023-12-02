@@ -20,23 +20,12 @@ export const validateForm = async <T extends BaseAttributes>(
     if (formData.hasOwnProperty(key)) {
       const value = formData[key];
       if(typeof value !== "boolean"){
-        if (key === "birthDate") {
-          if(typeof value === "string"){
-          if (dayjs(value).isAfter(dayjs())) {
-            setAsError(key, foo);
-            return false;
-          } else {
-            unsetAsError(key, foo);
-          }
-        }
-        }else{
           if (value === "" || value === 0) {
             setAsError(key, foo);
             return false;
           } else {
             unsetAsError(key, foo);
           }
-        }
       }
     }
   }

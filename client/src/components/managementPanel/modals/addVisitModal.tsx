@@ -18,6 +18,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { ErrorInput } from "../../../utils/types/errorInput";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { createVisit } from "../../../utils/services/posts";
 import { validateForm } from "../../../utils/functions/validators";
 
 type AddVisitModalProps = {
@@ -33,7 +34,7 @@ const initialVisit: VisitType = {
   attributes: {
     date: "",
     enterTime: "",
-    exitTime: "",
+    exitTime: null,
     person: null,
   },
 };
@@ -42,6 +43,14 @@ const AddVisitModal = (props: AddVisitModalProps) => {
   const theme = useTheme();
   const handleClose = () => props.setOpen(false);
   const [newVisit, setNewVisit] = useState<VisitType>(initialVisit);
+  const [errorList, setErrorList] = useState<ErrorInput>({
+    date:{
+        status: false,
+    },
+    enterTime:{
+        status: false,
+    },
+  });
 
   const dateChange = (value: Dayjs | null) => {
     if (value === null) return;
@@ -50,6 +59,19 @@ const AddVisitModal = (props: AddVisitModalProps) => {
   const timeChange = (value: Dayjs | null) => {
     if (value === null) return;
     handleChangeDate(value.format('HH:mm'), setNewVisit, 'enterTime');
+  }
+
+  const sendForm = () => {
+    validateForm(newVisit.attributes, setErrorList).then((res) => {
+      if (res) {
+        createVisit(newVisit, props.type).then((res) => {
+            if (res) {
+                props.setRefresh(true);
+                handleClose();
+            }
+        })
+      }
+    });
   }
 
   
@@ -146,7 +168,7 @@ const AddVisitModal = (props: AddVisitModalProps) => {
               />
             </DemoContainer>
           </LocalizationProvider>
-          <Button variant="contained">
+          <Button variant="contained" onClick={() => sendForm()}>
             Dodaj wizytę
           </Button>
         </Box>

@@ -1,4 +1,6 @@
 import { Box, Grid, Typography, useTheme } from "@mui/material";
+import { PersonType, VisitType } from "../../../utils/types/basicTypes";
+import { getPerson, getPersonVisits } from "../../../utils/services/gets";
 import { useEffect, useState } from "react";
 
 import AddVisitModal from "../../../components/managementPanel/modals/addVisitModal";
@@ -9,9 +11,7 @@ import FaceRetouchingNaturalIcon from "@mui/icons-material/FaceRetouchingNatural
 import GuestVisitHistory from "../../../components/managementPanel/lists/guestVisitHistory";
 import ManagementButton from "../../../components/managementPanel/managementButton";
 import PersonOffIcon from "@mui/icons-material/PersonOff";
-import { PersonType } from "../../../utils/types/basicTypes";
 import VolunteerMeetingsList from "../../../components/managementPanel/lists/volunteerMeetingsList";
-import { getPerson } from "../../../utils/services/gets";
 import shadows from "@mui/material/styles/shadows";
 import { useParams } from "react-router";
 
@@ -20,10 +20,11 @@ const PersonDetails = () => {
   const { type, id } = useParams();
   const [refresh, setRefresh] = useState(false);
   const [personData, setPersonData] = useState<PersonType>();
+  const [visits, setVisits] = useState<VisitType[]>([])
   const [editPerson, setEditPerson] = useState(false);
   const [addVisit, setAddVisit] = useState(false);
   const [refreshVisits, setRefreshVisits] = useState(false);
-
+  const [isInShelter, setIsInShelter] = useState(false);
   const getAll = () => {
     if (id && type) {
       getPerson(type, id).then((res) => {
@@ -33,6 +34,14 @@ const PersonDetails = () => {
       });
     }
   };
+  useEffect(() => {
+    if(id && (type === "guest" || type === "volunteer"))
+    getPersonVisits(+id ,type).then((res) => {
+      if(res)
+      setVisits(res);
+    });
+    setIsInShelter(visits.some((visit) => visit.attributes.exitTime === null));
+  }, [id, type, refreshVisits]);
 
   useEffect(() => {
     if (refresh) getAll();
@@ -247,7 +256,7 @@ const PersonDetails = () => {
                 flexDirection: { xs: "column", lg: "row" },
               }}
             >
-              <GuestVisitHistory id={personData.id} type={type} refresh={refreshVisits}/>
+              <GuestVisitHistory id={personData.id} type={type} refresh={refreshVisits} visits={visits}/>
               {type == "guest" ? null : <VolunteerMeetingsList />}
               <Box
                 sx={{
@@ -267,13 +276,13 @@ const PersonDetails = () => {
                   <ManagementButton
                     name="Zarejestruj wejście"
                     ico={EventNoteIcon}
-                    disabled={false}
+                    disabled={isInShelter}
                     foo={() => setAddVisit(true)}
                   />
                   <ManagementButton
                     name="Zarejestruj wyjście"
                     ico={PersonOffIcon}
-                    disabled
+                    disabled={!isInShelter}
                     foo={() => null}
                   />
                 </Box>
@@ -314,7 +323,7 @@ const PersonDetails = () => {
             open={addVisit}
             setOpen={setAddVisit}
             type={type}
-            setRefresh={setRefresh}
+            setRefresh={setRefreshVisits}
             person={personData}
           />
         </>

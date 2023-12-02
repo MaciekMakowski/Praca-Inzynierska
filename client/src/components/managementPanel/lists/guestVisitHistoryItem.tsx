@@ -61,7 +61,7 @@ const GuestVisitHistoryItem = (props: GuestVisitHistoryItemProps) => {
           }
           textAlign={"center"}
         >
-          {props.visit.attributes.exitTime.slice(0, 5)}
+          {props.visit.attributes.exitTime ? props.visit.attributes.exitTime.slice(0, 5) : "Obecnie w schronisku"}
         </Typography>
       </Grid>
         
