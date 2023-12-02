@@ -6,6 +6,7 @@ import {
   PetDiseaseType,
   ResourceSubtypeType,
   ResourceType,
+  VisitType,
 } from "../types/basicTypes";
 
 import { APIurl } from "./url";
@@ -349,6 +350,37 @@ export const createResource = async (resource: ResourceType) => {
     }
   );
   console.log(response)
+  if (response.status === 200) {
+    return true;
+  } else {
+    return false;
+  }
+  }catch(error){
+    console.log(error)
+  }
+}
+
+export const createVisit = async (visit: VisitType, type:'guest' | 'volunteer') => {
+  const authToken = Cookies.get("token");
+  if(visit.attributes.person === null) return false;
+  try{
+    const response = await axios.post(
+    `${APIurl}${type}-visits`,
+    {
+      data: {
+        guest: visit.attributes.person.id,
+        visit:{
+          date: visit.attributes.date,
+          enterTime: visit.attributes.enterTime.concat(":00.00"),
+        }
+      },
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    }
+  );
   if (response.status === 200) {
     return true;
   } else {

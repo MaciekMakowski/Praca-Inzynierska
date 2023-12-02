@@ -157,7 +157,7 @@ export type VisitType = {
   attributes: {
     date: string;
     enterTime: string;
-    exitTime: string;
+    exitTime: string | null;
     person: PersonType | null;
   };
 };
