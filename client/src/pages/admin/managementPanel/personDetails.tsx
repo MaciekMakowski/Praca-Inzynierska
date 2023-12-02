@@ -1,10 +1,11 @@
-import { Box, Grid, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { PersonType, VisitType } from "../../../utils/types/basicTypes";
 import { getPerson, getPersonVisits } from "../../../utils/services/gets";
 import { useEffect, useState } from "react";
 
 import AddVisitModal from "../../../components/managementPanel/modals/addVisitModal";
 import EditPersonModal from "../../../components/managementPanel/modals/editPersonModal";
+import EndVisitModal from "../../../components/managementPanel/modals/endVisitModal";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import FaceRetouchingNaturalIcon from "@mui/icons-material/FaceRetouchingNatural";
@@ -25,6 +26,8 @@ const PersonDetails = () => {
   const [addVisit, setAddVisit] = useState(false);
   const [refreshVisits, setRefreshVisits] = useState(false);
   const [isInShelter, setIsInShelter] = useState(false);
+  const [endVisit, setEndVisit] = useState(false);
+  const [activeVisit, setActiveVisit] = useState<VisitType | null>(null);
   const getAll = () => {
     if (id && type) {
       getPerson(type, id).then((res) => {
@@ -44,7 +47,9 @@ const PersonDetails = () => {
 
   useEffect(() => {
     setIsInShelter(visits.some((visit) => visit.attributes.exitTime === null));
+    setActiveVisit(visits.find((visit) => visit.attributes.exitTime === null) || null);
   }, [visits]);
+  
   useEffect(() => {
     if (refresh) getAll();
     setRefresh(false);
@@ -285,7 +290,7 @@ const PersonDetails = () => {
                     name="Zarejestruj wyjście"
                     ico={PersonOffIcon}
                     disabled={!isInShelter}
-                    foo={() => null}
+                    foo={() => setEndVisit(true)}
                   />
                 </Box>
                 <Box
@@ -328,6 +333,17 @@ const PersonDetails = () => {
             setRefresh={setRefreshVisits}
             person={personData}
           />
+          {activeVisit ? (
+            <EndVisitModal
+            open={endVisit}
+            setOpen={setEndVisit}
+            type={type}
+            setRefresh={setRefreshVisits}
+            person={personData}
+            visit={activeVisit}
+          />
+          ) : null}
+          
         </>
       ) : (
         <>Loading...</>

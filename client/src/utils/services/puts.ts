@@ -5,6 +5,7 @@ import {
   PersonType,
   PetDiseaseType,
   ResourceType,
+  VisitType,
 } from "../types/basicTypes";
 
 import { APIurl } from "./url";
@@ -205,4 +206,36 @@ export const updateResource = async (resource: ResourceType) => {
   } catch (err) {
     console.log(err);
   }
+}
+
+export const endVisit = async (visit: VisitType, type:"guest" | "volunteer", time:string) => {
+  const authToken = Cookies.get("token");
+  try {
+    const response = await axios.put(
+      `${APIurl}${type}-visits/${visit.id}`,
+      {
+        data:{
+          visit:{
+             enterTime: visit.attributes.enterTime,
+             exitTime: time.concat(":00.00"),
+             date: visit.attributes.date,
+          }
+        }
+          
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      }
+    );
+    if (response.status === 200) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+
 }
