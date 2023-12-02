@@ -841,7 +841,7 @@ export interface ApiGuestVisitGuestVisit extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    guest: Attribute.Relation<
+    person: Attribute.Relation<
       'api::guest-visit.guest-visit',
       'oneToOne',
       'api::guest.guest'
@@ -1146,12 +1146,13 @@ export interface ApiVolunteerVisitVolunteerVisit extends Schema.CollectionType {
     singularName: 'volunteer-visit';
     pluralName: 'volunteer-visits';
     displayName: 'Volunteer_visit';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    volunteer: Attribute.Relation<
+    person: Attribute.Relation<
       'api::volunteer-visit.volunteer-visit',
       'oneToOne',
       'api::volunteer.volunteer'

@@ -4,14 +4,15 @@
   "info": {
     "singularName": "volunteer-visit",
     "pluralName": "volunteer-visits",
-    "displayName": "Volunteer_visit"
+    "displayName": "Volunteer_visit",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "volunteer": {
+    "person": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::volunteer.volunteer"

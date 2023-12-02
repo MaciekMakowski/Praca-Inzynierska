@@ -429,7 +429,7 @@ export const getAdoption = async (id: string) => {
 export const getPersonVisits = async (id: number, type:"guest" | "volunteer") => {
   const authToken = Cookies.get("token");
   try{
-    const response = await axios.get(`${APIurl}${type}-visits/?filters[guest][id]=${id}&populate=deep`, {
+    const response = await axios.get(`${APIurl}${type}-visits/?filters[person][id]=${id}&populate=deep`, {
       headers: {
         authorization: `Bearer ${authToken}`,
       },

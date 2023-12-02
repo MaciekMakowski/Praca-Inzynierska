@@ -142,7 +142,7 @@ export type ResourceResponse = {
 export type VisitResponse = {
   id: number;
   attributes: {
-    guest:{
+    person:{
       data: PersonsResponse;
     };
     visit:{

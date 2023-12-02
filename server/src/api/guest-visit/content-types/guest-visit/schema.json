@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "guest": {
+    "person": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::guest.guest"

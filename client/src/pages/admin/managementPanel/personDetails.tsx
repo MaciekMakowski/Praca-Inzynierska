@@ -40,9 +40,11 @@ const PersonDetails = () => {
       if(res)
       setVisits(res);
     });
-    setIsInShelter(visits.some((visit) => visit.attributes.exitTime === null));
   }, [id, type, refreshVisits]);
 
+  useEffect(() => {
+    setIsInShelter(visits.some((visit) => visit.attributes.exitTime === null));
+  }, [visits]);
   useEffect(() => {
     if (refresh) getAll();
     setRefresh(false);

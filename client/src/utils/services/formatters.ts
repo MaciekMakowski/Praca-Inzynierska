@@ -165,7 +165,7 @@ export const createResource = (resourceResponse: ResourceResponse) => {
     const newVisit:VisitType = {
       id: visitResponse.id,
       attributes: {
-        person: createPerson(visitResponse.attributes.guest.data),
+        person: createPerson(visitResponse.attributes.person.data),
         enterTime: visitResponse.attributes.visit.enterTime,
         exitTime: visitResponse.attributes.visit.exitTime,
         date: visitResponse.attributes.visit.date,
