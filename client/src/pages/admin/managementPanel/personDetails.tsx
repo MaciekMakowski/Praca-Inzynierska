@@ -22,7 +22,7 @@ const PersonDetails = () => {
   const { type, id } = useParams();
   const [refresh, setRefresh] = useState(false);
   const [personData, setPersonData] = useState<PersonType>();
-  const [visits, setVisits] = useState<VisitType[]>([])
+  const [visits, setVisits] = useState<VisitType[]>([]);
   const [editPerson, setEditPerson] = useState(false);
   const [addVisit, setAddVisit] = useState(false);
   const [refreshVisits, setRefreshVisits] = useState(false);
@@ -39,19 +39,20 @@ const PersonDetails = () => {
     }
   };
   useEffect(() => {
-    if(id && (type === "guest" || type === "volunteer"))
-    getPersonVisits(+id ,type).then((res) => {
-      if(res)
-      setVisits(res);
-      setRefreshVisits(false);
-    });
+    if (id && (type === "guest" || type === "volunteer"))
+      getPersonVisits(+id, type).then((res) => {
+        if (res) setVisits(res);
+        setRefreshVisits(false);
+      });
   }, [id, type, refreshVisits]);
 
   useEffect(() => {
     setIsInShelter(visits.some((visit) => visit.attributes.exitTime === null));
-    setActiveVisit(visits.find((visit) => visit.attributes.exitTime === null) || null);
+    setActiveVisit(
+      visits.find((visit) => visit.attributes.exitTime === null) || null
+    );
   }, [visits]);
-  
+
   useEffect(() => {
     if (refresh) getAll();
     setRefresh(false);
@@ -94,7 +95,12 @@ const PersonDetails = () => {
                 flexDirection: { xs: "column", lg: "row" },
               }}
             >
-              <GuestVisitHistory id={personData.id} type={type} refresh={refreshVisits} visits={visits}/>
+              <GuestVisitHistory
+                id={personData.id}
+                type={type}
+                refresh={refreshVisits}
+                visits={visits}
+              />
               {type == "guest" ? null : <VolunteerMeetingsList />}
               <Box
                 sx={{
@@ -166,18 +172,17 @@ const PersonDetails = () => {
           />
           {activeVisit ? (
             <EndVisitModal
-            open={endVisit}
-            setOpen={setEndVisit}
-            type={type}
-            setRefresh={setRefreshVisits}
-            person={personData}
-            visit={activeVisit}
-          />
+              open={endVisit}
+              setOpen={setEndVisit}
+              type={type}
+              setRefresh={setRefreshVisits}
+              person={personData}
+              visit={activeVisit}
+            />
           ) : null}
-          
         </>
       ) : (
-        <Loader/>
+        <Loader />
       )}
     </>
   );

@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 
 import EastIcon from "@mui/icons-material/East";
+import ImageComponent from "../components/imageComponent";
 import WestIcon from "@mui/icons-material/West";
 import back from "../img/home/back.png";
 import behavior from "../img/home/behavior.png";
@@ -106,17 +107,12 @@ const Home = () => {
           flexDirection: { xs: "column", lg: "row" },
         }}
       >
-        <Box
-          display={"flex"}
+        <ImageComponent
+          src={dogMain}
+          alt={"dog"}
           sx={{
-            backgroundImage: {
-              xs: `url(${dogMainLong})`,
-              lg: `url(${dogMain})`,
-            },
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            height: { xs: "20rem", lg: "25rem" },
-            width: { xs: "100%", lg: "30rem" },
+            width: { xs: "100%", lg: "50%" },
+            height: { xs: "15rem", lg: "25rem" },
           }}
         />
         <Box
@@ -154,13 +150,12 @@ const Home = () => {
           <Box display={"flex"} justifyContent={"space-evenly"}>
             {supporters.map((supp) => {
               return (
-                <Box
+                <ImageComponent
+                  src={supp}
+                  alt={"dog"}
                   sx={{
-                    backgroundImage: `url(${supp})`,
-                    backgroundSize: "contain",
-                    backgroundRepeat: "no-repeat",
-                    width: { xs: "3rem", sm: "5rem" },
-                    height: { xs: "3rem", sm: "5rem" },
+                    width: { xs: "3rem", lg: "5rem" },
+                    height: { xs: "3rem", lg: "5rem" },
                   }}
                 />
               );
@@ -196,15 +191,13 @@ const Home = () => {
             Zwierzyniec Św. Franciszka
           </Typography>
         </Box>
-        <Box
-          width={"7rem"}
-          height={"7rem"}
+        <ImageComponent
+          src={hands}
+          alt={"dog"}
           sx={{
-            backgroundImage: `url(${hands})`,
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
             width: { xs: "20rem", md: "10rem", lg: "7rem" },
             height: { xs: "12rem", md: "10rem", lg: "7rem" },
+            my: { xs: "auto", md: 0 },
           }}
         />
       </Box>
@@ -256,25 +249,19 @@ const Home = () => {
             flexDirection: { xs: "column", md: "row", lg: "column" },
           }}
         >
-          <Box
+          <ImageComponent
+            src={dogAbout1}
+            alt={"dog"}
             sx={{
-              backgroundImage: `url(${dogAbout1})`,
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-              width: { xs: "100%", lg: "100%" },
+              width: "100%",
               height: { xs: "100%", lg: "50%" },
             }}
           />
-          <Box
-            display={"flex"}
-            flexGrow={1}
+          <ImageComponent
+            src={dogAbout2}
+            alt={"dog"}
             sx={{
-              backgroundImage: `url(${dogAbout2})`,
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-              width: "101%",
+              width: "100%",
               height: { xs: "none", lg: "50%" },
             }}
           />
@@ -297,12 +284,10 @@ const Home = () => {
           }}
         >
           <Box display={"flex"} flexDirection={"column"} alignItems={"center"}>
-            <Box
+            <ImageComponent
+              src={dogIco}
+              alt={"dog"}
               sx={{
-                backgroundImage: `url(${dogIco})`,
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
                 width: { xs: "2rem", lg: "4rem" },
                 height: { xs: "2rem", lg: "4rem" },
               }}
@@ -315,12 +300,10 @@ const Home = () => {
             </Typography>
           </Box>
           <Box display={"flex"} flexDirection={"column"} alignItems={"center"}>
-            <Box
+            <ImageComponent
+              src={heartIco}
+              alt={"dog"}
               sx={{
-                backgroundImage: `url(${heartIco})`,
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
                 width: { xs: "2rem", lg: "4rem" },
                 height: { xs: "2rem", lg: "4rem" },
               }}
@@ -333,12 +316,10 @@ const Home = () => {
             </Typography>
           </Box>
           <Box display={"flex"} flexDirection={"column"} alignItems={"center"}>
-            <Box
+            <ImageComponent
+              src={homeIco}
+              alt={"dog"}
               sx={{
-                backgroundImage: `url(${homeIco})`,
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
                 width: { xs: "2rem", lg: "4rem" },
                 height: { xs: "2rem", lg: "4rem" },
               }}
@@ -446,12 +427,12 @@ const Home = () => {
           }}
           gap={3}
         >
-          <Box
+          <ImageComponent
+            src={tree}
+            alt={"dog"}
             sx={{
               width: { xs: "13rem", md: "25rem" },
               height: { xs: "13rem", md: "25rem" },
-              backgroundImage: `url(${tree})`,
-              backgroundSize: "cover",
             }}
           />
           <Typography
@@ -551,14 +532,14 @@ const Home = () => {
           flexDirection: { xs: "column", lg: "row" },
         }}
       >
-        <Box
-          sx={{
-            backgroundImage: `url(${behavior})`,
-            backgroundSize: "cover",
-            height: { xs: "20rem", lg: "36rem" },
-            width: { xs: "100%", lg: "40rem" },
-          }}
-        />
+        <ImageComponent
+            src={behavior}
+            alt={"dog"}
+            sx={{
+              height: { xs: "20rem", lg: "36rem" },
+              width: { xs: "100%", lg: "40rem" },
+            }}
+          />
         <Box
           display={"flex"}
           flexDirection={"column"}
@@ -836,9 +817,9 @@ const Home = () => {
                       sx={{
                         backgroundColor: theme.palette.primary.main,
                         color: theme.palette.text.secondary,
-                        '&:hover': {
-                            backgroundColor: theme.palette.primary.dark,
-                        }
+                        "&:hover": {
+                          backgroundColor: theme.palette.primary.dark,
+                        },
                       }}
                     >
                       Więcej
