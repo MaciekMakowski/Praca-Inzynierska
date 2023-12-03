@@ -173,6 +173,8 @@ const AddPersonForm = (props: AddPersonFormProps) => {
         gap: "1rem",
         borderRadius: "1rem",
         boxShadow: theme.shadows[3],
+        maxHeight: { xs: "80vh", md: "100%" },
+        overflowY: { xs: "auto", md: "none" },
       }}
     >
       <Typography variant="h5" color={theme.palette.text.primary}>
@@ -207,7 +209,12 @@ const AddPersonForm = (props: AddPersonFormProps) => {
         error={ErrorList.pesel.status}
       />
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DemoContainer components={["DatePicker"]}>
+        <DemoContainer
+          sx={{
+            overflow: "show",
+          }}
+          components={["DatePicker"]}
+        >
           <DatePicker
             sx={{ width: "100%" }}
             format="YYYY-MM-DD"
