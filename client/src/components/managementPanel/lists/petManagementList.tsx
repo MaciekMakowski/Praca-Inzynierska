@@ -5,6 +5,7 @@ import {
   PetDiseaseType,
 } from "../../../utils/types/basicTypes";
 
+import Loader from "../../loader";
 import PetManagementListItem from "./petManagementListItem";
 
 type PetManagementListProps = {
@@ -44,7 +45,7 @@ const PetManagementList = (props: PetManagementListProps) => {
           overflowY: "auto",
         }}
       >
-        {props.data && (
+        {props.data ? (
           props.data.map((item, i) => {
             if ("reason" in item.attributes) {
               return (
@@ -73,7 +74,7 @@ const PetManagementList = (props: PetManagementListProps) => {
               );
             }
           })
-        )}
+        ): <Loader/>}
       </Box>
     </Box>
   );

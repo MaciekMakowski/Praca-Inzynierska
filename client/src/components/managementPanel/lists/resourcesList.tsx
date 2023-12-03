@@ -12,6 +12,7 @@ import {
   useTheme,
 } from "@mui/material";
 
+import Loader from "../../loader";
 import ResourceListItem from "./resourceListItem";
 import { ResourceType } from "../../../utils/types/basicTypes";
 import { getResources } from "../../../utils/services/gets";
@@ -27,7 +28,7 @@ const ResourcesList = (props:ResourcesListProps) => {
   const theme = useTheme();
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
-  const [resources, setResources] = useState<ResourceType[]>([]);
+  const [resources, setResources] = useState<ResourceType[] | null>(null);
 
   const changePage = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -86,8 +87,6 @@ const ResourcesList = (props:ResourcesListProps) => {
               color: theme.palette.text.primary,
             }}
             defaultValue={1}
-            // value={newAnimal.species}
-            // onChange={handleSelectChange}
           >
             <MenuItem value={1}>Wszystko</MenuItem>
             <MenuItem value={2}>Jedzenie</MenuItem>
@@ -176,11 +175,11 @@ const ResourcesList = (props:ResourcesListProps) => {
           overflowY:'auto',
         }}
       >
-        {resources.map((resource,i ) => {
+        {resources ? resources.map((resource,i ) => {
           return(
             <ResourceListItem key={resource.id} color={ i % 2 === 0} resource={resource} />
           )
-        })}
+        }): <Loader/>}
       </Box>
       </Box>
       <Box

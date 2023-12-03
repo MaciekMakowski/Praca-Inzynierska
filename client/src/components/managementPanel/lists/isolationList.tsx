@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 
 import IsolationListItem from "./isolationListItem";
 import { IsolationType } from "../../../utils/types/basicTypes";
+import Loader from "../../loader";
 import { getIsolations } from "../../../utils/services/gets";
 import { paginationRangeValue } from "../../../utils/services/pagination";
 
@@ -19,7 +20,7 @@ const IsolationList = () => {
   const [filter, setFilter] = useState(0);
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState<number>(1);
-  const [isolationList, setIsolationList] = useState<IsolationType[]>([]);
+  const [isolationList, setIsolationList] = useState<IsolationType[] | null>(null);
 
   const handleChangeFilter = (value: number) => {
     if (value === filter) setFilter(0);
@@ -193,11 +194,11 @@ const IsolationList = () => {
             overflowY: "auto",
           }}
         >
-          {isolationList.map((item, i) => {
+          {isolationList ? isolationList.map((item, i) => {
             return (
               <IsolationListItem key={i} color={i % 2 == 0} isolation={item} />
             );
-          })}
+          }): <Loader/>}
         </Box>
       </Box>
       <Box

@@ -10,6 +10,7 @@ import {
 import { useEffect, useState } from "react";
 
 import IllAnimalListItem from "./illAnimalListItem";
+import Loader from "../../loader";
 import { PetDiseaseType } from "../../../utils/types/basicTypes";
 import { getAnimalsDiseases } from "../../../utils/services/gets";
 import { paginationRangeValue } from "../../../utils/services/pagination";
@@ -164,12 +165,12 @@ const IllAnimalList = () => {
           overflowY:'auto',
         }}
       >
-        {illAnimals?.map((illAnimal, i) => {
+        {illAnimals ? illAnimals.map((illAnimal, i) => {
             return(
               <IllAnimalListItem key={illAnimal.id} color={i%2 === 0} petDisease={illAnimal}/>
             )
         }
-        )}
+        ): <Loader/>}
       </Box>
       </Box>
       <Box

@@ -1,6 +1,7 @@
 import { Box, Grid, Typography, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 
+import Loader from "../../loader";
 import ResourceTypeListItem from "./resourcesTypeListItem";
 import { ResourceTypeType } from "../../../utils/types/basicTypes";
 import { getResourcesTypes } from "../../../utils/services/gets";
@@ -59,11 +60,11 @@ const ResourcesTypeList = (props:ResourcesTypeListProps) => {
           overflowY: "auto",
         }}
       >
-        {props.resourceTypes.map((resourceType: ResourceTypeType, i) => {
+        {props.resourceTypes ? props.resourceTypes.map((resourceType: ResourceTypeType, i) => {
           return(
             <ResourceTypeListItem key={i} color={i % 2 == 0} data={resourceType}/>
           )
-        })}
+        }): <Loader/>}
       </Box>
     </Box>
   );

@@ -12,12 +12,13 @@ import { useEffect, useState } from "react";
 import DiseaseListItem from "./diseaseListItem";
 import { DiseaseType } from "../../../utils/types/basicTypes";
 import { ListProps } from "../../../utils/types/propsTypes";
+import Loader from "../../loader";
 import { getDiseases } from "../../../utils/services/gets";
 import { paginationRangeValue } from "../../../utils/services/pagination";
 
 const DiseaseList = (props:ListProps) => {
   const theme = useTheme();
-  const [diseasesList, setDiseasesList] = useState<DiseaseType[]>([]);
+  const [diseasesList, setDiseasesList] = useState<DiseaseType[] | null>(null);
   const [pageCount, setPageCount] = useState<number>(1)
   const [page, setPage] = useState<number>(1)
 
@@ -118,11 +119,11 @@ const DiseaseList = (props:ListProps) => {
           overflowY: "auto",
         }}
       >
-        {diseasesList.map((disease, i) => {
+        {diseasesList ? diseasesList.map((disease, i) => {
           return (
             <DiseaseListItem key={i} color={i % 2 == 0} disease={disease} />
           );
-        })}
+        }): <Loader/>}
       </Box>
       <Box
         sx={{

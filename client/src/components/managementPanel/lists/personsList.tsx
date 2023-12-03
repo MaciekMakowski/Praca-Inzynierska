@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
+import Loader from "../../loader";
 import { PersonType } from "../../../utils/types/basicTypes";
 import PersonsListItem from "./personsListItem";
 import { getPeople } from "../../../utils/services/gets";
@@ -24,7 +25,7 @@ const PersonsList = (props: PersonListProps) => {
   const theme = useTheme();
   const [page, setPage] = useState<number>(1);
   const [pageCount, setPageCount] = useState<number>(1);
-  const [personsList, setPersonsList] = useState<PersonType[]>([]);
+  const [personsList, setPersonsList] = useState<PersonType[] | null>(null);
 
   const changePage = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -184,7 +185,7 @@ const PersonsList = (props: PersonListProps) => {
             overflowY: "auto",
           }}
         >
-          {personsList.map((person, i) => {
+          {personsList ? personsList.map((person, i) => {
             return (
               <PersonsListItem
                 key={i}
@@ -193,7 +194,8 @@ const PersonsList = (props: PersonListProps) => {
                 type={props.type}
               />
             );
-          })}
+          }): 
+          <Loader/>}
         </Box>
       </Box>
       <Box

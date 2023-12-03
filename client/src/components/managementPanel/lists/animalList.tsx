@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import AnimalListItem from "./animalListItem";
 import { AnimalType } from "../../../utils/types/basicTypes";
 import { ListProps } from "../../../utils/types/propsTypes";
+import Loader from "../../loader";
 import { getAnimals } from "../../../utils/services/gets";
 import { paginationRangeValue } from "../../../utils/services/pagination";
 
@@ -200,11 +201,15 @@ const AnimalList = (props: ListProps) => {
             overflowY: "auto",
           }}
         >
-          {animalList?.map((animal, i) => {
-            return (
-              <AnimalListItem key={i} color={i % 2 == 0} animal={animal} />
-            );
-          })}
+          {animalList ? (
+            animalList.map((animal, i) => {
+              return (
+                <AnimalListItem key={i} color={i % 2 == 0} animal={animal} />
+              );
+            })
+          ) : (
+            <Loader />
+          )}
         </Box>
       </Box>
       <Box
