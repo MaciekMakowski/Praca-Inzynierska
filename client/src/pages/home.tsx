@@ -19,15 +19,9 @@ import dogCircle from "../img/home/dogCircle.png";
 import dogHand from "../img/home/dogHand.png";
 import dogIco from "../img/home/icoDog.png";
 import dogMain from "../img/home/dog.png";
-import dogMainLong from "../img/home/dogLong.png";
 import hands from "../img/home/hands.png";
 import heartIco from "../img/home/icoHeart.png";
 import homeIco from "../img/home/icoHouse.png";
-import old1 from "../img/home/olds/old1.png";
-import old2 from "../img/home/olds/old2.png";
-import old3 from "../img/home/olds/old3.png";
-import old4 from "../img/home/olds/old4.png";
-import old5 from "../img/home/olds/old5.png";
 import questMark from "../img/home/question.png";
 import sup1 from "../img/home/sup1.png";
 import sup2 from "../img/home/sup2.png";
@@ -36,57 +30,6 @@ import sup4 from "../img/home/sup4.png";
 import sup5 from "../img/home/sup5.png";
 import timeImg from "../img/home/time.png";
 import tree from "../img/home/tree.png";
-
-const oldDogs = [
-  {
-    id: 0,
-    image: old1,
-    name: "Pimpek",
-    sex: "Samiec",
-    age: "11",
-    number: "1923/23",
-  },
-  {
-    id: 1,
-    image: old2,
-    name: "Złotek",
-    sex: "Samiec",
-    age: "12",
-    number: "1847/23",
-  },
-  {
-    id: 2,
-    image: old3,
-    name: "Owca",
-    sex: "Samica",
-    age: "10",
-    number: "1727/23",
-  },
-  {
-    id: 3,
-    image: old4,
-    name: "Kostek",
-    sex: "Samiec",
-    age: "13",
-    number: "1723/23",
-  },
-  {
-    id: 4,
-    image: old5,
-    name: "Azor",
-    sex: "Samiec",
-    age: "13",
-    number: "1988/23",
-  },
-  {
-    id: 5,
-    image: old1,
-    name: "Sunia",
-    sex: "Samica",
-    age: "12",
-    number: "1943/23",
-  },
-];
 
 const Home = () => {
   const theme = useTheme();
@@ -712,7 +655,7 @@ const Home = () => {
         </Box>
       </Box>
       <Box boxSizing={"border-box"} py={3} display={"flex"}>
-        <Box
+        {/* <Box
           bgcolor={theme.palette.background.secondary}
           boxSizing={"border-box"}
           p={2}
@@ -722,7 +665,7 @@ const Home = () => {
           flexDirection={"column"}
           gap={2}
         >
-          <Box
+          {/* <Box
             display={"flex"}
             sx={{
               justifyContent: "space-between",
@@ -745,8 +688,8 @@ const Home = () => {
               color={"primary"}
               fontSize={"large"}
             />
-          </Box>
-          <Box
+          </Box> */}
+          {/* <Box
             width={"100%"}
             display={"flex"}
             justifyContent={"space-between"}
@@ -831,7 +774,7 @@ const Home = () => {
               })}
             </Box>
           </Box>
-        </Box>
+        </Box> */}
       </Box>
     </Container>
   );
