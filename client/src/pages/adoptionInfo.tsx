@@ -22,7 +22,8 @@ const AdoptionInfo = (props:AdoptionInfoProps) => {
             }}
         >
             <Box
-                bgcolor={theme.palette.background.light}
+                bgcolor={theme.palette.background.secondary}
+                color={theme.palette.text.primary}
                 boxSizing={"border-box"}
                 display={"flex"}
                 flexDirection={"column"}
@@ -35,10 +36,10 @@ const AdoptionInfo = (props:AdoptionInfoProps) => {
                     width:{xs:'100%', md:'70%'}
                 }}
             >
-                <Typography textAlign={"center"} variant={"subtitle1"} fontWeight={"bold"} color={theme.palette.text.secondary}>
+                <Typography textAlign={"center"} variant={"subtitle1"} fontWeight={"bold"} >
                     {props.title}
                 </Typography>
-                <Typography variant={"body1"} color={theme.palette.text.secondary} textAlign={'center'}>
+                <Typography variant={"body1"} textAlign={'center'}>
                     {props.text}
                 </Typography>
             </Box>

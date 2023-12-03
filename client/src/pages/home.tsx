@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 
 import EastIcon from "@mui/icons-material/East";
+import HomeButton from "../components/homeButton";
 import ImageComponent from "../components/imageComponent";
 import WestIcon from "@mui/icons-material/West";
 import back from "../img/home/back.png";
@@ -22,6 +23,7 @@ import dogMain from "../img/home/dog.png";
 import hands from "../img/home/hands.png";
 import heartIco from "../img/home/icoHeart.png";
 import homeIco from "../img/home/icoHouse.png";
+import { navigateTo } from "../utils/functions/navigators";
 import questMark from "../img/home/question.png";
 import sup1 from "../img/home/sup1.png";
 import sup2 from "../img/home/sup2.png";
@@ -30,9 +32,11 @@ import sup4 from "../img/home/sup4.png";
 import sup5 from "../img/home/sup5.png";
 import timeImg from "../img/home/time.png";
 import tree from "../img/home/tree.png";
+import { useNavigate } from "react-router";
 
 const Home = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
 
   const supporters = [sup1, sup2, sup3, sup4, sup5];
 
@@ -107,7 +111,13 @@ const Home = () => {
           </Box>
         </Box>
       </Box>
-      <Box bgcolor={"#003C18"} display={"flex"} alignItems={"end"}>
+      <Box
+        sx={{
+          backgroundColor: theme.palette.secondary.main,
+          display: "flex",
+          alignItems: "end",
+        }}
+      >
         <Box
           p={3}
           flexGrow={1}
@@ -115,6 +125,7 @@ const Home = () => {
           display={"flex"}
           flexDirection={"column"}
           justifyContent={"end"}
+          color={theme.palette.text.secondary}
         >
           <Box
             display={"flex"}
@@ -123,14 +134,12 @@ const Home = () => {
               justifyContent: { xs: "start", lg: "space-between" },
             }}
           >
-            <Typography variant={"h6"} color={theme.palette.text.secondary}>
+            <Typography variant={"h6"}>
               Przekaż 1 % aby pomóc zwierzętom
             </Typography>
-            <Typography variant={"h6"} color={theme.palette.text.secondary}>
-              KRS: 0000000000
-            </Typography>
+            <Typography variant={"h6"}>KRS: 0000000000</Typography>
           </Box>
-          <Typography variant={"body1"} color={theme.palette.text.secondary}>
+          <Typography variant={"body1"}>
             Zachęcamy i prosimy o przekazywanie 1% podatku na Stowarzyszenie
             Zwierzyniec Św. Franciszka
           </Typography>
@@ -297,66 +306,16 @@ const Home = () => {
             justifyContent: "space-evenly",
           }}
         >
-          <Box
-            boxSizing={"border-box"}
-            p={3}
-            display={"flex"}
-            sx={{
-              bgcolor: theme.palette.secondary.main,
-              width: { xs: "10rem", sm: "12rem" },
-              height: { xs: "10rem", sm: "12rem" },
-              cursor: "pointer",
-            }}
-            justifyContent={"center"}
-            alignItems={"center"}
-            flexDirection={"column"}
-          >
-            <Box
-              sx={{
-                backgroundImage: `url(${questMark})`,
-                backgroundSize: "cover",
-                width: { xs: "3rem", sm: "5rem" },
-                height: { xs: "3rem", sm: "5rem" },
-              }}
-            />
-            <Typography
-              textAlign={"center"}
-              variant={"h6"}
-              color={theme.palette.text.secondary}
-            >
-              Zanim Adoptujesz
-            </Typography>
-          </Box>
-          <Box
-            boxSizing={"border-box"}
-            p={3}
-            display={"flex"}
-            sx={{
-              bgcolor: theme.palette.secondary.main,
-              width: { xs: "10rem", sm: "12rem" },
-              height: { xs: "10rem", sm: "12rem" },
-              cursor: "pointer",
-            }}
-            justifyContent={"center"}
-            alignItems={"center"}
-            flexDirection={"column"}
-          >
-            <Box
-              sx={{
-                backgroundImage: `url(${dogHand})`,
-                backgroundSize: "cover",
-                width: { xs: "3rem", sm: "5rem" },
-                height: { xs: "3rem", sm: "5rem" },
-              }}
-            />
-            <Typography
-              textAlign={"center"}
-              variant={"h6"}
-              color={theme.palette.text.secondary}
-            >
-              Warunki adopcji
-            </Typography>
-          </Box>
+          <HomeButton
+            title={"Zanim adoptujesz"}
+            image={questMark}
+            foo={() => navigateTo(navigate, "/adoption")}
+          />
+          <HomeButton
+            title={"Warunki adopcji"}
+            image={dogHand}
+            foo={() => navigateTo(navigate, "/adoption")}
+          />
         </Box>
         <Box
           display={"flex"}
@@ -401,66 +360,16 @@ const Home = () => {
             justifyContent: "space-evenly",
           }}
         >
-          <Box
-            boxSizing={"border-box"}
-            p={3}
-            display={"flex"}
-            sx={{
-              bgcolor: theme.palette.secondary.main,
-              width: { xs: "10rem", sm: "12rem" },
-              height: { xs: "10rem", sm: "12rem" },
-              cursor: "pointer",
-            }}
-            justifyContent={"center"}
-            alignItems={"center"}
-            flexDirection={"column"}
-          >
-            <Box
-              sx={{
-                backgroundImage: `url(${timeImg})`,
-                backgroundSize: "cover",
-                width: { xs: "3rem", sm: "5rem" },
-                height: { xs: "3rem", sm: "5rem" },
-              }}
-            />
-            <Typography
-              textAlign={"center"}
-              variant={"h6"}
-              color={theme.palette.text.secondary}
-            >
-              Adopcja tymczasowa
-            </Typography>
-          </Box>
-          <Box
-            boxSizing={"border-box"}
-            p={3}
-            display={"flex"}
-            sx={{
-              bgcolor: theme.palette.secondary.main,
-              width: { xs: "10rem", sm: "12rem" },
-              height: { xs: "10rem", sm: "12rem" },
-              cursor: "pointer",
-            }}
-            justifyContent={"center"}
-            alignItems={"center"}
-            flexDirection={"column"}
-          >
-            <Box
-              sx={{
-                backgroundImage: `url(${bookImg})`,
-                backgroundSize: "cover",
-                width: { xs: "3rem", sm: "5rem" },
-                height: { xs: "3rem", sm: "5rem" },
-              }}
-            />
-            <Typography
-              textAlign={"center"}
-              variant={"h6"}
-              color={theme.palette.text.secondary}
-            >
-              Poradnik właściciela
-            </Typography>
-          </Box>
+          <HomeButton
+            title={"Adopcja tymczasowa"}
+            image={timeImg}
+            foo={() => null}
+          />
+          <HomeButton
+            title={"Poradnik właściciela"}
+            image={bookImg}
+            foo={() => null}
+          />
         </Box>
       </Box>
       <Box
@@ -469,7 +378,14 @@ const Home = () => {
         justifyContent={"center"}
         p={3}
       >
-        <Button variant={"contained"}>Poznaj nas</Button>
+        <Button
+          variant={"contained"}
+          sx={{
+            backgroundColor: theme.palette.secondary.main,
+          }}
+        >
+          Poznaj nas
+        </Button>
       </Box>
       <Box
         display={"flex"}
@@ -478,23 +394,24 @@ const Home = () => {
         }}
       >
         <ImageComponent
-            src={behavior}
-            alt={"dog"}
-            sx={{
-              height: { xs: "20rem", lg: "36rem" },
-              width: { xs: "100%", lg: "40rem" },
-            }}
-          />
+          src={behavior}
+          alt={"dog"}
+          sx={{
+            height: { xs: "20rem", lg: "36rem" },
+            width: { xs: "100%", lg: "40rem" },
+          }}
+        />
         <Box
           display={"flex"}
           flexDirection={"column"}
-          bgcolor={theme.palette.background.light}
+          color={theme.palette.text.primary}
+          bgcolor={theme.palette.background.secondary}
           sx={{
             width: { xs: "100%", lg: "50%" },
             height: { xs: "fit-content", lg: "36rem" },
           }}
         >
-          <Box bgcolor={theme.palette.primary.main} width={"100%"}>
+          <Box bgcolor={theme.palette.secondary.main} width={"100%"}>
             <Typography
               textAlign={"center"}
               variant={"h4"}
@@ -517,7 +434,6 @@ const Home = () => {
               textAlign={"center"}
               variant={"subtitle1"}
               fontWeight={"bold"}
-              color={theme.palette.text.secondary}
             >
               Jak w schronisku behawiorystki uczą psy chodzenia na smyczy
             </Typography>
@@ -539,10 +455,7 @@ const Home = () => {
                 }}
               />
 
-              <Typography
-                variant={"caption"}
-                color={theme.palette.text.secondary}
-              >
+              <Typography variant={"caption"}>
                 Niektóre psy, które do nas trafiają panicznie boją się smyczy.
                 Takie psy trafiają pod opiekę behawiorystek na tzw. Żółte Boksy.
                 Na początku nie chodzą na spacery na zewnątrz tylko wychodzą z
@@ -563,11 +476,7 @@ const Home = () => {
             px={1}
             py={2}
           >
-            <Typography
-              variant={"subtitle1"}
-              fontWeight={"bold"}
-              color={theme.palette.text.secondary}
-            >
+            <Typography variant={"subtitle1"} fontWeight={"bold"}>
               Jak podać kotu tabletkę?
             </Typography>
             <Box
@@ -588,10 +497,7 @@ const Home = () => {
                 }}
               />
 
-              <Typography
-                variant={"caption"}
-                color={theme.palette.text.secondary}
-              >
+              <Typography variant={"caption"}>
                 Jak podać kotu tabletkę? Nikt się nad tym nie zastanawia, dopóki
                 nie musi podać kotu tabletki. Z pozoru taka prosta rzecz, a
                 potrafi przysporzyć wielu trudności. Obraz dławiącego się
@@ -613,11 +519,7 @@ const Home = () => {
             px={1}
             py={2}
           >
-            <Typography
-              variant={"subtitle1"}
-              fontWeight={"bold"}
-              color={theme.palette.text.secondary}
-            >
+            <Typography variant={"subtitle1"} fontWeight={"bold"}>
               Kocia komunikacja – dźwięki
             </Typography>
             <Box
@@ -638,10 +540,7 @@ const Home = () => {
                 }}
               />
 
-              <Typography
-                variant={"caption"}
-                color={theme.palette.text.secondary}
-              >
+              <Typography variant={"caption"}>
                 Koty komunikują się z otoczeniem za pomocą sygnałów dźwiękowych,
                 zapachowych i mowy ciała. Kocia komunikacja jest bardzo
                 rozbudowana i często mylnie rozumiana przez człowieka jako kocia
@@ -689,7 +588,7 @@ const Home = () => {
               fontSize={"large"}
             />
           </Box> */}
-          {/* <Box
+        {/* <Box
             width={"100%"}
             display={"flex"}
             justifyContent={"space-between"}

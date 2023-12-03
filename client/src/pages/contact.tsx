@@ -155,18 +155,19 @@ const Contact = () => {
                         boxSizing={"border-box"}
                         p={3}
                         sx={{
-                            backgroundColor:theme.palette.primary.main,
+                            backgroundColor:theme.palette.background.light,
                             width:{xs:'100%', lg:'50%'}
                         }}
                         gap={3}
+                        color={theme.palette.text.secondary}
                     >
-                        <Typography variant={'h6'} color={theme.palette.text.secondary}>
+                        <Typography variant={'h6'} >
                             Wolontariat
                         </Typography>
-                        <Typography variant={'body1'} color={theme.palette.text.secondary}>
+                        <Typography variant={'body1'} >
                             Wolontariat w Miejskim Schronisku dla Bezdomnych Zwierząt w Olsztynie zaczął działać w październiku 2009 roku. Obecnie jest prowadzony przez Fundację Schronisko, która powstała by objąć opieką zwierzęta przebywające w schronisku w Olsztynie. Nierzadko są to zwierzęta wyrzucone przez swoich właścicieli, niechciane i niekochane, najczęściej psy i koty, jednak Fundacja niesie pomoc wszystkim zwierzakom, które trafiają do schroniska.
                         </Typography>
-                        <Typography variant={'body1'} color={theme.palette.text.secondary}>
+                        <Typography variant={'body1'} >
                             Wolontariusze mogą się zajmować zwierzętami zarówno na terenie schroniska, jak i poza nim. Podczas swoich wizyt w naszych schronisku zajmują się socjalizacją zwierząt, nauką nowych komend oraz poprawnego zachowania. Oprócz tego oczywiście biorą czynny udział w poszukiwaniu nowych domów dla naszych podopiecznych, a także w zbieraniu informacji o zwierzęciu, dzięki czemu możemy dobrze poznać każdego zwierzaka. Dodatkowo wolontariusze uczestniczą w akcjach organizowanych przez Fundację oraz szkoleniach uczących ich opieki nad zwierzętami i tresury. Poza schroniskiem wolontariusze również robią wiele dobrego prowadząc działania zwiększające szanse na adopcję.
                         </Typography>
                         <Box
@@ -174,13 +175,13 @@ const Contact = () => {
                             flexDirection={"column"}
                             alignItems={"center"}
                         >
-                            <Typography variant={'subtitle1'} color={theme.palette.text.secondary}>
+                            <Typography variant={'subtitle1'}>
                                 Kontakt w sprawie wolontariatu:
                             </Typography>
-                            <Typography variant={'body1'} color={theme.palette.text.secondary}>
+                            <Typography variant={'body1'} >
                                 Psy - Paweł 213 456 789
                             </Typography>
-                            <Typography variant={'body1'} color={theme.palette.text.secondary}>
+                            <Typography variant={'body1'} >
                                 Koty - Kasia 902 123 456
                             </Typography>
                         </Box>

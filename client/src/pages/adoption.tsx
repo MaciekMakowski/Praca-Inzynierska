@@ -140,7 +140,7 @@ const Adoption = () => {
       >
         <Box display={"flex"} flexDirection={"column"}>
           <Box
-            bgcolor={theme.palette.primary.main}
+            bgcolor={theme.palette.secondary.main}
             py={2}
             sx={{
               borderRadius: {xs:0 , md:"20px 20px 0px 0px"},
@@ -154,19 +154,17 @@ const Adoption = () => {
               Wszystko co musisz wiedzieć o adopcji psa i kota ze schroniska
             </Typography>
           </Box>
-          <Box bgcolor={theme.palette.background.light} py={2} px={4}>
+          <Box bgcolor={theme.palette.background.secondary} color={theme.palette.text.primary} py={2} px={4}>
             <Typography
               textAlign={"center"}
               variant={"subtitle1"}
               fontWeight={"bold"}
-              color={theme.palette.text.secondary}
             >
               Jeśli zastanawiasz się nad adopcją...
             </Typography>
             <Typography
               textAlign={"center"}
               variant={"body1"}
-              color={theme.palette.text.secondary}
             >
               Żadna najcenniejsza rzecz ani przedmiot nie wzbogaca naszego życia
               tak jak obecność zwierzaka. Jest lekarstwem na nasze smutki i
@@ -279,7 +277,8 @@ const Adoption = () => {
           boxSizing={"border-box"}
           display={"flex"}
           flexDirection={"column"}
-          bgcolor={theme.palette.primary.main}
+          bgcolor={theme.palette.background.secondary}
+          color={theme.palette.text.primary}
           sx={{
             borderRadius: { xs: 0, md: "0 0 0 20px" },
             width: { xs: "100%", md: "60%" },
@@ -289,11 +288,10 @@ const Adoption = () => {
           <Typography
             variant={"subtitle1"}
             fontWeight={"bold"}
-            color={theme.palette.text.secondary}
           >
             Jeśli już zaadoptowałeś...
           </Typography>
-          <Typography variant={"body1"} color={theme.palette.text.secondary}>
+          <Typography variant={"body1"}>
             Przygarnięcie zwierzaka do domu na pewno spowodowało ogromną
             rewolucję w twoim życiu! Nagle pojawił się nowy członek rodziny,
             któremu trzeba poświęcić każdą wolną chwilę, przyzwyczaić do nowego

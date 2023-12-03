@@ -28,7 +28,7 @@ const AddMeetingModal = (props: AddMeetingModalProps) => {
         sx={{
             backgroundColor: theme.palette.background.adminField,
             position: "absolute",
-            maxHeight: "80vh",
+            maxHeight: "70vh",
             overflowY: "auto",
             left: "50%",
             top: "50%",
