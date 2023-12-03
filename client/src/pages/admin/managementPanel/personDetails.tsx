@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, CircularProgress, Typography, useTheme } from "@mui/material";
 import { PersonType, VisitType } from "../../../utils/types/basicTypes";
 import { getPerson, getPersonVisits } from "../../../utils/services/gets";
 import { useEffect, useState } from "react";
@@ -10,6 +10,7 @@ import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import FaceRetouchingNaturalIcon from "@mui/icons-material/FaceRetouchingNatural";
 import GuestVisitHistory from "../../../components/managementPanel/lists/guestVisitHistory";
+import Loader from "../../../components/loader";
 import ManagementButton from "../../../components/managementPanel/managementButton";
 import PersonOffIcon from "@mui/icons-material/PersonOff";
 import VolunteerMeetingsList from "../../../components/managementPanel/lists/volunteerMeetingsList";
@@ -346,7 +347,7 @@ const PersonDetails = () => {
           
         </>
       ) : (
-        <>Loading...</>
+        <Loader/>
       )}
     </>
   );

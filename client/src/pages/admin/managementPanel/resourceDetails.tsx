@@ -3,6 +3,7 @@ import { getResource, getResourcesTypes } from "../../../utils/services/gets";
 import { useEffect, useState } from "react";
 
 import EditResourceModal from "../../../components/managementPanel/modals/editResourceModal";
+import Loader from "../../../components/loader";
 import { ResourceType } from "../../../utils/types/basicTypes";
 import { useParams } from "react-router";
 
@@ -33,7 +34,7 @@ const ResourceDetails = () => {
 
   return (
     <>
-    {!resourceDetailsData ? <>Loading...</> : 
+    {!resourceDetailsData ? <Loader/> : 
     <>
     <Typography
         variant="h4"

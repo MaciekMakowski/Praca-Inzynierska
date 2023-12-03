@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import EditIsolationModal from "../../../components/managementPanel/modals/editIsolationModal";
 import { IsolationType } from "../../../utils/types/basicTypes";
+import Loader from "../../../components/loader";
 import { getIsolation } from "../../../utils/services/gets";
 import { useParams } from "react-router";
 
@@ -30,7 +31,7 @@ const IsolationDetails = () => {
 
   return (
     <>
-      {isolationDataDetails === undefined ? <>Loading...</> :
+      {isolationDataDetails === undefined ? <Loader/> :
       <>
       <Typography
         variant="h4"

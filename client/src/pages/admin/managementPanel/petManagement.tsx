@@ -12,6 +12,7 @@ import BlockIcon from "@mui/icons-material/Block";
 import BorderAllIcon from "@mui/icons-material/BorderAll";
 import ChangeStatusConfirmModal from "../../../components/managementPanel/modals/changeStatusConfirmModal";
 import CoronavirusIcon from "@mui/icons-material/Coronavirus";
+import Loader from "../../../components/loader";
 import ManagementButton from "../../../components/managementPanel/managementButton";
 import PetManagementDesc from "../../../components/managementPanel/petManagementDesc";
 import PetManagementImages from "../../../components/managementPanel/petManagementImages";
@@ -47,7 +48,7 @@ const PetManagement = () => {
   return (
     <>
       {animalInfoData === null ? (
-        <>Loading...</>
+        <Loader />
       ) : (
         <>
           <Box height={"10%"}>

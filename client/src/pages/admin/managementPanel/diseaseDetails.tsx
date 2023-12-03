@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import { DiseaseType } from "../../../utils/types/basicTypes";
 import EditDiseaseModal from "../../../components/managementPanel/modals/editDiseaseModal";
+import Loader from "../../../components/loader";
 import { getDisease } from "../../../utils/services/gets";
 import { useParams } from "react-router";
 
@@ -30,7 +31,7 @@ const DiseaseDetails = () => {
 
   return (
     <>
-    {disease === null ? <>Loading...</> :
+    {disease === null ? <Loader/> :
      <>
      <Typography
        variant="h4"

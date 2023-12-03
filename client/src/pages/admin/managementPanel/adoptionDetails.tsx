@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router";
 import { AdoptionType } from "../../../utils/types/basicTypes";
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import Loader from "../../../components/loader";
 import ManagementButton from "../../../components/managementPanel/managementButton";
 import { getAdoption } from "../../../utils/services/gets";
 import { navigateTo } from "../../../utils/functions/navigators";
@@ -29,7 +30,7 @@ const AdoptionDetails = () => {
   return (
     <>
       {!adoption ? (
-        <>Loading...</>
+        <Loader />
       ) : (
         <>
           <Typography

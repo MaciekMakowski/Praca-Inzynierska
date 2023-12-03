@@ -2,6 +2,7 @@ import { Box, Button, Typography, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 
 import EditPetDiseaseModal from "../../../components/managementPanel/modals/editPetDiseaseModal";
+import Loader from "../../../components/loader";
 import { PetDiseaseType } from "../../../utils/types/basicTypes";
 import { getAnimalDisease } from "../../../utils/services/gets";
 import { useParams } from "react-router";
@@ -102,7 +103,7 @@ const PetDiseaseDetails = () => {
               Edytuj
             </Button>
           </Box>
-          ): null}
+          ): <Loader/>}
           
         </Box>
       </Box>
