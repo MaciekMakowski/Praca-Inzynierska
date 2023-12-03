@@ -28,17 +28,19 @@ type AddVisitModalProps = {
   person: PersonType;
 };
 
-const initialVisit: VisitType = {
-  id: 0,
-  attributes: {
-    date: "",
-    enterTime: "",
-    exitTime: null,
-    person: null,
-  },
-};
 
 const AddVisitModal = (props: AddVisitModalProps) => {
+
+  const initialVisit: VisitType = {
+    id: 0,
+    attributes: {
+      date: "",
+      enterTime: "",
+      exitTime: null,
+      person: props.person,
+    },
+  };
+
   const theme = useTheme();
   const handleClose = () => props.setOpen(false);
   const [newVisit, setNewVisit] = useState<VisitType>(initialVisit);
@@ -64,6 +66,7 @@ const AddVisitModal = (props: AddVisitModalProps) => {
     validateForm(newVisit.attributes, setErrorList).then((res) => {
       if (res) {
         createVisit(newVisit, props.type).then((res) => {
+          console.log(res)
             if (res) {
                 props.setRefresh(true);
                 handleClose();
@@ -72,18 +75,6 @@ const AddVisitModal = (props: AddVisitModalProps) => {
       }
     });
   }
-
-  
-
-  useEffect(() => {
-    setNewVisit((prev) => ({
-      ...prev,
-      attributes: {
-        ...prev.attributes,
-        person: props.person,
-      },
-    }));
-  }, [props.person]);
 
   
 

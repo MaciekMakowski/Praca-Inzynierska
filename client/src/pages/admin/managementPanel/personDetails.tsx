@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { PersonType, VisitType } from "../../../utils/types/basicTypes";
 import { getPerson, getPersonVisits } from "../../../utils/services/gets";
 import { useEffect, useState } from "react";
@@ -12,9 +12,9 @@ import FaceRetouchingNaturalIcon from "@mui/icons-material/FaceRetouchingNatural
 import GuestVisitHistory from "../../../components/managementPanel/lists/guestVisitHistory";
 import Loader from "../../../components/loader";
 import ManagementButton from "../../../components/managementPanel/managementButton";
+import PersonDataTable from "../../../components/managementPanel/personDataTable";
 import PersonOffIcon from "@mui/icons-material/PersonOff";
 import VolunteerMeetingsList from "../../../components/managementPanel/lists/volunteerMeetingsList";
-import shadows from "@mui/material/styles/shadows";
 import { useParams } from "react-router";
 
 const PersonDetails = () => {
@@ -43,6 +43,7 @@ const PersonDetails = () => {
     getPersonVisits(+id ,type).then((res) => {
       if(res)
       setVisits(res);
+      setRefreshVisits(false);
     });
   }, [id, type, refreshVisits]);
 
@@ -84,178 +85,7 @@ const PersonDetails = () => {
               width: "100%",
             }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                backgroundColor: theme.palette.background.adminField,
-                padding: "1rem",
-                boxSizing: "border-box",
-                justifyContent: "space-around",
-                boxShadow: shadows[3],
-                flexDirection: { xs: "column", md: "row" },
-              }}
-            >
-              <Box>
-                <Typography
-                  variant="body1"
-                  fontWeight={600}
-                  color={theme.palette.text.primary}
-                >
-                  Imię
-                </Typography>
-                <Typography
-                  variant="body1"
-                  textAlign={{ xs: "start", md: "center" }}
-                  color={theme.palette.text.primary}
-                >
-                  {personData.attributes.name}
-                </Typography>
-              </Box>
-              <Box>
-                <Typography
-                  variant="body1"
-                  fontWeight={600}
-                  color={theme.palette.text.primary}
-                >
-                  Nazwisko
-                </Typography>
-                <Typography
-                  variant="body1"
-                  textAlign={{ xs: "start", md: "center" }}
-                  color={theme.palette.text.primary}
-                >
-                  {personData.attributes.lastName}
-                </Typography>
-              </Box>
-              <Box>
-                <Typography
-                  variant="body1"
-                  fontWeight={600}
-                  color={theme.palette.text.primary}
-                >
-                  Płeć
-                </Typography>
-                <Typography
-                  variant="body1"
-                  textAlign={{ xs: "start", md: "center" }}
-                  color={theme.palette.text.primary}
-                >
-                  {personData.attributes.sex}
-                </Typography>
-              </Box>
-              <Box>
-                <Typography
-                  variant="body1"
-                  fontWeight={600}
-                  color={theme.palette.text.primary}
-                >
-                  Data urodzin
-                </Typography>
-                <Typography
-                  variant="body1"
-                  textAlign={{ xs: "start", md: "center" }}
-                  color={theme.palette.text.primary}
-                >
-                  {personData.attributes.birthDate}
-                </Typography>
-              </Box>
-              <Box>
-                <Typography
-                  variant="body1"
-                  fontWeight={600}
-                  color={theme.palette.text.primary}
-                >
-                  Number telefonu
-                </Typography>
-                <Typography
-                  variant="body1"
-                  textAlign={{ xs: "start", md: "center" }}
-                  color={theme.palette.text.primary}
-                >
-                  {personData.attributes.phoneNumber}
-                </Typography>
-              </Box>
-              <Box>
-                <Typography
-                  variant="body1"
-                  fontWeight={600}
-                  color={theme.palette.text.primary}
-                >
-                  Email
-                </Typography>
-                <Typography
-                  variant="body1"
-                  textAlign={{ xs: "start", md: "center" }}
-                  color={theme.palette.text.primary}
-                >
-                  {personData.attributes.email}
-                </Typography>
-              </Box>
-              <Box>
-                <Typography
-                  variant="body1"
-                  fontWeight={600}
-                  color={theme.palette.text.primary}
-                >
-                  PESEL
-                </Typography>
-                <Typography
-                  variant="body1"
-                  textAlign={{ xs: "start", md: "center" }}
-                  color={theme.palette.text.primary}
-                >
-                  {personData.attributes.pesel}
-                </Typography>
-              </Box>
-              <Box>
-                <Typography
-                  variant="body1"
-                  fontWeight={600}
-                  color={theme.palette.text.primary}
-                >
-                  Miasto
-                </Typography>
-                <Typography
-                  variant="body1"
-                  textAlign={{ xs: "start", md: "center" }}
-                  color={theme.palette.text.primary}
-                >
-                  {personData.attributes.city}
-                </Typography>
-              </Box>
-              <Box>
-                <Typography
-                  variant="body1"
-                  fontWeight={600}
-                  color={theme.palette.text.primary}
-                >
-                  Kod pocztowy
-                </Typography>
-                <Typography
-                  variant="body1"
-                  textAlign={{ xs: "start", md: "center" }}
-                  color={theme.palette.text.primary}
-                >
-                  {personData.attributes.postCode}
-                </Typography>
-              </Box>
-              <Box>
-                <Typography
-                  variant="body1"
-                  fontWeight={600}
-                  color={theme.palette.text.primary}
-                >
-                  Adres
-                </Typography>
-                <Typography
-                  variant="body1"
-                  textAlign={{ xs: "start", md: "center" }}
-                  color={theme.palette.text.primary}
-                >
-                  {personData.attributes.address}
-                </Typography>
-              </Box>
-            </Box>
+            <PersonDataTable {...personData} />
             <Box
               sx={{
                 height: "85%",

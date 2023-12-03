@@ -368,7 +368,7 @@ export const createVisit = async (visit: VisitType, type:'guest' | 'volunteer') 
     `${APIurl}${type}-visits`,
     {
       data: {
-        [type]: visit.attributes.person.id,
+        person: visit.attributes.person.id,
         visit:{
           date: visit.attributes.date,
           enterTime: visit.attributes.enterTime.concat(":00.00"),

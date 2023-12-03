@@ -56,6 +56,7 @@ export type AnimalType = {
 export type PersonType = {
   id: number;
   attributes: {
+    [key: string]: string | number;
     name: string;
     lastName: string;
     birthDate: string;
