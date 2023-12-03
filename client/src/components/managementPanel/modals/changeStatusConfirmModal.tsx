@@ -38,7 +38,7 @@ const ChangeStatusConfirmModal = (props: ConfirmModalProps) => {
           left: "50%",
           top: "50%",
           transform: "translate(-50%, -50%)",
-          width: "fit-content",
+          width: {xs:'80%', md:"fit-content"},
           boxSizing: "border-box",
           padding: "1rem",
           display: "flex",

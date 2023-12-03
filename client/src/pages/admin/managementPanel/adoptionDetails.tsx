@@ -46,6 +46,7 @@ const AdoptionDetails = () => {
               display: "flex",
               height: "90%",
               gap: "1rem",
+              flexDirection: { xs: "column", md: "row" },
             }}
           >
             <Box
@@ -133,8 +134,10 @@ const AdoptionDetails = () => {
             <Box 
               sx={{
                 display: "flex",
-                flexDirection: "column",
+                flexDirection: { xs: "row", md: "column" },
+                justifyContent:{xs: "space-between", md: "center"},
                 gap: "1rem",
+                
               }}
             >
             <ManagementButton name={"Zaakaceptuj adopcje"} ico={CheckCircleOutlineIcon} foo={() => null} disabled={adoption.attributes.status !== "Oczekująca"}/>
