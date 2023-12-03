@@ -96,6 +96,7 @@ const Adoption = () => {
       sx={{
         backgroundImage: `url(${back})`,
         backgroundSize: "contain",
+        px: { xs: 0, lg: 2 },
       }}
     >
       <Box
@@ -123,7 +124,7 @@ const Adoption = () => {
                   display: { xs: index < 1 ? "flex" : "none", lg: "block" },
                   width: { xs: "30rem", lg: "16rem" },
                   height: { xs: "15rem", lg: "10rem" },
-                  borderRadius: "20px",
+                  borderRadius: {xs:'none' , md:"20px"},
                 }}
               />
             );
@@ -142,7 +143,7 @@ const Adoption = () => {
             bgcolor={theme.palette.primary.main}
             py={2}
             sx={{
-              borderRadius: "20px 20px 0px 0px",
+              borderRadius: {xs:0 , md:"20px 20px 0px 0px"},
             }}
           >
             <Typography
@@ -280,7 +281,7 @@ const Adoption = () => {
           flexDirection={"column"}
           bgcolor={theme.palette.primary.main}
           sx={{
-            borderRadius: { xs: "", md: "0 0 0 20px" },
+            borderRadius: { xs: 0, md: "0 0 0 20px" },
             width: { xs: "100%", md: "60%" },
             height: "fit-content",
           }}
@@ -314,7 +315,7 @@ const Adoption = () => {
           src={had}
           alt="Człowiek i pies"
           sx={{
-            borderRadius: { xs: "0 0 20px 20px", md: "0 0 20px 0" },
+            borderRadius: { xs:0, md: "0 0 20px 0" },
             width: { xs: "100%", md: "40%" },
             height: { xs: "24rem", md: "auto" },
           }}

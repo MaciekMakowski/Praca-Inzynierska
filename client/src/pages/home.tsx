@@ -98,6 +98,7 @@ const Home = () => {
       sx={{
         backgroundImage: `url(${back})`,
         backgroundSize: "contain",
+        px: { xs: 0, lg: 2 },
       }}
     >
       <Box
@@ -704,7 +705,7 @@ const Home = () => {
                 złośliwość. Komunikacja werbalnaDzikie dorosłe koty miauczą
                 bardzo rzadko, nie potrzebują tego rodzaju komunikatów do
                 porozumiewania się między sobą. Miauczenie kota powstaje w
-                wyniku socjalizacji z człowiekiem. Jest to kocia […]
+                wyniku socjalizacji z człowiekiem. […]
               </Typography>
             </Box>
           </Box>

@@ -36,7 +36,8 @@ const Contact = () => {
         <Container
             sx={{
                 backgroundImage:`url(${back})`,
-                backgroundSize:'contain'
+                backgroundSize:'contain',
+                px: { xs: 0, lg: 2 },
             }}
         >
             <Box
@@ -121,8 +122,7 @@ const Contact = () => {
                         <Box
                             sx={{
                                 minWidth:'20rem',
-                                minHeight:'30rem',
-
+                                height:'30rem',
                             }}
                         > 
                         <Skeleton 
@@ -132,12 +132,16 @@ const Contact = () => {
                             display:mapLoad ? 'block' : 'none'
                         }}
                         /> 
-                         <iframe 
+                         <Box
+                            component={"iframe"}
                             title="Nasz adres"
                             width="100%"
-                            height="100%"
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2359.574497289696!2d20.453564677091013!3d53.74365274492137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e27f4da93ae01d%3A0xea956f263f7cf90!2sWydzia%C5%82%20Matematyki%20i%20Informatyki%20UWM%20w%20Olsztynie!5e0!3m2!1spl!2spl!4v1698774114901!5m2!1spl!2spl"
-                            style={{ border: 0, display:mapLoad ? 'none' : 'block' }}
+                            style={{ 
+                                border: 0, 
+                                display:mapLoad ? 'none' : 'block',
+                                height:'100%',
+                             }}
                             allowFullScreen
                             loading="lazy"
                             onLoad={() => setMapLoad(false)}

@@ -23,6 +23,7 @@ const OurNeeds = () => {
       sx={{
         backgroundImage: `url(${back})`,
         backgroundSize: "contain",
+        px: { xs: 0, lg: 2 },
       }}
     >
       <Box py={3}>
