@@ -263,6 +263,7 @@ const Home = () => {
             sx={{
               width: "100%",
               height: { xs: "none", lg: "50%" },
+              display: { xs: "none", lg: "block" },
             }}
           />
         </Box>
