@@ -1,5 +1,7 @@
 import {Box, Typography, useTheme} from "@mui/material";
 
+import ImageComponent from "../components/imageComponent";
+
 type AdoptionInfoProps = {
     title:string,
     text:string,
@@ -36,18 +38,17 @@ const AdoptionInfo = (props:AdoptionInfoProps) => {
                 <Typography textAlign={"center"} variant={"subtitle1"} fontWeight={"bold"} color={theme.palette.text.secondary}>
                     {props.title}
                 </Typography>
-                <Typography variant={"body1"} color={theme.palette.text.secondary}>
+                <Typography variant={"body1"} color={theme.palette.text.secondary} textAlign={'center'}>
                     {props.text}
                 </Typography>
             </Box>
-            <Box
+            <ImageComponent
+                src={props.img}
+                alt={props.title}
                 sx={{
-                    backgroundImage:`url(${props.img})`,
-                    backgroundSize:'cover',
-                    backgroundPosition:'center',
                     borderRadius:{xs:'0px 0px 10px 10px', lg:props.side === 'right' ? '0px 10px 10px 0px' : props.side === 'left' ? '10px 0px 0px 10px' : '0px 10px 10px 0px'},
                     height:{xs:'300px', md:'100%'},
-                    width:{xs:'100%', md:'40rem'}
+                    width:{xs:'100%', md:'35rem'}
                 }}
             />
 

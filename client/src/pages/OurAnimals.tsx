@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { AnimalType } from "../utils/types/basicTypes";
 import AnimalsFilter from "../components/animalsFilter";
 import AnimialTile from "../components/animalTile";
+import Loader from "../components/loader";
 import back from "../img/home/back.png";
 import { getAnimals } from "../utils/services/gets";
 import { paginationRangeForAnimals } from "../utils/services/pagination";
@@ -26,10 +27,10 @@ const OurAnimals = () => {
 
   useEffect(() => {
     getAnimals(page, paginationRangeForAnimals).then((res) => {
-        if(res){
-            setAnimalList(res.data);
-            setPageCount(res.meta.pagination.pageCount);
-        }
+      if (res) {
+        setAnimalList(res.data);
+        setPageCount(res.meta.pagination.pageCount);
+      }
     });
   }, [page]);
 
@@ -80,11 +81,12 @@ const OurAnimals = () => {
                   justifyContent: "center",
                 }}
               >
-                {animalList?.map((animal,i) => {
-                    return(
-                        <AnimialTile key={i} animal={animal}/>
-                    )
-                    }
+                {animalList ? (
+                  animalList.map((animal, i) => {
+                    return <AnimialTile key={i} animal={animal} />;
+                  })
+                ) : (
+                  <Loader />
                 )}
               </Box>
               <Box

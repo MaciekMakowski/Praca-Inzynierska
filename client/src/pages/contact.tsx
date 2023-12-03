@@ -1,7 +1,6 @@
-import {Box, Button, Checkbox, Container, TextField, Typography, useTheme} from "@mui/material";
+import {Box, Button, Checkbox, Container, Skeleton, TextField, Typography, useTheme} from "@mui/material";
 
-import {CheckBox} from "@mui/icons-material";
-import GoogleMapReact from "google-map-react";
+import ImageComponent from "../components/imageComponent";
 import back from "../img/home/back.png";
 import cat1 from '../img/contact/cats/cat1.png'
 import cat2 from '../img/contact/cats/cat2.png'
@@ -19,8 +18,8 @@ import dog5 from '../img/contact/dogs/dog5.png'
 import dog6 from '../img/contact/dogs/dog6.png'
 import dog7 from '../img/contact/dogs/dog7.png'
 import dog8 from '../img/contact/dogs/dog8.png'
-import mapImg from '../img/contact/map.png'
 import postDog from '../img/contact/postdog.png'
+import {useState} from "react";
 
 const dogsImages = [
     dog1, dog2,dog3, dog4, dog5, dog6, dog7, dog8
@@ -31,7 +30,7 @@ const catsImages = [
 
 const Contact = () => {
     const theme = useTheme()
-
+    const [mapLoad, setMapLoad] = useState(true)
 
     return(
         <Container
@@ -125,15 +124,23 @@ const Contact = () => {
                                 minHeight:'30rem',
 
                             }}
-                        >
-                        <iframe 
+                        > 
+                        <Skeleton 
+                        variant="rectangular"
+                        sx={{
+                            height:'100%',
+                            display:mapLoad ? 'block' : 'none'
+                        }}
+                        /> 
+                         <iframe 
                             title="Nasz adres"
                             width="100%"
                             height="100%"
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2359.574497289696!2d20.453564677091013!3d53.74365274492137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e27f4da93ae01d%3A0xea956f263f7cf90!2sWydzia%C5%82%20Matematyki%20i%20Informatyki%20UWM%20w%20Olsztynie!5e0!3m2!1spl!2spl!4v1698774114901!5m2!1spl!2spl"
-                            style={{ border: 0 }}
+                            style={{ border: 0, display:mapLoad ? 'none' : 'block' }}
                             allowFullScreen
                             loading="lazy"
+                            onLoad={() => setMapLoad(false)}
                             referrerPolicy="no-referrer-when-downgrade"
                         />
                         </Box>
@@ -187,12 +194,12 @@ const Contact = () => {
             >
                 {dogsImages.map((dog, index) => {
                     return(
-                        <Box
+                        <ImageComponent
                             key={index}
+                            src={dog}
+                            alt="Zdjęcie psa"
                             sx={{
                                 display:{xs:index<2 ?'flex' : 'none', sm:index<3 ?'flex' : 'none',  md:index<4 ?'flex' : 'none', lg:'block'},
-                                backgroundImage:`url(${dog})`,
-                                backgroundSize:'cover',
                                 width:'8rem',
                                 height:'8rem',
                             }}
@@ -216,16 +223,14 @@ const Contact = () => {
                         flexDirection:{xs:'column', lg:'row'}
                     }}
                 >
-                    <Box
-                        sx={{
-                            backgroundImage:`url(${postDog})`,
-                            backgroundSize:'cover',
-                            backgroundPosition:'center',
-                            width:{xs:'100%', lg:'60%'},
-                            height:{xs:'20rem', lg:'100%'},
-                        }}
-                    >
-                    </Box>
+                    <ImageComponent
+                            src={postDog}
+                            alt="Zdjęcie psa"
+                            sx={{
+                                width:{xs:'100%', lg:'60%'},
+                                height:{xs:'20rem', lg:'100%'},
+                            }}
+                        />
                     <Box
                         display={"flex"}
                         flexDirection={"column"}
@@ -300,13 +305,12 @@ const Contact = () => {
             >
                 {catsImages.map((cat, index) => {
                     return(
-                        <Box
+                        <ImageComponent
                             key={index}
+                            src={cat}
+                            alt="Zdjęcie kota"
                             sx={{
                                 display:{xs:index<2 ?'flex' : 'none', sm:index<3 ?'flex' : 'none',  md:index<4 ?'flex' : 'none', lg:'block'},
-                                backgroundImage:`url(${cat})`,
-                                backgroundSize:'cover',
-                                backgroundPosition:'center',
                                 width:'8rem',
                                 height:'8rem',
                             }}
