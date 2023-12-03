@@ -12,10 +12,10 @@ import { useState } from "react";
 const VolunteerMeetingsList = () => {
     const theme = useTheme();
 
-    const [filter, setFilter] = useState("");
+    const [filter, setFilter] = useState<string>(dayjs().format("YYYY-MM-DD"));
     const dateChange = (value: Dayjs | null) => {
       if (value === null) return;
-      handleChangeDate(value.format("DD-MM-YYYY"), setFilter, "birthDate");
+      setFilter(value.format("YYYY-MM-DD"));
     };
   
     const returnItems = () => {
@@ -57,8 +57,8 @@ const VolunteerMeetingsList = () => {
               sx={{
                 flexGrow: 1,
               }}
-              format="DD-MM-YYYY"
-              defaultValue={dayjs(filter, "DD-MM-YYYY")}
+              format="YYYY-MM-DD"
+              defaultValue={dayjs(filter)}
               label="Data wizyty"
               onChange={(value: Dayjs | null) => dateChange(value)}
             />
