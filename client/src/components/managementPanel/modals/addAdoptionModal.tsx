@@ -15,7 +15,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import { createAdoption } from "../../../utils/services/posts";
 import dayjs from "dayjs";
 import { getPerson } from "../../../utils/services/gets";
-import { handleTextChange } from "../../../utils/functions/handlers";
 
 const emptyPerson: PersonType = {
   id: 0,

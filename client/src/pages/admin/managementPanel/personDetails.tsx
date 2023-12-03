@@ -3,6 +3,7 @@ import { PersonType, VisitType } from "../../../utils/types/basicTypes";
 import { getPerson, getPersonVisits } from "../../../utils/services/gets";
 import { useEffect, useState } from "react";
 
+import AddMeetingModal from "../../../components/managementPanel/modals/addMeetingModal";
 import AddVisitModal from "../../../components/managementPanel/modals/addVisitModal";
 import EditPersonModal from "../../../components/managementPanel/modals/editPersonModal";
 import EndVisitModal from "../../../components/managementPanel/modals/endVisitModal";
@@ -29,6 +30,7 @@ const PersonDetails = () => {
   const [isInShelter, setIsInShelter] = useState(false);
   const [endVisit, setEndVisit] = useState(false);
   const [activeVisit, setActiveVisit] = useState<VisitType | null>(null);
+  const [meeting, setMeeting] = useState(false);
   const getAll = () => {
     if (id && type) {
       getPerson(type, id).then((res) => {
@@ -149,7 +151,7 @@ const PersonDetails = () => {
                       name="Zapisz na spotkanie"
                       ico={EventAvailableIcon}
                       disabled={false}
-                      foo={() => null}
+                      foo={() => setMeeting(true)}
                     />
                   )}
                 </Box>
@@ -178,6 +180,13 @@ const PersonDetails = () => {
               setRefresh={setRefreshVisits}
               person={personData}
               visit={activeVisit}
+            />
+          ) : null}
+          {meeting ? (
+            <AddMeetingModal
+              open={meeting}
+              setOpen={setMeeting}
+              person={personData}
             />
           ) : null}
         </>
