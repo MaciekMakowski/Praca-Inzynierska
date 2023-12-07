@@ -1,10 +1,20 @@
 import { Button, Grid, Typography, useTheme } from "@mui/material";
+import dayjs from "dayjs";
+import { useNavigate } from "react-router";
+import { navigateTo } from "../../../utils/functions/navigators";
+import { MeetingType } from "../../../utils/types/basicTypes";
 
-const VolunteerMeetingsListItem = (props: any) => {
-    const theme = useTheme();
+type MeetingListItemProps = {
+  color: boolean;
+  meeting: MeetingType;
+};
 
-    return(
-        <Grid
+const VolunteerMeetingsListItem = (props: MeetingListItemProps) => {
+  const theme = useTheme();
+  const navigate = useNavigate();
+  if (!props.meeting.attributes.guest) return null;
+  return (
+    <Grid
       container
       spacing={0}
       sx={{
@@ -17,7 +27,7 @@ const VolunteerMeetingsListItem = (props: any) => {
         backgroundColor: props.color ? "" : theme.palette.background.light,
       }}
     >
-        <Grid item xs={3}>
+      <Grid item xs={3}>
         <Typography
           variant="subtitle1"
           color={
@@ -27,7 +37,7 @@ const VolunteerMeetingsListItem = (props: any) => {
           }
           textAlign={"center"}
         >
-          20-03-2021
+          {dayjs(props.meeting.attributes.date).format("DD.MM.YYYY")}
         </Typography>
       </Grid>
       <Grid item xs={2}>
@@ -40,7 +50,7 @@ const VolunteerMeetingsListItem = (props: any) => {
           }
           textAlign={"center"}
         >
-          14:20
+          {dayjs(props.meeting.attributes.date).format("HH:mm")}
         </Typography>
       </Grid>
       <Grid item xs={4}>
@@ -53,25 +63,31 @@ const VolunteerMeetingsListItem = (props: any) => {
           }
           textAlign={"center"}
         >
-          Piotr Grzęszczyk
+          {props.meeting.attributes.guest.attributes.name}{" "}
+          {props.meeting.attributes.guest.attributes.lastName}
         </Typography>
       </Grid>
       <Grid item xs={3}>
-            <Button
-              sx={{
-                color: {
-                  color: props.color
-                    ? theme.palette.primary.main
-                    : theme.palette.text.secondary,
-                },
-              }}
-            >
-              Przejdź
-              </Button>
-          </Grid>
-        
+        <Button
+          sx={{
+            color: {
+              color: props.color
+                ? theme.palette.primary.main
+                : theme.palette.text.secondary,
+            },
+          }}
+          onClick={() =>
+            navigateTo(
+              navigate,
+              `/admin/management/meetings/${props.meeting.id}`
+            )
+          }
+        >
+          Przejdź
+        </Button>
+      </Grid>
     </Grid>
-    )
-}
+  );
+};
 
 export default VolunteerMeetingsListItem;

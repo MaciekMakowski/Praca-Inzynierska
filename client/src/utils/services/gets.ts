@@ -469,7 +469,6 @@ export const getAllMeetings = async (page: number, pagination: number) => {
       }
     );
     if (response.status === 200) {
-      console.log(response.data.data);
       const data = response.data.data.map((meeting: MeetingResponse) => {
         return createMeeting(meeting);
       });
@@ -495,7 +494,6 @@ export const getMeeting = async (id: string) => {
       },
     });
     if (response.status === 200) {
-      console.log(response.data.data);
       const data = createMeeting(response.data.data);
       return data;
     } else {
@@ -522,7 +520,6 @@ export const getVolunteerMeetings = async (
       }
     );
     if (response.status === 200) {
-      console.log(response.data.data);
       const data = response.data.data.map((meeting: MeetingResponse) => {
         return createMeeting(meeting);
       });

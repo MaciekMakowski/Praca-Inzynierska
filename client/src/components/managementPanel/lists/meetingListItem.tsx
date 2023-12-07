@@ -13,6 +13,7 @@ type MeetingListItemProps = {
 const MeetingListItem = (props: MeetingListItemProps) => {
   const theme = useTheme();
   const navigate = useNavigate();
+  if (!props.meeting.attributes.guest) return null;
   return (
     <Grid
       container

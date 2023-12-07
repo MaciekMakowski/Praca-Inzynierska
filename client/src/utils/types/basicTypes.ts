@@ -166,7 +166,7 @@ export type MeetingType = {
   attributes: {
     date: string;
     volunteer: PersonType;
-    guest: PersonType;
+    guest: PersonType | null;
     status: string;
   };
 };

@@ -28,9 +28,7 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { ErrorInput } from "../../../utils/types/errorInput";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { SetStateAction } from "react";
-import {
-  UnitList,
-} from "../../../utils/mockups/selects";
+import { UnitList } from "../../../utils/mockups/selects";
 import { createResource } from "../../../utils/services/posts";
 import { handleChangeDate } from "../../../utils/functions/handlers";
 import { updateResource } from "../../../utils/services/puts";
@@ -55,13 +53,13 @@ const emptyResource: ResourceType = {
     unit: "",
     expirationDate: null,
   },
-}
+};
 
 const AddResourceForm = (props: AddResourceFormProps) => {
   const theme = useTheme();
   const [checked, setChecked] = useState(false);
   const [newResource, setNewResource] = useState<ResourceType>(emptyResource);
-  
+
   const [ErrorList, setErrorList] = useState<ErrorInput>({
     name: {
       status: false,
@@ -104,8 +102,10 @@ const AddResourceForm = (props: AddResourceFormProps) => {
         },
       });
   };
-    const selectChangeSubtype = (e: SelectChangeEvent) => {
-    const subtype = newResource.attributes.type.attributes.subtypes?.find((subtype) => subtype.attributes.name === e.target.value)
+  const selectChangeSubtype = (e: SelectChangeEvent) => {
+    const subtype = newResource.attributes.type.attributes.subtypes?.find(
+      (subtype) => subtype.attributes.name === e.target.value
+    );
     if (subtype)
       setNewResource({
         ...newResource,
@@ -129,31 +129,26 @@ const AddResourceForm = (props: AddResourceFormProps) => {
   };
 
   const sendForm = () => {
-    if(props.isNew){
+    if (props.isNew) {
       validateForm(newResource.attributes, setErrorList).then((res) => {
-      if(res){
-        createResource(newResource).then((res) => {
-          if(res)
-          setNewResource(emptyResource)
-          if(props.setRefresh)
-          props.setRefresh(true)
-        })
-      }
-    })
-    }else{
+        if (res) {
+          createResource(newResource).then((res) => {
+            if (res) setNewResource(emptyResource);
+            if (props.setRefresh) props.setRefresh(true);
+          });
+        }
+      });
+    } else {
       validateForm(newResource.attributes, setErrorList).then((res) => {
-      if(res){
-        updateResource(newResource).then((res) => {
-          if(res)
-          props.setRefresh && props.setRefresh(true)
-          props.setOpen && props.setOpen(false)
-          
-        })
-      }
-    })
+        if (res) {
+          updateResource(newResource).then((res) => {
+            if (res) props.setRefresh && props.setRefresh(true);
+            props.setOpen && props.setOpen(false);
+          });
+        }
+      });
     }
-    
-  }
+  };
 
   useEffect(() => {
     if (!props.data) return;
@@ -161,9 +156,7 @@ const AddResourceForm = (props: AddResourceFormProps) => {
     setChecked(props.data.attributes.expirationDate !== null);
   }, [props.data]);
 
-  useEffect(() => {
-    console.log(newResource)
-  }, [newResource]);
+  useEffect(() => {}, [newResource]);
 
   return (
     <Box
@@ -257,21 +250,20 @@ const AddResourceForm = (props: AddResourceFormProps) => {
           defaultValue=""
           onChange={selectChangeSubtype}
         >
-          {newResource.attributes.type.id != 0 ?
-          props.resourceTypes &&
+          {newResource.attributes.type.id != 0 ? (
+            props.resourceTypes &&
             props.resourceTypes
-              .find(
-                (item) => item.id === newResource.attributes.type.id
-              )
+              .find((item) => item.id === newResource.attributes.type.id)
               ?.attributes.subtypes?.map((subtype) => (
                 <MenuItem key={subtype.id} value={subtype.attributes.name}>
                   {subtype.attributes.name}
                 </MenuItem>
-              )):
-              <MenuItem value="" disabled>
-                Wybierz rodzaj
-              </MenuItem>
-            }
+              ))
+          ) : (
+            <MenuItem value="" disabled>
+              Wybierz rodzaj
+            </MenuItem>
+          )}
         </Select>
       </FormControl>
       {checked && (

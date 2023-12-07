@@ -9,7 +9,10 @@ import {
 import { DatePicker, TimeField } from "@mui/x-date-pickers";
 import { PersonType, VisitType } from "../../../utils/types/basicTypes";
 import dayjs, { Dayjs } from "dayjs";
-import { handleChangeDate, handleTextChange } from "../../../utils/functions/handlers";
+import {
+  handleChangeDate,
+  handleTextChange,
+} from "../../../utils/functions/handlers";
 import { useEffect, useState } from "react";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -28,9 +31,7 @@ type AddVisitModalProps = {
   person: PersonType;
 };
 
-
 const AddVisitModal = (props: AddVisitModalProps) => {
-
   const initialVisit: VisitType = {
     id: 0,
     attributes: {
@@ -45,11 +46,11 @@ const AddVisitModal = (props: AddVisitModalProps) => {
   const handleClose = () => props.setOpen(false);
   const [newVisit, setNewVisit] = useState<VisitType>(initialVisit);
   const [errorList, setErrorList] = useState<ErrorInput>({
-    date:{
-        status: false,
+    date: {
+      status: false,
     },
-    enterTime:{
-        status: false,
+    enterTime: {
+      status: false,
     },
   });
 
@@ -59,24 +60,21 @@ const AddVisitModal = (props: AddVisitModalProps) => {
   };
   const timeChange = (value: Dayjs | null) => {
     if (value === null) return;
-    handleChangeDate(value.format('HH:mm'), setNewVisit, 'enterTime');
-  }
+    handleChangeDate(value.format("HH:mm"), setNewVisit, "enterTime");
+  };
 
   const sendForm = () => {
     validateForm(newVisit.attributes, setErrorList).then((res) => {
       if (res) {
         createVisit(newVisit, props.type).then((res) => {
-          console.log(res)
-            if (res) {
-                props.setRefresh(true);
-                handleClose();
-            }
-        })
+          if (res) {
+            props.setRefresh(true);
+            handleClose();
+          }
+        });
       }
     });
-  }
-
-  
+  };
 
   return (
     <Modal open={props.open} onClose={handleClose}>
@@ -136,7 +134,7 @@ const AddVisitModal = (props: AddVisitModalProps) => {
             <DemoContainer components={["DatePicker"]}>
               <DatePicker
                 sx={{
-                  width: '300px',
+                  width: "300px",
                 }}
                 format="YYYY-MM-DD"
                 value={dayjs(newVisit.attributes.date)}
@@ -152,7 +150,7 @@ const AddVisitModal = (props: AddVisitModalProps) => {
                 name="enterTime"
                 format="HH:mm"
                 sx={{
-                  width: '300px',
+                  width: "300px",
                 }}
                 onChange={(value: Dayjs | null) => timeChange(value)}
               />

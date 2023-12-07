@@ -12,10 +12,8 @@ type ImageComponentProps = {
 const ImageComponent = (props: ImageComponentProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
-
   const handleImageLoad = () => {
     setIsLoaded(true);
-    console.log(props.src);
   };
 
   const handleImageError = () => {
@@ -23,14 +21,14 @@ const ImageComponent = (props: ImageComponentProps) => {
   };
   return (
     <>
-    <Box 
-    component="img"
-    alt={props.alt}
-    onLoad={handleImageLoad}
-    onError={handleImageError}
-    sx={{ display: isLoaded ? "block" : "none", ...props.sx }}
-    src={props.src}
-    />
+      <Box
+        component="img"
+        alt={props.alt}
+        onLoad={handleImageLoad}
+        onError={handleImageError}
+        sx={{ display: isLoaded ? "block" : "none", ...props.sx }}
+        src={props.src}
+      />
       <Skeleton
         sx={{
           display: isLoaded ? "none" : "block",
@@ -38,7 +36,6 @@ const ImageComponent = (props: ImageComponentProps) => {
         variant="rectangular"
         animation="wave"
       />
-
     </>
   );
 };
