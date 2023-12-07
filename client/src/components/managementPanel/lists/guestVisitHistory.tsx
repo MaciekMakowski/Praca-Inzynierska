@@ -1,30 +1,37 @@
-import { Box, Button, Grid, Pagination, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Pagination,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
 
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import GuestVisitHistoryItem from "./guestVisitHistoryItem";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { useState } from "react";
 import { VisitType } from "../../../utils/types/basicTypes";
-import { handleChangeDate } from "../../../utils/functions/handlers";
-import {useState} from "react";
+import Loader from "../../loader";
+import EmptyList from "../emptyList";
+import GuestVisitHistoryItem from "./guestVisitHistoryItem";
 
 type GuestVisitHistoryProps = {
   id: number;
   type: "volunteer" | "guest";
   refresh: boolean;
-  visits:VisitType[];
+  visits: VisitType[] | null;
 };
 
-const GuestVisitHistory = (props:GuestVisitHistoryProps) => {
+const GuestVisitHistory = (props: GuestVisitHistoryProps) => {
   const theme = useTheme();
   const [filter, setFilter] = useState<string>(dayjs().format("YYYY-MM-DD"));
   const dateChange = (value: Dayjs | null) => {
     if (value === null) return;
     setFilter(value.format("YYYY-MM-DD"));
   };
-
 
   return (
     <Box
@@ -39,7 +46,7 @@ const GuestVisitHistory = (props:GuestVisitHistoryProps) => {
         gap: "1rem",
         borderRadius: "1rem",
         boxShadow: theme.shadows[3],
-        width:{xs:'100%', lg:'45%'},
+        width: { xs: "100%", lg: "45%" },
       }}
     >
       <Box
@@ -119,22 +126,32 @@ const GuestVisitHistory = (props:GuestVisitHistoryProps) => {
             overflowY: "auto",
           }}
         >
-          {props.visits.map((visit, i) => {
-            return(
-              <GuestVisitHistoryItem key={i} color={i % 2 == 0} visit={visit} />
-            )
-          })}
+          {!props.visits ? (
+            <Loader />
+          ) : props.visits.length > 0 ? (
+            props.visits.map((visit, i) => {
+              return (
+                <GuestVisitHistoryItem
+                  key={i}
+                  color={i % 2 == 0}
+                  visit={visit}
+                />
+              );
+            })
+          ) : (
+            <EmptyList />
+          )}
         </Box>
         <Box
-        sx={{
-          display: "flex",
-          justifyContent: "end",
-        }}
-      >
-        <Typography variant="subtitle1" color={theme.palette.text.primary}>
-          <Pagination count={10} size="small" />
-        </Typography>
-      </Box>
+          sx={{
+            display: "flex",
+            justifyContent: "end",
+          }}
+        >
+          <Typography variant="subtitle1" color={theme.palette.text.primary}>
+            <Pagination count={10} size="small" />
+          </Typography>
+        </Box>
       </Box>
     </Box>
   );

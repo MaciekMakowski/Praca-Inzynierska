@@ -1,29 +1,29 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import { PersonType, VisitType } from "../../../utils/types/basicTypes";
-import { getPerson, getPersonVisits } from "../../../utils/services/gets";
 import { useEffect, useState } from "react";
+import { getPerson, getPersonVisits } from "../../../utils/services/gets";
+import { PersonType, VisitType } from "../../../utils/types/basicTypes";
 
+import EventAvailableIcon from "@mui/icons-material/EventAvailable";
+import EventNoteIcon from "@mui/icons-material/EventNote";
+import FaceRetouchingNaturalIcon from "@mui/icons-material/FaceRetouchingNatural";
+import PersonOffIcon from "@mui/icons-material/PersonOff";
+import { useParams } from "react-router";
+import Loader from "../../../components/loader";
+import GuestVisitHistory from "../../../components/managementPanel/lists/guestVisitHistory";
+import VolunteerMeetingsList from "../../../components/managementPanel/lists/volunteerMeetingsList";
+import ManagementButton from "../../../components/managementPanel/managementButton";
 import AddMeetingModal from "../../../components/managementPanel/modals/addMeetingModal";
 import AddVisitModal from "../../../components/managementPanel/modals/addVisitModal";
 import EditPersonModal from "../../../components/managementPanel/modals/editPersonModal";
 import EndVisitModal from "../../../components/managementPanel/modals/endVisitModal";
-import EventAvailableIcon from "@mui/icons-material/EventAvailable";
-import EventNoteIcon from "@mui/icons-material/EventNote";
-import FaceRetouchingNaturalIcon from "@mui/icons-material/FaceRetouchingNatural";
-import GuestVisitHistory from "../../../components/managementPanel/lists/guestVisitHistory";
-import Loader from "../../../components/loader";
-import ManagementButton from "../../../components/managementPanel/managementButton";
 import PersonDataTable from "../../../components/managementPanel/personDataTable";
-import PersonOffIcon from "@mui/icons-material/PersonOff";
-import VolunteerMeetingsList from "../../../components/managementPanel/lists/volunteerMeetingsList";
-import { useParams } from "react-router";
 
 const PersonDetails = () => {
   const theme = useTheme();
   const { type, id } = useParams();
   const [refresh, setRefresh] = useState(false);
   const [personData, setPersonData] = useState<PersonType>();
-  const [visits, setVisits] = useState<VisitType[]>([]);
+  const [visits, setVisits] = useState<VisitType[] | null>(null);
   const [editPerson, setEditPerson] = useState(false);
   const [addVisit, setAddVisit] = useState(false);
   const [refreshVisits, setRefreshVisits] = useState(false);
@@ -49,10 +49,14 @@ const PersonDetails = () => {
   }, [id, type, refreshVisits]);
 
   useEffect(() => {
-    setIsInShelter(visits.some((visit) => visit.attributes.exitTime === null));
-    setActiveVisit(
-      visits.find((visit) => visit.attributes.exitTime === null) || null
-    );
+    if (visits) {
+      setIsInShelter(
+        visits.some((visit) => visit.attributes.exitTime === null)
+      );
+      setActiveVisit(
+        visits.find((visit) => visit.attributes.exitTime === null) || null
+      );
+    }
   }, [visits]);
 
   useEffect(() => {

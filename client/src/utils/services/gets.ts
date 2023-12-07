@@ -505,3 +505,36 @@ export const getMeeting = async (id: string) => {
     console.log(err);
   }
 };
+
+export const getVolunteerMeetings = async (
+  id: string,
+  page: number,
+  pagination: number
+) => {
+  const authToken = Cookies.get("token");
+  try {
+    const response = await axios.get(
+      `${APIurl}meetings/?filters[volunteer][id]=${id}&pagination[page]=${page}&pagination[pageSize]=${pagination}&populate=deep`,
+      {
+        headers: {
+          authorization: `Bearer ${authToken}`,
+        },
+      }
+    );
+    if (response.status === 200) {
+      console.log(response.data.data);
+      const data = response.data.data.map((meeting: MeetingResponse) => {
+        return createMeeting(meeting);
+      });
+      const clearResponse = {
+        data: data,
+        meta: response.data.meta,
+      };
+      return clearResponse;
+    } else {
+      return false;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
