@@ -8,9 +8,9 @@ import {
   VisitType,
 } from "../types/basicTypes";
 
-import { APIurl } from "./url";
-import Cookies from "js-cookie";
 import axios from "axios";
+import Cookies from "js-cookie";
+import { APIurl } from "./url";
 
 export const updateDisease = async (disease: DiseaseType) => {
   const authToken = Cookies.get("token");
@@ -188,7 +188,9 @@ export const updateResource = async (resource: ResourceType) => {
           quantity: resource.attributes.quantity,
           unit: resource.attributes.unit,
           resources_type: resource.attributes.type.id,
-          resource_subtype: resource.attributes.subtype ? resource.attributes.subtype.id : null,
+          resource_subtype: resource.attributes.subtype
+            ? resource.attributes.subtype.id
+            : null,
           expirationDate: resource.attributes.expirationDate,
         },
       },
@@ -206,22 +208,25 @@ export const updateResource = async (resource: ResourceType) => {
   } catch (err) {
     console.log(err);
   }
-}
+};
 
-export const endVisit = async (visit: VisitType, type:"guest" | "volunteer", time:string) => {
+export const endVisit = async (
+  visit: VisitType,
+  type: "guest" | "volunteer",
+  time: string
+) => {
   const authToken = Cookies.get("token");
   try {
     const response = await axios.put(
       `${APIurl}${type}-visits/${visit.id}`,
       {
-        data:{
-          visit:{
-             enterTime: visit.attributes.enterTime,
-             exitTime: time.concat(":00.00"),
-             date: visit.attributes.date,
-          }
-        }
-          
+        data: {
+          visit: {
+            enterTime: visit.attributes.enterTime,
+            exitTime: time.concat(":00.00"),
+            date: visit.attributes.date,
+          },
+        },
       },
       {
         headers: {
@@ -237,5 +242,33 @@ export const endVisit = async (visit: VisitType, type:"guest" | "volunteer", tim
   } catch (err) {
     console.log(err);
   }
+};
 
-}
+export const updateMeetingStatus = async (
+  meetingId: number,
+  status: string
+) => {
+  const authToken = Cookies.get("token");
+  try {
+    const response = await axios.put(
+      `${APIurl}meetings/${meetingId}`,
+      {
+        data: {
+          status: status,
+        },
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      }
+    );
+    if (response.status === 200) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};

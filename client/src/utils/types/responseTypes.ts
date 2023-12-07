@@ -1,10 +1,4 @@
-import {
-  AnimalType,
-  DiseaseType,
-  IsolationType,
-  PetDiseaseType,
-  VisitType,
-} from "./basicTypes";
+import { AnimalType, DiseaseType } from "./basicTypes";
 
 export type IsolationResponse = {
   id: number;
@@ -90,29 +84,27 @@ export type ImageResponse = {
 };
 
 export type AnimalInfoResponse = {
-    animal: {
-      data:AnimalResponse
-    };
-    diseases: {
-      data: DiseaseType[];
-    };
-    isolations: {
-      data: IsolationResponse[];
-    };
-    petDiseases: {
-      data: PetDiseasesResponse[];
-    };
+  animal: {
+    data: AnimalResponse;
+  };
+  diseases: {
+    data: DiseaseType[];
+  };
+  isolations: {
+    data: IsolationResponse[];
+  };
+  petDiseases: {
+    data: PetDiseasesResponse[];
+  };
 };
 
-
-export type ResourceTypeResponse ={
+export type ResourceTypeResponse = {
   id: number;
   attributes: {
     name: string;
-    resource_subtypes:{
+    resource_subtypes: {
       data: ResourceSubtypeResponse[];
-    }
-    
+    };
   };
 };
 
@@ -128,7 +120,7 @@ export type ResourceResponse = {
   attributes: {
     name: string;
     quantity: number;
-    unit:string;
+    unit: string;
     expirationDate: string | null;
     resources_type: {
       data: ResourceTypeResponse;
@@ -142,13 +134,27 @@ export type ResourceResponse = {
 export type VisitResponse = {
   id: number;
   attributes: {
-    person:{
+    person: {
       data: PersonsResponse;
     };
-    visit:{
+    visit: {
       date: string;
       enterTime: string;
       exitTime: string;
-    }
+    };
   };
-}
+};
+
+export type MeetingResponse = {
+  id: number;
+  attributes: {
+    guest: {
+      data: PersonsResponse;
+    };
+    volunteer: {
+      data: PersonsResponse;
+    };
+    date: string;
+    status: string;
+  };
+};

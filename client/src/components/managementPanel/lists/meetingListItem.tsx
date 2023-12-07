@@ -1,10 +1,13 @@
 import { Button, Grid, Typography, useTheme } from "@mui/material";
 
-import { navigateTo } from "../../../utils/functions/navigators";
+import dayjs from "dayjs";
 import { useNavigate } from "react-router";
+import { navigateTo } from "../../../utils/functions/navigators";
+import { MeetingType } from "../../../utils/types/basicTypes";
 
 type MeetingListItemProps = {
   color: boolean;
+  meeting: MeetingType;
 };
 
 const MeetingListItem = (props: MeetingListItemProps) => {
@@ -32,7 +35,7 @@ const MeetingListItem = (props: MeetingListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          #21342
+          {props.meeting.id}
         </Typography>
       </Grid>
       <Grid item xs={2}>
@@ -45,7 +48,7 @@ const MeetingListItem = (props: MeetingListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          20-09-2021
+          {dayjs(props.meeting.attributes.date).format("DD.MM.YYYY")}
         </Typography>
       </Grid>
       <Grid item xs={1} md={1}>
@@ -58,7 +61,7 @@ const MeetingListItem = (props: MeetingListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          12:45
+          {dayjs(props.meeting.attributes.date).format("HH:mm")}
         </Typography>
       </Grid>
       <Grid item xs={2} md={2.5}>
@@ -71,7 +74,8 @@ const MeetingListItem = (props: MeetingListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          Adam Nowak
+          {props.meeting.attributes.guest.attributes.name}{" "}
+          {props.meeting.attributes.guest.attributes.lastName}
         </Typography>
       </Grid>
       <Grid item xs={2} md={2.5}>
@@ -84,7 +88,8 @@ const MeetingListItem = (props: MeetingListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          Andrzej Walec
+          {props.meeting.attributes.volunteer.attributes.name}{" "}
+          {props.meeting.attributes.volunteer.attributes.lastName}
         </Typography>
       </Grid>
       <Grid item xs={2} md={2}>
@@ -97,7 +102,7 @@ const MeetingListItem = (props: MeetingListItemProps) => {
               : theme.palette.text.secondary
           }
         >
-          Zakńczona
+          {props.meeting.attributes.status}
         </Typography>
       </Grid>
       <Grid item xs={2} md={1}>
@@ -107,7 +112,12 @@ const MeetingListItem = (props: MeetingListItemProps) => {
               ? theme.palette.text.primary
               : theme.palette.text.secondary,
           }}
-          onClick={() => navigateTo(navigate, "/admin/management/meetings/1")}
+          onClick={() =>
+            navigateTo(
+              navigate,
+              `/admin/management/meetings/${props.meeting.id}`
+            )
+          }
         >
           Przejdź
         </Button>

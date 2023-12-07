@@ -1,5 +1,5 @@
-import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { SvgIconTypeMap } from "@mui/material";
+import { OverridableComponent } from "@mui/material/OverridableComponent";
 
 export type subListType = {
   name: string;
@@ -98,7 +98,7 @@ export type ResourceType = {
   id: number;
   attributes: {
     name: string;
-    type:ResourceTypeType ;
+    type: ResourceTypeType;
     subtype: ResourceSubtypeType | null;
     quantity: number;
     unit: string;
@@ -124,34 +124,32 @@ export type AdoptionType = {
   };
 };
 
-
 export type Image = {
   id: number;
   url: string;
   alternativeText: string;
-}
+};
 
 export type AnimalInfoType = {
-    animal: AnimalType;
-    diseases: DiseaseType[];
-    isolations: IsolationType[];
-    petDiseases: PetDiseaseType[];
-}
+  animal: AnimalType;
+  diseases: DiseaseType[];
+  isolations: IsolationType[];
+  petDiseases: PetDiseaseType[];
+};
 
 export type ResourceTypeType = {
-  id:number,
+  id: number;
   attributes: {
     name: string;
     subtypes: ResourceSubtypeType[] | null;
-  }
-}
+  };
+};
 export type ResourceSubtypeType = {
-  id:number,
+  id: number;
   attributes: {
     name: string;
-  }
-}
-
+  };
+};
 
 export type VisitType = {
   id: number;
@@ -160,5 +158,15 @@ export type VisitType = {
     enterTime: string;
     exitTime: string | null;
     person: PersonType | null;
+  };
+};
+
+export type MeetingType = {
+  id: number;
+  attributes: {
+    date: string;
+    volunteer: PersonType;
+    guest: PersonType;
+    status: string;
   };
 };

@@ -1,7 +1,9 @@
 import {
   Box,
   Button,
+  FormControl,
   IconButton,
+  InputLabel,
   MenuItem,
   Modal,
   Select,
@@ -11,15 +13,37 @@ import {
 } from "@mui/material";
 
 import CloseIcon from "@mui/icons-material/Close";
-import { handleSelectChange } from "../../../utils/functions/handlers";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
+import { updateMeetingStatus } from "../../../utils/services/puts";
+import { MeetingType } from "../../../utils/types/basicTypes";
 
-const ChangeMeetingStatusModal = (props: any) => {
+type ChangeMeetingStatusModalProps = {
+  open: boolean;
+  setOpen: (value: boolean) => void;
+  status?: string;
+  setMeeting: Dispatch<SetStateAction<MeetingType | null>>;
+  meeting: MeetingType;
+  setRefresh: Dispatch<SetStateAction<boolean>>;
+};
+
+const ChangeMeetingStatusModal = (props: ChangeMeetingStatusModalProps) => {
   const theme = useTheme();
-  const [newStatus, setNewStatus] = useState<string>("");
   const handleClose = () => props.setOpen(false);
+  const [newStatus, setNewStatus] = useState<string>(
+    props.meeting.attributes.status
+  );
+
   const selectChange = (event: SelectChangeEvent) => {
-    handleSelectChange(event, setNewStatus);
+    setNewStatus((prev) => (prev = event.target.value));
+  };
+
+  const sendForm = () => {
+    updateMeetingStatus(props.meeting.id, newStatus).then((res) => {
+      if (res) {
+        handleClose();
+        props.setRefresh(true);
+      }
+    });
   };
 
   return (
@@ -57,12 +81,24 @@ const ChangeMeetingStatusModal = (props: any) => {
             <CloseIcon />
           </IconButton>
         </Box>
-        <Select onChange={selectChange}>
-          <MenuItem value={"val1"}>Oczekująca</MenuItem>
-          <MenuItem value={"val2"}>Zakończona</MenuItem>
-          <MenuItem value={"val3"}>Anulowana</MenuItem>
-        </Select>
-        <Button variant="contained">Zapisz</Button>
+        <FormControl>
+          <InputLabel>Status</InputLabel>
+          <Select
+            label="Status"
+            onChange={selectChange}
+            name="status"
+            defaultValue={props.status || ""}
+          >
+            <MenuItem value={"Oczekujące"}>Oczekujące</MenuItem>
+            <MenuItem value={"W trakcie"}>W trakcie</MenuItem>
+            <MenuItem value={"Zakończone"}>Zakończone</MenuItem>
+            <MenuItem value={"Anulowane"}>Anulowane</MenuItem>
+          </Select>
+        </FormControl>
+
+        <Button variant="contained" onClick={() => sendForm()}>
+          Zapisz
+        </Button>
       </Box>
     </Modal>
   );
