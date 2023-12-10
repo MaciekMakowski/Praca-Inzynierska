@@ -535,3 +535,22 @@ export const getVolunteerMeetings = async (
     console.log(err);
   }
 };
+
+export const getAnimalsStatistics = async () => {
+  const authToken = Cookies.get("token");
+  try {
+    const response = await axios.get(`${APIurl}animals/statistics/data`, {
+      headers: {
+        authorization: `Bearer ${authToken}`,
+      },
+    });
+    if (response.status === 200) {
+      const data = response.data;
+      return data;
+    } else {
+      return false;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};

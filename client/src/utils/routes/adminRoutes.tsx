@@ -1,20 +1,20 @@
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
+import { Box } from "@mui/material";
 import AdminMenu from "../../components/adminMenu";
+import Panel from "../../pages/admin/adminPanel/panel";
+import LoginPage from "../../pages/admin/loginPage";
 import AdoptionDetails from "../../pages/admin/managementPanel/adoptionDetails";
 import AdoptionsManagement from "../../pages/admin/managementPanel/adoptionsManagement";
-import { Box } from "@mui/material";
 import DiseaseDetails from "../../pages/admin/managementPanel/diseaseDetails";
 import DiseaseManagement from "../../pages/admin/managementPanel/diseaseManagement";
 import GuestManagement from "../../pages/admin/managementPanel/guestManagement";
 import IsolationDetails from "../../pages/admin/managementPanel/isolationDetails";
 import IsolationManagement from "../../pages/admin/managementPanel/isolationManagement";
-import LoginPage from "../../pages/admin/loginPage";
 import ManagmentPanel from "../../pages/admin/managementPanel/managementPanel";
 import MeetingDetails from "../../pages/admin/managementPanel/meetingDetails";
 import MeetingManagement from "../../pages/admin/managementPanel/meetingManagement";
-import Panel from "../../pages/admin/adminPanel/panel";
 import PersonDetails from "../../pages/admin/managementPanel/personDetails";
 import PetDiseaseDetails from "../../pages/admin/managementPanel/petDiseaseDetails";
 import PetManagement from "../../pages/admin/managementPanel/petManagement";
@@ -22,13 +22,16 @@ import PetsManagement from "../../pages/admin/managementPanel/petsManagement";
 import ResourceDetails from "../../pages/admin/managementPanel/resourceDetails";
 import ResourcesManagement from "../../pages/admin/managementPanel/resourcesManagement";
 import VolunteerManagement from "../../pages/admin/managementPanel/volunteerManagement";
-import { checkIfUserIsLoggedIn } from "../services/check";
+import AnimalsStatistics from "../../pages/admin/statisticsPanel/animalsStatistics";
 import { navigateTo } from "../functions/navigators";
+import { checkIfUserIsLoggedIn } from "../services/check";
 
 const AdminRoutes = () => {
   const location = useLocation();
   const storageState = sessionStorage.getItem("isLogged");
-  const [isLogged, setIsLogged] = useState<boolean>(storageState ? true : false);
+  const [isLogged, setIsLogged] = useState<boolean>(
+    storageState ? true : false
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -148,12 +151,20 @@ const AdminRoutes = () => {
                   path="/management/meetings/:id"
                   element={<MeetingDetails />}
                 />
+                <Route
+                  path="/statistics/animals"
+                  element={<AnimalsStatistics />}
+                />
               </Routes>
             </Box>
           </Box>
         </>
       ) : (
-        <><Routes location={location} key={location.pathname}><Route path="/*" element={<LoginPage />} /> </Routes></>
+        <>
+          <Routes location={location} key={location.pathname}>
+            <Route path="/*" element={<LoginPage />} />{" "}
+          </Routes>
+        </>
       )}
     </>
   );
