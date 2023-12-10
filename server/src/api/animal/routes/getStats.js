@@ -3,8 +3,8 @@ module.exports = {
     {
       // Path defined with an URL parameter
       method: "GET",
-      path: "/animals/info/:petid",
-      handler: "animal.getAnimalInfo",
+      path: "/animals/statistics/data",
+      handler: "animal.getStats",
       config: {
         auth: false,
       },
