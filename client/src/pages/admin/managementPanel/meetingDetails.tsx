@@ -30,7 +30,7 @@ const MeetingDetails = () => {
 
   return (
     <>
-      {!meeting ? (
+      {!meeting || !meeting.attributes.guest ? (
         <Loader />
       ) : (
         <>
