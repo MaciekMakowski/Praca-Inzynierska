@@ -29,6 +29,7 @@ const PieChart = (props: dataType) => {
         text: props.title,
       },
     },
+    maintainAspectRatio: false,
   };
 
   return (

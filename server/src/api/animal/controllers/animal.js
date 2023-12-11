@@ -145,15 +145,19 @@ module.exports = createCoreController("api::animal.animal", ({ strapi }) => ({
       animals.forEach((animal) => {
         const existingAdmission = admittedAnimals.find(
           (admission) =>
-            admission[0] === dayjs(animal.dateOfAdmission).format("YYYY-MM-DD")
+            admission[0] === dayjs(animal.dateOfAdmission).format("YYYY-MM")
         );
-        if (existingAdmission) {
-          existingAdmission[1] += 1;
-        } else {
-          admittedAnimals.push([
-            dayjs(animal.dateOfAdmission).format("YYYY-MM-DD"),
-            1,
-          ]);
+        if (
+          dayjs(animal.dateOfAdmission).isAfter(dayjs().subtract(1, "year"))
+        ) {
+          if (existingAdmission) {
+            existingAdmission[1] += 1;
+          } else {
+            admittedAnimals.push([
+              dayjs(animal.dateOfAdmission).format("YYYY-MM"),
+              1,
+            ]);
+          }
         }
       });
 

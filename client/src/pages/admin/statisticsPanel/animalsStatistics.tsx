@@ -14,7 +14,7 @@ const AnimalsStatistics = () => {
     if (!data)
       getAnimalsStatistics().then((res) => {
         setData(res);
-        console;
+        console.log(res);
       });
   }, []);
   return (
@@ -29,6 +29,7 @@ const AnimalsStatistics = () => {
             alignItems: "center",
             width: "100%",
             height: "100%",
+            gap: "2rem",
           }}
         >
           <Box
@@ -58,40 +59,18 @@ const AnimalsStatistics = () => {
                 flexDirection: { xs: "column", lg: "row" },
                 alignItems: { xs: "center", lg: "flex-start" },
                 width: "100%",
-                height: "40%",
+                height: "25%",
               }}
             >
               <Box
                 sx={{
-                  width: { xs: "fit-content", lg: "50%" },
+                  width: { xs: "fit-content", lg: "100%" },
                   height: { xs: "400px", lg: "100%" },
                 }}
               >
                 <VerticalChart
                   data={transformArrDataForChart(data.raceStats, "Ilość")}
                   title="Rasy zwierząt"
-                />
-              </Box>
-              <Box
-                sx={{
-                  width: { xs: "fit-content", lg: "25%" },
-                  height: { xs: "300px", lg: "100%" },
-                }}
-              >
-                <PieChart
-                  data={transformArrDataForChart(data.ageStats, "Ilość")}
-                  title="Podział wiekowy"
-                />
-              </Box>
-              <Box
-                sx={{
-                  width: { xs: "fit-content", lg: "25%" },
-                  height: { xs: "300px", lg: "100%" },
-                }}
-              >
-                <PieChart
-                  data={transformArrDataForChart(data.speciesStats, "Ilość")}
-                  title="Podział na psy i koty"
                 />
               </Box>
             </Box>
@@ -101,12 +80,12 @@ const AnimalsStatistics = () => {
                 flexDirection: { xs: "column", lg: "row" },
                 alignItems: { xs: "center", lg: "flex-start" },
                 width: "100%",
-                height: { xs: "none", lg: "35%" },
+                height: { xs: "none", lg: "25%" },
               }}
             >
               <Box
                 sx={{
-                  width: { xs: "fit-content", lg: "25%" },
+                  width: { xs: "fit-content", lg: "20%" },
                   height: { xs: "300px", lg: "100%" },
                 }}
               >
@@ -117,7 +96,18 @@ const AnimalsStatistics = () => {
               </Box>
               <Box
                 sx={{
-                  width: { xs: "fit-content", lg: "25%" },
+                  width: { xs: "fit-content", lg: "20%" },
+                  height: { xs: "300px", lg: "100%" },
+                }}
+              >
+                <PieChart
+                  data={transformArrDataForChart(data.weightStats, "Ilość")}
+                  title="Podział wiekowy"
+                />
+              </Box>
+              <Box
+                sx={{
+                  width: { xs: "fit-content", lg: "20%" },
                   height: { xs: "300px", lg: "100%" },
                 }}
               >
@@ -128,7 +118,7 @@ const AnimalsStatistics = () => {
               </Box>
               <Box
                 sx={{
-                  width: { xs: "fit-content", lg: "25%" },
+                  width: { xs: "fit-content", lg: "20%" },
                   height: { xs: "300px", lg: "100%" },
                 }}
               >
@@ -139,7 +129,7 @@ const AnimalsStatistics = () => {
               </Box>
               <Box
                 sx={{
-                  width: { xs: "fit-content", lg: "25%" },
+                  width: { xs: "fit-content", lg: "20%" },
                   height: { xs: "300px", lg: "100%" },
                 }}
               >
@@ -152,14 +142,13 @@ const AnimalsStatistics = () => {
             <Box
               sx={{
                 width: "100%",
-                height: "400px",
+                height: "350px",
               }}
             >
               <LineChart
                 data={transformArrDataForChart(
                   data.admittedAnimals,
-                  "Ilośc przyjętych w danum miesiącu",
-                  true
+                  "Ilośc przyjętych w danym miesiącu"
                 )}
                 title="Rozkład przyjęć zwierząt"
               />
