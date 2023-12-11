@@ -554,3 +554,22 @@ export const getAnimalsStatistics = async () => {
     console.log(err);
   }
 };
+
+export const getDiseasesStatistics = async () => {
+  const authToken = Cookies.get("token");
+  try {
+    const response = await axios.get(`${APIurl}diseases/statistics/data`, {
+      headers: {
+        authorization: `Bearer ${authToken}`,
+      },
+    });
+    if (response.status === 200) {
+      const data = response.data;
+      return data;
+    } else {
+      return false;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
