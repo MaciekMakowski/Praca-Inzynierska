@@ -573,3 +573,41 @@ export const getDiseasesStatistics = async () => {
     console.log(err);
   }
 };
+
+export const getIsolationsStatistics = async () => {
+  const authToken = Cookies.get("token");
+  try {
+    const response = await axios.get(`${APIurl}isolations/statistics/data`, {
+      headers: {
+        authorization: `Bearer ${authToken}`,
+      },
+    });
+    if (response.status === 200) {
+      const data = response.data;
+      return data;
+    } else {
+      return false;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getVolunteerStatistics = async () => {
+  const authToken = Cookies.get("token");
+  try {
+    const response = await axios.get(`${APIurl}volunteers/statistics/data`, {
+      headers: {
+        authorization: `Bearer ${authToken}`,
+      },
+    });
+    if (response.status === 200) {
+      const data = response.data;
+      return data;
+    } else {
+      return false;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};

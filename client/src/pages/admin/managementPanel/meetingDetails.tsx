@@ -86,18 +86,20 @@ const MeetingDetails = () => {
                   {meeting.attributes.status}
                 </Typography>
               </Typography>
-              <Box
-                sx={{
-                  marginX: "auto",
-                }}
-              >
-                <ManagementButton
-                  name={"Zmień Status"}
-                  ico={CalendarMonthIcon}
-                  disabled={false}
-                  foo={() => setOpen(true)}
-                />
-              </Box>
+              {meeting.attributes.status !== "Zakończone" && (
+                <Box
+                  sx={{
+                    marginX: "auto",
+                  }}
+                >
+                  <ManagementButton
+                    name={"Zmień Status"}
+                    ico={CalendarMonthIcon}
+                    disabled={false}
+                    foo={() => setOpen(true)}
+                  />
+                </Box>
+              )}
             </Box>
             <MeetingDetailsPerson
               title="Dane Gościa"

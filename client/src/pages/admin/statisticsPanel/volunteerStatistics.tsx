@@ -1,20 +1,20 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import LineChart from "../../../components/charts/LineChart";
+import PieChart from "../../../components/charts/pieChart";
 import VerticalChart from "../../../components/charts/verticalChart";
 import Loader from "../../../components/loader";
 import { transformArrDataForChart } from "../../../utils/functions/transformDataForChart";
-import { getDiseasesStatistics } from "../../../utils/services/gets";
-const DiseaseStatistics = () => {
-  const theme = useTheme();
-  const [data, setData] = useState<any>(null);
+import { getVolunteerStatistics } from "../../../utils/services/gets";
 
+const VolunteerStatistics = () => {
+  const [data, setData] = useState<any>(null);
+  const theme = useTheme();
   useEffect(() => {
-    if (!data)
-      getDiseasesStatistics().then((res) => {
-        setData(res);
-        console.log(res);
-      });
+    getVolunteerStatistics().then((res) => {
+      if (res) setData(res);
+      console.log(res);
+    });
   }, []);
   return (
     <>
@@ -38,7 +38,7 @@ const DiseaseStatistics = () => {
           >
             {" "}
             <Typography variant="h4" sx={{ color: theme.palette.primary.main }}>
-              Statystyki chorób
+              Statystyki Izolacji
             </Typography>
           </Box>
 
@@ -64,15 +64,12 @@ const DiseaseStatistics = () => {
               <Box
                 sx={{
                   width: { xs: "fit-content", lg: "100%" },
-                  height: { xs: "400px", lg: "100%" },
+                  height: { xs: "400px", lg: "300px" },
                 }}
               >
-                <VerticalChart
-                  data={transformArrDataForChart(
-                    data.longestTimeForDisease,
-                    "Dni"
-                  )}
-                  title="Najdłuższe choroby"
+                <LineChart
+                  data={transformArrDataForChart(data.volunteersAges, "Ilość")}
+                  title="Wolontariuszy wg wieku"
                 />
               </Box>
             </Box>
@@ -93,21 +90,52 @@ const DiseaseStatistics = () => {
               >
                 <VerticalChart
                   data={transformArrDataForChart(
-                    data.meanTimeForDisease,
-                    "Dni"
+                    data.volunteersVisitsByDays,
+                    "Ilość wizyt"
                   )}
-                  title="Średni czas choroby"
+                  title="Rozkad wizyt na dni"
                 />
               </Box>
               <Box
                 sx={{
-                  width: { xs: "fit-content", lg: "50%" },
+                  width: { xs: "fit-content", lg: "16.6%" },
+                  height: { xs: "400px", lg: "100%" },
+                }}
+              >
+                <PieChart
+                  data={transformArrDataForChart(
+                    data.volunteersSex,
+                    "Ilość osób"
+                  )}
+                  title="Podział płci wolonatriuszy"
+                />
+              </Box>
+              <Box
+                sx={{
+                  width: { xs: "fit-content", lg: "16.6%" },
+                  height: { xs: "400px", lg: "100%" },
+                }}
+              >
+                <PieChart
+                  data={transformArrDataForChart(
+                    data.volunteersVisitsBySex,
+                    "Ilość wizyt"
+                  )}
+                  title="Podział wizyt na płeć"
+                />
+              </Box>
+              <Box
+                sx={{
+                  width: { xs: "fit-content", lg: "16.6%" },
                   height: { xs: "400px", lg: "100%" },
                 }}
               >
                 <VerticalChart
-                  data={transformArrDataForChart(data.diseasesFreq, "Ilość")}
-                  title="Częstotliwość chorób"
+                  data={transformArrDataForChart(
+                    data.volunteersVisitsMeanTimeBySex,
+                    "Średni czas w godzinach"
+                  )}
+                  title="Średni czas wizyt na płeć"
                 />
               </Box>
             </Box>
@@ -117,12 +145,13 @@ const DiseaseStatistics = () => {
                 height: "350px",
               }}
             >
-              <LineChart
+              {" "}
+              <VerticalChart
                 data={transformArrDataForChart(
-                  data.diseasesByMonth,
-                  "Ilość chorób w miesiącu"
+                  data.volunteersVisitsByMonth,
+                  "Ilość"
                 )}
-                title="Ilość chorób w miesiącu"
+                title="Ilość wizyt w miesiącu"
               />
             </Box>
           </Box>
@@ -132,4 +161,4 @@ const DiseaseStatistics = () => {
   );
 };
 
-export default DiseaseStatistics;
+export default VolunteerStatistics;

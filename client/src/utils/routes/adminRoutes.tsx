@@ -24,6 +24,8 @@ import ResourcesManagement from "../../pages/admin/managementPanel/resourcesMana
 import VolunteerManagement from "../../pages/admin/managementPanel/volunteerManagement";
 import AnimalsStatistics from "../../pages/admin/statisticsPanel/animalsStatistics";
 import DiseaseStatistics from "../../pages/admin/statisticsPanel/diseasesStatistics";
+import IsolationStatistics from "../../pages/admin/statisticsPanel/isolationStatistics";
+import VolunteerStatistics from "../../pages/admin/statisticsPanel/volunteerStatistics";
 import { navigateTo } from "../functions/navigators";
 import { checkIfUserIsLoggedIn } from "../services/check";
 
@@ -159,6 +161,14 @@ const AdminRoutes = () => {
                 <Route
                   path="/statistics/diseases"
                   element={<DiseaseStatistics />}
+                />
+                <Route
+                  path="/statistics/isolations"
+                  element={<IsolationStatistics />}
+                />
+                <Route
+                  path="/statistics/volunteers"
+                  element={<VolunteerStatistics />}
                 />
               </Routes>
             </Box>

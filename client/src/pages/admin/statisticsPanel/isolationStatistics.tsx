@@ -1,20 +1,18 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
-import LineChart from "../../../components/charts/LineChart";
 import VerticalChart from "../../../components/charts/verticalChart";
 import Loader from "../../../components/loader";
 import { transformArrDataForChart } from "../../../utils/functions/transformDataForChart";
-import { getDiseasesStatistics } from "../../../utils/services/gets";
-const DiseaseStatistics = () => {
-  const theme = useTheme();
-  const [data, setData] = useState<any>(null);
+import { getIsolationsStatistics } from "../../../utils/services/gets";
 
+const IsolationStatistics = () => {
+  const [data, setData] = useState<any>(null);
+  const theme = useTheme();
   useEffect(() => {
-    if (!data)
-      getDiseasesStatistics().then((res) => {
-        setData(res);
-        console.log(res);
-      });
+    getIsolationsStatistics().then((res) => {
+      if (res) setData(res);
+      console.log(res);
+    });
   }, []);
   return (
     <>
@@ -38,7 +36,7 @@ const DiseaseStatistics = () => {
           >
             {" "}
             <Typography variant="h4" sx={{ color: theme.palette.primary.main }}>
-              Statystyki chorób
+              Statystyki Izolacji
             </Typography>
           </Box>
 
@@ -68,11 +66,8 @@ const DiseaseStatistics = () => {
                 }}
               >
                 <VerticalChart
-                  data={transformArrDataForChart(
-                    data.longestTimeForDisease,
-                    "Dni"
-                  )}
-                  title="Najdłuższe choroby"
+                  data={transformArrDataForChart(data.isolationsByMonth, "Dni")}
+                  title="Ilość izolacji w danym miesiącu"
                 />
               </Box>
             </Box>
@@ -87,27 +82,16 @@ const DiseaseStatistics = () => {
             >
               <Box
                 sx={{
-                  width: { xs: "fit-content", lg: "50%" },
+                  width: { xs: "fit-content", lg: "100%" },
                   height: { xs: "400px", lg: "100%" },
                 }}
               >
                 <VerticalChart
                   data={transformArrDataForChart(
-                    data.meanTimeForDisease,
+                    data.meanTimeForIsolation,
                     "Dni"
                   )}
-                  title="Średni czas choroby"
-                />
-              </Box>
-              <Box
-                sx={{
-                  width: { xs: "fit-content", lg: "50%" },
-                  height: { xs: "400px", lg: "100%" },
-                }}
-              >
-                <VerticalChart
-                  data={transformArrDataForChart(data.diseasesFreq, "Ilość")}
-                  title="Częstotliwość chorób"
+                  title="Średni czas Izolacji"
                 />
               </Box>
             </Box>
@@ -117,12 +101,10 @@ const DiseaseStatistics = () => {
                 height: "350px",
               }}
             >
-              <LineChart
-                data={transformArrDataForChart(
-                  data.diseasesByMonth,
-                  "Ilość chorób w miesiącu"
-                )}
-                title="Ilość chorób w miesiącu"
+              {" "}
+              <VerticalChart
+                data={transformArrDataForChart(data.isolationsFreq, "Ilość")}
+                title="Częstotliwość izolacji"
               />
             </Box>
           </Box>
@@ -131,5 +113,4 @@ const DiseaseStatistics = () => {
     </>
   );
 };
-
-export default DiseaseStatistics;
+export default IsolationStatistics;
