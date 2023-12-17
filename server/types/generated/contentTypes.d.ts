@@ -1023,6 +1023,9 @@ export interface ApiResourceResource extends Schema.CollectionType {
       'oneToOne',
       'api::resource-subtype.resource-subtype'
     >;
+    status: Attribute.Enumeration<
+      ['Dost\u0119pne', 'Zu\u017Cyte', 'W u\u017Cyciu', 'Przeterminowane']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

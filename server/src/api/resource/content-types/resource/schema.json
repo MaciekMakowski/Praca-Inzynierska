@@ -33,6 +33,15 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::resource-subtype.resource-subtype"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "Dostępne",
+        "Zużyte",
+        "W użyciu",
+        "Przeterminowane"
+      ]
     }
   }
 }
