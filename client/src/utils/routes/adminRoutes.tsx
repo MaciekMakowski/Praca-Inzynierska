@@ -26,6 +26,7 @@ import AnimalsStatistics from "../../pages/admin/statisticsPanel/animalsStatisti
 import DiseaseStatistics from "../../pages/admin/statisticsPanel/diseasesStatistics";
 import GuestsStatistics from "../../pages/admin/statisticsPanel/guestsStatistics";
 import IsolationStatistics from "../../pages/admin/statisticsPanel/isolationStatistics";
+import MeetingsStatistics from "../../pages/admin/statisticsPanel/meetingsStatistics";
 import ResourceStatistics from "../../pages/admin/statisticsPanel/resourceStatistics";
 import VolunteerStatistics from "../../pages/admin/statisticsPanel/volunteerStatistics";
 import { navigateTo } from "../functions/navigators";
@@ -179,6 +180,10 @@ const AdminRoutes = () => {
                 <Route
                   path="/statistics/guests"
                   element={<GuestsStatistics />}
+                />
+                <Route
+                  path="/statistics/meetings"
+                  element={<MeetingsStatistics />}
                 />
               </Routes>
             </Box>

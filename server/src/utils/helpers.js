@@ -60,7 +60,9 @@ const visitSexCalc = (personVisit, personsVistsBySex) => {
 
 const visitFilteredByDays = (personVisit, personsVisitsByDays) => {
   const existingDay = personsVisitsByDays.find(
-    (visit) => visit[0] === days[dayjs(personVisit.visit.date).format("dddd")]
+    (visit) =>
+      visit[0] === days[dayjs(personVisit.visit.date).format("dddd")] &&
+      dayjs(personVisit.visit.date).isAfter(dayjs().subtract(1, "year"))
   );
 
   if (existingDay) {

@@ -649,3 +649,22 @@ export const getGuestsStatistics = async () => {
     console.log(err);
   }
 };
+
+export const getMeetingsStatistics = async () => {
+  const authToken = Cookies.get("token");
+  try {
+    const response = await axios.get(`${APIurl}meetings/statistics/data`, {
+      headers: {
+        authorization: `Bearer ${authToken}`,
+      },
+    });
+    if (response.status === 200) {
+      const data = response.data;
+      return data;
+    } else {
+      return false;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
