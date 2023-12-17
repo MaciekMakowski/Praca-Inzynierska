@@ -24,6 +24,7 @@ import ResourcesManagement from "../../pages/admin/managementPanel/resourcesMana
 import VolunteerManagement from "../../pages/admin/managementPanel/volunteerManagement";
 import AnimalsStatistics from "../../pages/admin/statisticsPanel/animalsStatistics";
 import DiseaseStatistics from "../../pages/admin/statisticsPanel/diseasesStatistics";
+import GuestsStatistics from "../../pages/admin/statisticsPanel/guestsStatistics";
 import IsolationStatistics from "../../pages/admin/statisticsPanel/isolationStatistics";
 import ResourceStatistics from "../../pages/admin/statisticsPanel/resourceStatistics";
 import VolunteerStatistics from "../../pages/admin/statisticsPanel/volunteerStatistics";
@@ -174,6 +175,10 @@ const AdminRoutes = () => {
                 <Route
                   path="/statistics/resources"
                   element={<ResourceStatistics />}
+                />
+                <Route
+                  path="/statistics/guests"
+                  element={<GuestsStatistics />}
                 />
               </Routes>
             </Box>
