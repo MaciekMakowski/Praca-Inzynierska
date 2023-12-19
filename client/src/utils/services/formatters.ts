@@ -175,6 +175,7 @@ export const createResource = (resourceResponse: ResourceResponse) => {
       expirationDate: resourceResponse.attributes.expirationDate,
       type: createResourceType(resourceResponse.attributes.resources_type.data),
       subtype: resourceResponse.attributes.resource_subtype.data,
+      status: resourceResponse.attributes.status,
     },
   };
   return newResource;

@@ -11,28 +11,29 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { Dayjs } from "dayjs";
 import { ChangeEvent, Dispatch, useEffect, useState } from "react";
-import {
-  ResourceType,
-  ResourceTypeType,
-} from "../../../utils/types/basicTypes";
-import dayjs, { Dayjs } from "dayjs";
 import {
   handleSelectChange,
   handleTextChange,
 } from "../../../utils/functions/handlers";
+import {
+  ResourceType,
+  ResourceTypeType,
+} from "../../../utils/types/basicTypes";
 
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { ErrorInput } from "../../../utils/types/errorInput";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { SetStateAction } from "react";
+import { handleChangeDate } from "../../../utils/functions/handlers";
+import { validateForm } from "../../../utils/functions/validators";
+import { ResourceStatus } from "../../../utils/mockups/items";
 import { UnitList } from "../../../utils/mockups/selects";
 import { createResource } from "../../../utils/services/posts";
-import { handleChangeDate } from "../../../utils/functions/handlers";
 import { updateResource } from "../../../utils/services/puts";
-import { validateForm } from "../../../utils/functions/validators";
+import { ErrorInput } from "../../../utils/types/errorInput";
 
 type AddResourceFormProps = {
   title: string;
@@ -52,6 +53,7 @@ const emptyResource: ResourceType = {
     quantity: 0,
     unit: "",
     expirationDate: null,
+    status: "Dostępne",
   },
 };
 
@@ -291,6 +293,30 @@ const AddResourceForm = (props: AddResourceFormProps) => {
           Posiada datę przydatności
         </Typography>
       </Box>
+      {!props.isNew ? (
+        <>
+          <FormControl>
+            <InputLabel>Status</InputLabel>
+            <Select
+              label="Status"
+              name="status"
+              variant="outlined"
+              sx={{
+                color: theme.palette.text.primary,
+              }}
+              value={newResource.attributes.status}
+              defaultValue=""
+              onChange={selectChange}
+            >
+              {ResourceStatus.map((value, i) => (
+                <MenuItem key={i} value={value}>
+                  {value}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </>
+      ) : null}
       <Button variant="contained" color="primary" onClick={() => sendForm()}>
         {props.title}
       </Button>

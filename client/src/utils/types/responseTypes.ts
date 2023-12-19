@@ -128,6 +128,7 @@ export type ResourceResponse = {
     resource_subtype: {
       data: ResourceSubtypeResponse;
     };
+    status: "Dostępne" | "Przeterminowane" | "Zużyte" | "W użyciu";
   };
 };
 

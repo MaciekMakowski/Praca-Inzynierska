@@ -192,6 +192,7 @@ export const updateResource = async (resource: ResourceType) => {
             ? resource.attributes.subtype.id
             : null,
           expirationDate: resource.attributes.expirationDate,
+          status: resource.attributes.status,
         },
       },
       {

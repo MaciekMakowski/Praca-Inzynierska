@@ -103,6 +103,7 @@ export type ResourceType = {
     quantity: number;
     unit: string;
     expirationDate?: string | null;
+    status: "Dostępne" | "Przeterminowane" | "Zużyte" | "W użyciu";
   };
 };
 

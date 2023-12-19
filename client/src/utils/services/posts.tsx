@@ -335,6 +335,7 @@ export const createResource = async (resource: ResourceType) => {
           quantity: resource.attributes.quantity,
           unit: resource.attributes.unit,
           expirationDate: resource.attributes.expirationDate,
+          status: "Dostępne",
         },
       },
       {
