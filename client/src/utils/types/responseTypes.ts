@@ -57,6 +57,8 @@ export type AdoptionResponse = {
     status: string;
     date: string;
     adoptionDate: string;
+    contractSigned: boolean;
+    adoptionFeePaid: boolean;
     animal: {
       data: AnimalType;
     };

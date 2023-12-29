@@ -230,6 +230,8 @@ export const createAdoption = async (animalId: number, personId: number) => {
           guest: personId,
           date: new Date(),
           status: "Oczekująca",
+          contractSigned: false,
+          paymentConfirmed: false,
         },
       },
       {

@@ -704,6 +704,8 @@ export interface ApiAdoptionAdoption extends Schema.CollectionType {
       ['Oczekuj\u0105ca', 'W trakcie', 'Anulowana', 'Zako\u0144czona']
     >;
     adoptionDate: Attribute.Date;
+    contractSigned: Attribute.Boolean;
+    adoptionFeePaid: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -122,6 +122,8 @@ export type AdoptionType = {
     adoptionDate: string;
     animal: AnimalType;
     guest: PersonType;
+    contractSigned: boolean;
+    adoptionFeePaid: boolean;
   };
 };
 

@@ -84,6 +84,8 @@ export const createAdoption = (adoption: AdoptionResponse) => {
       adoptionDate: adoption.attributes.adoptionDate,
       animal: adoption.attributes.animal.data,
       guest: createPerson(adoption.attributes.guest.data),
+      contractSigned: adoption.attributes.contractSigned,
+      adoptionFeePaid: adoption.attributes.adoptionFeePaid,
     },
   };
   return newAdoption;

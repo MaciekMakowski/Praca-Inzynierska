@@ -14,7 +14,7 @@ type ConfirmAdoptionChangeProps = {
   setOpen: Dispatch<SetStateAction<boolean>>;
   open: boolean;
   adoptionId: number;
-  type: "accept" | "reject";
+  type: "accept" | "reject" | "signContract" | "confirmPayment";
 };
 
 const ConfirmAdoptionChange = (props: ConfirmAdoptionChangeProps) => {
@@ -52,7 +52,8 @@ const ConfirmAdoptionChange = (props: ConfirmAdoptionChangeProps) => {
           </Typography>
         </>
       );
-    } else {
+    }
+    if (props.type === "reject") {
       return (
         <>
           <Typography variant="h5" color={theme.palette.text.primary}>
@@ -60,6 +61,40 @@ const ConfirmAdoptionChange = (props: ConfirmAdoptionChangeProps) => {
           </Typography>
           <Typography variant="body1" color={theme.palette.text.primary}>
             Po odrzuceniu adopcji, zwierzę pozostanie w schronisku.
+          </Typography>
+        </>
+      );
+    }
+    if (props.type === "signContract") {
+      return (
+        <>
+          <Typography
+            textAlign={"center"}
+            variant="h5"
+            color={theme.palette.text.primary}
+          >
+            Czy na pewno chcesz podpisać umowę?
+          </Typography>
+          <Typography variant="body1" color={theme.palette.text.primary}>
+            Jest to nieodwracalna operacja. Po podpisaniu umowy, wymagana będzie
+            opłata adopcyjna.
+          </Typography>
+        </>
+      );
+    }
+    if (props.type === "confirmPayment") {
+      return (
+        <>
+          <Typography
+            textAlign={"center"}
+            variant="h5"
+            color={theme.palette.text.primary}
+          >
+            Czy na pewno chcesz potwierdzić opłatę adopcyjną?
+          </Typography>
+          <Typography variant="body1" color={theme.palette.text.primary}>
+            Po potwierdzeniu opłaty adopcyjnej, zwierzę zostanie przekazane do
+            adopcji.
           </Typography>
         </>
       );
@@ -85,19 +120,21 @@ const ConfirmAdoptionChange = (props: ConfirmAdoptionChangeProps) => {
           borderRadius: [3],
         }}
       >
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "end",
-            gap: "1rem",
-          }}
-        >
-          <IconButton onClick={handleClose}>
-            <CloseIcon />
-          </IconButton>
+        <Box>
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "end",
+              gap: "1rem",
+            }}
+          >
+            <IconButton onClick={handleClose}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
+          <Box>{returnContent()}</Box>
         </Box>
-        {returnContent()}
         <Box
           sx={{
             display: "flex",

@@ -36,6 +36,12 @@
     },
     "adoptionDate": {
       "type": "date"
+    },
+    "contractSigned": {
+      "type": "boolean"
+    },
+    "adoptionFeePaid": {
+      "type": "boolean"
     }
   }
 }

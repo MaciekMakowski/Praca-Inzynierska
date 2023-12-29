@@ -19,6 +19,8 @@ const AdoptionDetails = () => {
   const [adoption, setAdoption] = useState<AdoptionType | null>(null);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [rejectOpen, setRejectOpen] = useState(false);
+  const [signOpen, setSignOpen] = useState(false);
+  const [paymentOpen, setPaynentOpen] = useState(false);
 
   useEffect(() => {
     if (adoptionId) {
@@ -155,6 +157,79 @@ const AdoptionDetails = () => {
                 disabled={adoption.attributes.status !== "Oczekująca"}
               />
             </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "1rem",
+                height: "fit-content",
+                padding: "1rem",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1rem",
+                  height: "fit-content",
+                  backgroundColor: theme.palette.background.adminField,
+                  padding: "1rem",
+                  borderRadius: "1rem",
+                  boxShadow: shadows[3],
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  fontWeight={600}
+                  color={theme.palette.text.primary}
+                >
+                  Wniosek zaakceptowany
+                </Typography>
+                <Typography variant="body1" color={theme.palette.text.primary}>
+                  Oczekiwanie na podpisanie umowy oraz odebranie zwierzęcia.
+                </Typography>
+              </Box>
+              <Button variant="outlined">
+                <Typography variant="body1" color={theme.palette.text.primary}>
+                  Pobierz umowę adopcyjną
+                </Typography>
+              </Button>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Button variant="outlined" onClick={() => setSignOpen(true)}>
+                  <Typography
+                    variant="body1"
+                    color={theme.palette.text.primary}
+                  >
+                    Podpisz umowę adopcyjną
+                  </Typography>
+                </Button>
+              </Box>
+              <Button
+                variant="outlined"
+                disabled={!adoption.attributes.contractSigned}
+                onClick={() => setPaynentOpen(true)}
+              >
+                <Typography variant="body1" color={theme.palette.text.primary}>
+                  Zatwierdź opłatę adopcyjną
+                </Typography>
+              </Button>
+              <Button
+                variant="outlined"
+                disabled={
+                  !adoption.attributes.adoptionFeePaid ||
+                  !adoption.attributes.contractSigned
+                }
+              >
+                <Typography variant="body1" color={theme.palette.text.primary}>
+                  Potwierdź odebranie zwierzęcia
+                </Typography>
+              </Button>
+            </Box>
           </Box>
           <ConfirmAdoptionChange
             open={confirmOpen}
@@ -166,6 +241,18 @@ const AdoptionDetails = () => {
             open={rejectOpen}
             setOpen={setRejectOpen}
             type="reject"
+            adoptionId={adoption.id}
+          />
+          <ConfirmAdoptionChange
+            open={signOpen}
+            setOpen={setSignOpen}
+            type="signContract"
+            adoptionId={adoption.id}
+          />
+          <ConfirmAdoptionChange
+            open={paymentOpen}
+            setOpen={setPaynentOpen}
+            type="confirmPayment"
             adoptionId={adoption.id}
           />
         </>
