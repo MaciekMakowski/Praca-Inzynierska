@@ -273,3 +273,33 @@ export const updateMeetingStatus = async (
     console.log(err);
   }
 };
+
+export const changeAdoptionStatus = async (
+  adoptionId: number,
+  status: string
+) => {
+  const authToken = Cookies.get("token");
+  try {
+    const response = await axios.put(
+      `${APIurl}adoptions/${adoptionId}`,
+      {
+        data: {
+          status: status,
+        },
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      }
+    );
+    console.log(response);
+    if (response.status === 200) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (err) {
+    console.log("err", err);
+  }
+};

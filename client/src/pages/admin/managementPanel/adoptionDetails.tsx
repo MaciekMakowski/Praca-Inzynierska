@@ -2,20 +2,23 @@ import { Box, Button, Typography, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 
-import { AdoptionType } from "../../../utils/types/basicTypes";
-import CancelIcon from '@mui/icons-material/Cancel';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import CancelIcon from "@mui/icons-material/Cancel";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import shadows from "@mui/material/styles/shadows";
 import Loader from "../../../components/loader";
 import ManagementButton from "../../../components/managementPanel/managementButton";
-import { getAdoption } from "../../../utils/services/gets";
+import ConfirmAdoptionChange from "../../../components/managementPanel/modals/confirmAdoptionChange";
 import { navigateTo } from "../../../utils/functions/navigators";
-import shadows from "@mui/material/styles/shadows";
+import { getAdoption } from "../../../utils/services/gets";
+import { AdoptionType } from "../../../utils/types/basicTypes";
 
 const AdoptionDetails = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const { adoptionId } = useParams();
   const [adoption, setAdoption] = useState<AdoptionType | null>(null);
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [rejectOpen, setRejectOpen] = useState(false);
 
   useEffect(() => {
     if (adoptionId) {
@@ -131,19 +134,40 @@ const AdoptionDetails = () => {
                 </span>
               </Typography>
             </Box>
-            <Box 
+            <Box
               sx={{
                 display: "flex",
                 flexDirection: { xs: "row", md: "column" },
-                justifyContent:{xs: "space-between", md: "center"},
+                justifyContent: { xs: "space-between", md: "start" },
                 gap: "1rem",
-                
               }}
             >
-            <ManagementButton name={"Zaakaceptuj adopcje"} ico={CheckCircleOutlineIcon} foo={() => null} disabled={adoption.attributes.status !== "Oczekująca"}/>
-            <ManagementButton name={"Odrzuć adopcje"} ico={CancelIcon} foo={() => null} disabled={adoption.attributes.status !== "Oczekująca"}/>
+              <ManagementButton
+                name={"Zaakaceptuj adopcje"}
+                ico={CheckCircleOutlineIcon}
+                foo={() => setConfirmOpen(true)}
+                disabled={adoption.attributes.status !== "Oczekująca"}
+              />
+              <ManagementButton
+                name={"Odrzuć adopcje"}
+                ico={CancelIcon}
+                foo={() => setRejectOpen(true)}
+                disabled={adoption.attributes.status !== "Oczekująca"}
+              />
             </Box>
           </Box>
+          <ConfirmAdoptionChange
+            open={confirmOpen}
+            setOpen={setConfirmOpen}
+            type="accept"
+            adoptionId={adoption.id}
+          />
+          <ConfirmAdoptionChange
+            open={rejectOpen}
+            setOpen={setRejectOpen}
+            type="reject"
+            adoptionId={adoption.id}
+          />
         </>
       )}
     </>
