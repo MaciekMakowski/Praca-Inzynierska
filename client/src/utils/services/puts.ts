@@ -303,3 +303,33 @@ export const changeAdoptionStatus = async (
     console.log("err", err);
   }
 };
+
+export const approveAdoptionSignOrPay = async (
+  adoptionId: number,
+  fieldName: string
+) => {
+  const authToken = Cookies.get("token");
+  try {
+    const response = await axios.put(
+      `${APIurl}adoptions/${adoptionId}`,
+      {
+        data: {
+          [fieldName]: true,
+        },
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      }
+    );
+    console.log(response);
+    if (response.status === 200) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (err) {
+    console.log("err", err);
+  }
+};

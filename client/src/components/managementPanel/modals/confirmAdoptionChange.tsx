@@ -9,12 +9,20 @@ import {
 
 import CloseIcon from "@mui/icons-material/Close";
 import { Dispatch, SetStateAction } from "react";
-import { changeAdoptionStatus } from "../../../utils/services/puts";
+import {
+  approveAdoptionSignOrPay,
+  changeAdoptionStatus,
+} from "../../../utils/services/puts";
 type ConfirmAdoptionChangeProps = {
   setOpen: Dispatch<SetStateAction<boolean>>;
   open: boolean;
   adoptionId: number;
-  type: "accept" | "reject" | "signContract" | "confirmPayment";
+  type:
+    | "accept"
+    | "reject"
+    | "signContract"
+    | "confirmPayment"
+    | "confirmPickup";
 };
 
 const ConfirmAdoptionChange = (props: ConfirmAdoptionChangeProps) => {
@@ -32,6 +40,34 @@ const ConfirmAdoptionChange = (props: ConfirmAdoptionChangeProps) => {
     }
     if (props.type === "reject") {
       changeAdoptionStatus(props.adoptionId, "Anulowana").then((res) => {
+        if (res) {
+          props.setOpen(false);
+          window.location.reload();
+        }
+      });
+    }
+    if (props.type === "signContract") {
+      approveAdoptionSignOrPay(props.adoptionId, "contractSigned").then(
+        (res) => {
+          if (res) {
+            props.setOpen(false);
+            window.location.reload();
+          }
+        }
+      );
+    }
+    if (props.type === "confirmPayment") {
+      approveAdoptionSignOrPay(props.adoptionId, "adoptionFeePaid").then(
+        (res) => {
+          if (res) {
+            props.setOpen(false);
+            window.location.reload();
+          }
+        }
+      );
+    }
+    if (props.type === "confirmPickup") {
+      changeAdoptionStatus(props.adoptionId, "Zakończona").then((res) => {
         if (res) {
           props.setOpen(false);
           window.location.reload();
@@ -95,6 +131,22 @@ const ConfirmAdoptionChange = (props: ConfirmAdoptionChangeProps) => {
           <Typography variant="body1" color={theme.palette.text.primary}>
             Po potwierdzeniu opłaty adopcyjnej, zwierzę zostanie przekazane do
             adopcji.
+          </Typography>
+        </>
+      );
+    }
+    if (props.type === "confirmPickup") {
+      return (
+        <>
+          <Typography
+            textAlign={"center"}
+            variant="h5"
+            color={theme.palette.text.primary}
+          >
+            Czy na pewno chcesz potwierdzić odebranie zwierzęcia?
+          </Typography>
+          <Typography variant="body1" color={theme.palette.text.primary}>
+            Po potwierdzeniu odebrania zwierzęcia, adopcja zostanie zakończona.
           </Typography>
         </>
       );

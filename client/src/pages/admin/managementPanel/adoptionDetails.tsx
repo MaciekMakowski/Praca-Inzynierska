@@ -21,7 +21,7 @@ const AdoptionDetails = () => {
   const [rejectOpen, setRejectOpen] = useState(false);
   const [signOpen, setSignOpen] = useState(false);
   const [paymentOpen, setPaynentOpen] = useState(false);
-
+  const [finishOpen, setFinishOpen] = useState(false);
   useEffect(() => {
     if (adoptionId) {
       getAdoption(adoptionId).then((res) => {
@@ -200,7 +200,11 @@ const AdoptionDetails = () => {
                   justifyContent: "center",
                 }}
               >
-                <Button variant="outlined" onClick={() => setSignOpen(true)}>
+                <Button
+                  variant="outlined"
+                  onClick={() => setSignOpen(true)}
+                  disabled={adoption.attributes.contractSigned}
+                >
                   <Typography
                     variant="body1"
                     color={theme.palette.text.primary}
@@ -211,7 +215,10 @@ const AdoptionDetails = () => {
               </Box>
               <Button
                 variant="outlined"
-                disabled={!adoption.attributes.contractSigned}
+                disabled={
+                  !adoption.attributes.contractSigned ||
+                  adoption.attributes.adoptionFeePaid
+                }
                 onClick={() => setPaynentOpen(true)}
               >
                 <Typography variant="body1" color={theme.palette.text.primary}>
@@ -222,8 +229,10 @@ const AdoptionDetails = () => {
                 variant="outlined"
                 disabled={
                   !adoption.attributes.adoptionFeePaid ||
-                  !adoption.attributes.contractSigned
+                  !adoption.attributes.contractSigned ||
+                  adoption.attributes.status === "Zakończona"
                 }
+                onClick={() => setFinishOpen(true)}
               >
                 <Typography variant="body1" color={theme.palette.text.primary}>
                   Potwierdź odebranie zwierzęcia
@@ -253,6 +262,12 @@ const AdoptionDetails = () => {
             open={paymentOpen}
             setOpen={setPaynentOpen}
             type="confirmPayment"
+            adoptionId={adoption.id}
+          />
+          <ConfirmAdoptionChange
+            open={finishOpen}
+            setOpen={setFinishOpen}
+            type="confirmPickup"
             adoptionId={adoption.id}
           />
         </>
