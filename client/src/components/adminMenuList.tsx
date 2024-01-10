@@ -1,20 +1,28 @@
 import { Box, SvgIcon, Typography, useTheme } from "@mui/material";
 
-import { menuList } from "../utils/mockups/adminMenu";
-import { navigateTo } from "../utils/functions/navigators";
 import { useNavigate } from "react-router";
+import { navigateTo } from "../utils/functions/navigators";
+import { menuList } from "../utils/mockups/adminMenu";
 
 type AdminMenuListProps = {
-    primary:Boolean;
+  primary: Boolean;
 };
 
-const AdminMenuList = (props:AdminMenuListProps) => {
-    const theme = useTheme();
-    const navigate = useNavigate();
-    const color = props.primary ? theme.palette.primary.main : theme.palette.text.secondary;
+const AdminMenuList = (props: AdminMenuListProps) => {
+  const theme = useTheme();
+  const navigate = useNavigate();
+  const color = props.primary
+    ? theme.palette.primary.main
+    : theme.palette.text.secondary;
 
-    return(
-    <>
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+      }}
+    >
       {menuList.map((item, index) => {
         return (
           <Box key={index}>
@@ -24,10 +32,7 @@ const AdminMenuList = (props:AdminMenuListProps) => {
               justifyContent={"flex-start"}
               alignItems={"center"}
             >
-              <SvgIcon
-                component={item.ico}
-                sx={{ color: color }}
-              />
+              <SvgIcon component={item.ico} sx={{ color: color }} />
               <Typography
                 variant="h6"
                 sx={{
@@ -35,11 +40,10 @@ const AdminMenuList = (props:AdminMenuListProps) => {
                   cursor: index === 0 ? "pointer" : "default",
                 }}
                 onClick={() => {
-                  if(index === 0){
-                    navigateTo(navigate,`/admin${item.path}`)
+                  if (index === 0) {
+                    navigateTo(navigate, `/admin${item.path}`);
                   }
-                }
-                }
+                }}
               >
                 {item.name}
               </Typography>
@@ -65,7 +69,10 @@ const AdminMenuList = (props:AdminMenuListProps) => {
                         textAlign: "left",
                       }}
                       onClick={() =>
-                        navigateTo(navigate,`/admin${item.path}${subItem.path}`)
+                        navigateTo(
+                          navigate,
+                          `/admin${item.path}${subItem.path}`
+                        )
                       }
                     >
                       {subItem.name}
@@ -76,8 +83,8 @@ const AdminMenuList = (props:AdminMenuListProps) => {
           </Box>
         );
       })}
-    </>
-    )
-}
+    </Box>
+  );
+};
 
 export default AdminMenuList;

@@ -6,12 +6,9 @@ import {
 } from "../types/basicTypes";
 
 import ConstructionIcon from "@mui/icons-material/Construction";
-import PersonIcon from "@mui/icons-material/Person";
-import { ResourceType } from "../types/basicTypes";
 import SignalCellularAltIcon from "@mui/icons-material/SignalCellularAlt";
 import TvIcon from "@mui/icons-material/Tv";
-import { menuListType } from "../types/basicTypes";
-import { subListType } from "../types/basicTypes";
+import { menuListType, subListType } from "../types/basicTypes";
 
 export const subList: subListType[] = [
   {
@@ -47,21 +44,6 @@ export const subList: subListType[] = [
     path: "/meetings",
   },
 ];
-export const subListWorkers: subListType[] = [
-  {
-    name: "Lista pracowników",
-    path: "/list",
-  },
-  {
-    name: "Urlopy",
-    path: "/holidays",
-  },
-  {
-    name: "Prośby",
-    path: "/requests",
-  },
-];
-
 export const menuList: menuListType[] = [
   {
     ico: TvIcon,
@@ -78,13 +60,7 @@ export const menuList: menuListType[] = [
     ico: SignalCellularAltIcon,
     name: "Statystyki",
     path: "/statistics",
-    subList: subList,
-  },
-  {
-    ico: PersonIcon,
-    name: "Pracownicy",
-    path: "/workers",
-    subList: subListWorkers,
+    subList: subList.filter((item) => item.name !== "Adpotcje"),
   },
 ];
 
@@ -104,7 +80,7 @@ export const isolationStatusList = [
   {
     name: "Oczekująca",
     value: "waiting",
-  }
+  },
 ];
 export const diseaseStatusList = [
   {
@@ -137,7 +113,7 @@ export const puszekData: AnimalType = {
     isIsolated: false,
     toAdoption: false,
     adopted: false,
-    images:null,
+    images: null,
     dateOfAdmission: "2021-10-10",
   },
 };
@@ -177,7 +153,6 @@ export const diseasesData: DiseaseType[] = [
   },
 ];
 
-
 export const diseaseDataDetails: DiseaseType = {
   id: 1,
   attributes: {
@@ -188,27 +163,26 @@ export const diseaseDataDetails: DiseaseType = {
 };
 export const testDiseaseData: PetDiseaseType = {
   id: 1,
-  attributes:{
+  attributes: {
     startDate: "2021-10-10",
     endDate: "2021-10-10",
     status: "W trakcie",
     animal: puszekData,
     disease: diseaseDataDetails,
     symptoms: "jakis opis",
-  }
+  },
 };
 
 export const isolationDataDetails: IsolationType = {
   id: 1,
-  attributes:{
+  attributes: {
     reason: "jakis opis",
     startDate: "2021-10-10",
     endDate: "2021-10-10",
     status: "W trakcie",
     animal: puszekData,
     description: "jakis opis",
-  }
-
+  },
 };
 
 export const GuestData = {
