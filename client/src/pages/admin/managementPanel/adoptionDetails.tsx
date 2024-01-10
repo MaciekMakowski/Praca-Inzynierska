@@ -154,7 +154,7 @@ const AdoptionDetails = () => {
                 name={"Odrzuć adopcje"}
                 ico={CancelIcon}
                 foo={() => setRejectOpen(true)}
-                disabled={adoption.attributes.status !== "Oczekująca"}
+                disabled={adoption.attributes.status === "Zakończona"}
               />
             </Box>
             <Box
