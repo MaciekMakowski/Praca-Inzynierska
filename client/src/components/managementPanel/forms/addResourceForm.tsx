@@ -61,6 +61,17 @@ const AddResourceForm = (props: AddResourceFormProps) => {
   const theme = useTheme();
   const [checked, setChecked] = useState(false);
   const [newResource, setNewResource] = useState<ResourceType>(emptyResource);
+  const [isValid, setIsValid] = useState(false);
+
+  const checkIfValid = () => {
+    if (newResource.attributes.name.length < 3) return false;
+    if (newResource.attributes.quantity < 0) return false;
+    if (newResource.attributes.unit.length < 1) return false;
+    if (newResource.attributes.type.id === 0) return false;
+    if (newResource.attributes.subtype?.id === 0) return false;
+    if (newResource.attributes.expirationDate === null && checked) return false;
+    return true;
+  };
 
   const [ErrorList, setErrorList] = useState<ErrorInput>({
     name: {
@@ -158,7 +169,9 @@ const AddResourceForm = (props: AddResourceFormProps) => {
     setChecked(props.data.attributes.expirationDate !== null);
   }, [props.data]);
 
-  useEffect(() => {}, [newResource]);
+  useEffect(() => {
+    setIsValid(checkIfValid());
+  }, [newResource]);
 
   return (
     <Box
@@ -317,7 +330,12 @@ const AddResourceForm = (props: AddResourceFormProps) => {
           </FormControl>
         </>
       ) : null}
-      <Button variant="contained" color="primary" onClick={() => sendForm()}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => sendForm()}
+        disabled={!isValid}
+      >
         {props.title}
       </Button>
     </Box>

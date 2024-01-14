@@ -42,15 +42,20 @@ export const createIsolation = (isolation: IsolationResponse) => {
 };
 
 export const createPetDisease = (petDisease: PetDiseasesResponse) => {
+  console.log(petDisease);
   const newPetDisease: PetDiseaseType = {
     id: petDisease.id,
     attributes: {
       startDate: petDisease.attributes.startDate,
       endDate: petDisease.attributes.endDate,
       status: petDisease.attributes.status,
-      animal: petDisease.attributes.animal.data,
+      animal: petDisease.attributes.animal.data
+        ? petDisease.attributes.animal.data
+        : petDisease.attributes.animal,
       symptoms: petDisease.attributes.symptoms,
-      disease: petDisease.attributes.disease.data,
+      disease: petDisease.attributes.disease.data
+        ? petDisease.attributes.disease.data
+        : petDisease.attributes.disease,
     },
   };
   return newPetDisease;

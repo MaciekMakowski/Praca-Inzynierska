@@ -42,12 +42,12 @@ module.exports = createCoreController(
             {
               populate: ["resource_subtypes"],
             }
-          
           );
-          
-          const updatedResourceSubtypes = existingResourceType.resource_subtypes.map(subtype => subtype.id)
-          updatedResourceSubtypes.push(newResourceSubtype.id)
-          
+
+          const updatedResourceSubtypes =
+            existingResourceType.resource_subtypes.map((subtype) => subtype.id);
+          updatedResourceSubtypes.push(newResourceSubtype.id);
+
           const newResourceType = await strapi.entityService.update(
             "api::resources-type.resources-type",
             existingResourceType.id,
@@ -58,32 +58,53 @@ module.exports = createCoreController(
               },
             }
           );
-          
+
           return newResourceType;
         }
-
-        // Zwróć nową izolację
       } catch (error) {
-        // Obsłuż błędy, jeśli istnieją
-        ctx.response.status = 500; // lub inny kod błędu
+        ctx.response.status = 500;
         return { error: "Wystąpił błąd podczas dodawania izolacji." };
       }
     },
     async delete(ctx) {
       const resourceTypeId = ctx.request.params;
       const date = new Date();
-      try{
-        const resourceType = strapi.entityService.findOne("api::resources-type.resources-type", resourceTypeId.id, {populate:['resource_subtypes']} );
-        (await resourceType).resource_subtypes.map(async subtype => {
-          await strapi.entityService.delete("api::resource-subtype.resource-subtype", subtype.id)
-        })
-        await strapi.entityService.delete("api::resources-type.resources-type", resourceTypeId.id);
+      try {
+        const resourceType = strapi.entityService.findOne(
+          "api::resources-type.resources-type",
+          resourceTypeId.id,
+          { populate: ["resource_subtypes"] }
+        );
+        (await resourceType).resource_subtypes.map(async (subtype) => {
+          await strapi.entityService.delete(
+            "api::resource-subtype.resource-subtype",
+            subtype.id
+          );
+        });
+        await strapi.entityService.delete(
+          "api::resources-type.resources-type",
+          resourceTypeId.id
+        );
+        const resourcesWithOutResourceType =
+          await strapi.entityService.findMany("api::resource.resource", {
+            filters: { resources_type: null },
+          });
+        resourcesWithOutResourceType.map(async (resource) => {
+          await strapi.entityService.update(
+            "api::resource.resource",
+            resource.id,
+            {
+              data: {
+                resources_type: 8,
+              },
+            }
+          );
+        });
         return true;
-  
-      }catch(error){
+      } catch (error) {
         ctx.response.status = 500;
         return { error: "Wystąpił błąd podczas usuwania typu zasobu." };
       }
-    }
-  }),
+    },
+  })
 );

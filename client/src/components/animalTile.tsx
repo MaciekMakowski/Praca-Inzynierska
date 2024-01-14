@@ -1,12 +1,12 @@
-import { Box, Typography, colors, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 
-import { AnimalType } from "../utils/types/basicTypes";
-import { ImageUrl } from "../utils/services/url";
 import dayjs from "dayjs";
-import dogAbout1 from "../img/home/dogAbout1.png";
-import { navigateTo } from "../utils/functions/navigators";
-import { useNavigate } from "react-router";
 import { useState } from "react";
+import { useNavigate } from "react-router";
+import placeholder from "../img/animals/placeholder.jpg";
+import { navigateTo } from "../utils/functions/navigators";
+import { ImageUrl } from "../utils/services/url";
+import { AnimalType } from "../utils/types/basicTypes";
 
 type AnimalTileProps = {
   animal: AnimalType;
@@ -67,8 +67,8 @@ const AnimialTile = (props: AnimalTileProps) => {
           }}
           src={
             props.animal.attributes.images
-              ? `${ImageUrl}${props.animal.attributes.images[0].url}` :
-                dogAbout1
+              ? `${ImageUrl}${props.animal.attributes.images[0].url}`
+              : placeholder
           }
         />
       </Box>

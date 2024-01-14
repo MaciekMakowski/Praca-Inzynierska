@@ -631,6 +631,24 @@ export const getResourceStatistics = async () => {
   }
 };
 
+export const getUserInfo = async () => {
+  const authToken = Cookies.get("token");
+  try {
+    const response = await axios.get(`${APIurl}users/me`, {
+      headers: {
+        authorization: `Bearer ${authToken}`,
+      },
+    });
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      return false;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const getGuestsStatistics = async () => {
   const authToken = Cookies.get("token");
   try {

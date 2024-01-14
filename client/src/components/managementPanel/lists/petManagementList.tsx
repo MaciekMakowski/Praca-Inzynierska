@@ -1,9 +1,5 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import {
-  DiseaseType,
-  IsolationType,
-  PetDiseaseType,
-} from "../../../utils/types/basicTypes";
+import { IsolationType, PetDiseaseType } from "../../../utils/types/basicTypes";
 
 import Loader from "../../loader";
 import PetManagementListItem from "./petManagementListItem";
@@ -16,7 +12,7 @@ type PetManagementListProps = {
 
 const PetManagementList = (props: PetManagementListProps) => {
   const theme = useTheme();
-
+  console.log(props.data);
   return (
     <Box
       sx={{
@@ -67,14 +63,17 @@ const PetManagementList = (props: PetManagementListProps) => {
                   color={i % 2 == 0}
                   type={props.type}
                   date={item.attributes.startDate}
-                  title={item.attributes.symptoms}
+                  // @ts-ignore
+                  title={item.attributes.disease.name}
                   status={item.attributes.status}
                   id={item.id}
                 />
               );
             }
           })
-        ): <Loader/>}
+        ) : (
+          <Loader />
+        )}
       </Box>
     </Box>
   );

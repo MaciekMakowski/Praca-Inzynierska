@@ -9,12 +9,13 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 
-import AnimalListItem from "./animalListItem";
+import { getAnimals } from "../../../utils/services/gets";
+import { paginationRangeValue } from "../../../utils/services/pagination";
 import { AnimalType } from "../../../utils/types/basicTypes";
 import { ListProps } from "../../../utils/types/propsTypes";
 import Loader from "../../loader";
-import { getAnimals } from "../../../utils/services/gets";
-import { paginationRangeValue } from "../../../utils/services/pagination";
+import FilterComponent from "../filterComponent";
+import AnimalListItem from "./animalListItem";
 
 const AnimalList = (props: ListProps) => {
   const theme = useTheme();
@@ -93,30 +94,7 @@ const AnimalList = (props: ListProps) => {
             gap: "1rem",
           }}
         >
-          <Button
-            variant={
-              filter === 0
-                ? "outlined"
-                : filter === 1
-                ? "contained"
-                : "outlined"
-            }
-            onClick={() => handleChangeFilter(1)}
-          >
-            Psy
-          </Button>
-          <Button
-            variant={
-              filter === 0
-                ? "outlined"
-                : filter === 2
-                ? "contained"
-                : "outlined"
-            }
-            onClick={() => handleChangeFilter(2)}
-          >
-            Koty
-          </Button>
+          <FilterComponent />
         </Box>
       </Box>
       <Box

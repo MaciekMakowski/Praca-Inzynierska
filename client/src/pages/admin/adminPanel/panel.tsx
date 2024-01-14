@@ -1,43 +1,42 @@
-import { Box, useTheme } from "@mui/material";
-import {
-  FoodData,
-  PetData,
-  VetData,
-  VisitorsData,
-} from "../../../utils/mockups/diagData";
+import { Box, Typography, useTheme } from "@mui/material";
+import { VisitorsData } from "../../../utils/mockups/diagData";
 
+import { useEffect, useState } from "react";
 import LineChart from "../../../components/charts/LineChart";
 import PieChart from "../../../components/charts/pieChart";
-
-const fakeData = [
-  {
-    id: 1,
-    name: "Azor",
-  },
-  {
-    id: 2,
-    name: "Pimpek",
-  },
-  {
-    id: 3,
-    name: "Szyszek",
-  },
-  {
-    id: 4,
-    name: "Azor",
-  },
-  {
-    id: 5,
-    name: "Pimpek",
-  },
-  {
-    id: 6,
-    name: "Szyszek",
-  },
-];
+import { transformArrDataForChart } from "../../../utils/functions/transformDataForChart";
+import {
+  getAnimalsStatistics,
+  getResourceStatistics,
+  getUserInfo,
+} from "../../../utils/services/gets";
 
 const Panel = () => {
   const theme = useTheme();
+  const [speciesStats, setSpeciesStats] = useState(null);
+  const [foodStats, setFoodStats] = useState(null);
+  const [animalStats, setAnimalStats] = useState(null);
+  const [userInfo, setUserInfo] = useState(null);
+
+  useEffect(() => {
+    getResourceStatistics().then((res) => {
+      if (res) setFoodStats(res.foodSubtypes);
+    });
+    getAnimalsStatistics().then((res) => {
+      if (res) {
+        setSpeciesStats(res.speciesStats);
+        setAnimalStats(
+          res.statusStats.filter(
+            (el: [string, number]) => el[0] !== "Adoptowane"
+          )
+        );
+      }
+    });
+    getUserInfo().then((res) => {
+      if (res) setUserInfo(res);
+    });
+  }, []);
+
   return (
     <>
       <Box
@@ -48,12 +47,22 @@ const Panel = () => {
           display: { display: "none", lg: "flex" },
           width: "100%",
           height: "30%",
-          justifyContent: "space-between",
+          justifyContent: "space-around",
           alignItems: "center",
-          flexDirection: { lg: "row" },
+          flexDirection: { lg: "column" },
           flexWrap: { xs: "wrap", lg: "nowrap" },
         }}
-      ></Box>
+      >
+        <Typography variant="h4" color={theme.palette.text.primary}>
+          Panel zarządzania schroniskiem dla zwierząt w Olsztynie
+        </Typography>
+        <Typography variant="h4" color={theme.palette.text.primary}>
+          {userInfo
+            ? // @ts-ignore
+              `Witaj, ${userInfo.fullName}!`
+            : "Witaj! Wystąpił błąd z pobraniem danych"}
+        </Typography>
+      </Box>
       <Box
         sx={{
           boxSizing: "border-box",
@@ -80,12 +89,14 @@ const Panel = () => {
             gap: "1rem",
           }}
         >
-          <PieChart
-            data={PetData}
-            title="Zwierzęta"
-            link="/admin/management/animals"
-            withLegend={false}
-          />
+          {speciesStats && (
+            <PieChart
+              data={transformArrDataForChart(speciesStats, "Ilość")}
+              title="Zwierzęta"
+              link="/admin/management/animals"
+              withLegend={false}
+            />
+          )}
         </Box>
         <Box
           sx={{
@@ -98,12 +109,14 @@ const Panel = () => {
             gap: "1rem",
           }}
         >
-          <PieChart
-            data={FoodData}
-            title="Karma w schronisku"
-            link="/admin/management/resources"
-            withLegend={false}
-          />
+          {foodStats && (
+            <PieChart
+              data={transformArrDataForChart(foodStats, "Ilość")}
+              title="Karma w schronisku"
+              link="/admin/management/resources"
+              withLegend={false}
+            />
+          )}
         </Box>
         <Box
           sx={{
@@ -116,11 +129,13 @@ const Panel = () => {
             gap: "1rem",
           }}
         >
-          <PieChart
-            data={VetData}
-            title="Izolacje i choroby"
-            withLegend={false}
-          />
+          {animalStats && (
+            <PieChart
+              data={transformArrDataForChart(animalStats, "Ilość")}
+              title="Izolacje i choroby"
+              withLegend={false}
+            />
+          )}
         </Box>
       </Box>
       <Box

@@ -13,6 +13,9 @@ const ResourceStatus = {
 };
 
 const countSubtypes = (resource, foodSubtypes) => {
+  if (!resource.resource_subtype) return;
+  if (!resource.resource_subtype.name) return;
+
   const subtype = foodSubtypes.find(
     (subtype) => subtype[0] === resource.resource_subtype.name
   );
@@ -97,6 +100,7 @@ module.exports = createCoreController(
 
       const resourcesStats = [];
       resources.forEach((resource) => {
+        if (!resource.resource_subtype || !resource.resources_type) return;
         if (
           resource.status === ResourceStatus.EXPIRED ||
           resource.status === ResourceStatus.UNAVALIABLE
