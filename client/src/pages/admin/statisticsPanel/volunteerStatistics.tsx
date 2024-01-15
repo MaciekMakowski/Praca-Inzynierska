@@ -13,7 +13,6 @@ const VolunteerStatistics = () => {
   useEffect(() => {
     getVolunteerStatistics().then((res) => {
       if (res) setData(res);
-      console.log(res);
     });
   }, []);
   return (

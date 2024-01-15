@@ -12,7 +12,6 @@ type PetManagementListProps = {
 
 const PetManagementList = (props: PetManagementListProps) => {
   const theme = useTheme();
-  console.log(props.data);
   return (
     <Box
       sx={{

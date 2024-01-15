@@ -13,7 +13,6 @@ const DiseaseStatistics = () => {
     if (!data)
       getDiseasesStatistics().then((res) => {
         setData(res);
-        console.log(res);
       });
   }, []);
   return (

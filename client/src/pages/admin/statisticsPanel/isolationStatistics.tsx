@@ -11,7 +11,6 @@ const IsolationStatistics = () => {
   useEffect(() => {
     getIsolationsStatistics().then((res) => {
       if (res) setData(res);
-      console.log(res);
     });
   }, []);
   return (

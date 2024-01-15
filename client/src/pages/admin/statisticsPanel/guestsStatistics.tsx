@@ -13,7 +13,6 @@ const GuestsStatistics = () => {
   useEffect(() => {
     getGuestsStatistics().then((res) => {
       if (res) setData(res);
-      console.log(res);
     });
   }, []);
   return (

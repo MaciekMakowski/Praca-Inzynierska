@@ -49,10 +49,12 @@ export const createPetDisease = (petDisease: PetDiseasesResponse) => {
       startDate: petDisease.attributes.startDate,
       endDate: petDisease.attributes.endDate,
       status: petDisease.attributes.status,
+      //@ts-ignore
       animal: petDisease.attributes.animal.data
         ? petDisease.attributes.animal.data
         : petDisease.attributes.animal,
       symptoms: petDisease.attributes.symptoms,
+      //@ts-ignore
       disease: petDisease.attributes.disease.data
         ? petDisease.attributes.disease.data
         : petDisease.attributes.disease,

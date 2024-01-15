@@ -14,7 +14,6 @@ const AnimalsStatistics = () => {
     if (!data)
       getAnimalsStatistics().then((res) => {
         setData(res);
-        console.log(res);
       });
   }, []);
   return (

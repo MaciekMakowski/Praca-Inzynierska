@@ -9,18 +9,21 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 
-import IsolationListItem from "./isolationListItem";
-import { IsolationType } from "../../../utils/types/basicTypes";
-import Loader from "../../loader";
 import { getIsolations } from "../../../utils/services/gets";
 import { paginationRangeValue } from "../../../utils/services/pagination";
+import { IsolationType } from "../../../utils/types/basicTypes";
+import Loader from "../../loader";
+import FilterComponent from "../filterComponent";
+import IsolationListItem from "./isolationListItem";
 
 const IsolationList = () => {
   const theme = useTheme();
   const [filter, setFilter] = useState(0);
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState<number>(1);
-  const [isolationList, setIsolationList] = useState<IsolationType[] | null>(null);
+  const [isolationList, setIsolationList] = useState<IsolationType[] | null>(
+    null
+  );
 
   const handleChangeFilter = (value: number) => {
     if (value === filter) setFilter(0);
@@ -32,14 +35,13 @@ const IsolationList = () => {
   };
 
   useEffect(() => {
-      getIsolations(page, paginationRangeValue).then((res) => {
+    getIsolations(page, paginationRangeValue).then((res) => {
       if (res) {
         setIsolationList([]);
         setIsolationList(res.data);
         setPageCount(res.meta.pagination.pageCount);
       }
     });
-    
   }, [page]);
 
   return (
@@ -81,30 +83,7 @@ const IsolationList = () => {
             gap: "1rem",
           }}
         >
-          <Button
-            variant={
-              filter === 0
-                ? "outlined"
-                : filter === 1
-                ? "contained"
-                : "outlined"
-            }
-            onClick={() => handleChangeFilter(1)}
-          >
-            Psy
-          </Button>
-          <Button
-            variant={
-              filter === 0
-                ? "outlined"
-                : filter === 2
-                ? "contained"
-                : "outlined"
-            }
-            onClick={() => handleChangeFilter(2)}
-          >
-            Koty
-          </Button>
+          <FilterComponent />
         </Box>
       </Box>
       <Box
@@ -194,11 +173,19 @@ const IsolationList = () => {
             overflowY: "auto",
           }}
         >
-          {isolationList ? isolationList.map((item, i) => {
-            return (
-              <IsolationListItem key={i} color={i % 2 == 0} isolation={item} />
-            );
-          }): <Loader/>}
+          {isolationList ? (
+            isolationList.map((item, i) => {
+              return (
+                <IsolationListItem
+                  key={i}
+                  color={i % 2 == 0}
+                  isolation={item}
+                />
+              );
+            })
+          ) : (
+            <Loader />
+          )}
         </Box>
       </Box>
       <Box

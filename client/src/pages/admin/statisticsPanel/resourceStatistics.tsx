@@ -12,7 +12,6 @@ const ResourceStatistics = () => {
   useEffect(() => {
     getResourceStatistics().then((res) => {
       if (res) setData(res);
-      console.log(res);
     });
   }, []);
   return (

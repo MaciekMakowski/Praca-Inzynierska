@@ -87,6 +87,7 @@ export const uppdateIsolation = async (isolation: IsolationType) => {
           startDate: isolation.attributes.startDate,
           endDate: isolation.attributes.endDate,
           reason: isolation.attributes.reason,
+          description: isolation.attributes.description,
           status: isolation.attributes.status,
           animal: isolation.attributes.animal.id,
         },

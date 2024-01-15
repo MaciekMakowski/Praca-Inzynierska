@@ -13,25 +13,24 @@ import {
   useTheme,
 } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
+import { useEffect, useState } from "react";
 import {
   handleChangeDate,
   handleSelectChange,
   handleTextChange,
 } from "../../../utils/functions/handlers";
-import { updateAnimal, uppdateIsolation } from "../../../utils/services/puts";
-import { useEffect, useState } from "react";
+import { uppdateIsolation } from "../../../utils/services/puts";
 
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import CloseIcon from "@mui/icons-material/Close";
 import { DatePicker } from "@mui/x-date-pickers";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { EditIsolationModalProps } from "../../../utils/types/propsTypes";
-import { ErrorInput } from "../../../utils/types/errorInput";
-import { IsolationType } from "../../../utils/types/basicTypes";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { isolationStatusList } from "../../../utils/mockups/adminMenu";
-import { setAnimalAsNotIsolated } from "../../../utils/functions/setters";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { validateForm } from "../../../utils/functions/validators";
+import { isolationStatusList } from "../../../utils/mockups/adminMenu";
+import { IsolationType } from "../../../utils/types/basicTypes";
+import { ErrorInput } from "../../../utils/types/errorInput";
+import { EditIsolationModalProps } from "../../../utils/types/propsTypes";
 
 const EditIsolationModal = (props: EditIsolationModalProps) => {
   const theme = useTheme();
@@ -40,6 +39,9 @@ const EditIsolationModal = (props: EditIsolationModalProps) => {
 
   const [errorList, setErrorList] = useState<ErrorInput>({
     reason: {
+      status: false,
+    },
+    description: {
       status: false,
     },
     startDate: {
@@ -65,19 +67,19 @@ const EditIsolationModal = (props: EditIsolationModalProps) => {
   const selectChange = (event: SelectChangeEvent) => {
     handleSelectChange(event, setNewIsolation);
   };
-  const update = (isolation:IsolationType) => {
+  const update = (isolation: IsolationType) => {
     uppdateIsolation(isolation).then((res) => {
       if (res) {
         props.setOpen(false);
         props.setRefresh(true);
       }
     });
-  }
+  };
   const sendForm = () => {
     if (newIsolation)
       validateForm(newIsolation.attributes, setErrorList).then((res) => {
         if (res) {
-            update(newIsolation)
+          update(newIsolation);
         }
       });
   };
@@ -137,11 +139,20 @@ const EditIsolationModal = (props: EditIsolationModalProps) => {
                 value={newIsolation.attributes.reason}
                 onChange={textChange}
                 error={errorList.reason.status}
-              ></TextField>
+              />
+              <TextField
+                label="Opis"
+                name="description"
+                fullWidth
+                multiline
+                minRows={4}
+                value={newIsolation.attributes.description}
+                onChange={textChange}
+                error={errorList.description.status}
+              />
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DemoContainer components={["DatePicker"]}>
                   <DatePicker
-
                     sx={{
                       flexGrow: 1,
                     }}

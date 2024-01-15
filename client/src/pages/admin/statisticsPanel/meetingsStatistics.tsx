@@ -12,7 +12,6 @@ const MeetingsStatistics = () => {
   useEffect(() => {
     getMeetingsStatistics().then((res) => {
       if (res) setData(res);
-      console.log(res);
     });
   }, []);
   return (

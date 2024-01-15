@@ -46,7 +46,6 @@ const AddMeetingModal = (props: AddMeetingModalProps) => {
   const dateChange = (value: Dayjs | null) => {
     if (value === null) return;
     newMeeting.attributes.date = value.format("YYYY-MM-DD");
-    console.log(newMeeting);
   };
   const timeChange = (value: Dayjs | null) => {
     if (value === null) return;
