@@ -14,6 +14,7 @@ const AnimalsStatistics = () => {
     if (!data)
       getAnimalsStatistics().then((res) => {
         setData(res);
+        console.log(res);
       });
   }, []);
   return (
@@ -101,7 +102,7 @@ const AnimalsStatistics = () => {
               >
                 <PieChart
                   data={transformArrDataForChart(data.weightStats, "Ilość")}
-                  title="Podział wiekowy"
+                  title="Podział wagowy"
                 />
               </Box>
               <Box
@@ -133,7 +134,12 @@ const AnimalsStatistics = () => {
                 }}
               >
                 <PieChart
-                  data={transformArrDataForChart(data.statusStats, "Ilość")}
+                  data={transformArrDataForChart(
+                    data.statusStats.filter(
+                      (item: any) => item[0] !== "Adoptowane"
+                    ),
+                    "Ilość"
+                  )}
                   title="Podział na statusy"
                 />
               </Box>

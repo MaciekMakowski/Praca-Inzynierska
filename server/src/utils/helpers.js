@@ -74,7 +74,11 @@ const visitFilteredByDays = (personVisit, personsVisitsByDays) => {
     ]);
   }
 };
-const visitMeanTimeBySexCalc = (personVisit, personsVisitsMeanBySexTime) => {
+const visitMeanTimeBySexCalc = (
+  personVisit,
+  personsVisitsMeanBySexTime,
+  volunteersVisitBySex
+) => {
   const exsistingSex = personsVisitsMeanBySexTime.find(
     (sex) => sex[0] === personVisit.person.personData.sex
   );
@@ -84,10 +88,12 @@ const visitMeanTimeBySexCalc = (personVisit, personsVisitsMeanBySexTime) => {
     "hours"
   );
   if (exsistingSex) {
-    exsistingSex[1] += time;
-  } else {
+    const visitCount = volunteersVisitBySex.find(
+      (item) => item[0] === exsistingSex[0]
+    )[1];
+    exsistingSex[1] += time / visitCount;
+  } else
     personsVisitsMeanBySexTime.push([personVisit.person.personData.sex, time]);
-  }
 };
 
 module.exports = {

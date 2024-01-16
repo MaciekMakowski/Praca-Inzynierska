@@ -37,7 +37,7 @@ const VolunteerStatistics = () => {
           >
             {" "}
             <Typography variant="h4" sx={{ color: theme.palette.primary.main }}>
-              Statystyki Izolacji
+              Statystyki Wolontariuszy
             </Typography>
           </Box>
 

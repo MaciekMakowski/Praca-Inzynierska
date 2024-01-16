@@ -9,11 +9,11 @@ import {
 } from "@mui/material";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-import Loader from "../../loader";
-import { PersonType } from "../../../utils/types/basicTypes";
-import PersonsListItem from "./personsListItem";
 import { getPeople } from "../../../utils/services/gets";
 import { paginationRangeValue } from "../../../utils/services/pagination";
+import { PersonType } from "../../../utils/types/basicTypes";
+import Loader from "../../loader";
+import PersonsListItem from "./personsListItem";
 
 type PersonListProps = {
   type: "volunteer" | "guest";
@@ -92,6 +92,7 @@ const PersonsList = (props: PersonListProps) => {
         sx={{
           overflowX: "auto",
           overflowY: "clip",
+          height: { xs: "60vh", lg: "100%" },
         }}
       >
         <Grid
@@ -185,17 +186,20 @@ const PersonsList = (props: PersonListProps) => {
             overflowY: "auto",
           }}
         >
-          {personsList ? personsList.map((person, i) => {
-            return (
-              <PersonsListItem
-                key={i}
-                color={i % 2 === 0}
-                person={person}
-                type={props.type}
-              />
-            );
-          }): 
-          <Loader/>}
+          {personsList ? (
+            personsList.map((person, i) => {
+              return (
+                <PersonsListItem
+                  key={i}
+                  color={i % 2 === 0}
+                  person={person}
+                  type={props.type}
+                />
+              );
+            })
+          ) : (
+            <Loader />
+          )}
         </Box>
       </Box>
       <Box

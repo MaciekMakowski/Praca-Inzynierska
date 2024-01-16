@@ -51,7 +51,11 @@ module.exports = createCoreController(
         visitMonthCalc(volunteerVisit, volunteersVisitsByMonth);
         visitSexCalc(volunteerVisit, volunteersVisitsBySex);
         visitFilteredByDays(volunteerVisit, volunteersVisitsByDays);
-        visitMeanTimeBySexCalc(volunteerVisit, volunteersVisitsMeanTimeBySex);
+        visitMeanTimeBySexCalc(
+          volunteerVisit,
+          volunteersVisitsMeanTimeBySex,
+          volunteersVisitsBySex
+        );
       });
       volunteersVisitsByMonth.sort((a, b) =>
         dayjs(a[0]).isAfter(dayjs(b[0])) ? 1 : -1

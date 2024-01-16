@@ -68,7 +68,7 @@ const GuestsStatistics = () => {
               >
                 <LineChart
                   data={transformArrDataForChart(data.guestsAges, "Ilość")}
-                  title="Wolontariuszy wg wieku"
+                  title="Goście wg wieku"
                 />
               </Box>
             </Box>
@@ -103,7 +103,7 @@ const GuestsStatistics = () => {
               >
                 <PieChart
                   data={transformArrDataForChart(data.guestsSex, "Ilość osób")}
-                  title="Podział płci wolonatriuszy"
+                  title="Podział płci gości"
                 />
               </Box>
               <Box

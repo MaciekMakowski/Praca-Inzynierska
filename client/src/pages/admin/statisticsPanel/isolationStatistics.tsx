@@ -65,7 +65,10 @@ const IsolationStatistics = () => {
                 }}
               >
                 <VerticalChart
-                  data={transformArrDataForChart(data.isolationsByMonth, "Dni")}
+                  data={transformArrDataForChart(
+                    data.isolationsByMonth,
+                    "Ilość"
+                  )}
                   title="Ilość izolacji w danym miesiącu"
                 />
               </Box>

@@ -92,6 +92,9 @@ module.exports = createCoreController("api::disease.disease", ({ strapi }) => ({
         ]);
       }
     });
+    diseasesByMonth = diseasesByMonth.sort((a, b) => {
+      return dayjs(a[0]).isAfter(dayjs(b[0])) ? 1 : -1;
+    });
     const diseaseStats = {
       diseasesFreq,
       diseasesByMonth,

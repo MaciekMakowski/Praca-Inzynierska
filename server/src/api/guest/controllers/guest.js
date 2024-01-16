@@ -50,7 +50,11 @@ module.exports = createCoreController("api::guest.guest", ({ strapi }) => ({
       visitMonthCalc(guestVisit, guestsVisitsByMonth);
       visitSexCalc(guestVisit, guestsVisitsBySex);
       visitFilteredByDays(guestVisit, guestsVisitsByDays);
-      visitMeanTimeBySexCalc(guestVisit, guestsVisitsMeanTimeBySex);
+      visitMeanTimeBySexCalc(
+        guestVisit,
+        guestsVisitsMeanTimeBySex,
+        guestsVisitsBySex
+      );
     });
     guestsVisitsByMonth.sort((a, b) =>
       dayjs(a[0]).isAfter(dayjs(b[0])) ? 1 : -1

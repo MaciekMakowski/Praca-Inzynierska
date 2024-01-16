@@ -62,21 +62,29 @@ module.exports = createCoreController(
       const closeToExpired = [];
       resources.forEach((resource) => {
         if (
-          resource.status === ResourceStatus.AVALIABLE &&
+          (resource.status === ResourceStatus.AVALIABLE ||
+            resource.status === ResourceStatus.INUSE) &&
           resource.expirationDate
         ) {
           const daysToExpire = dayjs(resource.expirationDate).diff(
             dayjs(),
             "day"
           );
-          if (daysToExpire < 7) {
-            const expiringItem = closeToExpired.find(
-              (type) => type[0] === resource.resource_subtype.name
-            );
-            if (expiringItem) closeToExpired[1]++;
+          if (daysToExpire && daysToExpire < 7) {
+            let expiringItem;
+            if (resource.resource_subtype)
+              expiringItem = closeToExpired.find(
+                (type) => type[0] === resource.resource_subtype.name
+              );
             else
+              expiringItem = closeToExpired.find(
+                (type) => type[0] === resource.resources_type.name
+              );
+            if (expiringItem) {
+              closeToExpired[1]++;
+            } else
               closeToExpired.push([
-                resource.resource_subtype.name
+                resource.resource_subtype
                   ? resource.resource_subtype.name
                   : resource.resources_type.name,
                 1,
@@ -84,6 +92,7 @@ module.exports = createCoreController(
           }
         }
       });
+      console.log(closeToExpired);
       const resourceTypes = [];
       resources.forEach((resource) => {
         if (

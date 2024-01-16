@@ -13,6 +13,7 @@ import { getAllMeetings } from "../../../utils/services/gets";
 import { paginationRangeValue } from "../../../utils/services/pagination";
 import { MeetingType } from "../../../utils/types/basicTypes";
 import Loader from "../../loader";
+import FilterComponent from "../filterComponent";
 import MeetingListItem from "./meetingListItem";
 
 const MeetingList = () => {
@@ -79,30 +80,7 @@ const MeetingList = () => {
             gap: "1rem",
           }}
         >
-          <Button
-            variant={
-              filter === 0
-                ? "outlined"
-                : filter === 1
-                ? "contained"
-                : "outlined"
-            }
-            onClick={() => handleChangeFilter(1)}
-          >
-            Psy
-          </Button>
-          <Button
-            variant={
-              filter === 0
-                ? "outlined"
-                : filter === 2
-                ? "contained"
-                : "outlined"
-            }
-            onClick={() => handleChangeFilter(2)}
-          >
-            Koty
-          </Button>
+          <FilterComponent />
         </Box>
       </Box>
       <Box

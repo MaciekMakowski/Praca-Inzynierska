@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  Grid,
-  Pagination,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
 
 import { DatePicker } from "@mui/x-date-pickers";
@@ -76,6 +69,7 @@ const GuestVisitHistory = (props: GuestVisitHistoryProps) => {
         sx={{
           overflowX: "auto",
           overflowY: "clip",
+          height: { xs: "60vh", md: "90%" },
         }}
       >
         <Grid
@@ -147,11 +141,7 @@ const GuestVisitHistory = (props: GuestVisitHistoryProps) => {
             display: "flex",
             justifyContent: "end",
           }}
-        >
-          <Typography variant="subtitle1" color={theme.palette.text.primary}>
-            <Pagination count={10} size="small" />
-          </Typography>
-        </Box>
+        ></Box>
       </Box>
     </Box>
   );
